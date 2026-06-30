@@ -1,0 +1,206 @@
+<!-- dashboard.html -->
+
+<div class="gov-dashboard">
+  <!-- TOPO -->
+  <header class="gov-topbar">
+    <div class="gov-topbar-content">
+      <div class="gov-logo-area">
+        <div class="">
+          <img
+            class="logo-img"
+            src="https://barra.sistema.gov.br/v1/assets/govbr.webp"
+          />
+        </div>
+
+        <nav class="gov-links">
+          <a href="#"> Órgãos do Governo </a>
+
+          <a href="#"> Acesso à Informação </a>
+
+          <a href="#"> Legislação </a>
+
+          <a href="#"> Acessibilidade </a>
+        </nav>
+      </div>
+
+      <button class="gov-user-btn">
+        <span class="material-symbols-outlined"> account_circle </span>
+
+        Entrar com gov.br
+      </button>
+    </div>
+  </header>
+
+  <div class="bloco-elementos">
+    <!-- TITULO -->
+    <section class="gov-title-section">
+      <div class="gov-title-content">
+        <span class="material-symbols-outlined menu-icon"> menu </span>
+
+        <h1 class="t1">Serviços e Informações do Brasil</h1>
+      </div>
+    </section>
+
+    <!-- BUSCA -->
+    <section class="gov-search-section">
+      <div class="gov-search-box">
+        <input type="text" placeholder="O que você procura?" class="busca" />
+
+        <div class="search-actions">
+          <span class="material-symbols-outlined"> mic </span>
+
+          <span class="material-symbols-outlined"> search </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- TÍTULO -->
+    <div class="services-title">
+      <h2 class="t2">Serviços para você</h2>
+    </div>
+    <br />
+    <div class="tile-header">
+      <h3>★ DESTAQUE</h3>
+    </div>
+    <!-- CARDS -->
+    <section class="gov-services">
+      <div class="services-grid">
+        <!-- CARD -->
+        <a class="service-card" routerLink="/tela-principal">
+          <div class="card-top">
+            <div class="service-icon blue">
+              <span class="material-symbols-outlined"> terrain </span>
+            </div>
+
+            <span class="material-symbols-outlined arrow"> arrow_forward </span>
+          </div>
+
+          <div class="card-content">
+            <h4>SISOT Web</h4>
+
+            <p>
+              Consulte informações territoriais, acompanhe processos e visualize
+              documentos.
+            </p>
+          </div>
+        </a>
+
+        <!-- CARD -->
+        <a class="service-card" routerLink="/tela-servicos">
+          <div class="card-top">
+            <div class="service-icon green">
+              <span class="material-symbols-outlined"> payments </span>
+            </div>
+
+            <span class="material-symbols-outlined arrow"> arrow_forward </span>
+          </div>
+
+          <div class="card-content">
+            <h4>Resolução de Pendencias</h4>
+
+            <p>Consulte programas sociais e benefícios financeiros.</p>
+          </div>
+        </a>
+
+        <!-- CARD -->
+        <a class="service-card" routerLink="/acompanhamento-solicitacoes">
+          <div class="card-top">
+            <div class="service-icon orange">
+              <span class="material-symbols-outlined"> clinical_notes </span>
+            </div>
+
+            <span class="material-symbols-outlined arrow"> arrow_forward </span>
+          </div>
+
+          <div class="card-content">
+            <h4>Acompanhemento de Solicitações</h4>
+
+            <p>
+              Serviços relacionados acompanhamento das solicitações dos
+              usuários.
+            </p>
+          </div>
+        </a>
+
+        <!-- CARD -->
+        <a class="service-card">
+          <div class="card-top">
+            <div class="service-icon purple">
+              <span class="material-symbols-outlined"> school </span>
+            </div>
+
+            <span class="material-symbols-outlined arrow"> arrow_forward </span>
+          </div>
+
+          <div class="card-content">
+            <h4>Educação</h4>
+
+            <p>Matrículas, certificados e programas educacionais.</p>
+          </div>
+        </a>
+
+        <!-- CARD -->
+        <a class="service-card">
+          <div class="card-top">
+            <div class="service-icon red">
+              <span class="material-symbols-outlined"> directions_car </span>
+            </div>
+
+            <span class="material-symbols-outlined arrow"> arrow_forward </span>
+          </div>
+
+          <div class="card-content">
+            <h4>Trânsito</h4>
+
+            <p>CNH, veículos, multas e serviços do Detran.</p>
+          </div>
+        </a>
+
+        <!-- CARD -->
+        <a class="service-card">
+          <div class="card-top">
+            <div class="service-icon cyan">
+              <span class="material-symbols-outlined"> apartment </span>
+            </div>
+
+            <span class="material-symbols-outlined arrow"> arrow_forward </span>
+          </div>
+
+          <div class="card-content">
+            <h4>Habitação</h4>
+
+            <p>Programas habitacionais e regularização urbana.</p>
+          </div>
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <!-- BOTTOM NAV (APP STYLE) -->
+  <nav class="bottom-nav">
+    <a routerLink="/" class="nav-item">
+      <mat-icon>home</mat-icon>
+      <span>Início</span>
+    </a>
+
+    <a routerLink="/tela-principal" class="nav-item">
+      <mat-icon>notifications</mat-icon>
+      <span>Notificações</span>
+    </a>
+
+    <a routerLink="/beneficiarios" class="nav-item">
+      <mat-icon>groups</mat-icon>
+      <span>Beneficiários</span>
+    </a>
+
+    <a routerLink="/reforma-agraria" class="nav-item">
+      <mat-icon>agriculture</mat-icon>
+      <span>Reforma</span>
+    </a>
+
+    <a routerLink="/cadastro" class="nav-item">
+      <mat-icon>person_add</mat-icon>
+      <span>Cadastro</span>
+    </a>
+  </nav>
+</div>

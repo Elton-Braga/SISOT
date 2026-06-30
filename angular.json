@@ -21,7 +21,10 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/styles.css"]
+            "styles": [
+              "src/custom-theme.scss",
+              "src/styles.css"
+            ]
           },
           "configurations": {
             "production": {
@@ -72,7 +75,10 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/styles.css"]
+            "styles": [
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+            ]
           }
         },
         "deploy": {

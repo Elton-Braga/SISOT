@@ -1,0 +1,809 @@
+/* dashboard.css */
+
+/* Remova a linha do Google Fonts e adicione esta: */
+@import url("https://cdngovbr.estaleiro.serpro.gov.br/design-system/fonts/rawline/rawline.css");
+
+:host {
+  display: block;
+  width: 100%;
+  min-height: 100vh;
+  background: #f3f4f6;
+  /* Certifique-se de que o nome está exatamente assim */
+  font-family: "Rawline", sans-serif;
+}
+
+.tile-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  width: 100%; /* Garante que ocupe a largura total */
+}
+
+.tile-header h3 {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  white-space: nowrap; /* Impede que o texto quebre em duas linhas */
+  font-family: sans-serif; /* Ajuste para a fonte do seu projeto */
+  color: #000000; /* Cor azul do texto (ajuste se necessário) */
+  gap: 15px; /* Espaçamento entre o texto e as linhas */
+}
+
+/* Criando as linhas laterais */
+.tile-header h3::before,
+.tile-header h3::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background-color: #ccc; /* Cor cinza clara da linha */
+}
+
+.logo-img {
+  width: 7rem;
+}
+
+.bloco-elementos {
+  margin: 0 7rem;
+}
+
+/* RESET */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* CONTAINER */
+
+.gov-dashboard {
+  width: 100%;
+  min-height: 100vh;
+
+  background: #f3f4f6;
+}
+
+/* =========================================================
+   TOPO SUPERIOR GOVBR
+========================================================= */
+
+.gov-topbar {
+  width: 100%;
+  background: #ffffff;
+
+  border-bottom: 1px solid #d9d9d9;
+}
+
+.gov-topbar-content {
+  width: 100%;
+
+  padding: 18px 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 24px;
+}
+
+/* LOGO */
+
+.gov-logo-area {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  flex-grow: 1; /* Adicionado: faz a área ocupar o espaço máximo disponível */
+  justify-content: space-between; /* Adicionado: empurra o <nav> para o canto oposto da logo */
+}
+
+.gov-logo {
+  font-size: 42px;
+  font-weight: 700;
+
+  letter-spacing: -2px;
+
+  color: #1351b4;
+}
+
+.gov-logo::after {
+  content: ".br";
+  color: #f5b400;
+}
+
+/* LINKS TOPO */
+
+.gov-links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+.gov-links a {
+  text-decoration: none;
+
+  color: #1351b4;
+
+  font-size: 14px;
+
+  transition: 0.2s;
+}
+
+.gov-links a:hover {
+  color: #0c326f;
+}
+
+/* BOTÃO */
+
+.gov-user-btn {
+  height: 44px;
+
+  border: none;
+
+  padding: 0 22px;
+
+  border-radius: 999px;
+
+  background: #1351b4;
+
+  color: white;
+
+  font-weight: 600;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  cursor: pointer;
+
+  transition: 0.2s;
+}
+
+.gov-user-btn:hover {
+  background: #0c326f;
+}
+
+/* =========================================================
+   TÍTULO
+========================================================= */
+
+.gov-title-section {
+  width: 100%;
+
+  padding: 34px 42px 12px;
+}
+
+.gov-title-content {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.gov-title-content .menu-icon {
+  color: #1351b4;
+  font-size: 32px;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer; /* Torna o ícone clicável visualmente */
+}
+
+.gov-title-content h1 {
+  font-size: 40px;
+  font-weight: 300;
+
+  color: #071d41;
+}
+
+/* =========================================================
+   BUSCA
+========================================================= */
+
+.gov-search-section {
+  width: 100%;
+
+  padding: 24px 42px 40px !important;
+}
+
+.gov-search-box {
+  width: 100%;
+  height: 74px;
+
+  background: white;
+
+  border: 1px solid #d9d9d9;
+
+  border-radius: 6px;
+
+  display: flex;
+  align-items: center;
+
+  padding: 0 24px;
+
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
+}
+
+.gov-search-box input {
+  width: 100%;
+
+  border: none;
+  outline: none;
+
+  font-size: 22px;
+
+  color: #333;
+
+  background: transparent;
+}
+
+.gov-search-box input::placeholder {
+  color: #666;
+}
+
+.search-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.search-actions span {
+  color: #1351b4;
+
+  cursor: pointer;
+}
+
+/* =========================================================
+   TÍTULO SERVIÇOS
+========================================================= */
+
+.services-title {
+  text-align: center;
+
+  margin-bottom: 46px;
+}
+
+.t1 {
+  font-size: 25px !important;
+  font-weight: none !important; /* Experimente o 300 para um visual mais elegante */
+  color: #071d41;
+}
+
+.t2 {
+  font-size: 45px;
+  font-weight: 300; /* Experimente o 300 para um visual mais elegante */
+  color: #071d41;
+}
+/*
+.services-title h2 {
+  font-size: 52px;
+  font-weight: 500;
+
+  color: #071d41;
+}*/
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.gov-services {
+  width: 100%;
+
+  padding: 0 42px 60px;
+}
+
+.services-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 26px;
+}
+
+/* =========================================================
+   CARD DSGOV
+========================================================= */
+
+.service-card {
+  background: white;
+
+  border: 1px solid #d9d9d9;
+
+  border-radius: 6px;
+
+  padding: 28px;
+
+  min-height: 240px;
+
+  text-decoration: none;
+
+  transition: 0.2s ease;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  cursor: pointer;
+}
+
+.service-card:hover {
+  border-color: #1351b4;
+
+  transform: translateY(-3px);
+
+  box-shadow: 0 8px 20px rgba(19, 81, 180, 0.08);
+}
+
+.card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.service-icon {
+  width: 68px;
+  height: 68px;
+
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.service-icon span {
+  color: white;
+  font-size: 34px;
+}
+
+.arrow {
+  color: #1351b4;
+  font-size: 30px;
+}
+
+.card-content h4 {
+  font-size: 28px;
+  font-weight: 500;
+
+  color: #1351b4;
+
+  margin-bottom: 14px;
+}
+
+.card-content p {
+  font-size: 17px;
+  line-height: 1.6;
+
+  color: #555;
+}
+
+/* =========================================================
+   CORES
+========================================================= */
+
+.blue {
+  background: #1351b4;
+}
+
+.green {
+  background: #168821;
+}
+
+.orange {
+  background: #ff8c00;
+}
+
+.purple {
+  background: #6f42c1;
+}
+
+.red {
+  background: #d93025;
+}
+
+.cyan {
+  background: #007b8a;
+}
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1100px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .services-title h2 {
+    font-size: 40px;
+  }
+
+  .gov-title-content h1 {
+    font-size: 32px;
+  }
+}
+
+/* =========================================================
+   MOBILE
+========================================================= */
+.bottom-nav {
+  display: none;
+}
+@media (max-width: 768px) {
+  /* =========================================================
+     TOPO
+  ========================================================= */
+
+  .gov-topbar-content {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 14px 16px;
+  }
+
+  .gov-logo-area {
+    width: auto;
+  }
+
+  /* Oculta links superiores */
+  .gov-links {
+    display: none;
+  }
+
+  /* Logo menor */
+  .logo-img {
+    width: 4.2rem;
+  }
+
+  /* =========================================================
+     BOTÃO ENTRAR
+  ========================================================= */
+
+  .gov-user-btn {
+    height: 32px;
+
+    padding: 0 10px;
+
+    min-width: auto;
+
+    border-radius: 999px;
+
+    font-size: 0;
+  }
+
+  /* Oculta ícone */
+  .gov-user-btn .material-symbols-outlined {
+    display: none;
+  }
+
+  /* Texto visual */
+  .gov-user-btn::after {
+    content: "Entrar";
+
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  /* =========================================================
+     CONTAINER PRINCIPAL
+  ========================================================= */
+
+  .bloco-elementos {
+    width: 100%;
+
+    margin: 0;
+  }
+
+  /* =========================================================
+     SEÇÕES
+  ========================================================= */
+
+  .gov-title-section,
+  .gov-search-section,
+  .gov-services {
+    width: 100%;
+
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  .gov-title-section {
+    padding-top: 22px;
+    padding-bottom: 10px;
+  }
+
+  .gov-search-section {
+    padding-top: 14px;
+    padding-bottom: 24px !important;
+  }
+
+  /* =========================================================
+     TÍTULOS
+  ========================================================= */
+
+  .gov-title-content {
+    gap: 10px;
+  }
+
+  .gov-title-content .menu-icon {
+    font-size: 24px;
+  }
+
+  .gov-title-content h1,
+  .t1 {
+    font-size: 20px !important;
+    line-height: 1.3;
+  }
+
+  .services-title {
+    width: 100%;
+
+    padding: 0 16px;
+
+    margin-bottom: 18px;
+  }
+
+  .t2 {
+    font-size: 30px !important;
+    line-height: 1.2;
+  }
+
+  /* =========================================================
+     BUSCA
+  ========================================================= */
+
+  .gov-search-box {
+    width: 100%;
+    max-width: 100%;
+
+    height: 58px;
+
+    padding: 0 16px;
+
+    background: #ffffff !important;
+
+    border-radius: 8px;
+  }
+
+  .gov-search-box input {
+    font-size: 16px;
+  }
+
+  .search-actions {
+    gap: 10px;
+  }
+
+  .search-actions span {
+    font-size: 22px;
+  }
+
+  /* =========================================================
+     LISTA ESTILO GOV.BR
+  ========================================================= */
+
+  .services-grid {
+    display: flex;
+    flex-direction: column;
+
+    gap: 0;
+
+    width: 100%;
+
+    background: #ffffff;
+
+    border: 1px solid #d9d9d9;
+
+    border-radius: 6px;
+
+    overflow: hidden;
+
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+
+    counter-reset: servicos;
+  }
+
+  /* =========================================================
+     ITEM DA LISTA
+  ========================================================= */
+
+  .service-card {
+    counter-increment: servicos;
+
+    width: 100%;
+
+    min-height: auto;
+
+    padding: 18px 0;
+
+    background: #ffffff;
+
+    border: none;
+    border-radius: 0;
+
+    box-shadow: none;
+
+    transform: none !important;
+
+    display: flex;
+    align-items: center;
+
+    transition: background 0.2s ease;
+
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .service-card:last-child {
+    border-bottom: none;
+  }
+
+  .service-card:hover {
+    background: #f9fafb;
+
+    box-shadow: none;
+
+    border-color: transparent;
+  }
+
+  /* =========================================================
+     REMOVE ELEMENTOS ANTIGOS
+  ========================================================= */
+
+  .card-top,
+  .service-icon,
+  .arrow,
+  .card-content p {
+    display: none;
+  }
+
+  /* =========================================================
+     CONTEÚDO DO ITEM
+  ========================================================= */
+
+  .card-content {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+
+    gap: 14px;
+
+    padding: 0 18px;
+  }
+
+  /* Número */
+  .card-content::before {
+    content: counter(servicos);
+
+    min-width: 22px;
+
+    font-size: 20px;
+    font-weight: 600;
+
+    color: #d1d5db;
+  }
+
+  /* Texto */
+  .card-content h4 {
+    margin: 0rem;
+
+    font-size: 16px;
+    font-weight: 500;
+
+    line-height: 1.4;
+
+    color: #1351b4;
+  }
+
+  .bottom-nav {
+    position: fixed;
+
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 68px;
+
+    background: #0c326f;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    z-index: 2000;
+
+    box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.18);
+  }
+
+  .nav-item {
+    flex: 1;
+    height: 100%;
+
+    text-decoration: none;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 3px;
+
+    color: #ffffff;
+
+    font-size: 10px;
+    font-weight: 500;
+
+    cursor: pointer;
+
+    transition: background 0.2s ease;
+  }
+
+  /* ÍCONES */
+  .nav-item .material-symbols-outlined {
+    font-size: 22px;
+
+    width: 22px;
+    height: 22px;
+
+    color: #ffffff;
+  }
+
+  /* HOVER E ITEM ATIVO */
+  .nav-item:hover,
+  .nav-item.active {
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  /* Evita conteúdo atrás do menu */
+  .gov-dashboard {
+    padding-bottom: 90px;
+  }
+
+  /* evita conteúdo ficar escondido atrás do menu */
+  .gov-dashboard {
+    padding-bottom: 70px;
+  }
+}
+
+/* =========================================================
+   MOBILE PEQUENO
+========================================================= */
+
+@media (max-width: 480px) {
+  .gov-logo {
+    font-size: 32px;
+  }
+
+  .gov-user-btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .gov-title-content {
+    align-items: flex-start;
+  }
+
+  .gov-title-content .menu-icon {
+    font-size: 26px;
+  }
+
+  .gov-title-content h1 {
+    font-size: 22px;
+  }
+
+  .services-title h2 {
+    font-size: 28px;
+    margin-bottom: 2rem !important;
+  }
+
+  .gov-search-box {
+    padding: 0 16px;
+  }
+}

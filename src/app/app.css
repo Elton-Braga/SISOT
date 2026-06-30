@@ -1,0 +1,150 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* espaçamento entre a imagem e o texto */
+}
+.texto {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.texto h1 {
+  font-size: 20px;
+  font-weight: lighter;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  margin: 0;
+}
+
+.texto .small {
+  font-size: 0.9rem;
+  color: #555;
+}
+.topo {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  padding: 1.5rem 8rem;
+  border: 1px solid #e7e5e5;
+  box-shadow: 0px 20px 20px -15px rgba(0, 0, 0, 0.15);
+}
+
+.topo h1 {
+  font-weight: lighter;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 20px;
+}
+.logo {
+  width: 7rem;
+}
+.objeto {
+  display: inline-flex;
+  flex-direction: row;
+}
+.espacametno {
+  margin: 0rem 15rem;
+  padding: 0 0;
+}
+
+.alc {
+  text-align: center !important;
+}
+
+.cabecalho h2 {
+  margin: 7rem 0 0rem 0;
+  font-family: Georgia, "Times New Roman", Times, serif;
+}
+
+.servicos-section {
+  width: 100%;
+  background-color: #f9fafb;
+  text-align: center;
+  padding: 3rem 1rem; /* Reduzido para centralizar melhor */
+}
+
+.servicos-section .container {
+  max-width: 1200px; /* Limita a largura máxima da seção */
+  margin: 0 auto; /* Centraliza horizontalmente */
+}
+
+.servicos-section h3 {
+  text-align: center;
+}
+
+.servicos-section .row {
+  display: flex;
+  justify-content: center; /* Centraliza horizontalmente os cards */
+  flex-wrap: wrap; /* Permite quebra de linha responsiva */
+  gap: 1.5rem; /* Espaço entre os cards */
+}
+
+.service-card {
+  border: 1px solid #e5e5e5;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  width: 250px; /* Largura fixa para alinhamento uniforme */
+  padding: 1.5rem;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+.icon-area .icon {
+  font-size: 2rem;
+  color: #0d6efd;
+}
+
+.link-saiba-mais {
+  font-size: 0.9rem;
+  color: #0d6efd;
+  text-decoration: none;
+}
+
+.link-saiba-mais:hover {
+  text-decoration: underline;
+}
+
+footer {
+  padding: 0 15rem;
+}
+::ng-deep .detalhar-divida-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+
+  z-index: 1000;
+
+  .mat-dialog-container {
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
+    width: 100vw;
+    height: 100vh;
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+  }
+}
+
+::ng-deep .detalhar-divida-modal .mdc-dialog__surface {
+  overflow-y: auto !important; /* habilita o scroll vertical */
+  max-height: 85vh !important; /* limita altura */
+}
