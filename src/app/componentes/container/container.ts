@@ -6,7 +6,7 @@ import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-container',
   standalone: true,
-  imports: [RouterLink, MatIconModule],
+  imports: [RouterLink, MatIconModule, CommonModule],
   templateUrl: './container.html',
   styleUrl: './container.css',
 })
