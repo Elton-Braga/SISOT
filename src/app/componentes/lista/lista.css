@@ -1,0 +1,263 @@
+/* Layout & Container Geral */
+.br-app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.br-header {
+  background: #1351b4 !important; /* Azul Padrão GovBR */
+  color: #ffffff !important;
+  height: 64px;
+  padding: 0 2rem;
+}
+
+.br-divider {
+  border-left: 1px solid rgba(255, 255, 255, 0.4);
+  height: 24px;
+}
+
+.header-sign {
+  font-size: 1.15rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.layout-body-container {
+  flex: 1;
+  height: calc(100vh - 64px);
+}
+
+/* Menu Lateral (Sidenav) */
+.br-menu-lateral {
+  width: 260px;
+  background: #ffffff !important;
+  border-right: 1px solid #e9ecef !important;
+}
+
+.menu-nav .menu-item {
+  color: #333333 !important;
+  font-weight: 500;
+  margin: 4px 0;
+  border-left: 4px solid transparent;
+}
+
+.menu-nav .menu-item:hover,
+.menu-nav .menu-item.active {
+  background: #edf3fc !important;
+  color: #1351b4 !important;
+}
+
+.menu-nav .menu-item.active {
+  border-left-color: #1351b4;
+}
+
+.menu-nav mat-icon {
+  color: inherit !important;
+}
+
+.main-content {
+  background: #fafafa;
+}
+
+.page-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1351b4;
+  margin-bottom: 0.25rem;
+}
+
+/* Filtros (MatCard Overrides) */
+.filter-card {
+  border: 1px solid #ced4da !important;
+  border-radius: 4px !important;
+  box-shadow: none !important;
+  background: #ffffff;
+}
+
+.filter-card-header {
+  display: flex !important;
+  align-items: center;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+  padding: 1rem 1.5rem !important;
+}
+
+.filter-title {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  margin: 0 !important;
+  font-size: 1rem;
+  font-weight: 600;
+}
+:host ::ng-deep .filter-card-header .mat-mdc-card-header-text {
+  flex: 1;
+}
+
+.text-md {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* Filtros (MatCard Overrides) */
+.filter-card {
+  border: 1px solid #ced4da !important;
+  border-radius: 4px !important;
+  box-shadow: none !important;
+  background: #ffffff;
+}
+
+.filter-card-header {
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.text-md {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* --- NOVAS CLASSES DE CONFIGURAÇÃO DO FLEXBOX NATIVO --- */
+
+.filter-flex-container {
+  display: flex;
+  flex-wrap: wrap; /* Permite que os itens quebrem linha dinamicamente */
+  gap: 1rem; /* Substitui o g-3 (espaçamento de 16px entre linhas e colunas) */
+  width: 100%;
+}
+
+.filter-item {
+  flex: 1 1 200px; /* Comportamento padrão: cresce, encolhe e assume base de 200px */
+}
+
+/* Modificadores de proporção baseados na semântica dos dados do Incra */
+.filter-item.item-xs {
+  flex: 1 1 90px; /* Ideal para campos curtíssimos como UF e SR */
+}
+
+.filter-item.item-sm {
+  flex: 1 1 150px; /* Ideal para SNCR, Área e Situação */
+}
+
+.filter-item.item-md {
+  flex: 1.5 1 240px; /* Ideal para Imóvel, Nº Processo, Modalidade e Município */
+}
+
+.filter-item.item-lg {
+  flex: 3 1 320px; /* Dá prioridade total de expansão para a razão social/proprietário */
+}
+
+/* Redução de densidade do FormField para alinhar com dsgov */
+::v-deep .mat-mdc-form-field-subscript-wrapper {
+  display: none !important; /* Remove o espaço de erro reservado embaixo do input */
+}
+
+::v-deep .mdc-notched-outline__lead,
+::v-deep .mdc-notched-outline__notch,
+::v-deep .mdc-notched-outline__trail {
+  border-color: #888888 !important;
+}
+
+::v-deep .mat-mdc-form-field.mat-focused .mdc-notched-outline__lead,
+::v-deep .mat-mdc-form-field.mat-focused .mdc-notched-outline__notch,
+::v-deep .mat-mdc-form-field.mat-focused .mdc-notched-outline__trail {
+  border-color: #1351b4 !important;
+  border-width: 2px !important;
+}
+
+/* Tabela Customizada */
+.table-container-dsgov {
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.table-dsgov th.mat-mdc-header-cell {
+  background-color: #1351b4 !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  font-size: 0.875rem;
+}
+
+.table-dsgov td.mat-mdc-cell {
+  font-size: 0.875rem;
+  color: #444444;
+}
+
+.table-dsgov tr.mat-mdc-row:hover {
+  background-color: #f1f5f9;
+}
+
+/* Elementos de Tags e Badges */
+.badge-sr {
+  background: #e6f0fa;
+  color: #0c4a6e;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  font-weight: bold;
+  font-size: 0.75rem;
+}
+
+.br-tag.info {
+  background-color: #feeddb;
+  color: #854d0e;
+  padding: 0.25rem 0.6rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.text-truncate-cell {
+  max-width: 180px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.btn-actions-group {
+  display: flex;
+  gap: 2px;
+  justify-content: center;
+}
+
+.no-wrap {
+  white-space: nowrap;
+}
+
+.vertical-align-middle {
+  vertical-align: middle;
+}
+
+/* Helpers Bootstrap Grid utilities fallback se necessário */
+.w-100 {
+  width: 100%;
+}
+.me-2 {
+  margin-right: 0.5rem;
+}
+.mb-4 {
+  margin-bottom: 1.5rem;
+}
+.p-3 {
+  padding: 1rem !important;
+}
+.p-4 {
+  padding: 1.5rem !important;
+}
+.text-end {
+  text-align: right;
+}
+.text-center {
+  text-align: center;
+}
+.filter-actions {
+  display: flex;
+  justify-content: flex-start;
+  padding: 0 1rem 1rem 1rem;
+  border-top: 1px solid #e9ecef;
+  margin-top: 0.5rem;
+}
