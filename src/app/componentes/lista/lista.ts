@@ -19,6 +19,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { Imovel } from '../../mock/imovel.model';
 import { IMOVEIS_MOCK } from '../../mock/imovel.mock';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @Component({
   selector: 'app-lista',
@@ -39,6 +40,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatToolbarModule,
     MatChipsModule,
     MatTooltipModule,
+    MatCheckboxModule,
   ],
   templateUrl: './lista.html',
   styleUrl: './lista.css',
@@ -50,6 +52,7 @@ export class Lista implements OnInit {
   public paginaAtual = signal<number>(0); // MatPaginator utiliza índice baseado em 0
 
   // Definição das colunas exibidas na mat-table
+  /*
   public colunasExibidas: string[] = [
     'sr',
     'imovel',
@@ -61,7 +64,13 @@ export class Lista implements OnInit {
     'situacao',
     'municipioUf',
     'acoes',
-  ];
+  ];*/
+
+  public atualizarColunas(): void {
+    this.colunasExibidas = this.configuracaoColunas
+      .filter((c) => c.visivel)
+      .map((c) => c.id);
+  }
 
   // Objeto de filtros vinculados ao formulário
   public filtros = signal({
@@ -78,6 +87,23 @@ export class Lista implements OnInit {
   });
 
   ngOnInit(): void {}
+
+  public configuracaoColunas = [
+    { id: 'sr', titulo: 'SR', visivel: true },
+    { id: 'imovel', titulo: 'Imóvel', visivel: true },
+    { id: 'sncr', titulo: 'SNCR', visivel: true },
+    { id: 'areaHa', titulo: 'Área (Ha)', visivel: true },
+    { id: 'proprietario', titulo: 'Proprietário', visivel: true },
+    { id: 'processo', titulo: 'Processo', visivel: true },
+    { id: 'modalidade', titulo: 'Modalidade', visivel: true },
+    { id: 'situacao', titulo: 'Situação', visivel: true },
+    { id: 'municipioUf', titulo: 'Município / UF', visivel: true },
+    { id: 'acoes', titulo: 'Ações', visivel: true },
+  ];
+
+  public colunasExibidas: string[] = this.configuracaoColunas
+    .filter((c) => c.visivel)
+    .map((c) => c.id);
 
   // Lista filtrada baseada nos inputs dos usuários
   public imoveisFiltrados = computed(() => {

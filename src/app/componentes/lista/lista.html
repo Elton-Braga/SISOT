@@ -196,18 +196,42 @@
         <mat-menu #menuExportar="matMenu">
           <button mat-menu-item (click)="exportar('excel')">
             <mat-icon>table_view</mat-icon>
-            <span>Excel</span>
+            Excel
           </button>
 
           <button mat-menu-item (click)="exportar('csv')">
             <mat-icon>description</mat-icon>
-            <span>CSV</span>
+            CSV
           </button>
 
           <button mat-menu-item (click)="exportar('pdf')">
             <mat-icon>picture_as_pdf</mat-icon>
-            <span>PDF</span>
+            PDF
           </button>
+        </mat-menu>
+
+        <span class="toolbar-spacer"></span>
+
+        <button
+          mat-stroked-button
+          color="primary"
+          [matMenuTriggerFor]="menuColunas"
+        >
+          <mat-icon>view_column</mat-icon>
+          Ajustar Colunas
+          <mat-icon>arrow_drop_down</mat-icon>
+        </button>
+
+        <mat-menu #menuColunas="matMenu">
+          <div class="menu-colunas" (click)="$event.stopPropagation()">
+            <mat-checkbox
+              *ngFor="let coluna of configuracaoColunas"
+              [(ngModel)]="coluna.visivel"
+              (change)="atualizarColunas()"
+            >
+              {{ coluna.titulo }}
+            </mat-checkbox>
+          </div>
         </mat-menu>
       </div>
 
