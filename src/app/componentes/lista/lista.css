@@ -261,3 +261,23 @@
   border-top: 1px solid #e9ecef;
   margin-top: 0.5rem;
 }
+
+/* Barra acima da tabela */
+.table-toolbar {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.table-toolbar button {
+  min-width: 150px;
+}
+
+.table-toolbar .mat-icon:first-child {
+  margin-right: 6px;
+}
+
+.table-toolbar .mat-icon:last-child {
+  margin-left: 4px;
+}

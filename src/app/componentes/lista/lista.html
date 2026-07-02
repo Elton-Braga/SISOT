@@ -181,6 +181,36 @@
         </mat-card-actions>
       </mat-card>
 
+      <!-- Barra de ações -->
+      <div class="table-toolbar">
+        <button
+          mat-raised-button
+          color="primary"
+          [matMenuTriggerFor]="menuExportar"
+        >
+          <mat-icon>download</mat-icon>
+          Exportar
+          <mat-icon>arrow_drop_down</mat-icon>
+        </button>
+
+        <mat-menu #menuExportar="matMenu">
+          <button mat-menu-item (click)="exportar('excel')">
+            <mat-icon>table_view</mat-icon>
+            <span>Excel</span>
+          </button>
+
+          <button mat-menu-item (click)="exportar('csv')">
+            <mat-icon>description</mat-icon>
+            <span>CSV</span>
+          </button>
+
+          <button mat-menu-item (click)="exportar('pdf')">
+            <mat-icon>picture_as_pdf</mat-icon>
+            <span>PDF</span>
+          </button>
+        </mat-menu>
+      </div>
+
       <div class="mat-elevation-z2 table-container-dsgov">
         <table
           mat-table

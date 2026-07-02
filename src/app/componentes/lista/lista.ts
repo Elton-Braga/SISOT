@@ -18,11 +18,13 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 
 import { Imovel } from '../../mock/imovel.model';
 import { IMOVEIS_MOCK } from '../../mock/imovel.mock';
+import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
   selector: 'app-lista',
   standalone: true,
   imports: [
+    MatMenuModule,
     CommonModule,
     FormsModule,
     MatTableModule,
@@ -139,5 +141,20 @@ export class Lista implements OnInit {
 
   public executarAcao(acao: string, imovel: Imovel): void {
     console.log(`Ação [${acao}] executada para o imóvel: ${imovel.imovel}`);
+  }
+  public exportar(tipo: 'excel' | 'csv' | 'pdf'): void {
+    switch (tipo) {
+      case 'excel':
+        console.log('Exportando Excel...');
+        break;
+
+      case 'csv':
+        console.log('Exportando CSV...');
+        break;
+
+      case 'pdf':
+        console.log('Exportando PDF...');
+        break;
+    }
   }
 }
