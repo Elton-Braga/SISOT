@@ -12,4 +12,4 @@ export interface Imovel {
   acoes: Acao[];
 }
 
-export type Acao = 'Espelho' | 'Histórico' | 'Editar';
+export type Acao = 'Espelho' | 'Histórico' | 'Editar' | 'Log';

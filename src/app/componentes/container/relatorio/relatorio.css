@@ -1,0 +1,101 @@
+:host {
+  display: block;
+  background: #eceff1;
+  padding: 24px;
+}
+
+.pagina-relatorio {
+  max-width: 1700px;
+  margin: auto;
+  background: #fff;
+  padding: 35px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+.barra-acoes {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 25px;
+}
+
+.cabecalho {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 25px;
+}
+
+.logo {
+  width: 140px;
+}
+
+.informacoes {
+  flex: 1;
+}
+
+.informacoes h2 {
+  margin: 0;
+  color: #0d47a1;
+  font-size: 22px;
+}
+
+.informacoes h3 {
+  margin-top: 15px;
+  color: #333;
+}
+
+.informacoes p {
+  margin: 4px 0;
+}
+
+.informacoes span {
+  display: block;
+  margin-top: 15px;
+  font-weight: bold;
+}
+
+.tabela {
+  width: 100%;
+  font-size: 13px;
+}
+
+.mat-mdc-header-row {
+  background: #eceff1;
+}
+
+.mat-mdc-header-cell {
+  font-weight: 700;
+}
+
+.mat-mdc-row:nth-child(even) {
+  background: #fafafa;
+}
+
+.mat-mdc-cell,
+.mat-mdc-header-cell {
+  padding: 12px;
+}
+
+@media print {
+  :host {
+    padding: 0;
+    background: #fff;
+  }
+
+  .barra-acoes {
+    display: none;
+  }
+
+  .pagina-relatorio {
+    box-shadow: none;
+    border: none;
+    padding: 0;
+  }
+
+  .tabela {
+    font-size: 10px;
+  }
+}

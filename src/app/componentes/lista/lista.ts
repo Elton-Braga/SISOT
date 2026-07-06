@@ -20,6 +20,7 @@ import { Imovel } from '../../mock/imovel.model';
 import { IMOVEIS_MOCK } from '../../mock/imovel.mock';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-lista',
@@ -51,21 +52,6 @@ export class Lista implements OnInit {
   public itensPorPagina = signal<number>(5);
   public paginaAtual = signal<number>(0); // MatPaginator utiliza índice baseado em 0
 
-  // Definição das colunas exibidas na mat-table
-  /*
-  public colunasExibidas: string[] = [
-    'sr',
-    'imovel',
-    'sncr',
-    'areaHa',
-    'proprietario',
-    'processo',
-    'modalidade',
-    'situacao',
-    'municipioUf',
-    'acoes',
-  ];*/
-
   public atualizarColunas(): void {
     this.colunasExibidas = this.configuracaoColunas
       .filter((c) => c.visivel)
@@ -85,6 +71,8 @@ export class Lista implements OnInit {
     municipio: '',
     uf: '',
   });
+
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -179,7 +167,12 @@ export class Lista implements OnInit {
         break;
 
       case 'pdf':
-        console.log('Exportando PDF...');
+        const url = this.router.serializeUrl(
+          this.router.createUrlTree(['/relatorio']),
+        );
+
+        window.open(url, '_blank');
+
         break;
     }
   }
