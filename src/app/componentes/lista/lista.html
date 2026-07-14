@@ -244,20 +244,20 @@
           <ng-container matColumnDef="sr">
             <th mat-header-cell *matHeaderCellDef>SR</th>
             <td mat-cell *matCellDef="let item">
-              <span class="badge-sr">{{ item.sr }}</span>
+              <span class="badge-sr">{{ item.imovel.sr }}</span>
             </td>
           </ng-container>
 
           <ng-container matColumnDef="imovel">
             <th mat-header-cell *matHeaderCellDef>Imóvel</th>
             <td mat-cell *matCellDef="let item">
-              <strong>{{ item.imovel }}</strong>
+              <strong>{{ item.imovel.imovel }}</strong>
             </td>
           </ng-container>
 
           <ng-container matColumnDef="sncr">
             <th mat-header-cell *matHeaderCellDef>SNCR</th>
-            <td mat-cell *matCellDef="let item">{{ item.sncr }}</td>
+            <td mat-cell *matCellDef="let item">{{ item.imovel.sncr }}</td>
           </ng-container>
 
           <ng-container matColumnDef="areaHa">
@@ -265,7 +265,7 @@
               Área (Ha)
             </th>
             <td mat-cell *matCellDef="let item" class="text-end">
-              {{ item.areaHa | number: "1.4-4" }}
+              {{ item.imovel.areaHa | number: "1.4-4" }}
             </td>
           </ng-container>
 
@@ -275,33 +275,35 @@
               mat-cell
               *matCellDef="let item"
               class="text-truncate-cell"
-              [matTooltip]="item.proprietario"
+              [matTooltip]="item.imovel.proprietario"
             >
-              {{ item.proprietario }}
+              {{ item.imovel.proprietario }}
             </td>
           </ng-container>
 
           <ng-container matColumnDef="processo">
             <th mat-header-cell *matHeaderCellDef>Processo</th>
-            <td mat-cell *matCellDef="let item">{{ item.processo }}</td>
+            <td mat-cell *matCellDef="let item">{{ item.imovel.processo }}</td>
           </ng-container>
 
           <ng-container matColumnDef="modalidade">
             <th mat-header-cell *matHeaderCellDef>Modalidade</th>
-            <td mat-cell *matCellDef="let item">{{ item.modalidade }}</td>
+            <td mat-cell *matCellDef="let item">
+              {{ item.imovel.modalidade }}
+            </td>
           </ng-container>
 
           <ng-container matColumnDef="situacao">
             <th mat-header-cell *matHeaderCellDef>Situação</th>
             <td mat-cell *matCellDef="let item">
-              <span class="br-tag info">{{ item.situacao }}</span>
+              <span class="br-tag info">{{ item.imovel.situacao }}</span>
             </td>
           </ng-container>
 
           <ng-container matColumnDef="municipioUf">
             <th mat-header-cell *matHeaderCellDef>Município/UF</th>
             <td mat-cell *matCellDef="let item">
-              {{ item.municipio }}/{{ item.uf }}
+              {{ item.imovel.municipio }}/{{ item.imovel.uf }}
             </td>
           </ng-container>
 

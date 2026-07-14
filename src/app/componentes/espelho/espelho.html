@@ -1,0 +1,198 @@
+<div class="principal">
+  <h2 mat-dialog-title>Espelho do Imóvel - Detalhes Completos</h2>
+
+  <mat-dialog-content class="dialog-content-custom">
+    <h3 class="section-title">Dados do Imóvel</h3>
+    <table class="tabela-dados">
+      <tbody>
+        <tr>
+          <th>Imóvel:</th>
+          <td>{{ imovel.imovel.imovel }}</td>
+          <th>Superintendência Regional (SR):</th>
+          <td>{{ imovel.imovel.sr }}</td>
+        </tr>
+        <tr>
+          <th>SNCR:</th>
+          <td>{{ imovel.imovel.sncr || "Não informado" }}</td>
+          <th>Área (ha):</th>
+          <td>
+            {{
+              imovel.imovel.areaHa
+                ? (imovel.imovel.areaHa | number: "1.4-4" : "pt-BR")
+                : "Não informada"
+            }}
+          </td>
+        </tr>
+        <tr>
+          <th>Município/UF:</th>
+          <td>{{ imovel.imovel.municipio }}/{{ imovel.imovel.uf }}</td>
+          <th>Situação:</th>
+          <td>{{ imovel.imovel.situacao }}</td>
+        </tr>
+        <tr>
+          <th>Processo:</th>
+          <td>{{ imovel.imovel.processo }}</td>
+          <th>Modalidade:</th>
+          <td>{{ imovel.imovel.modalidade }}</td>
+        </tr>
+        <tr>
+          <th>Proprietário:</th>
+          <td colspan="3">{{ imovel.imovel.proprietario }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr class="divisor" />
+
+    <h3 class="section-title">Dados de Obtenção</h3>
+    <table class="tabela-dados">
+      <tbody>
+        <tr>
+          <th>Processo SEI:</th>
+          <td>{{ imovel.obtencao.processoSei }}</td>
+          <th>Situação de Obtenção:</th>
+          <td>{{ imovel.obtencao.situacao }}</td>
+        </tr>
+        <tr>
+          <th>Entidade Demandante:</th>
+          <td colspan="3">{{ imovel.obtencao.entidadeDemandante }}</td>
+        </tr>
+        <tr>
+          <th>Forma de Obtenção:</th>
+          <td>{{ imovel.obtencao.formaObtencao }}</td>
+          <th>Órgão Concorrente:</th>
+          <td>{{ imovel.obtencao.orgaoConcorrente || "Nenhum" }}</td>
+        </tr>
+        <tr>
+          <th>Processo Cadeia Dominial:</th>
+          <td>
+            {{ imovel.obtencao.processoCadeiaDominial || "Não informado" }}
+          </td>
+          <th>Acampamento Vinculado:</th>
+          <td>{{ imovel.obtencao.acampamentoVinculado || "Não informado" }}</td>
+        </tr>
+        <tr>
+          <th>Imóvel Ocupado?</th>
+          <td>{{ imovel.obtencao.imovelOcupado ? "Sim" : "Não" }}</td>
+          <th>Capacidade de Assentamento:</th>
+          <td>{{ imovel.obtencao.capacidadeAssentamento }} famílias</td>
+        </tr>
+        <tr>
+          <th>Ações de Reintegração:</th>
+          <td>{{ imovel.obtencao.acoesReintegracao || "Nenhuma" }}</td>
+          <th>Famílias Cadastradas:</th>
+          <td>{{ imovel.obtencao.familiasCadastradas ?? "Não informado" }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr class="divisor" />
+
+    <h3 class="section-title">Dados de Avaliação e Valores</h3>
+    <table class="tabela-dados">
+      <thead>
+        <tr>
+          <th>Referência</th>
+          <th>Valor Inferior (R$)</th>
+          <th>Valor Médio (R$)</th>
+          <th>Valor Superior (R$)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>Valor Total do Imóvel</th>
+          <td>
+            {{
+              imovel.avaliacao.valorTotalImovelInferior
+                | currency: "BRL" : "symbol" : "1.2-2" : "pt-BR"
+            }}
+          </td>
+          <td>
+            {{
+              imovel.avaliacao.valorTotalImovelMedio
+                | currency: "BRL" : "symbol" : "1.2-2" : "pt-BR"
+            }}
+          </td>
+          <td>
+            {{
+              imovel.avaliacao.valorTotalImovelSuperior
+                | currency: "BRL" : "symbol" : "1.2-2" : "pt-BR"
+            }}
+          </td>
+        </tr>
+        <tr>
+          <th>Valor da Terra Nua (VTN)</th>
+          <td>
+            {{
+              imovel.avaliacao.valorTerraNuaInferior
+                | currency: "BRL" : "symbol" : "1.2-2" : "pt-BR"
+            }}
+          </td>
+          <td>
+            {{
+              imovel.avaliacao.valorTerraNuaMedio
+                | currency: "BRL" : "symbol" : "1.2-2" : "pt-BR"
+            }}
+          </td>
+          <td>
+            {{
+              imovel.avaliacao.valorTerraNuaSuperior
+                | currency: "BRL" : "symbol" : "1.2-2" : "pt-BR"
+            }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <table class="tabela-dados" style="margin-top: 10px">
+      <tbody>
+        <tr>
+          <th>Valor das Benfeitorias:</th>
+          <td>
+            {{
+              imovel.avaliacao.valorBenfeitorias
+                | currency: "BRL" : "symbol" : "1.2-2" : "pt-BR"
+            }}
+          </td>
+          <th>Valor Negociado:</th>
+          <td>
+            {{
+              imovel.avaliacao.valorTotalNegociado
+                ? (imovel.avaliacao.valorTotalNegociado
+                  | currency: "BRL" : "symbol" : "1.2-2" : "pt-BR")
+                : "Não negociado"
+            }}
+          </td>
+        </tr>
+        <tr>
+          <th>Passivo Ambiental:</th>
+          <td class="text-danger">
+            {{
+              imovel.avaliacao.valorPassivoAmbiental
+                | currency: "BRL" : "symbol" : "1.2-2" : "pt-BR"
+            }}
+          </td>
+          <th>Ativo Ambiental:</th>
+          <td class="text-success">
+            {{
+              imovel.avaliacao.valorAtivoAmbiental
+                | currency: "BRL" : "symbol" : "1.2-2" : "pt-BR"
+            }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button
+      mat-stroked-button
+      color="primary"
+      mat-dialog-close
+      (click)="fechar()"
+    >
+      <mat-icon>close</mat-icon>
+      Fechar
+    </button>
+  </mat-dialog-actions>
+</div>

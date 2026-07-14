@@ -2,7 +2,6 @@
   <div class="barra-acoes">
     <button mat-raised-button color="primary" (click)="imprimirRelatorio()">
       <mat-icon>print</mat-icon>
-
       Imprimir Relatório
     </button>
   </div>
@@ -12,112 +11,79 @@
 
     <div class="informacoes">
       <h2>INSTITUTO NACIONAL DE COLONIZAÇÃO E REFORMA AGRÁRIA - INCRA</h2>
-
       <p>Coordenação Geral de Implantação DT - DTI</p>
-
       <p>SUPERINTENDÊNCIA REGIONAL</p>
-
       <p>SISTEMA DE INFORMAÇÕES DE PROJETOS DE REFORMA AGRÁRIA</p>
-
       <h3>RELATÓRIO DE IMÓVEIS</h3>
-
       <span>Total de registros: {{ dataSource.length }}</span>
     </div>
   </div>
 
   <table mat-table [dataSource]="dataSource" class="tabela">
-    <!-- SR -->
-
     <ng-container matColumnDef="sr">
       <th mat-header-cell *matHeaderCellDef>SR</th>
-
       <td mat-cell *matCellDef="let item">
-        {{ item.sr }}
+        {{ item.imovel.sr }}
       </td>
     </ng-container>
-
-    <!-- Imóvel -->
 
     <ng-container matColumnDef="imovel">
       <th mat-header-cell *matHeaderCellDef>Imóvel</th>
-
       <td mat-cell *matCellDef="let item">
-        {{ item.imovel }}
+        {{ item.imovel.imovel }}
       </td>
     </ng-container>
-
-    <!-- SNCR -->
 
     <ng-container matColumnDef="sncr">
       <th mat-header-cell *matHeaderCellDef>SNCR</th>
-
       <td mat-cell *matCellDef="let item">
-        {{ item.sncr || "-" }}
+        {{ item.imovel.sncr || "-" }}
       </td>
     </ng-container>
-
-    <!-- Área -->
 
     <ng-container matColumnDef="areaHa">
       <th mat-header-cell *matHeaderCellDef>Área (ha)</th>
-
       <td mat-cell *matCellDef="let item">
-        {{ item.areaHa ? (item.areaHa | number: "1.2-4") : "-" }}
+        {{ item.imovel.areaHa ? (item.imovel.areaHa | number: "1.2-4") : "-" }}
       </td>
     </ng-container>
-
-    <!-- Proprietário -->
 
     <ng-container matColumnDef="proprietario">
       <th mat-header-cell *matHeaderCellDef>Proprietário</th>
-
       <td mat-cell *matCellDef="let item">
-        {{ item.proprietario }}
+        {{ item.imovel.proprietario }}
       </td>
     </ng-container>
-
-    <!-- Processo -->
 
     <ng-container matColumnDef="processo">
       <th mat-header-cell *matHeaderCellDef>Processo</th>
-
       <td mat-cell *matCellDef="let item">
-        {{ item.processo }}
+        {{ item.imovel.processo }}
       </td>
     </ng-container>
-
-    <!-- Modalidade -->
 
     <ng-container matColumnDef="modalidade">
       <th mat-header-cell *matHeaderCellDef>Modalidade</th>
-
       <td mat-cell *matCellDef="let item">
-        {{ item.modalidade }}
+        {{ item.imovel.modalidade }}
       </td>
     </ng-container>
-
-    <!-- Município -->
 
     <ng-container matColumnDef="municipio">
       <th mat-header-cell *matHeaderCellDef>Município</th>
-
       <td mat-cell *matCellDef="let item">
-        {{ item.municipio }}
+        {{ item.imovel.municipio }}
       </td>
     </ng-container>
 
-    <!-- UF -->
-
     <ng-container matColumnDef="uf">
       <th mat-header-cell *matHeaderCellDef>UF</th>
-
       <td mat-cell *matCellDef="let item">
-        {{ item.uf }}
+        {{ item.imovel.uf }}
       </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 </div>

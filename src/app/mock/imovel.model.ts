@@ -1,3 +1,13 @@
+import { Interface } from 'node:readline';
+
+export type Acao = 'Espelho' | 'Histórico' | 'Editar' | 'Log';
+
+export interface Dados {
+  imovel: Imovel;
+  obtencao: DadosObtencao;
+  avaliacao: DadosAvaliacao;
+}
+
 export interface Imovel {
   sr: string;
   imovel: string;
@@ -12,4 +22,29 @@ export interface Imovel {
   acoes: Acao[];
 }
 
-export type Acao = 'Espelho' | 'Histórico' | 'Editar' | 'Log';
+export interface DadosObtencao {
+  processoSei: string;
+  situacao: string;
+  entidadeDemandante: string;
+  processoCadeiaDominial?: string;
+  formaObtencao: string;
+  acampamentoVinculado?: string;
+  imovelOcupado: boolean;
+  orgaoConcorrente: string;
+  capacidadeAssentamento: number;
+  acoesReintegracao?: string;
+  familiasCadastradas?: number;
+}
+
+export interface DadosAvaliacao {
+  valorTotalImovelInferior: number;
+  valorTotalImovelMedio: number;
+  valorTotalImovelSuperior: number;
+  valorTotalNegociado?: number;
+  valorTerraNuaInferior: number;
+  valorTerraNuaMedio: number;
+  valorTerraNuaSuperior: number;
+  valorBenfeitorias: number;
+  valorPassivoAmbiental: number;
+  valorAtivoAmbiental: number;
+}

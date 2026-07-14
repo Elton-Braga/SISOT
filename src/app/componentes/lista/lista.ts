@@ -16,11 +16,13 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
-import { Imovel } from '../../mock/imovel.model';
+import { Dados, Imovel } from '../../mock/imovel.model';
 import { IMOVEIS_MOCK } from '../../mock/imovel.mock';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { Router } from '@angular/router';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { Espelho } from '../espelho/espelho';
 
 @Component({
   selector: 'app-lista',
@@ -42,13 +44,14 @@ import { Router } from '@angular/router';
     MatChipsModule,
     MatTooltipModule,
     MatCheckboxModule,
+    MatDialogModule,
   ],
   templateUrl: './lista.html',
   styleUrl: './lista.css',
 })
 export class Lista implements OnInit {
-  // Sinais para controle de estado reativo
-  public imoveis = signal<Imovel[]>(IMOVEIS_MOCK);
+  //public imoveis = signal<Imovel[]>(IMOVEIS_MOCK);
+  public imoveis = signal<Dados[]>(IMOVEIS_MOCK);
   public itensPorPagina = signal<number>(5);
   public paginaAtual = signal<number>(0); // MatPaginator utiliza índice baseado em 0
 
@@ -72,7 +75,10 @@ export class Lista implements OnInit {
     uf: '',
   });
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private dialog: MatDialog,
+  ) {}
 
   ngOnInit(): void {}
 
@@ -98,19 +104,30 @@ export class Lista implements OnInit {
     const f = this.filtros();
     return this.imoveis().filter((item) => {
       return (
-        this.matchString(item.sr, f.sr) &&
-        this.matchString(item.imovel, f.imovel) &&
-        this.matchString(item.sncr, f.sncr) &&
-        this.matchNumber(item.areaHa, f.areaHa) &&
-        this.matchString(item.proprietario, f.proprietario) &&
-        this.matchString(item.processo, f.processo) &&
-        this.matchString(item.modalidade, f.modalidade) &&
-        this.matchString(item.situacao, f.situacao) &&
-        this.matchString(item.municipio, f.municipio) &&
-        this.matchString(item.uf, f.uf)
+        this.matchString(item.imovel.sr, f.sr) &&
+        this.matchString(item.imovel.imovel, f.imovel) &&
+        this.matchString(item.imovel.sncr, f.sncr) &&
+        this.matchNumber(item.imovel.areaHa, f.areaHa) &&
+        this.matchString(item.imovel.proprietario, f.proprietario) &&
+        this.matchString(item.imovel.processo, f.processo) &&
+        this.matchString(item.imovel.modalidade, f.modalidade) &&
+        this.matchString(item.imovel.situacao, f.situacao) &&
+        this.matchString(item.imovel.municipio, f.municipio) &&
+        this.matchString(item.imovel.uf, f.uf)
       );
     });
   });
+
+  public abrirEspelho(dados: Dados): void {
+    this.dialog.open(Espelho, {
+      width: '90vw',
+      maxWidth: '1200px',
+      maxHeight: '90vh',
+      data: dados,
+      disableClose: false,
+      autoFocus: false,
+    });
+  }
 
   // Lista paginada derivada da lista filtrada
   public imoveisPaginados = computed(() => {
@@ -153,9 +170,26 @@ export class Lista implements OnInit {
     this.paginaAtual.set(0);
   }
 
-  public executarAcao(acao: string, imovel: Imovel): void {
-    console.log(`Ação [${acao}] executada para o imóvel: ${imovel.imovel}`);
+  public executarAcao(acao: string, dados: Dados): void {
+    switch (acao) {
+      case 'Espelho':
+        this.abrirEspelho(dados);
+        break;
+
+      case 'Histórico':
+        console.log(dados);
+        break;
+
+      case 'Editar':
+        console.log(dados);
+        break;
+
+      case 'Log':
+        console.log(dados);
+        break;
+    }
   }
+
   public exportar(tipo: 'excel' | 'csv' | 'pdf'): void {
     switch (tipo) {
       case 'excel':
