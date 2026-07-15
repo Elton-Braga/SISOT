@@ -27,6 +27,8 @@ export class Relatorio {
     'uf',
   ];
 
+  dataEmissao = new Date();
+
   dataSource: Dados[] = IMOVEIS_MOCK;
   public imoveis = signal<Dados[]>(IMOVEIS_MOCK);
 

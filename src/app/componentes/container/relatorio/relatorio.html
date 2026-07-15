@@ -14,6 +14,11 @@
       <p>Coordenação Geral de Implantação DT - DTI</p>
       <p>SUPERINTENDÊNCIA REGIONAL</p>
       <p>SISTEMA DE INFORMAÇÕES DE PROJETOS DE REFORMA AGRÁRIA</p>
+      <p>
+        <strong>Emitido em:</strong>
+        {{ dataEmissao | date: "dd/MM/yyyy HH:mm" : "" : "pt-BR" }}
+      </p>
+      <br />
       <h3>RELATÓRIO DE IMÓVEIS</h3>
       <span>Total de registros: {{ dataSource.length }}</span>
     </div>
