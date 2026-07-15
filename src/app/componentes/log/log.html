@@ -1,1 +1,60 @@
-<p>log works!</p>
+<div class="principal">
+  <h2 mat-dialog-title>Histórico</h2>
+
+  <div class="cabecalho">
+    <span>
+      Emitido em:
+      {{ dataEmissao | date: "dd/MM/yyyy HH:mm" : "" : "pt-BR" }}
+    </span>
+  </div>
+
+  <mat-dialog-content>
+    <table class="tabela-historico">
+      <thead>
+        <tr>
+          <th>SR</th>
+
+          <th>Imóvel</th>
+
+          <th>SNCR</th>
+
+          <th>Área (ha)</th>
+
+          <th>Proprietário</th>
+
+          <th>Modificado por</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (item of historico; track $index) {
+          <tr>
+            <td>{{ item.sr }}</td>
+
+            <td>{{ item.imovel }}</td>
+
+            <td>{{ item.sncr }}</td>
+
+            <td>{{ item.area | number: "1.4-4" : "pt-BR" }}</td>
+
+            <td>{{ item.proprietario }}</td>
+
+            <td>{{ item.usuario }}</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-flat-button color="primary" (click)="imprimir()">
+      <mat-icon>print</mat-icon>
+      Imprimir
+    </button>
+
+    <button mat-stroked-button color="primary" (click)="fechar()">
+      <mat-icon>close</mat-icon>
+      Fechar
+    </button>
+  </mat-dialog-actions>
+</div>

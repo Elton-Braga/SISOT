@@ -23,6 +23,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { Router } from '@angular/router';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { Espelho } from '../espelho/espelho';
+import { Log } from '../log/log';
 
 @Component({
   selector: 'app-lista',
@@ -170,6 +171,17 @@ export class Lista implements OnInit {
     this.paginaAtual.set(0);
   }
 
+  public abrirHistorico(dados: Dados): void {
+    this.dialog.open(Log, {
+      width: '90vw',
+      maxWidth: '1100px',
+      maxHeight: '90vh',
+      data: dados,
+      disableClose: false,
+      autoFocus: false,
+    });
+  }
+
   public executarAcao(acao: string, dados: Dados): void {
     switch (acao) {
       case 'Espelho':
@@ -177,7 +189,7 @@ export class Lista implements OnInit {
         break;
 
       case 'Histórico':
-        console.log(dados);
+        this.abrirHistorico(dados);
         break;
 
       case 'Editar':
