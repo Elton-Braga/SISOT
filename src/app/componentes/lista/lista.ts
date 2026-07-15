@@ -200,12 +200,20 @@ export class Lista implements OnInit {
         console.log('Exportando CSV...');
         break;
 
-      case 'pdf':
+      case 'pdf' /*
         const url = this.router.serializeUrl(
           this.router.createUrlTree(['/relatorio']),
         );
 
-        window.open(url, '_blank');
+        window.open(url, '_blank');*/:
+        /* const tree = this.router.createUrlTree(['/relatorio']);
+
+        window.open(
+          window.location.origin +
+            window.location.pathname +
+            this.router.serializeUrl(tree),
+          '_blank',
+        );*/ this.router.navigate(['/relatorio']);
 
         break;
     }
