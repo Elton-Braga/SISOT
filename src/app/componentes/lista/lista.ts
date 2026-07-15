@@ -213,7 +213,8 @@ export class Lista implements OnInit {
             window.location.pathname +
             this.router.serializeUrl(tree),
           '_blank',
-        );*/ this.router.navigate(['/relatorio']);
+        );*/
+        this.router.navigate(['/relatorio']);
 
         break;
     }

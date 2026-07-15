@@ -1,6 +1,12 @@
 <div class="principal">
   <h2 mat-dialog-title>Espelho do Imóvel - Detalhes Completos</h2>
 
+  <div class="cabecalho-acoes">
+    <div class="data-emissao">
+      Emitido em: {{ dataEmissao | date: "dd/MM/yyyy HH:mm" : "" : "pt-BR" }}
+    </div>
+  </div>
+
   <mat-dialog-content class="dialog-content-custom">
     <h3 class="section-title">Dados do Imóvel</h3>
     <table class="tabela-dados">
@@ -185,6 +191,11 @@
   </mat-dialog-content>
 
   <mat-dialog-actions align="end">
+    <button mat-flat-button color="primary" (click)="window.print()">
+      <mat-icon>print</mat-icon>
+      Imprimir
+    </button>
+
     <button
       mat-stroked-button
       color="primary"

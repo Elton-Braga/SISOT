@@ -1,3 +1,197 @@
 .principal {
   margin: 2rem;
 }
+
+.gov-dialog {
+  background: #f8f8f8;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Cabeçalho */
+
+.gov-header {
+  background: #ffffff;
+
+  border-bottom: 1px solid #d9e1e8;
+
+  padding: 24px 32px;
+}
+
+.gov-header h2 {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  margin: 0;
+
+  color: #1351b4;
+
+  font-size: 30px;
+
+  font-weight: 600;
+}
+
+.gov-header mat-icon {
+  color: #1351b4;
+}
+
+.gov-subtitle {
+  margin-top: 8px;
+
+  color: #555;
+
+  font-size: 15px;
+}
+
+/* Conteúdo */
+
+.gov-content {
+  padding: 24px 32px;
+}
+
+/* Cards */
+
+.gov-card {
+  background: #fff;
+
+  border: 1px solid #d9e1e8;
+
+  border-radius: 8px;
+
+  margin-bottom: 24px;
+
+  padding: 24px;
+
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+/* Título */
+
+.gov-section-title {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin: 0 0 20px;
+
+  padding-left: 12px;
+
+  border-left: 5px solid #1351b4;
+
+  color: #1351b4;
+
+  font-size: 22px;
+
+  font-weight: 600;
+}
+
+.gov-section-title mat-icon {
+  color: #1351b4;
+}
+
+/* Tabelas */
+
+.tabela-dados {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  font-size: 14px;
+}
+
+.tabela-dados th {
+  width: 220px;
+
+  background: #f8f8f8;
+
+  color: #333;
+
+  text-align: left;
+
+  padding: 12px;
+
+  font-weight: 600;
+
+  border: 1px solid #e5e5e5;
+}
+
+.tabela-dados td {
+  padding: 12px;
+
+  border: 1px solid #e5e5e5;
+
+  background: #fff;
+}
+
+.tabela-dados thead th {
+  background: #1351b4;
+
+  color: #fff;
+
+  text-align: center;
+}
+
+.text-danger {
+  color: #c62828;
+
+  font-weight: 600;
+}
+
+.text-success {
+  color: #168821;
+
+  font-weight: 600;
+}
+
+mat-dialog-actions {
+  background: #fff;
+
+  border-top: 1px solid #d9e1e8;
+
+  padding: 20px 32px;
+}
+
+/* Responsividade */
+
+@media (max-width: 900px) {
+  .gov-content {
+    padding: 16px;
+  }
+
+  .gov-card {
+    padding: 16px;
+  }
+
+  .tabela-dados,
+  .tabela-dados tbody,
+  .tabela-dados tr,
+  .tabela-dados td,
+  .tabela-dados th {
+    display: block;
+
+    width: 100%;
+  }
+
+  .tabela-dados tr {
+    margin-bottom: 18px;
+
+    border: 1px solid #ddd;
+
+    border-radius: 6px;
+
+    overflow: hidden;
+  }
+
+  .tabela-dados th {
+    border-bottom: none;
+  }
+
+  .tabela-dados td {
+    border-top: none;
+  }
+}

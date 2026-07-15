@@ -1,4 +1,9 @@
-import { CurrencyPipe, DecimalPipe, PercentPipe } from '@angular/common';
+import {
+  CurrencyPipe,
+  DatePipe,
+  DecimalPipe,
+  PercentPipe,
+} from '@angular/common';
 import { Component, Inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import {
@@ -19,11 +24,14 @@ import { MatIconModule } from '@angular/material/icon';
     MatButtonModule,
     CurrencyPipe,
     DecimalPipe,
+    DatePipe,
   ],
   templateUrl: './espelho.html',
   styleUrl: './espelho.css',
 })
 export class Espelho {
+  dataEmissao = new Date();
+  window = window;
   constructor(
     @Inject(MAT_DIALOG_DATA)
     public imovel: any,
@@ -31,5 +39,8 @@ export class Espelho {
   ) {}
   fechar(): void {
     this.dialogRef.close();
+  }
+  imprimir(): void {
+    window.print();
   }
 }
