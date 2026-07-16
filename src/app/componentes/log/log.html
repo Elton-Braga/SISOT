@@ -12,34 +12,26 @@
     <table class="tabela-historico">
       <thead>
         <tr>
-          <th>SR</th>
-
-          <th>Imóvel</th>
-
-          <th>SNCR</th>
-
-          <th>Área (ha)</th>
-
-          <th>Proprietário</th>
-
-          <th>Modificado por</th>
+          <th>Data/Hora</th>
+          <th>Usuário</th>
+          <th>Peça</th>
+          <th>Alterações</th>
+          <th>Tipo</th>
         </tr>
       </thead>
 
       <tbody>
         @for (item of historico; track $index) {
           <tr>
-            <td>{{ item.sr }}</td>
-
-            <td>{{ item.imovel }}</td>
-
-            <td>{{ item.sncr }}</td>
-
-            <td>{{ item.area | number: "1.4-4" : "pt-BR" }}</td>
-
-            <td>{{ item.proprietario }}</td>
+            <td>{{ item.dataHora }}</td>
 
             <td>{{ item.usuario }}</td>
+
+            <td>{{ item.peca }}</td>
+
+            <td>{{ item.alteracoes }}</td>
+
+            <td>{{ item.tipo }}</td>
           </tr>
         }
       </tbody>
