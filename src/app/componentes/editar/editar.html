@@ -1,0 +1,104 @@
+<div class="editar-dialog">
+  <!-- Cabeçalho -->
+  <div class="dialog-header">
+    <div class="header-icon">
+      <mat-icon>edit</mat-icon>
+    </div>
+
+    <div class="header-content">
+      <h2>Editar imóvel</h2>
+      <p>Atualize os dados cadastrais do imóvel selecionado.</p>
+    </div>
+  </div>
+
+  <mat-dialog-content class="dialog-content">
+    <div class="section-title">
+      <mat-icon>landscape</mat-icon>
+      <div>
+        <h3>Dados do imóvel</h3>
+        <p>Informe os dados básicos e cadastrais.</p>
+      </div>
+    </div>
+
+    <div class="form-grid">
+      <!-- SR -->
+      <mat-form-field appearance="outline">
+        <mat-label>Superintendência Regional</mat-label>
+        <input matInput [(ngModel)]="dados.imovel.sr" />
+      </mat-form-field>
+
+      <!-- Imóvel -->
+      <mat-form-field appearance="outline" class="campo-imovel">
+        <mat-label>Nome do imóvel</mat-label>
+        <input matInput [(ngModel)]="dados.imovel.imovel" />
+      </mat-form-field>
+
+      <!-- SNCR -->
+      <mat-form-field appearance="outline">
+        <mat-label>SNCR</mat-label>
+        <input matInput [(ngModel)]="dados.imovel.sncr" />
+      </mat-form-field>
+
+      <!-- Área -->
+      <mat-form-field appearance="outline">
+        <mat-label>Área (ha)</mat-label>
+        <input
+          matInput
+          type="number"
+          step="0.0001"
+          [(ngModel)]="dados.imovel.areaHa"
+        />
+        <span matTextSuffix>ha</span>
+      </mat-form-field>
+
+      <!-- Proprietário -->
+      <mat-form-field appearance="outline" class="campo-proprietario">
+        <mat-label>Proprietário</mat-label>
+        <input matInput [(ngModel)]="dados.imovel.proprietario" />
+      </mat-form-field>
+
+      <!-- Processo -->
+      <mat-form-field appearance="outline">
+        <mat-label>Processo SEI</mat-label>
+        <input matInput [(ngModel)]="dados.imovel.processo" />
+      </mat-form-field>
+
+      <!-- Modalidade -->
+      <mat-form-field appearance="outline" class="campo-modalidade">
+        <mat-label>Forma de obtenção / modalidade</mat-label>
+        <input matInput [(ngModel)]="dados.imovel.modalidade" />
+      </mat-form-field>
+
+      <!-- Situação -->
+      <mat-form-field appearance="outline">
+        <mat-label>Situação</mat-label>
+        <input matInput [(ngModel)]="dados.imovel.situacao" />
+      </mat-form-field>
+
+      <!-- Município -->
+      <mat-form-field appearance="outline">
+        <mat-label>Município</mat-label>
+        <input matInput [(ngModel)]="dados.imovel.municipio" />
+      </mat-form-field>
+
+      <!-- UF -->
+      <mat-form-field appearance="outline">
+        <mat-label>UF</mat-label>
+        <input matInput maxlength="2" [(ngModel)]="dados.imovel.uf" />
+      </mat-form-field>
+    </div>
+  </mat-dialog-content>
+
+  <!-- Rodapé -->
+  <mat-dialog-actions class="dialog-actions">
+    <button mat-stroked-button type="button" (click)="cancelar()">
+      <mat-icon>close</mat-icon>
+      Cancelar
+    </button>
+
+    <button mat-flat-button color="primary" type="button" (click)="salvar()">
+      <mat-icon>save</mat-icon>
+      Salvar alterações
+    </button>
+  </mat-dialog-actions>
+</div>

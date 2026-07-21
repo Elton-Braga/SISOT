@@ -24,6 +24,7 @@ import { Router } from '@angular/router';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { Espelho } from '../espelho/espelho';
 import { Log } from '../log/log';
+import { Editar } from '../editar/editar';
 
 @Component({
   selector: 'app-lista',
@@ -130,6 +131,27 @@ export class Lista implements OnInit {
     });
   }
 
+  public abrirEditar(dados: Dados): void {
+    const dialogRef = this.dialog.open(Editar, {
+      width: '90vw',
+      maxWidth: '900px',
+      maxHeight: '90vh',
+      data: structuredClone(dados),
+      disableClose: false,
+      autoFocus: false,
+    });
+
+    dialogRef.afterClosed().subscribe((resultado: Dados | undefined) => {
+      if (!resultado) {
+        return;
+      }
+
+      this.imoveis.update((lista) =>
+        lista.map((item) => (item === dados ? resultado : item)),
+      );
+    });
+  }
+
   // Lista paginada derivada da lista filtrada
   public imoveisPaginados = computed(() => {
     const inicio = this.paginaAtual() * this.itensPorPagina();
@@ -193,7 +215,7 @@ export class Lista implements OnInit {
         break;
 
       case 'Editar':
-        console.log(dados);
+        this.abrirEditar(dados);
         break;
 
       case 'Log':
@@ -212,20 +234,7 @@ export class Lista implements OnInit {
         console.log('Exportando CSV...');
         break;
 
-      case 'pdf' /*
-        const url = this.router.serializeUrl(
-          this.router.createUrlTree(['/relatorio']),
-        );
-
-        window.open(url, '_blank');*/:
-        /* const tree = this.router.createUrlTree(['/relatorio']);
-
-        window.open(
-          window.location.origin +
-            window.location.pathname +
-            this.router.serializeUrl(tree),
-          '_blank',
-        );*/
+      case 'pdf':
         this.router.navigate(['/relatorio']);
 
         break;
