@@ -740,5 +740,92 @@ export const IMOVEIS_MOCK: Dados[] = [
       valorAtivoAmbiental: 0,
     },
   },
+  {
+    imovel: {
+      sr: 'SR(08)SP',
+      imovel: 'Fazenda Santa Fé (Recreio Gleba 3)',
+      sncr: '9500920000000',
+      areaHa: 4049.031,
+      proprietario: 'Jorge Ivan Cassaro',
+      processo: '54000.018750/2025-23',
+      modalidade: 'Desapropriação Lei 8.629/93',
+      situacao: 'Em Trâmite',
+      municipio: 'Gália',
+      uf: 'SP',
+      acoes: ['Espelho', 'Histórico', 'Editar', 'Log'],
+    },
+
+    obtencao: {
+      processoSei: '54000.018750/2025-23',
+      situacao: 'Em Trâmite',
+      entidadeDemandante:
+        'INCRA - Instituto Nacional de Colonização e Reforma Agrária',
+      processoCadeiaDominial: '',
+      formaObtencao: 'Desapropriação Lei 8.629/93',
+      acampamentoVinculado: '',
+      imovelOcupado: false,
+      orgaoConcorrente: 'Nenhum',
+      capacidadeAssentamento: 0,
+      acoesReintegracao: '',
+      familiasCadastradas: undefined,
+    },
+
+    avaliacao: {
+      valorTotalImovelInferior: 0,
+      valorTotalImovelMedio: 0,
+      valorTotalImovelSuperior: 0,
+      valorTotalNegociado: undefined,
+      valorTerraNuaInferior: 0,
+      valorTerraNuaMedio: 0,
+      valorTerraNuaSuperior: 0,
+      valorBenfeitorias: 0,
+      valorPassivoAmbiental: 0,
+      valorAtivoAmbiental: 0,
+    },
+  },
+
+  {
+    imovel: {
+      sr: 'SR(08)SP',
+      imovel: 'Fazenda Três Irmãos',
+      sncr: '6011280000000',
+      areaHa: 4987.911,
+      proprietario: 'Olimpia Maria Ferreira Thiago',
+      processo: '54190.003091/2007-59',
+      modalidade: 'Desapropriação Lei 8.629/93',
+      situacao: 'Em Trâmite',
+      municipio: "Palmeira d'Oeste",
+      uf: 'SP',
+      acoes: ['Espelho', 'Histórico', 'Editar', 'Log'],
+    },
+
+    obtencao: {
+      processoSei: '54190.003091/2007-59',
+      situacao: 'Em Trâmite',
+      entidadeDemandante:
+        'INCRA - Instituto Nacional de Colonização e Reforma Agrária',
+      processoCadeiaDominial: '',
+      formaObtencao: 'Desapropriação Lei 8.629/93',
+      acampamentoVinculado: '',
+      imovelOcupado: false,
+      orgaoConcorrente: 'Nenhum',
+      capacidadeAssentamento: 0,
+      acoesReintegracao: '',
+      familiasCadastradas: undefined,
+    },
+
+    avaliacao: {
+      valorTotalImovelInferior: 0,
+      valorTotalImovelMedio: 0,
+      valorTotalImovelSuperior: 0,
+      valorTotalNegociado: undefined,
+      valorTerraNuaInferior: 0,
+      valorTerraNuaMedio: 0,
+      valorTerraNuaSuperior: 0,
+      valorBenfeitorias: 0,
+      valorPassivoAmbiental: 0,
+      valorAtivoAmbiental: 0,
+    },
+  },
   // ...demais imóveis seguem exatamente o mesmo padrão
 ];

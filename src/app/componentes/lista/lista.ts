@@ -132,6 +132,14 @@ export class Lista implements OnInit {
   }
 
   public abrirEditar(dados: Dados): void {
+    this.router.navigate(['/editar'], {
+      state: {
+        dados: structuredClone(dados),
+      },
+    });
+  }
+  /*
+  public abrirEditar(dados: Dados): void {
     const dialogRef = this.dialog.open(Editar, {
       width: '90vw',
       maxWidth: '900px',
@@ -150,7 +158,7 @@ export class Lista implements OnInit {
         lista.map((item) => (item === dados ? resultado : item)),
       );
     });
-  }
+  }*/
 
   // Lista paginada derivada da lista filtrada
   public imoveisPaginados = computed(() => {

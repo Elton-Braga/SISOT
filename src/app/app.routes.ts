@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { Container } from './componentes/container/container';
 import { Lista } from './componentes/lista/lista';
 import { Relatorio } from './componentes/container/relatorio/relatorio';
+import { Editar } from './componentes/editar/editar';
 
 export const routes: Routes = [
   {
@@ -18,5 +19,9 @@ export const routes: Routes = [
   {
     path: 'relatorio',
     component: Relatorio,
+  },
+  {
+    path: 'editar',
+    component: Editar,
   },
 ];
