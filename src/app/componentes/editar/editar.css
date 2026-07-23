@@ -1,6 +1,9 @@
 /* =========================================================
    PÁGINA PRINCIPAL
    ========================================================= */
+.mat-stepper-vertical {
+  margin-top: 8px;
+}
 
 .editar-page {
   min-height: 100vh;
@@ -251,5 +254,103 @@ mat-form-field {
 
   .page-actions button {
     width: 100%;
+  }
+}
+
+.step-content {
+  padding: 20px 0;
+  width: 100%;
+}
+
+.documentos-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Remove todas as bordas */
+.documentos-table,
+.documentos-table th,
+.documentos-table td {
+  border: none;
+}
+
+.documentos-table th {
+  text-align: left;
+  font-weight: 600;
+  padding: 8px 12px 12px;
+  color: #333;
+}
+
+.documentos-table td {
+  padding: 6px 12px;
+  vertical-align: middle;
+}
+
+/* Largura das três colunas */
+.documentos-table th:nth-child(1),
+.documentos-table td:nth-child(1) {
+  width: 55%;
+}
+
+.documentos-table th:nth-child(2),
+.documentos-table td:nth-child(2) {
+  width: 25%;
+}
+
+.documentos-table th:nth-child(3),
+.documentos-table td:nth-child(3) {
+  width: 20%;
+}
+
+/* Form fields ocupam toda a célula */
+.documentos-table mat-form-field {
+  width: 100%;
+}
+
+/* Campo de observação */
+.campo-observacao {
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* Link de anexo */
+.anexo-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+
+  color: #1351b4;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.anexo-link:hover {
+  text-decoration: underline;
+}
+
+.anexo-link mat-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+/* Botões do stepper */
+.step-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .documentos-table {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .documentos-table {
+    min-width: 700px;
   }
 }

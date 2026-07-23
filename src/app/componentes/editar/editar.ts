@@ -12,6 +12,7 @@ import { Dados } from '../../mock/imovel.model';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
+import { MatStepperModule } from '@angular/material/stepper';
 
 @Component({
   selector: 'app-editar',
@@ -26,6 +27,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
+    MatStepperModule,
   ],
   templateUrl: './editar.html',
   styleUrl: './editar.css',
