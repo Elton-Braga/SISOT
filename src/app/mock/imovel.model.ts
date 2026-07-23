@@ -10,7 +10,7 @@ export interface Dados {
 }
 
 export interface DadosProcesso {
-  fase: string;
+  fase: any;
   processualPecaDocumento: string;
   data: any;
   campoComplementar: string;
