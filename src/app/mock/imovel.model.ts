@@ -1,5 +1,3 @@
-import { Interface } from 'node:readline';
-
 export type Acao = 'Espelho' | 'Histórico' | 'Editar' | 'Log';
 
 export interface Dados {

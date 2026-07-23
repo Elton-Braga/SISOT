@@ -20,430 +20,447 @@
   <!-- =====================================================
        CONTEÚDO
        ===================================================== -->
-
-  <main class="page-content">
-    <!-- ===================================================
+  <div
+    class="editar-page"
+    class="editar-page"
+    *ngIf="
+      dados &&
+      dados.processo &&
+      dados.imovel &&
+      dados.obtencao &&
+      dados.avaliacao
+    "
+  >
+    <main class="page-content">
+      <!-- ===================================================
          1. DADOS DO IMÓVEL
          =================================================== -->
 
-    <section class="form-section">
-      <div class="section-title">
-        <mat-icon>landscape</mat-icon>
+      <section class="form-section">
+        <div class="section-title">
+          <mat-icon>landscape</mat-icon>
 
-        <div>
-          <h2>Dados do imóvel</h2>
-          <p>Informações básicas e cadastrais do imóvel.</p>
+          <div>
+            <h2>Dados do imóvel</h2>
+            <p>Informações básicas e cadastrais do imóvel.</p>
+          </div>
         </div>
-      </div>
 
-      <div class="form-grid">
-        <!-- Imóvel -->
-        <mat-form-field appearance="outline" class="campo-imovel">
-          <mat-label>Imóvel</mat-label>
-          <input matInput [(ngModel)]="dados.imovel.imovel" />
-        </mat-form-field>
+        <div class="form-grid">
+          <!-- Imóvel -->
+          <mat-form-field appearance="outline" class="campo-imovel">
+            <mat-label>Imóvel</mat-label>
+            <input matInput [(ngModel)]="dados.imovel.imovel" />
+          </mat-form-field>
 
-        <!-- SNCR -->
-        <mat-form-field appearance="outline">
-          <mat-label>SNCR</mat-label>
-          <input matInput [(ngModel)]="dados.imovel.sncr" />
-        </mat-form-field>
+          <!-- SNCR -->
+          <mat-form-field appearance="outline">
+            <mat-label>SNCR</mat-label>
+            <input matInput [(ngModel)]="dados.imovel.sncr" />
+          </mat-form-field>
 
-        <!-- Superintendência Regional -->
-        <mat-form-field appearance="outline">
-          <mat-label>Superintendência Regional</mat-label>
-          <input matInput [(ngModel)]="dados.imovel.sr" />
-        </mat-form-field>
+          <!-- Superintendência Regional -->
+          <mat-form-field appearance="outline">
+            <mat-label>Superintendência Regional</mat-label>
+            <input matInput [(ngModel)]="dados.imovel.sr" />
+          </mat-form-field>
 
-        <!-- Área -->
-        <mat-form-field appearance="outline">
-          <mat-label>Área avaliada</mat-label>
-          <input
-            matInput
-            type="number"
-            step="0.0001"
-            [(ngModel)]="dados.imovel.areaHa"
-          />
-          <span matTextSuffix>ha</span>
-        </mat-form-field>
+          <!-- Área -->
+          <mat-form-field appearance="outline">
+            <mat-label>Área avaliada</mat-label>
+            <input
+              matInput
+              type="number"
+              step="0.0001"
+              [(ngModel)]="dados.imovel.areaHa"
+            />
+            <span matTextSuffix>ha</span>
+          </mat-form-field>
 
-        <!-- Proprietário -->
-        <mat-form-field appearance="outline" class="campo-proprietario">
-          <mat-label>Proprietário</mat-label>
-          <input matInput [(ngModel)]="dados.imovel.proprietario" />
-        </mat-form-field>
+          <!-- Proprietário -->
+          <mat-form-field appearance="outline" class="campo-proprietario">
+            <mat-label>Proprietário</mat-label>
+            <input matInput [(ngModel)]="dados.imovel.proprietario" />
+          </mat-form-field>
 
-        <!-- Processo -->
-        <mat-form-field appearance="outline">
-          <mat-label>Nº do Processo</mat-label>
-          <input matInput [(ngModel)]="dados.imovel.processo" />
-        </mat-form-field>
+          <!-- Processo -->
+          <mat-form-field appearance="outline">
+            <mat-label>Nº do Processo</mat-label>
+            <input matInput [(ngModel)]="dados.imovel.processo" />
+          </mat-form-field>
 
-        <!-- Modalidade -->
-        <mat-form-field appearance="outline" class="campo-modalidade">
-          <mat-label>Modalidade</mat-label>
-          <input matInput [(ngModel)]="dados.imovel.modalidade" />
-        </mat-form-field>
+          <!-- Modalidade -->
+          <mat-form-field appearance="outline" class="campo-modalidade">
+            <mat-label>Modalidade</mat-label>
+            <input matInput [(ngModel)]="dados.imovel.modalidade" />
+          </mat-form-field>
 
-        <!-- Município -->
-        <mat-form-field appearance="outline">
-          <mat-label>Município</mat-label>
-          <input matInput [(ngModel)]="dados.imovel.municipio" />
-        </mat-form-field>
+          <!-- Município -->
+          <mat-form-field appearance="outline">
+            <mat-label>Município</mat-label>
+            <input matInput [(ngModel)]="dados.imovel.municipio" />
+          </mat-form-field>
 
-        <!-- UF -->
-        <mat-form-field appearance="outline">
-          <mat-label>UF</mat-label>
-          <input matInput maxlength="2" [(ngModel)]="dados.imovel.uf" />
-        </mat-form-field>
+          <!-- UF -->
+          <mat-form-field appearance="outline">
+            <mat-label>UF</mat-label>
+            <input matInput maxlength="2" [(ngModel)]="dados.imovel.uf" />
+          </mat-form-field>
 
-        <!-- Situação -->
-        <mat-form-field appearance="outline">
-          <mat-label>Situação</mat-label>
-          <input matInput [(ngModel)]="dados.imovel.situacao" />
-        </mat-form-field>
-      </div>
-    </section>
+          <!-- Situação -->
+          <mat-form-field appearance="outline">
+            <mat-label>Situação</mat-label>
+            <input matInput [(ngModel)]="dados.imovel.situacao" />
+          </mat-form-field>
+        </div>
+      </section>
 
-    <!-- ===================================================
+      <!-- ===================================================
          2. DADOS DE OBTENÇÃO
          =================================================== -->
 
-    <section class="form-section">
-      <div class="section-title">
-        <mat-icon>assignment</mat-icon>
+      <section class="form-section">
+        <div class="section-title">
+          <mat-icon>assignment</mat-icon>
 
-        <div>
-          <h2>Dados de obtenção</h2>
-          <p>
-            Informações relacionadas ao processo de obtenção e destinação do
-            imóvel.
-          </p>
+          <div>
+            <h2>Dados de obtenção</h2>
+            <p>
+              Informações relacionadas ao processo de obtenção e destinação do
+              imóvel.
+            </p>
+          </div>
         </div>
-      </div>
 
-      <div class="form-grid">
-        <!-- Processo SEI -->
-        <mat-form-field appearance="outline">
-          <mat-label>Processo SEI</mat-label>
-          <input matInput [(ngModel)]="dados.obtencao.processoSei" />
-        </mat-form-field>
+        <div class="form-grid">
+          <!-- Processo SEI -->
+          <mat-form-field appearance="outline">
+            <mat-label>Processo SEI</mat-label>
+            <input matInput [(ngModel)]="dados.obtencao.processoSei" />
+          </mat-form-field>
 
-        <!-- Situação de obtenção -->
-        <mat-form-field appearance="outline">
-          <mat-label>Situação de obtenção</mat-label>
-          <input matInput [(ngModel)]="dados.obtencao.situacao" />
-        </mat-form-field>
+          <!-- Situação de obtenção -->
+          <mat-form-field appearance="outline">
+            <mat-label>Situação de obtenção</mat-label>
+            <input matInput [(ngModel)]="dados.obtencao.situacao" />
+          </mat-form-field>
 
-        <!-- Entidade demandante -->
-        <mat-form-field appearance="outline" class="campo-full">
-          <mat-label>Entidade demandante</mat-label>
-          <input matInput [(ngModel)]="dados.obtencao.entidadeDemandante" />
-        </mat-form-field>
+          <!-- Entidade demandante -->
+          <mat-form-field appearance="outline" class="campo-full">
+            <mat-label>Entidade demandante</mat-label>
+            <input matInput [(ngModel)]="dados.obtencao.entidadeDemandante" />
+          </mat-form-field>
 
-        <!-- Forma de obtenção -->
-        <mat-form-field appearance="outline">
-          <mat-label>Forma de obtenção</mat-label>
-          <input matInput [(ngModel)]="dados.obtencao.formaObtencao" />
-        </mat-form-field>
+          <!-- Forma de obtenção -->
+          <mat-form-field appearance="outline">
+            <mat-label>Forma de obtenção</mat-label>
+            <input matInput [(ngModel)]="dados.obtencao.formaObtencao" />
+          </mat-form-field>
 
-        <!-- Processo cadeia dominial -->
-        <mat-form-field appearance="outline">
-          <mat-label>Processo cadeia dominial</mat-label>
-          <input matInput [(ngModel)]="dados.obtencao.processoCadeiaDominial" />
-        </mat-form-field>
+          <!-- Processo cadeia dominial -->
+          <mat-form-field appearance="outline">
+            <mat-label>Processo cadeia dominial</mat-label>
+            <input
+              matInput
+              [(ngModel)]="dados.obtencao.processoCadeiaDominial"
+            />
+          </mat-form-field>
 
-        <!-- Imóvel ocupado -->
-        <mat-form-field appearance="outline">
-          <mat-label>Imóvel ocupado?</mat-label>
-          <input
-            matInput
-            [value]="dados.obtencao.imovelOcupado ? 'Sim' : 'Não'"
-            readonly
-          />
-        </mat-form-field>
+          <!-- Imóvel ocupado -->
+          <mat-form-field appearance="outline">
+            <mat-label>Imóvel ocupado?</mat-label>
+            <input
+              matInput
+              [value]="dados.obtencao.imovelOcupado ? 'Sim' : 'Não'"
+              readonly
+            />
+          </mat-form-field>
 
-        <!-- Órgão concorrente -->
-        <mat-form-field appearance="outline">
-          <mat-label>Órgão concorrente</mat-label>
-          <input matInput [(ngModel)]="dados.obtencao.orgaoConcorrente" />
-        </mat-form-field>
+          <!-- Órgão concorrente -->
+          <mat-form-field appearance="outline">
+            <mat-label>Órgão concorrente</mat-label>
+            <input matInput [(ngModel)]="dados.obtencao.orgaoConcorrente" />
+          </mat-form-field>
 
-        <!-- Capacidade de assentamento -->
-        <mat-form-field appearance="outline">
-          <mat-label>Capacidade de assentamento</mat-label>
-          <input
-            matInput
-            type="number"
-            [(ngModel)]="dados.obtencao.capacidadeAssentamento"
-          />
-        </mat-form-field>
+          <!-- Capacidade de assentamento -->
+          <mat-form-field appearance="outline">
+            <mat-label>Capacidade de assentamento</mat-label>
+            <input
+              matInput
+              type="number"
+              [(ngModel)]="dados.obtencao.capacidadeAssentamento"
+            />
+          </mat-form-field>
 
-        <!-- Ações de reintegração -->
-        <mat-form-field appearance="outline" class="campo-full">
-          <mat-label>Ações de reintegração</mat-label>
-          <input matInput [(ngModel)]="dados.obtencao.acoesReintegracao" />
-        </mat-form-field>
+          <!-- Ações de reintegração -->
+          <mat-form-field appearance="outline" class="campo-full">
+            <mat-label>Ações de reintegração</mat-label>
+            <input matInput [(ngModel)]="dados.obtencao.acoesReintegracao" />
+          </mat-form-field>
 
-        <!-- Famílias cadastradas -->
-        <mat-form-field appearance="outline">
-          <mat-label>Famílias cadastradas</mat-label>
-          <input
-            matInput
-            type="number"
-            [(ngModel)]="dados.obtencao.familiasCadastradas"
-          />
-        </mat-form-field>
-      </div>
-    </section>
+          <!-- Famílias cadastradas -->
+          <mat-form-field appearance="outline">
+            <mat-label>Famílias cadastradas</mat-label>
+            <input
+              matInput
+              type="number"
+              [(ngModel)]="dados.obtencao.familiasCadastradas"
+            />
+          </mat-form-field>
+        </div>
+      </section>
 
-    <!-- ===================================================
+      <!-- ===================================================
          3. DADOS DE AVALIAÇÃO E VALORES
          =================================================== -->
 
-    <section class="form-section">
-      <div class="section-title">
-        <mat-icon>payments</mat-icon>
+      <section class="form-section">
+        <div class="section-title">
+          <mat-icon>payments</mat-icon>
 
-        <div>
-          <h2>Dados de avaliação</h2>
-          <p>
-            Informações referentes à avaliação econômica e ambiental do imóvel.
-          </p>
+          <div>
+            <h2>Dados de avaliação</h2>
+            <p>
+              Informações referentes à avaliação econômica e ambiental do
+              imóvel.
+            </p>
+          </div>
         </div>
-      </div>
 
-      <div class="form-grid">
-        <!-- Valor total inferior -->
-        <mat-form-field appearance="outline">
-          <mat-label>Valor total do imóvel — Inferior</mat-label>
-          <input
-            matInput
-            type="number"
-            step="0.01"
-            [(ngModel)]="dados.avaliacao.valorTotalImovelInferior"
-          />
-          <span matTextPrefix>R$&nbsp;</span>
-        </mat-form-field>
+        <div class="form-grid">
+          <!-- Valor total inferior -->
+          <mat-form-field appearance="outline">
+            <mat-label>Valor total do imóvel — Inferior</mat-label>
+            <input
+              matInput
+              type="number"
+              step="0.01"
+              [(ngModel)]="dados.avaliacao.valorTotalImovelInferior"
+            />
+            <span matTextPrefix>R$&nbsp;</span>
+          </mat-form-field>
 
-        <!-- Valor total médio -->
-        <mat-form-field appearance="outline">
-          <mat-label>Valor total do imóvel — Médio</mat-label>
-          <input
-            matInput
-            type="number"
-            step="0.01"
-            [(ngModel)]="dados.avaliacao.valorTotalImovelMedio"
-          />
-          <span matTextPrefix>R$&nbsp;</span>
-        </mat-form-field>
+          <!-- Valor total médio -->
+          <mat-form-field appearance="outline">
+            <mat-label>Valor total do imóvel — Médio</mat-label>
+            <input
+              matInput
+              type="number"
+              step="0.01"
+              [(ngModel)]="dados.avaliacao.valorTotalImovelMedio"
+            />
+            <span matTextPrefix>R$&nbsp;</span>
+          </mat-form-field>
 
-        <!-- Valor total superior -->
-        <mat-form-field appearance="outline">
-          <mat-label>Valor total do imóvel — Superior</mat-label>
-          <input
-            matInput
-            type="number"
-            step="0.01"
-            [(ngModel)]="dados.avaliacao.valorTotalImovelSuperior"
-          />
-          <span matTextPrefix>R$&nbsp;</span>
-        </mat-form-field>
+          <!-- Valor total superior -->
+          <mat-form-field appearance="outline">
+            <mat-label>Valor total do imóvel — Superior</mat-label>
+            <input
+              matInput
+              type="number"
+              step="0.01"
+              [(ngModel)]="dados.avaliacao.valorTotalImovelSuperior"
+            />
+            <span matTextPrefix>R$&nbsp;</span>
+          </mat-form-field>
 
-        <!-- Valor negociado -->
-        <mat-form-field appearance="outline">
-          <mat-label>Valor negociado</mat-label>
-          <input
-            matInput
-            type="number"
-            step="0.01"
-            [(ngModel)]="dados.avaliacao.valorTotalNegociado"
-          />
-          <span matTextPrefix>R$&nbsp;</span>
-        </mat-form-field>
+          <!-- Valor negociado -->
+          <mat-form-field appearance="outline">
+            <mat-label>Valor negociado</mat-label>
+            <input
+              matInput
+              type="number"
+              step="0.01"
+              [(ngModel)]="dados.avaliacao.valorTotalNegociado"
+            />
+            <span matTextPrefix>R$&nbsp;</span>
+          </mat-form-field>
 
-        <!-- Terra nua inferior -->
-        <mat-form-field appearance="outline">
-          <mat-label>Valor da terra nua — Inferior</mat-label>
-          <input
-            matInput
-            type="number"
-            step="0.01"
-            [(ngModel)]="dados.avaliacao.valorTerraNuaInferior"
-          />
-          <span matTextPrefix>R$&nbsp;</span>
-        </mat-form-field>
+          <!-- Terra nua inferior -->
+          <mat-form-field appearance="outline">
+            <mat-label>Valor da terra nua — Inferior</mat-label>
+            <input
+              matInput
+              type="number"
+              step="0.01"
+              [(ngModel)]="dados.avaliacao.valorTerraNuaInferior"
+            />
+            <span matTextPrefix>R$&nbsp;</span>
+          </mat-form-field>
 
-        <!-- Terra nua médio -->
-        <mat-form-field appearance="outline">
-          <mat-label>Valor da terra nua — Médio</mat-label>
-          <input
-            matInput
-            type="number"
-            step="0.01"
-            [(ngModel)]="dados.avaliacao.valorTerraNuaMedio"
-          />
-          <span matTextPrefix>R$&nbsp;</span>
-        </mat-form-field>
+          <!-- Terra nua médio -->
+          <mat-form-field appearance="outline">
+            <mat-label>Valor da terra nua — Médio</mat-label>
+            <input
+              matInput
+              type="number"
+              step="0.01"
+              [(ngModel)]="dados.avaliacao.valorTerraNuaMedio"
+            />
+            <span matTextPrefix>R$&nbsp;</span>
+          </mat-form-field>
 
-        <!-- Terra nua superior -->
-        <mat-form-field appearance="outline">
-          <mat-label>Valor da terra nua — Superior</mat-label>
-          <input
-            matInput
-            type="number"
-            step="0.01"
-            [(ngModel)]="dados.avaliacao.valorTerraNuaSuperior"
-          />
-          <span matTextPrefix>R$&nbsp;</span>
-        </mat-form-field>
+          <!-- Terra nua superior -->
+          <mat-form-field appearance="outline">
+            <mat-label>Valor da terra nua — Superior</mat-label>
+            <input
+              matInput
+              type="number"
+              step="0.01"
+              [(ngModel)]="dados.avaliacao.valorTerraNuaSuperior"
+            />
+            <span matTextPrefix>R$&nbsp;</span>
+          </mat-form-field>
 
-        <!-- Benfeitorias -->
-        <mat-form-field appearance="outline">
-          <mat-label>Valor das benfeitorias</mat-label>
-          <input
-            matInput
-            type="number"
-            step="0.01"
-            [(ngModel)]="dados.avaliacao.valorBenfeitorias"
-          />
-          <span matTextPrefix>R$&nbsp;</span>
-        </mat-form-field>
+          <!-- Benfeitorias -->
+          <mat-form-field appearance="outline">
+            <mat-label>Valor das benfeitorias</mat-label>
+            <input
+              matInput
+              type="number"
+              step="0.01"
+              [(ngModel)]="dados.avaliacao.valorBenfeitorias"
+            />
+            <span matTextPrefix>R$&nbsp;</span>
+          </mat-form-field>
 
-        <!-- Passivo ambiental -->
-        <mat-form-field appearance="outline">
-          <mat-label>Passivo ambiental</mat-label>
-          <input
-            matInput
-            type="number"
-            step="0.01"
-            [(ngModel)]="dados.avaliacao.valorPassivoAmbiental"
-          />
-          <span matTextPrefix>R$&nbsp;</span>
-        </mat-form-field>
+          <!-- Passivo ambiental -->
+          <mat-form-field appearance="outline">
+            <mat-label>Passivo ambiental</mat-label>
+            <input
+              matInput
+              type="number"
+              step="0.01"
+              [(ngModel)]="dados.avaliacao.valorPassivoAmbiental"
+            />
+            <span matTextPrefix>R$&nbsp;</span>
+          </mat-form-field>
 
-        <!-- Ativo ambiental -->
-        <mat-form-field appearance="outline">
-          <mat-label>Ativo ambiental</mat-label>
-          <input
-            matInput
-            type="number"
-            step="0.01"
-            [(ngModel)]="dados.avaliacao.valorAtivoAmbiental"
-          />
-          <span matTextPrefix>R$&nbsp;</span>
-        </mat-form-field>
-      </div>
-    </section>
+          <!-- Ativo ambiental -->
+          <mat-form-field appearance="outline">
+            <mat-label>Ativo ambiental</mat-label>
+            <input
+              matInput
+              type="number"
+              step="0.01"
+              [(ngModel)]="dados.avaliacao.valorAtivoAmbiental"
+            />
+            <span matTextPrefix>R$&nbsp;</span>
+          </mat-form-field>
+        </div>
+      </section>
 
-    <!-- ===================================================
+      <!-- ===================================================
      3. DADOS DO PROCESSO
      =================================================== -->
 
-    <section class="form-section">
-      <div class="section-title">
-        <mat-icon>description</mat-icon>
+      <section class="form-section">
+        <div class="section-title">
+          <mat-icon>description</mat-icon>
 
-        <div>
-          <h2>Dados do processo</h2>
-          <p>Informações relacionadas às fases e aos documentos do processo.</p>
+          <div>
+            <h2>Dados do processo</h2>
+            <p>
+              Informações relacionadas às fases e aos documentos do processo.
+            </p>
+          </div>
         </div>
-      </div>
 
-      <div class="form-grid">
-        <!-- Fase -->
-        <mat-form-field appearance="outline">
-          <mat-label>Fase</mat-label>
-          <input matInput [(ngModel)]="dados.processo.fase" id="fase" />
-        </mat-form-field>
+        <div class="form-grid">
+          <!-- Fase -->
+          <mat-form-field appearance="outline">
+            <mat-label>Fase</mat-label>
+            <input matInput [(ngModel)]="dados.processo.fase" id="fase" />
+          </mat-form-field>
 
-        <!-- Processual Peça/Documento -->
-        <mat-form-field appearance="outline">
-          <mat-label>Processual Peça/Documento</mat-label>
-          <input
-            matInput
-            [(ngModel)]="dados.processo.processualPecaDocumento"
-          />
-        </mat-form-field>
+          <!-- Processual Peça/Documento -->
+          <mat-form-field appearance="outline">
+            <mat-label>Processual Peça/Documento</mat-label>
+            <input
+              matInput
+              [(ngModel)]="dados.processo.processualPecaDocumento"
+            />
+          </mat-form-field>
 
-        <!-- Campo Data -->
-        <mat-form-field appearance="outline">
-          <mat-label>Data</mat-label>
+          <!-- Campo Data -->
+          <mat-form-field appearance="outline">
+            <mat-label>Data</mat-label>
 
-          <input
-            matInput
-            [matDatepicker]="picker"
-            [(ngModel)]="dados.processo.data"
-          />
+            <input
+              matInput
+              [matDatepicker]="picker"
+              [(ngModel)]="dados.processo.data"
+            />
 
-          <mat-datepicker-toggle
-            matIconSuffix
-            [for]="picker"
-          ></mat-datepicker-toggle>
+            <mat-datepicker-toggle
+              matIconSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
 
-          <mat-datepicker #picker></mat-datepicker>
-        </mat-form-field>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
 
-        <!-- Campo complementar -->
-        <mat-form-field appearance="outline">
-          <mat-label>Campo complementar</mat-label>
+          <!-- Campo complementar -->
+          <mat-form-field appearance="outline">
+            <mat-label>Campo complementar</mat-label>
 
-          <textarea
-            matInput
-            rows="3"
-            [(ngModel)]="dados.processo.campoComplementar"
-          ></textarea>
-        </mat-form-field>
+            <textarea
+              matInput
+              rows="3"
+              [(ngModel)]="dados.processo.campoComplementar"
+            ></textarea>
+          </mat-form-field>
 
-        <!-- Define Fase? -->
-        <mat-form-field appearance="outline">
-          <mat-label>Define Fase?</mat-label>
+          <!-- Define Fase? -->
+          <mat-form-field appearance="outline">
+            <mat-label>Define Fase?</mat-label>
 
-          <mat-select [(ngModel)]="dados.processo.defineFase">
-            <mat-option value="Sim">Sim</mat-option>
-            <mat-option value="Não">Não</mat-option>
-          </mat-select>
-        </mat-form-field>
+            <mat-select [(ngModel)]="dados.processo.defineFase">
+              <mat-option value="Sim">Sim</mat-option>
+              <mat-option value="Não">Não</mat-option>
+            </mat-select>
+          </mat-form-field>
 
-        <!-- Obrigatório? -->
-        <mat-form-field appearance="outline">
-          <mat-label>Obrigatório?</mat-label>
+          <!-- Obrigatório? -->
+          <mat-form-field appearance="outline">
+            <mat-label>Obrigatório?</mat-label>
 
-          <mat-select [(ngModel)]="dados.processo.obrigatorio">
-            <mat-option value="Sim">Sim</mat-option>
-            <mat-option value="Não">Não</mat-option>
-          </mat-select>
-        </mat-form-field>
+            <mat-select [(ngModel)]="dados.processo.obrigatorio">
+              <mat-option value="Sim">Sim</mat-option>
+              <mat-option value="Não">Não</mat-option>
+            </mat-select>
+          </mat-form-field>
 
-        <!-- Responsável -->
-        <mat-form-field appearance="outline">
-          <mat-label>Responsável</mat-label>
-          <input matInput [(ngModel)]="dados.processo.responsavel" />
-        </mat-form-field>
+          <!-- Responsável -->
+          <mat-form-field appearance="outline">
+            <mat-label>Responsável</mat-label>
+            <input matInput [(ngModel)]="dados.processo.responsavel" />
+          </mat-form-field>
 
-        <!-- Tem prazo? -->
-        <mat-form-field appearance="outline">
-          <mat-label>Tem prazo?</mat-label>
+          <!-- Tem prazo? -->
+          <mat-form-field appearance="outline">
+            <mat-label>Tem prazo?</mat-label>
 
-          <mat-select [(ngModel)]="dados.processo.temPrazo">
-            <mat-option value="Sim">Sim</mat-option>
-            <mat-option value="Não">Não</mat-option>
-          </mat-select>
-        </mat-form-field>
+            <mat-select [(ngModel)]="dados.processo.temPrazo">
+              <mat-option value="Sim">Sim</mat-option>
+              <mat-option value="Não">Não</mat-option>
+            </mat-select>
+          </mat-form-field>
 
-        <!-- Observações -->
-        <mat-form-field appearance="outline" class="campo-full">
-          <mat-label>Observações</mat-label>
+          <!-- Observações -->
+          <mat-form-field appearance="outline" class="campo-full">
+            <mat-label>Observações</mat-label>
 
-          <textarea
-            matInput
-            rows="4"
-            [(ngModel)]="dados.processo.observacoes"
-          ></textarea>
-        </mat-form-field>
-      </div>
-    </section>
-  </main>
+            <textarea
+              matInput
+              rows="4"
+              [(ngModel)]="dados.processo.observacoes"
+            ></textarea>
+          </mat-form-field>
+        </div>
+      </section>
+    </main>
+  </div>
 
   <!-- =====================================================
        RODAPÉ

@@ -138,27 +138,6 @@ export class Lista implements OnInit {
       },
     });
   }
-  /*
-  public abrirEditar(dados: Dados): void {
-    const dialogRef = this.dialog.open(Editar, {
-      width: '90vw',
-      maxWidth: '900px',
-      maxHeight: '90vh',
-      data: structuredClone(dados),
-      disableClose: false,
-      autoFocus: false,
-    });
-
-    dialogRef.afterClosed().subscribe((resultado: Dados | undefined) => {
-      if (!resultado) {
-        return;
-      }
-
-      this.imoveis.update((lista) =>
-        lista.map((item) => (item === dados ? resultado : item)),
-      );
-    });
-  }*/
 
   // Lista paginada derivada da lista filtrada
   public imoveisPaginados = computed(() => {
