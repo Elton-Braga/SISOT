@@ -34,7 +34,20 @@ export class Editar implements OnInit {
   public dados!: Dados;
 
   constructor(private router: Router) {}
+  ngOnInit(): void {
+    const navigation = this.router.getCurrentNavigation();
 
+    this.dados =
+      navigation?.extras?.state?.['dados'] ?? history.state?.['dados'];
+
+    console.log('DADOS RECEBIDOS NO EDITAR:', this.dados);
+    console.log('PROCESSO:', this.dados?.processo);
+
+    if (!this.dados) {
+      this.router.navigate(['/lista']);
+    }
+  }
+  /*
   ngOnInit(): void {
     const navigation = this.router.getCurrentNavigation();
 
@@ -44,7 +57,7 @@ export class Editar implements OnInit {
     if (!this.dados) {
       this.router.navigate(['/lista']);
     }
-  }
+  }*/
 
   salvar(): void {
     // Aqui você pode implementar a persistência
