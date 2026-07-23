@@ -206,7 +206,7 @@
         <mat-icon>payments</mat-icon>
 
         <div>
-          <h2>Dados de avaliação e valores</h2>
+          <h2>Dados de avaliação</h2>
           <p>
             Informações referentes à avaliação econômica e ambiental do imóvel.
           </p>
@@ -332,6 +332,114 @@
             [(ngModel)]="dados.avaliacao.valorAtivoAmbiental"
           />
           <span matTextPrefix>R$&nbsp;</span>
+        </mat-form-field>
+      </div>
+    </section>
+
+    <!-- ===================================================
+     3. DADOS DO PROCESSO
+     =================================================== -->
+
+    <section class="form-section">
+      <div class="section-title">
+        <mat-icon>description</mat-icon>
+
+        <div>
+          <h2>Dados do processo</h2>
+          <p>Informações relacionadas às fases e aos documentos do processo.</p>
+        </div>
+      </div>
+
+      <div class="form-grid">
+        <!-- Fase -->
+        <mat-form-field appearance="outline">
+          <mat-label>Fase</mat-label>
+          <input matInput [(ngModel)]="dados.processo.fase" />
+        </mat-form-field>
+
+        <!-- Processual Peça/Documento -->
+        <mat-form-field appearance="outline">
+          <mat-label>Processual Peça/Documento</mat-label>
+          <input
+            matInput
+            [(ngModel)]="dados.processo.processualPecaDocumento"
+          />
+        </mat-form-field>
+
+        <!-- Campo Data -->
+        <mat-form-field appearance="outline">
+          <mat-label>Data</mat-label>
+
+          <input
+            matInput
+            [matDatepicker]="picker"
+            [(ngModel)]="dados.processo.data"
+          />
+
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <!-- Campo complementar -->
+        <mat-form-field appearance="outline">
+          <mat-label>Campo complementar</mat-label>
+
+          <textarea
+            matInput
+            rows="3"
+            [(ngModel)]="dados.processo.campoComplementar"
+          ></textarea>
+        </mat-form-field>
+
+        <!-- Define Fase? -->
+        <mat-form-field appearance="outline">
+          <mat-label>Define Fase?</mat-label>
+
+          <mat-select [(ngModel)]="dados.processo.defineFase">
+            <mat-option value="Sim">Sim</mat-option>
+            <mat-option value="Não">Não</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Obrigatório? -->
+        <mat-form-field appearance="outline">
+          <mat-label>Obrigatório?</mat-label>
+
+          <mat-select [(ngModel)]="dados.processo.obrigatorio">
+            <mat-option value="Sim">Sim</mat-option>
+            <mat-option value="Não">Não</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Responsável -->
+        <mat-form-field appearance="outline">
+          <mat-label>Responsável</mat-label>
+          <input matInput [(ngModel)]="dados.processo.responsavel" />
+        </mat-form-field>
+
+        <!-- Tem prazo? -->
+        <mat-form-field appearance="outline">
+          <mat-label>Tem prazo?</mat-label>
+
+          <mat-select [(ngModel)]="dados.processo.temPrazo">
+            <mat-option value="Sim">Sim</mat-option>
+            <mat-option value="Não">Não</mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Observações -->
+        <mat-form-field appearance="outline" class="campo-full">
+          <mat-label>Observações</mat-label>
+
+          <textarea
+            matInput
+            rows="4"
+            [(ngModel)]="dados.processo.observacoes"
+          ></textarea>
         </mat-form-field>
       </div>
     </section>

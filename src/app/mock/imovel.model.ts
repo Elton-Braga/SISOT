@@ -3,9 +3,22 @@ import { Interface } from 'node:readline';
 export type Acao = 'Espelho' | 'Histórico' | 'Editar' | 'Log';
 
 export interface Dados {
+  processo: DadosProcesso;
   imovel: Imovel;
   obtencao: DadosObtencao;
   avaliacao: DadosAvaliacao;
+}
+
+export interface DadosProcesso {
+  fase: string;
+  processualPecaDocumento: string;
+  data: any;
+  campoComplementar: string;
+  defineFase: string;
+  obrigatorio: string;
+  responsavel: string;
+  temPrazo: string;
+  observacoes: string;
 }
 
 export interface Imovel {
