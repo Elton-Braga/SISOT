@@ -13,6 +13,7 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-editar',
@@ -28,6 +29,7 @@ import { MatStepperModule } from '@angular/material/stepper';
     MatNativeDateModule,
     MatSelectModule,
     MatStepperModule,
+    MatExpansionModule,
   ],
   templateUrl: './editar.html',
   styleUrl: './editar.css',
