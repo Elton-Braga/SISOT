@@ -418,3 +418,21 @@ mat-form-field {
 .sections-accordion .mat-expansion-panel-body {
   padding: 24px;
 }
+.nenhuma-informacao {
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #666;
+  text-align: center;
+  padding: 32px;
+}
+
+.nenhuma-informacao mat-icon {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+  opacity: 0.7;
+}
