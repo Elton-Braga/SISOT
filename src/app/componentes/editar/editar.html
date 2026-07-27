@@ -539,12 +539,9 @@
               Acompanhamento das fases e documentos processuais
             </mat-panel-description>
           </mat-expansion-panel-header>
-
+          <!--*********************************************************Desapropriação Lei 8.629/93***************************************************-->
           <ng-container
-            *ngIf="
-              dados.imovel.modalidade === 'Desapropriação Lei 8.629/93';
-              else nenhumaInformacao
-            "
+            *ngIf="dados.imovel.modalidade === 'Desapropriação Lei 8.629/93'"
           >
             <mat-stepper orientation="vertical">
               <div class="section-title">
@@ -3809,12 +3806,3757 @@
             </mat-stepper>
           </ng-container>
 
-          <ng-template #nenhumaInformacao>
+          <!--*********************************************************Desapropriação Desapropriação Lei 4132/62***************************************************-->
+
+          <ng-container
+            *ngIf="dados.imovel.modalidade === 'Desapropriação Lei 4132/62'"
+          >
+            <mat-stepper orientation="vertical">
+              <div class="section-title">
+                <mat-icon>description</mat-icon>
+
+                <div>
+                  <h2>Processo de Obtenção</h2>
+                  <p>
+                    Informações relacionadas às fases e aos documentos do
+                    processo de obtenção do imóvel.
+                  </p>
+                </div>
+              </div>
+
+              <!-- ========================================================= -->
+              <!-- FASE 1 - ABERTURA DE PROCESSO -->
+              <!-- ========================================================= -->
+
+              <mat-step>
+                <ng-template matStepLabel>
+                  Fase 1 - Abertura de Processo
+                </ng-template>
+
+                <div class="step-content">
+                  <table class="documentos-table">
+                    <thead>
+                      <tr>
+                        <th>Documento / Informação</th>
+                        <th>Data</th>
+                        <th>Anexo</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <!-- a) -->
+                      <tr>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label
+                              >Despacho Inaugural do Superintendente</mat-label
+                            >
+                            <input matInput />
+                          </mat-form-field>
+                        </td>
+
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data</mat-label>
+                            <input matInput [matDatepicker]="pickerF1A" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF1A"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF1A></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            class="anexo-link"
+                            aria-disabled="true"
+                            title="Anexo indisponível"
+                          >
+                            <mat-icon>attach_file</mat-icon>
+                            Anexo
+                          </a>
+                        </td>
+                      </tr>
+
+                      <!-- b) -->
+                      <tr>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>
+                              Síntese/relato de processos anteriores (se houver)
+                            </mat-label>
+                            <input matInput />
+                          </mat-form-field>
+                        </td>
+
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data</mat-label>
+                            <input matInput [matDatepicker]="pickerF1B" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF1B"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF1B></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            class="anexo-link"
+                            aria-disabled="true"
+                            title="Anexo indisponível"
+                          >
+                            <mat-icon>attach_file</mat-icon>
+                            Anexo
+                          </a>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td colspan="3">
+                          <mat-form-field
+                            appearance="outline"
+                            class="campo-observacao"
+                          >
+                            <mat-label>Observação</mat-label>
+                            <textarea
+                              matInput
+                              rows="5"
+                              placeholder="Digite uma observação"
+                            ></textarea>
+                          </mat-form-field>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <div class="step-actions">
+                    <button mat-flat-button matStepperNext>Próximo</button>
+                  </div>
+                </div>
+              </mat-step>
+
+              <!-- ========================================================= -->
+              <!-- FASE 2 - ANÁLISE PRELIMINAR DE VIABILIDADE -->
+              <!-- ========================================================= -->
+
+              <mat-step>
+                <ng-template matStepLabel>
+                  Fase 2 - Análise Preliminar de Viabilidade
+                </ng-template>
+
+                <div class="step-content">
+                  <table class="documentos-table">
+                    <thead>
+                      <tr>
+                        <th>Documento / Informação</th>
+                        <th>Data</th>
+                        <th>Anexo</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <!-- a) -->
+                      <tr>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>
+                              Parecer Técnico de viabilidade do imóvel para a
+                              criação de projeto de assentamento
+                            </mat-label>
+                            <input matInput />
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data</mat-label>
+                            <input matInput [matDatepicker]="pickerF2A" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF2A"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF2A></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            class="anexo-link"
+                            aria-disabled="true"
+                          >
+                            <mat-icon>attach_file</mat-icon>
+                            Anexo
+                          </a>
+                        </td>
+                      </tr>
+
+                      <!-- b) -->
+                      <tr>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label
+                              >Cópia da matrícula atualizada do
+                              imóvel</mat-label
+                            >
+                            <input matInput />
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data</mat-label>
+                            <input matInput [matDatepicker]="pickerF2B" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF2B"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF2B></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            class="anexo-link"
+                            aria-disabled="true"
+                          >
+                            <mat-icon>attach_file</mat-icon>
+                            Anexo
+                          </a>
+                        </td>
+                      </tr>
+
+                      <!-- c) -->
+                      <tr>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Espelho do Imóvel no SNCR</mat-label>
+                            <input matInput />
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data</mat-label>
+                            <input matInput [matDatepicker]="pickerF2C" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF2C"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF2C></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            class="anexo-link"
+                            aria-disabled="true"
+                          >
+                            <mat-icon>attach_file</mat-icon>
+                            Anexo
+                          </a>
+                        </td>
+                      </tr>
+
+                      <!-- d) -->
+                      <tr>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>
+                              Planta e memorial descritivo e arquivo vetorial
+                              (shape do perímetro)
+                            </mat-label>
+                            <input matInput />
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data</mat-label>
+                            <input matInput [matDatepicker]="pickerF2D" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF2D"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF2D></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            class="anexo-link"
+                            aria-disabled="true"
+                          >
+                            <mat-icon>attach_file</mat-icon>
+                            Anexo
+                          </a>
+                        </td>
+                      </tr>
+
+                      <!-- e) -->
+                      <tr>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>
+                              Laudos, estudo técnico, levantamentos ocupacionais
+                              e outras peças técnicas disponíveis em processos
+                              preexistentes
+                            </mat-label>
+                            <input matInput />
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data</mat-label>
+                            <input matInput [matDatepicker]="pickerF2E" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF2E"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF2E></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            class="anexo-link"
+                            aria-disabled="true"
+                          >
+                            <mat-icon>attach_file</mat-icon>
+                            Anexo
+                          </a>
+                        </td>
+                      </tr>
+
+                      <!-- f) -->
+                      <tr>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>
+                              Minuta de exposição de motivos e decreto
+                              presidencial
+                            </mat-label>
+                            <input matInput />
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data</mat-label>
+                            <input matInput [matDatepicker]="pickerF2F" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF2F"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF2F></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            class="anexo-link"
+                            aria-disabled="true"
+                          >
+                            <mat-icon>attach_file</mat-icon>
+                            Anexo
+                          </a>
+                        </td>
+                      </tr>
+
+                      <!-- g) -->
+                      <tr>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>
+                              Manifestação jurídica sobre a regularidade
+                              processual (Parecer conclusivo da PFE)
+                            </mat-label>
+                            <input matInput />
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data</mat-label>
+                            <input matInput [matDatepicker]="pickerF2G" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF2G"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF2G></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            class="anexo-link"
+                            aria-disabled="true"
+                          >
+                            <mat-icon>attach_file</mat-icon>
+                            Anexo
+                          </a>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td colspan="3">
+                          <mat-form-field
+                            appearance="outline"
+                            class="campo-observacao"
+                          >
+                            <mat-label>Observação</mat-label>
+                            <textarea matInput rows="5"></textarea>
+                          </mat-form-field>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <div class="step-actions">
+                    <button mat-stroked-button matStepperPrevious>
+                      Voltar
+                    </button>
+                    <button mat-flat-button matStepperNext>Próximo</button>
+                  </div>
+                </div>
+              </mat-step>
+
+              <!-- ========================================================= -->
+              <!-- FASE 3 - CONSULTAS SOBREPOSIÇÃO DE INTERESSES PÚBLICOS -->
+              <!-- ========================================================= -->
+
+              <mat-step>
+                <ng-template matStepLabel>
+                  Fase 3 - Consultas sobreposição de interesses públicos
+                </ng-template>
+
+                <div class="step-content">
+                  <table class="documentos-table tabela-consulta">
+                    <thead>
+                      <tr>
+                        <th>Órgão</th>
+                        <th>Data de consulta</th>
+                        <th>Data de resposta</th>
+                        <th>Resposta</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr>
+                        <td>Órgão estadual de terras</td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data de consulta</mat-label>
+                            <input matInput [matDatepicker]="pickerF3A1" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF3A1"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF3A1></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data de resposta</mat-label>
+                            <input matInput [matDatepicker]="pickerF3A2" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF3A2"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF3A2></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Resposta</mat-label>
+                            <mat-select>
+                              <mat-option value="sim">Sim</mat-option>
+                              <mat-option value="nao">Não</mat-option>
+                              <mat-option value="sem-resposta"
+                                >Sem resposta</mat-option
+                              >
+                            </mat-select>
+                          </mat-form-field>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>Órgão estadual de meio ambiente</td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data de consulta</mat-label>
+                            <input matInput [matDatepicker]="pickerF3B1" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF3B1"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF3B1></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data de resposta</mat-label>
+                            <input matInput [matDatepicker]="pickerF3B2" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF3B2"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF3B2></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Resposta</mat-label>
+                            <mat-select>
+                              <mat-option value="sim">Sim</mat-option>
+                              <mat-option value="nao">Não</mat-option>
+                              <mat-option value="sem-resposta"
+                                >Sem resposta</mat-option
+                              >
+                            </mat-select>
+                          </mat-form-field>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>Município onde se localiza o imóvel</td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data de consulta</mat-label>
+                            <input matInput [matDatepicker]="pickerF3C1" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF3C1"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF3C1></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data de resposta</mat-label>
+                            <input matInput [matDatepicker]="pickerF3C2" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF3C2"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF3C2></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Resposta</mat-label>
+                            <mat-select>
+                              <mat-option value="sim">Sim</mat-option>
+                              <mat-option value="nao">Não</mat-option>
+                              <mat-option value="sem-resposta"
+                                >Sem resposta</mat-option
+                              >
+                            </mat-select>
+                          </mat-form-field>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>Fundação Nacional dos Povos Indígenas - Funai</td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data de consulta</mat-label>
+                            <input matInput [matDatepicker]="pickerF3D1" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF3D1"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF3D1></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data de resposta</mat-label>
+                            <input matInput [matDatepicker]="pickerF3D2" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF3D2"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF3D2></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Resposta</mat-label>
+                            <mat-select>
+                              <mat-option value="sim">Sim</mat-option>
+                              <mat-option value="nao">Não</mat-option>
+                              <mat-option value="sem-resposta"
+                                >Sem resposta</mat-option
+                              >
+                            </mat-select>
+                          </mat-form-field>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>Agência Nacional de Mineração - ANM</td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data de consulta</mat-label>
+                            <input matInput [matDatepicker]="pickerF3E1" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF3E1"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF3E1></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data de resposta</mat-label>
+                            <input matInput [matDatepicker]="pickerF3E2" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF3E2"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF3E2></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Resposta</mat-label>
+                            <mat-select>
+                              <mat-option value="sim">Sim</mat-option>
+                              <mat-option value="nao">Não</mat-option>
+                              <mat-option value="sem-resposta"
+                                >Sem resposta</mat-option
+                              >
+                            </mat-select>
+                          </mat-form-field>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          Instituto do Patrimônio Histórico e Artístico Nacional
+                          - IPHAN
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data de consulta</mat-label>
+                            <input matInput [matDatepicker]="pickerF3F1" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF3F1"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF3F1></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data de resposta</mat-label>
+                            <input matInput [matDatepicker]="pickerF3F2" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF3F2"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF3F2></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Resposta</mat-label>
+                            <mat-select>
+                              <mat-option value="sim">Sim</mat-option>
+                              <mat-option value="nao">Não</mat-option>
+                              <mat-option value="sem-resposta"
+                                >Sem resposta</mat-option
+                              >
+                            </mat-select>
+                          </mat-form-field>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          Instituto Chico Mendes de Conservação da
+                          Biodiversidade - ICMBio
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data de consulta</mat-label>
+                            <input matInput [matDatepicker]="pickerF3G1" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF3G1"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF3G1></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data de resposta</mat-label>
+                            <input matInput [matDatepicker]="pickerF3G2" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF3G2"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF3G2></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Resposta</mat-label>
+                            <mat-select>
+                              <mat-option value="sim">Sim</mat-option>
+                              <mat-option value="nao">Não</mat-option>
+                              <mat-option value="sem-resposta"
+                                >Sem resposta</mat-option
+                              >
+                            </mat-select>
+                          </mat-form-field>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>Secretaria do Patrimônio da União</td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data de consulta</mat-label>
+                            <input matInput [matDatepicker]="pickerF3H1" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF3H1"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF3H1></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data de resposta</mat-label>
+                            <input matInput [matDatepicker]="pickerF3H2" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF3H2"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF3H2></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Resposta</mat-label>
+                            <mat-select>
+                              <mat-option value="sim">Sim</mat-option>
+                              <mat-option value="nao">Não</mat-option>
+                              <mat-option value="sem-resposta"
+                                >Sem resposta</mat-option
+                              >
+                            </mat-select>
+                          </mat-form-field>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>Divisão Quilombola</td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data de consulta</mat-label>
+                            <input matInput [matDatepicker]="pickerF3I1" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF3I1"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF3I1></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data de resposta</mat-label>
+                            <input matInput [matDatepicker]="pickerF3I2" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF3I2"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF3I2></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Resposta</mat-label>
+                            <mat-select>
+                              <mat-option value="sim">Sim</mat-option>
+                              <mat-option value="nao">Não</mat-option>
+                              <mat-option value="sem-resposta"
+                                >Sem resposta</mat-option
+                              >
+                            </mat-select>
+                          </mat-form-field>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <div class="step-actions">
+                    <button mat-stroked-button matStepperPrevious>
+                      Voltar
+                    </button>
+                    <button mat-flat-button matStepperNext>Próximo</button>
+                  </div>
+                </div>
+              </mat-step>
+
+              <!-- ========================================================= -->
+              <!-- FASE 4 - DELIBERAÇÃO DO CDR -->
+              <!-- ========================================================= -->
+
+              <mat-step>
+                <ng-template matStepLabel>
+                  Fase 4 - Deliberação do CDR sobre prosseguimento de obtenção
+                </ng-template>
+
+                <div class="step-content">
+                  <table class="documentos-table">
+                    <thead>
+                      <tr>
+                        <th>Documento / Informação</th>
+                        <th>Data</th>
+                        <th>Anexo</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>
+                              Ata CDR acerca da proposta de desapropriação por
+                              interesse social
+                            </mat-label>
+                            <input matInput />
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data</mat-label>
+                            <input matInput [matDatepicker]="pickerF4A" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF4A"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF4A></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            class="anexo-link"
+                            aria-disabled="true"
+                          >
+                            <mat-icon>description</mat-icon>
+                            Anexo
+                          </a>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>
+                              Resolução CDR sobre proposta de desapropriação por
+                              interesse social
+                            </mat-label>
+                            <input matInput />
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data</mat-label>
+                            <input matInput [matDatepicker]="pickerF4B" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF4B"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF4B></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            class="anexo-link"
+                            aria-disabled="true"
+                          >
+                            <mat-icon>description</mat-icon>
+                            Anexo
+                          </a>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>
+                              Deliberação final DT acerca da proposta - Despacho
+                              Decisório
+                            </mat-label>
+                            <input matInput />
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data</mat-label>
+                            <input matInput [matDatepicker]="pickerF4C" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF4C"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF4C></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            class="anexo-link"
+                            aria-disabled="true"
+                          >
+                            <mat-icon>description</mat-icon>
+                            Anexo
+                          </a>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>
+                              Análise de conformidade DT (IN 146, Art. 6º)
+                            </mat-label>
+                            <input matInput />
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data</mat-label>
+                            <input matInput [matDatepicker]="pickerF4D" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF4D"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF4D></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            class="anexo-link"
+                            aria-disabled="true"
+                          >
+                            <mat-icon>description</mat-icon>
+                            Anexo
+                          </a>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label
+                              >Resolução do Conselho Diretor - CD</mat-label
+                            >
+                            <input matInput />
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data</mat-label>
+                            <input matInput [matDatepicker]="pickerF4E" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF4E"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF4E></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            class="anexo-link"
+                            aria-disabled="true"
+                          >
+                            <mat-icon>description</mat-icon>
+                            Anexo
+                          </a>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>
+                              Envio do kit decreto ao MDA para decreto - Ofício
+                              presidência do Incra
+                            </mat-label>
+                            <input matInput />
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data</mat-label>
+                            <input matInput [matDatepicker]="pickerF4F" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF4F"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF4F></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            class="anexo-link"
+                            aria-disabled="true"
+                          >
+                            <mat-icon>description</mat-icon>
+                            Anexo
+                          </a>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td colspan="3">
+                          <mat-form-field
+                            appearance="outline"
+                            class="campo-observacao"
+                          >
+                            <mat-label>Observação</mat-label>
+                            <textarea matInput rows="5"></textarea>
+                          </mat-form-field>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <div class="step-actions">
+                    <button mat-stroked-button matStepperPrevious>
+                      Voltar
+                    </button>
+                    <button mat-flat-button matStepperNext>Próximo</button>
+                  </div>
+                </div>
+              </mat-step>
+
+              <!-- ========================================================= -->
+              <!-- FASE 5 - ANÁLISE DE CONFORMIDADE PROCESSUAL -->
+              <!-- ========================================================= -->
+
+              <mat-step>
+                <ng-template matStepLabel>
+                  Fase 5 - Análise de Conformidade Processual na DT e
+                  Deliberação do CD
+                </ng-template>
+
+                <div class="step-content">
+                  <table class="documentos-table">
+                    <thead>
+                      <tr>
+                        <th>Documento / Informação</th>
+                        <th>Data</th>
+                        <th>Anexo</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label
+                              >Nota Técnica ou Parecer de
+                              Conformidade</mat-label
+                            >
+                            <input matInput />
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data</mat-label>
+                            <input matInput [matDatepicker]="pickerF5A" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF5A"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF5A></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            class="anexo-link"
+                            aria-disabled="true"
+                          >
+                            <mat-icon>description</mat-icon>
+                            Anexo
+                          </a>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>
+                              Elaboração de minutas de atos do Conselho Diretor
+                              (CD)
+                            </mat-label>
+                            <input matInput />
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data</mat-label>
+                            <input matInput [matDatepicker]="pickerF5B" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF5B"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF5B></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            class="anexo-link"
+                            aria-disabled="true"
+                          >
+                            <mat-icon>description</mat-icon>
+                            Anexo
+                          </a>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label
+                              >Resolução do CD aprovando a proposta</mat-label
+                            >
+                            <input matInput />
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data</mat-label>
+                            <input matInput [matDatepicker]="pickerF5C" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF5C"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF5C></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            class="anexo-link"
+                            aria-disabled="true"
+                          >
+                            <mat-icon>description</mat-icon>
+                            Anexo
+                          </a>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td colspan="3">
+                          <mat-form-field
+                            appearance="outline"
+                            class="campo-observacao"
+                          >
+                            <mat-label>Observação</mat-label>
+                            <textarea matInput rows="5"></textarea>
+                          </mat-form-field>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <div class="step-actions">
+                    <button mat-stroked-button matStepperPrevious>
+                      Voltar
+                    </button>
+                    <button mat-flat-button matStepperNext>Próximo</button>
+                  </div>
+                </div>
+              </mat-step>
+
+              <!-- ========================================================= -->
+              <!-- FASE 6 - ATOS PARA PUBLICAÇÃO DO DECRETO -->
+              <!-- ========================================================= -->
+
+              <mat-step>
+                <ng-template matStepLabel>
+                  Fase 6 - Atos para Publicação do Decreto
+                </ng-template>
+
+                <div class="step-content">
+                  <table class="documentos-table">
+                    <thead>
+                      <tr>
+                        <th>Documento / Informação</th>
+                        <th>Data</th>
+                        <th>Anexo</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>
+                              Conjunto Decreto através do Ofício de
+                              Encaminhamento ao MDA
+                            </mat-label>
+                            <input matInput />
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data</mat-label>
+                            <input matInput [matDatepicker]="pickerF6A" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF6A"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF6A></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            class="anexo-link"
+                            aria-disabled="true"
+                          >
+                            <mat-icon>description</mat-icon>
+                            Anexo
+                          </a>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>
+                              Decreto declaratório presidencial de interesse
+                              social publicado D.O.U
+                            </mat-label>
+                            <input matInput />
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data</mat-label>
+                            <input matInput [matDatepicker]="pickerF6C" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF6C"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF6C></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            class="anexo-link"
+                            aria-disabled="true"
+                          >
+                            <mat-icon>description</mat-icon>
+                            Anexo
+                          </a>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td colspan="3">
+                          <mat-form-field
+                            appearance="outline"
+                            class="campo-observacao"
+                          >
+                            <mat-label>Observação</mat-label>
+                            <textarea matInput rows="5"></textarea>
+                          </mat-form-field>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <div class="step-actions">
+                    <button mat-stroked-button matStepperPrevious>
+                      Voltar
+                    </button>
+                    <button mat-flat-button matStepperNext>Próximo</button>
+                  </div>
+                </div>
+              </mat-step>
+
+              <!-- ========================================================= -->
+              <!-- FASE 7 - VISTORIA DE CAMPO -->
+              <!-- ========================================================= -->
+
+              <mat-step>
+                <ng-template matStepLabel
+                  >Fase 7 - Vistoria de Campo</ng-template
+                >
+
+                <div class="step-content">
+                  <table class="documentos-table">
+                    <thead>
+                      <tr>
+                        <th>Documento / Informação</th>
+                        <th>Data</th>
+                        <th>Anexo</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>
+                              Notificação ao Proprietário para ingresso no
+                              imóvel e avaliação
+                            </mat-label>
+                            <input matInput />
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data</mat-label>
+                            <input matInput [matDatepicker]="pickerF7A" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF7A"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF7A></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            class="anexo-link"
+                            aria-disabled="true"
+                          >
+                            <mat-icon>attach_file</mat-icon>
+                            Anexo
+                          </a>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Relatório de Viagem</mat-label>
+                            <input matInput />
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data</mat-label>
+                            <input matInput [matDatepicker]="pickerF7B" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF7B"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF7B></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            class="anexo-link"
+                            aria-disabled="true"
+                          >
+                            <mat-icon>description</mat-icon>
+                            Anexo
+                          </a>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Ordem de Serviço</mat-label>
+                            <input matInput />
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data</mat-label>
+                            <input matInput [matDatepicker]="pickerF7C" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF7C"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF7C></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            class="anexo-link"
+                            aria-disabled="true"
+                          >
+                            <mat-icon>description</mat-icon>
+                            Anexo
+                          </a>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td colspan="3">
+                          <mat-form-field
+                            appearance="outline"
+                            class="campo-observacao"
+                          >
+                            <mat-label>Observação</mat-label>
+                            <textarea matInput rows="5"></textarea>
+                          </mat-form-field>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <div class="step-actions">
+                    <button mat-stroked-button matStepperPrevious>
+                      Voltar
+                    </button>
+                    <button mat-flat-button matStepperNext>Próximo</button>
+                  </div>
+                </div>
+              </mat-step>
+
+              <!-- ========================================================= -->
+              <!-- FASE 8 - ELABORAÇÃO DE LAUDOS -->
+              <!-- ========================================================= -->
+
+              <mat-step>
+                <ng-template matStepLabel
+                  >Fase 8 - Elaboração de Laudos</ng-template
+                >
+
+                <div class="step-content">
+                  <table class="documentos-table">
+                    <thead>
+                      <tr>
+                        <th>Documento / Informação</th>
+                        <th>Data</th>
+                        <th>Anexo</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>
+                              LVA e anexos (ex: Levantamento ocupacional do
+                              imóvel)
+                            </mat-label>
+                            <input matInput />
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data</mat-label>
+                            <input matInput [matDatepicker]="pickerF8A" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF8A"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF8A></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            class="anexo-link"
+                            aria-disabled="true"
+                          >
+                            <mat-icon>folder_zip</mat-icon>
+                            Anexos
+                          </a>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label
+                              >Ata do Grupo Técnico de Revisão do
+                              Laudo</mat-label
+                            >
+                            <input matInput />
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data</mat-label>
+                            <input matInput [matDatepicker]="pickerF8B" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF8B"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF8B></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            class="anexo-link"
+                            aria-disabled="true"
+                          >
+                            <mat-icon>description</mat-icon>
+                            Anexo
+                          </a>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td colspan="3">
+                          <mat-form-field
+                            appearance="outline"
+                            class="campo-observacao"
+                          >
+                            <mat-label>Observação</mat-label>
+                            <textarea matInput rows="5"></textarea>
+                          </mat-form-field>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <div class="step-actions">
+                    <button mat-stroked-button matStepperPrevious>
+                      Voltar
+                    </button>
+                    <button mat-flat-button matStepperNext>Próximo</button>
+                  </div>
+                </div>
+              </mat-step>
+
+              <!-- ========================================================= -->
+              <!-- FASE 9 - ACORDO EXTRAJUDICIAL -->
+              <!-- ========================================================= -->
+
+              <mat-step>
+                <ng-template matStepLabel
+                  >Fase 9 - Acordo Extrajudicial</ng-template
+                >
+
+                <div class="step-content">
+                  <table class="documentos-table">
+                    <thead>
+                      <tr>
+                        <th>Documento / Informação</th>
+                        <th>Data</th>
+                        <th>Anexo</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>
+                              Notificação do proprietário de acordo
+                              extrajudicial
+                            </mat-label>
+                            <input matInput />
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data</mat-label>
+                            <input matInput [matDatepicker]="pickerF9A" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF9A"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF9A></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            class="anexo-link"
+                            aria-disabled="true"
+                          >
+                            <mat-icon>description</mat-icon>
+                            Anexo
+                          </a>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>
+                              Assinatura de Protocolo de Intenções (sim ou não
+                              ou em partes)
+                            </mat-label>
+                            <input matInput />
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data</mat-label>
+                            <input matInput [matDatepicker]="pickerF9B" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF9B"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF9B></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            class="anexo-link"
+                            aria-disabled="true"
+                          >
+                            <mat-icon>description</mat-icon>
+                            Anexo
+                          </a>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>
+                              Publicação do protocolo de intenções - Acordo
+                              extrajudicial no portal do Incra
+                            </mat-label>
+                            <input matInput />
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data</mat-label>
+                            <input matInput [matDatepicker]="pickerF9C" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF9C"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF9C></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            class="anexo-link"
+                            aria-disabled="true"
+                          >
+                            <mat-icon>public</mat-icon>
+                            Anexo
+                          </a>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td colspan="3">
+                          <mat-form-field
+                            appearance="outline"
+                            class="campo-observacao"
+                          >
+                            <mat-label>Observação</mat-label>
+                            <textarea matInput rows="5"></textarea>
+                          </mat-form-field>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <div class="step-actions">
+                    <button mat-stroked-button matStepperPrevious>
+                      Voltar
+                    </button>
+                    <button mat-flat-button matStepperNext>Próximo</button>
+                  </div>
+                </div>
+              </mat-step>
+
+              <!-- ========================================================= -->
+              <!-- FASE 10 - ATOS PARA PAGAMENTO -->
+              <!-- ========================================================= -->
+
+              <mat-step>
+                <ng-template matStepLabel
+                  >Fase 10 - Atos para Pagamento</ng-template
+                >
+
+                <div class="step-content">
+                  <table class="documentos-table">
+                    <thead>
+                      <tr>
+                        <th>Documento / Informação</th>
+                        <th>Data</th>
+                        <th>Anexo</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Autorização de Empenho</mat-label>
+                            <input matInput />
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data</mat-label>
+                            <input matInput [matDatepicker]="pickerF10A" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF10A"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF10A></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            class="anexo-link"
+                            aria-disabled="true"
+                          >
+                            <mat-icon>description</mat-icon>
+                            Anexo
+                          </a>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Empenho dos Recursos</mat-label>
+                            <input matInput />
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data</mat-label>
+                            <input matInput [matDatepicker]="pickerF10B" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF10B"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF10B></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            class="anexo-link"
+                            aria-disabled="true"
+                          >
+                            <mat-icon>description</mat-icon>
+                            Anexo
+                          </a>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td colspan="3">
+                          <mat-form-field
+                            appearance="outline"
+                            class="campo-observacao"
+                          >
+                            <mat-label>Observação</mat-label>
+                            <textarea matInput rows="5"></textarea>
+                          </mat-form-field>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <div class="step-actions">
+                    <button mat-stroked-button matStepperPrevious>
+                      Voltar
+                    </button>
+                    <button mat-flat-button matStepperNext>Próximo</button>
+                  </div>
+                </div>
+              </mat-step>
+
+              <!-- ========================================================= -->
+              <!-- FASE 11 - ANÁLISE DA CADEIA DOMINIAL -->
+              <!-- ========================================================= -->
+
+              <mat-step>
+                <ng-template matStepLabel>
+                  Fase 11 - Análise da Cadeia Dominial
+                </ng-template>
+
+                <div class="step-content">
+                  <table class="documentos-table">
+                    <thead>
+                      <tr>
+                        <th>Documento / Informação</th>
+                        <th>Data</th>
+                        <th>Anexo</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Certidões de cadeia dominial</mat-label>
+                            <input matInput />
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data</mat-label>
+                            <input matInput [matDatepicker]="pickerF11A" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF11A"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF11A></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            class="anexo-link"
+                            aria-disabled="true"
+                          >
+                            <mat-icon>folder_zip</mat-icon>
+                            Anexos
+                          </a>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Extrato da cadeia dominial</mat-label>
+                            <input matInput />
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data</mat-label>
+                            <input matInput [matDatepicker]="pickerF11B" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF11B"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF11B></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            class="anexo-link"
+                            aria-disabled="true"
+                          >
+                            <mat-icon>description</mat-icon>
+                            Anexo
+                          </a>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label
+                              >Parecer sobre a cadeia dominial</mat-label
+                            >
+                            <input matInput />
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data</mat-label>
+                            <input matInput [matDatepicker]="pickerF11C" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF11C"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF11C></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            class="anexo-link"
+                            aria-disabled="true"
+                          >
+                            <mat-icon>description</mat-icon>
+                            Anexo
+                          </a>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Parecer jurídico conclusivo</mat-label>
+                            <input matInput />
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data</mat-label>
+                            <input matInput [matDatepicker]="pickerF11D" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF11D"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF11D></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            class="anexo-link"
+                            aria-disabled="true"
+                          >
+                            <mat-icon>description</mat-icon>
+                            Anexo
+                          </a>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td colspan="3">
+                          <mat-form-field
+                            appearance="outline"
+                            class="campo-observacao"
+                          >
+                            <mat-label>Observação</mat-label>
+                            <textarea matInput rows="5"></textarea>
+                          </mat-form-field>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <div class="step-actions">
+                    <button mat-stroked-button matStepperPrevious>
+                      Voltar
+                    </button>
+                    <button mat-flat-button matStepperNext>Próximo</button>
+                  </div>
+                </div>
+              </mat-step>
+
+              <!-- ========================================================= -->
+              <!-- FASE 12 - AJUIZAMENTO -->
+              <!-- ========================================================= -->
+
+              <mat-step>
+                <ng-template matStepLabel>Fase 12 - Ajuizamento</ng-template>
+
+                <div class="step-content">
+                  <table class="documentos-table">
+                    <thead>
+                      <tr>
+                        <th>Documento / Informação</th>
+                        <th>Data</th>
+                        <th>Anexo</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label
+                              >Ajuizamento da ação de desapropriação</mat-label
+                            >
+                            <input matInput />
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data</mat-label>
+                            <input matInput [matDatepicker]="pickerF12A" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF12A"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF12A></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            class="anexo-link"
+                            aria-disabled="true"
+                          >
+                            <mat-icon>gavel</mat-icon>
+                            Anexo
+                          </a>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label
+                              >Perícia Judicial (se solicitado)</mat-label
+                            >
+                            <input matInput />
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data</mat-label>
+                            <input matInput [matDatepicker]="pickerF12B" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF12B"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF12B></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            class="anexo-link"
+                            aria-disabled="true"
+                          >
+                            <mat-icon>gavel</mat-icon>
+                            Anexo
+                          </a>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>
+                              Documentos solicitados durante a ação judicial
+                            </mat-label>
+                            <input matInput />
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <span class="campo-sem-data">—</span>
+                        </td>
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            class="anexo-link"
+                            aria-disabled="true"
+                          >
+                            <mat-icon>folder_zip</mat-icon>
+                            Anexos múltiplos
+                          </a>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Liquidação financeira</mat-label>
+                            <input matInput />
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data</mat-label>
+                            <input matInput [matDatepicker]="pickerF12D" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF12D"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF12D></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            class="anexo-link"
+                            aria-disabled="true"
+                          >
+                            <mat-icon>payments</mat-icon>
+                            Anexo
+                          </a>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>
+                              Trânsito em julgado da ação de desapropriação
+                            </mat-label>
+                            <input matInput />
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data</mat-label>
+                            <input matInput [matDatepicker]="pickerF12E" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF12E"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF12E></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            class="anexo-link"
+                            aria-disabled="true"
+                          >
+                            <mat-icon>gavel</mat-icon>
+                            Anexo
+                          </a>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td colspan="3">
+                          <mat-form-field
+                            appearance="outline"
+                            class="campo-observacao"
+                          >
+                            <mat-label>Observação</mat-label>
+                            <textarea matInput rows="5"></textarea>
+                          </mat-form-field>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <div class="step-actions">
+                    <button mat-stroked-button matStepperPrevious>
+                      Voltar
+                    </button>
+                    <button mat-flat-button matStepperNext>Próximo</button>
+                  </div>
+                </div>
+              </mat-step>
+
+              <!-- ========================================================= -->
+              <!-- FASE 13 - IMISSÃO NA POSSE -->
+              <!-- ========================================================= -->
+
+              <mat-step>
+                <ng-template matStepLabel
+                  >Fase 13 - Imissão na Posse</ng-template
+                >
+
+                <div class="step-content">
+                  <table class="documentos-table">
+                    <thead>
+                      <tr>
+                        <th>Documento / Informação</th>
+                        <th>Data</th>
+                        <th>Anexo</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Auto de Imissão na Posse</mat-label>
+                            <input matInput />
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data</mat-label>
+                            <input matInput [matDatepicker]="pickerF13A" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF13A"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF13A></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            class="anexo-link"
+                            aria-disabled="true"
+                          >
+                            <mat-icon>key</mat-icon>
+                            Anexo
+                          </a>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td colspan="3">
+                          <mat-form-field
+                            appearance="outline"
+                            class="campo-observacao"
+                          >
+                            <mat-label>Observação</mat-label>
+                            <textarea matInput rows="5"></textarea>
+                          </mat-form-field>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <div class="step-actions">
+                    <button mat-stroked-button matStepperPrevious>
+                      Voltar
+                    </button>
+                    <button mat-flat-button matStepperNext>Próximo</button>
+                  </div>
+                </div>
+              </mat-step>
+
+              <!-- ========================================================= -->
+              <!-- FASE 14 - DESTINAÇÃO DO IMÓVEL -->
+              <!-- ========================================================= -->
+
+              <mat-step>
+                <ng-template matStepLabel
+                  >Fase 14 - Destinação do Imóvel</ng-template
+                >
+
+                <div class="step-content">
+                  <table class="documentos-table">
+                    <thead>
+                      <tr>
+                        <th>Documento / Informação</th>
+                        <th>Data</th>
+                        <th>Anexo</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>
+                              Portaria de Criação de assentamento publicada no
+                              D.O.U.
+                            </mat-label>
+                            <input matInput />
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data</mat-label>
+                            <input matInput [matDatepicker]="pickerF14A" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF14A"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF14A></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            class="anexo-link"
+                            aria-disabled="true"
+                          >
+                            <mat-icon>description</mat-icon>
+                            Anexo
+                          </a>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Registro na Matrícula</mat-label>
+                            <input matInput />
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data</mat-label>
+                            <input matInput [matDatepicker]="pickerF14B" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF14B"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF14B></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            class="anexo-link"
+                            aria-disabled="true"
+                          >
+                            <mat-icon>description</mat-icon>
+                            Anexo
+                          </a>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Registro SPUNet</mat-label>
+                            <input matInput />
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-label>Data</mat-label>
+                            <input matInput [matDatepicker]="pickerF14C" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF14C"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF14C></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <a
+                            href="javascript:void(0)"
+                            class="anexo-link"
+                            aria-disabled="true"
+                          >
+                            <mat-icon>description</mat-icon>
+                            Anexo
+                          </a>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td colspan="3">
+                          <mat-form-field
+                            appearance="outline"
+                            class="campo-observacao"
+                          >
+                            <mat-label>Observação</mat-label>
+                            <textarea matInput rows="5"></textarea>
+                          </mat-form-field>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+
+                  <div class="step-actions">
+                    <button mat-stroked-button matStepperPrevious>
+                      Voltar
+                    </button>
+                    <button mat-flat-button type="button" (click)="salvar()">
+                      Salvar
+                    </button>
+                  </div>
+                </div>
+              </mat-step>
+            </mat-stepper>
+          </ng-container>
+
+          <!--
+
+          *********************************************************Comrpa e venda***************************************************-->
+          <ng-container
+            *ngIf="dados.imovel.modalidade === 'Compra e Venda Decreto 433/92'"
+          >
+            <mat-stepper orientation="vertical">
+              <div class="section-title">
+                <mat-icon>description</mat-icon>
+
+                <div>
+                  <h2>Processo de Obtenção</h2>
+                  <p>
+                    Informações relacionadas às fases e aos documentos do
+                    processo de compra e venda do imóvel.
+                  </p>
+                </div>
+              </div>
+
+              <!-- ========================================================= -->
+              <!-- FASE 1 -->
+              <!-- ========================================================= -->
+
+              <mat-step>
+                <ng-template matStepLabel>
+                  Fase 1 - Abertura de Processo
+                </ng-template>
+
+                <div class="form-grid">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Edital de chamamento</mat-label>
+                    <input matInput [matDatepicker]="pickerF1A" />
+                    <mat-datepicker-toggle
+                      matIconSuffix
+                      [for]="pickerF1A"
+                    ></mat-datepicker-toggle>
+                    <mat-datepicker #pickerF1A></mat-datepicker>
+                  </mat-form-field>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="anexo-link"
+                    aria-disabled="true"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Anexo
+                  </a>
+
+                  <mat-form-field appearance="outline">
+                    <mat-label>
+                      Oferta de venda pelo proprietário ou representante
+                    </mat-label>
+                    <input matInput [matDatepicker]="pickerF1B" />
+                    <mat-datepicker-toggle
+                      matIconSuffix
+                      [for]="pickerF1B"
+                    ></mat-datepicker-toggle>
+                    <mat-datepicker #pickerF1B></mat-datepicker>
+                  </mat-form-field>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="anexo-link"
+                    aria-disabled="true"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Anexo
+                  </a>
+
+                  <mat-form-field appearance="outline">
+                    <mat-label>
+                      Anexos da proposta de venda (art. 6°, IN n° 147/2024)
+                    </mat-label>
+                    <input matInput [matDatepicker]="pickerF1C" />
+                    <mat-datepicker-toggle
+                      matIconSuffix
+                      [for]="pickerF1C"
+                    ></mat-datepicker-toggle>
+                    <mat-datepicker #pickerF1C></mat-datepicker>
+                  </mat-form-field>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="anexo-link"
+                    aria-disabled="true"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Anexo
+                  </a>
+                </div>
+
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>Observação</mat-label>
+                  <textarea matInput rows="4"></textarea>
+                </mat-form-field>
+              </mat-step>
+
+              <!-- ========================================================= -->
+              <!-- FASE 2 -->
+              <!-- ========================================================= -->
+
+              <mat-step>
+                <ng-template matStepLabel>
+                  Fase 2 - Análise Preliminar de Viabilidade
+                </ng-template>
+
+                <div class="form-grid">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Espelho do Imóvel no SNCR</mat-label>
+                    <input matInput [matDatepicker]="pickerF2A" />
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerF2A">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerF2A></mat-datepicker>
+                  </mat-form-field>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="anexo-link"
+                    aria-disabled="true"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Anexo
+                  </a>
+
+                  <mat-form-field appearance="outline">
+                    <mat-label>Matrícula(s)</mat-label>
+                    <input matInput [matDatepicker]="pickerF2B" />
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerF2B">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerF2B></mat-datepicker>
+                  </mat-form-field>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="anexo-link"
+                    aria-disabled="true"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Anexo
+                  </a>
+
+                  <mat-form-field appearance="outline">
+                    <mat-label>Arquivo vetorial (shp)</mat-label>
+                    <input matInput [matDatepicker]="pickerF2C" />
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerF2C">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerF2C></mat-datepicker>
+                  </mat-form-field>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="anexo-link"
+                    aria-disabled="true"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Anexo
+                  </a>
+
+                  <mat-form-field appearance="outline">
+                    <mat-label>Mapa (impresso/pdf)</mat-label>
+                    <input matInput [matDatepicker]="pickerF2D" />
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerF2D">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerF2D></mat-datepicker>
+                  </mat-form-field>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="anexo-link"
+                    aria-disabled="true"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Anexo
+                  </a>
+
+                  <mat-form-field appearance="outline">
+                    <mat-label>
+                      Memorial descritivo (impresso/pdf editável)
+                    </mat-label>
+                    <input matInput [matDatepicker]="pickerF2E" />
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerF2E">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerF2E></mat-datepicker>
+                  </mat-form-field>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="anexo-link"
+                    aria-disabled="true"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Anexo
+                  </a>
+
+                  <mat-form-field appearance="outline">
+                    <mat-label>
+                      Análise preliminar da viabilidade da obtenção
+                    </mat-label>
+                    <input matInput [matDatepicker]="pickerF2F" />
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerF2F">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerF2F></mat-datepicker>
+                  </mat-form-field>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="anexo-link"
+                    aria-disabled="true"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Anexo
+                  </a>
+
+                  <mat-form-field appearance="outline">
+                    <mat-label>Ordem de Serviço</mat-label>
+                    <input matInput [matDatepicker]="pickerF2G" />
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerF2G">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerF2G></mat-datepicker>
+                  </mat-form-field>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="anexo-link"
+                    aria-disabled="true"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Anexo
+                  </a>
+                </div>
+
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>Observação</mat-label>
+                  <textarea matInput rows="4"></textarea>
+                </mat-form-field>
+              </mat-step>
+
+              <!-- ========================================================= -->
+              <!-- FASE 3 -->
+              <!-- ========================================================= -->
+
+              <mat-step>
+                <ng-template matStepLabel>
+                  Fase 3 - Elaboração de Laudos
+                </ng-template>
+
+                <div class="form-grid">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Relatório de Viagem</mat-label>
+                    <input matInput [matDatepicker]="pickerF3A" />
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerF3A">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerF3A></mat-datepicker>
+                  </mat-form-field>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="anexo-link"
+                    aria-disabled="true"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Anexo
+                  </a>
+
+                  <mat-form-field appearance="outline">
+                    <mat-label>LVA</mat-label>
+                    <input matInput [matDatepicker]="pickerF3B" />
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerF3B">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerF3B></mat-datepicker>
+                  </mat-form-field>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="anexo-link"
+                    aria-disabled="true"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Anexo
+                  </a>
+
+                  <mat-form-field appearance="outline">
+                    <mat-label>ECGR</mat-label>
+                    <input matInput [matDatepicker]="pickerF3C" />
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerF3C">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerF3C></mat-datepicker>
+                  </mat-form-field>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="anexo-link"
+                    aria-disabled="true"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Anexo
+                  </a>
+
+                  <mat-form-field appearance="outline">
+                    <mat-label>
+                      Ata do Grupo Técnico de Revisão do LVA e/ou ECGR
+                    </mat-label>
+                    <input matInput [matDatepicker]="pickerF3D" />
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerF3D">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerF3D></mat-datepicker>
+                  </mat-form-field>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="anexo-link"
+                    aria-disabled="true"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Anexo
+                  </a>
+                </div>
+
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>Observação</mat-label>
+                  <textarea matInput rows="4"></textarea>
+                </mat-form-field>
+              </mat-step>
+
+              <!-- ========================================================= -->
+              <!-- FASE 4 -->
+              <!-- ========================================================= -->
+
+              <mat-step>
+                <ng-template matStepLabel>
+                  Fase 4 - Negociação de Compra e Venda
+                </ng-template>
+
+                <div class="form-grid">
+                  <mat-form-field appearance="outline">
+                    <mat-label>
+                      Contraproposta do INCRA (notificação p/ negociação)
+                    </mat-label>
+                    <input matInput [matDatepicker]="pickerF4A" />
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerF4A">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerF4A></mat-datepicker>
+                  </mat-form-field>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="anexo-link"
+                    aria-disabled="true"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Anexo
+                  </a>
+
+                  <mat-form-field appearance="outline">
+                    <mat-label>Aceite / concordância do preço</mat-label>
+                    <input matInput [matDatepicker]="pickerF4B" />
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerF4B">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerF4B></mat-datepicker>
+                  </mat-form-field>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="anexo-link"
+                    aria-disabled="true"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Anexo
+                  </a>
+
+                  <mat-form-field appearance="outline">
+                    <mat-label>Acordo de compra e venda</mat-label>
+                    <input matInput [matDatepicker]="pickerF4C" />
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerF4C">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerF4C></mat-datepicker>
+                  </mat-form-field>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="anexo-link"
+                    aria-disabled="true"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Anexo
+                  </a>
+                </div>
+
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>Observação</mat-label>
+                  <textarea matInput rows="4"></textarea>
+                </mat-form-field>
+              </mat-step>
+
+              <!-- ========================================================= -->
+              <!-- FASE 5 -->
+              <!-- ========================================================= -->
+
+              <mat-step>
+                <ng-template matStepLabel>
+                  Fase 5 - Publicidade da Proposta
+                </ng-template>
+
+                <div class="form-grid">
+                  <mat-form-field appearance="outline">
+                    <mat-label>
+                      Ata de Audiência no Conselho de Desenvolvimento Rural
+                      Sustentável ou audiência pública ou judicial
+                    </mat-label>
+                    <input matInput [matDatepicker]="pickerF5A" />
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerF5A">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerF5A></mat-datepicker>
+                  </mat-form-field>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="anexo-link"
+                    aria-disabled="true"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Anexo
+                  </a>
+
+                  <mat-form-field appearance="outline">
+                    <mat-label>
+                      Publicação do extrato simplificado do LVA
+                    </mat-label>
+                    <input matInput [matDatepicker]="pickerF5B" />
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerF5B">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerF5B></mat-datepicker>
+                  </mat-form-field>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="anexo-link"
+                    aria-disabled="true"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Anexo
+                  </a>
+                </div>
+
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>Observação</mat-label>
+                  <textarea matInput rows="4"></textarea>
+                </mat-form-field>
+              </mat-step>
+
+              <!-- ========================================================= -->
+              <!-- FASE 6 -->
+              <!-- ========================================================= -->
+
+              <mat-step>
+                <ng-template matStepLabel>
+                  Fase 6 - Consulta sobreposição de interesses públicos
+                </ng-template>
+
+                <div class="table-container">
+                  <table class="process-table">
+                    <thead>
+                      <tr>
+                        <th>Órgão</th>
+                        <th>Data de consulta</th>
+                        <th>Data de Resposta</th>
+                        <th>Resposta</th>
+                        <th>Anexo</th>
+                      </tr>
+                    </thead>
+
+                    <tbody>
+                      <tr>
+                        <td>Órgão estadual de terras</td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <input matInput [matDatepicker]="pickerF6A" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF6A"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF6A></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <input matInput [matDatepicker]="pickerF6AR" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF6AR"
+                            ></mat-datepicker-toggle>
+                            <mat-datepicker #pickerF6AR></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-select>
+                              <mat-option value="sim">Sim</mat-option>
+                              <mat-option value="nao">Não</mat-option>
+                              <mat-option value="sem-resposta">
+                                Sem resposta
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <button mat-icon-button type="button">
+                            <mat-icon>attach_file</mat-icon>
+                          </button>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>Órgão estadual de meio ambiente</td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <input matInput [matDatepicker]="pickerF6B" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF6B"
+                            >
+                            </mat-datepicker-toggle>
+                            <mat-datepicker #pickerF6B></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <input matInput [matDatepicker]="pickerF6BR" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF6BR"
+                            >
+                            </mat-datepicker-toggle>
+                            <mat-datepicker #pickerF6BR></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-select>
+                              <mat-option value="sim">Sim</mat-option>
+                              <mat-option value="nao">Não</mat-option>
+                              <mat-option value="sem-resposta">
+                                Sem resposta
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <button mat-icon-button type="button">
+                            <mat-icon>attach_file</mat-icon>
+                          </button>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>Município onde se localiza o imóvel</td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <input matInput [matDatepicker]="pickerF6C" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF6C"
+                            >
+                            </mat-datepicker-toggle>
+                            <mat-datepicker #pickerF6C></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <input matInput [matDatepicker]="pickerF6CR" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF6CR"
+                            >
+                            </mat-datepicker-toggle>
+                            <mat-datepicker #pickerF6CR></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-select>
+                              <mat-option value="sim">Sim</mat-option>
+                              <mat-option value="nao">Não</mat-option>
+                              <mat-option value="sem-resposta">
+                                Sem resposta
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <button mat-icon-button type="button">
+                            <mat-icon>attach_file</mat-icon>
+                          </button>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>Fundação Nacional dos Povos Indígenas - Funai</td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <input matInput [matDatepicker]="pickerF6D" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF6D"
+                            >
+                            </mat-datepicker-toggle>
+                            <mat-datepicker #pickerF6D></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <input matInput [matDatepicker]="pickerF6DR" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF6DR"
+                            >
+                            </mat-datepicker-toggle>
+                            <mat-datepicker #pickerF6DR></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-select>
+                              <mat-option value="sim">Sim</mat-option>
+                              <mat-option value="nao">Não</mat-option>
+                              <mat-option value="sem-resposta">
+                                Sem resposta
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <button mat-icon-button type="button">
+                            <mat-icon>attach_file</mat-icon>
+                          </button>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>Agência Nacional de Mineração - ANM</td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <input matInput [matDatepicker]="pickerF6E" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF6E"
+                            >
+                            </mat-datepicker-toggle>
+                            <mat-datepicker #pickerF6E></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <input matInput [matDatepicker]="pickerF6ER" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF6ER"
+                            >
+                            </mat-datepicker-toggle>
+                            <mat-datepicker #pickerF6ER></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-select>
+                              <mat-option value="sim">Sim</mat-option>
+                              <mat-option value="nao">Não</mat-option>
+                              <mat-option value="sem-resposta">
+                                Sem resposta
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <button mat-icon-button type="button">
+                            <mat-icon>attach_file</mat-icon>
+                          </button>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          Instituto do Patrimônio Histórico e Artístico Nacional
+                          - IPHAN
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <input matInput [matDatepicker]="pickerF6F" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF6F"
+                            >
+                            </mat-datepicker-toggle>
+                            <mat-datepicker #pickerF6F></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <input matInput [matDatepicker]="pickerF6FR" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF6FR"
+                            >
+                            </mat-datepicker-toggle>
+                            <mat-datepicker #pickerF6FR></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-select>
+                              <mat-option value="sim">Sim</mat-option>
+                              <mat-option value="nao">Não</mat-option>
+                              <mat-option value="sem-resposta">
+                                Sem resposta
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <button mat-icon-button type="button">
+                            <mat-icon>attach_file</mat-icon>
+                          </button>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>
+                          Instituto Chico Mendes de Conservação da
+                          Biodiversidade - ICMBio
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <input matInput [matDatepicker]="pickerF6G" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF6G"
+                            >
+                            </mat-datepicker-toggle>
+                            <mat-datepicker #pickerF6G></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <input matInput [matDatepicker]="pickerF6GR" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF6GR"
+                            >
+                            </mat-datepicker-toggle>
+                            <mat-datepicker #pickerF6GR></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-select>
+                              <mat-option value="sim">Sim</mat-option>
+                              <mat-option value="nao">Não</mat-option>
+                              <mat-option value="sem-resposta">
+                                Sem resposta
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <button mat-icon-button type="button">
+                            <mat-icon>attach_file</mat-icon>
+                          </button>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>Secretaria do Patrimônio da União</td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <input matInput [matDatepicker]="pickerF6H" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF6H"
+                            >
+                            </mat-datepicker-toggle>
+                            <mat-datepicker #pickerF6H></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <input matInput [matDatepicker]="pickerF6HR" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF6HR"
+                            >
+                            </mat-datepicker-toggle>
+                            <mat-datepicker #pickerF6HR></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-select>
+                              <mat-option value="sim">Sim</mat-option>
+                              <mat-option value="nao">Não</mat-option>
+                              <mat-option value="sem-resposta">
+                                Sem resposta
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <button mat-icon-button type="button">
+                            <mat-icon>attach_file</mat-icon>
+                          </button>
+                        </td>
+                      </tr>
+
+                      <tr>
+                        <td>Divisão Quilombola</td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <input matInput [matDatepicker]="pickerF6I" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF6I"
+                            >
+                            </mat-datepicker-toggle>
+                            <mat-datepicker #pickerF6I></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <input matInput [matDatepicker]="pickerF6IR" />
+                            <mat-datepicker-toggle
+                              matIconSuffix
+                              [for]="pickerF6IR"
+                            >
+                            </mat-datepicker-toggle>
+                            <mat-datepicker #pickerF6IR></mat-datepicker>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <mat-select>
+                              <mat-option value="sim">Sim</mat-option>
+                              <mat-option value="nao">Não</mat-option>
+                              <mat-option value="sem-resposta">
+                                Sem resposta
+                              </mat-option>
+                            </mat-select>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <button mat-icon-button type="button">
+                            <mat-icon>attach_file</mat-icon>
+                          </button>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </mat-step>
+
+              <!-- ========================================================= -->
+              <!-- FASE 7 -->
+              <!-- ========================================================= -->
+
+              <mat-step>
+                <ng-template matStepLabel>
+                  Fase 7 - Análise da Cadeia Dominial
+                </ng-template>
+
+                <div class="form-grid">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Certidões de cadeia dominial</mat-label>
+                    <input matInput [matDatepicker]="pickerF7A" />
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerF7A">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerF7A></mat-datepicker>
+                  </mat-form-field>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="anexo-link"
+                    aria-disabled="true"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Anexo
+                  </a>
+
+                  <mat-form-field appearance="outline">
+                    <mat-label>Extrato e parecer</mat-label>
+                    <input matInput [matDatepicker]="pickerF7B" />
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerF7B">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerF7B></mat-datepicker>
+                  </mat-form-field>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="anexo-link"
+                    aria-disabled="true"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Anexo
+                  </a>
+
+                  <mat-form-field appearance="outline">
+                    <mat-label>Parecer sobre a cadeia dominial</mat-label>
+                    <input matInput [matDatepicker]="pickerF7C" />
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerF7C">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerF7C></mat-datepicker>
+                  </mat-form-field>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="anexo-link"
+                    aria-disabled="true"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Anexo
+                  </a>
+
+                  <mat-form-field appearance="outline">
+                    <mat-label>Parecer jurídico conclusivo</mat-label>
+                    <input matInput [matDatepicker]="pickerF7D" />
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerF7D">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerF7D></mat-datepicker>
+                  </mat-form-field>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="anexo-link"
+                    aria-disabled="true"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Anexo
+                  </a>
+                </div>
+
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>Observação</mat-label>
+                  <textarea matInput rows="4"></textarea>
+                </mat-form-field>
+              </mat-step>
+
+              <!-- ========================================================= -->
+              <!-- FASE 8 -->
+              <!-- ========================================================= -->
+
+              <mat-step>
+                <ng-template matStepLabel>
+                  Fase 8 - Emissão de Parecer Técnico Revisor
+                </ng-template>
+
+                <div class="form-grid">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Parecer Técnico Conclusivo</mat-label>
+                    <input matInput [matDatepicker]="pickerF8A" />
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerF8A">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerF8A></mat-datepicker>
+                  </mat-form-field>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="anexo-link"
+                    aria-disabled="true"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Anexo
+                  </a>
+
+                  <mat-form-field appearance="outline">
+                    <mat-label>Parecer Jurídico Conclusivo</mat-label>
+                    <input matInput [matDatepicker]="pickerF8B" />
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerF8B">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerF8B></mat-datepicker>
+                  </mat-form-field>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="anexo-link"
+                    aria-disabled="true"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Anexo
+                  </a>
+
+                  <mat-form-field appearance="outline">
+                    <mat-label>Voto para o CDR</mat-label>
+                    <input matInput [matDatepicker]="pickerF8C" />
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerF8C">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerF8C></mat-datepicker>
+                  </mat-form-field>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="anexo-link"
+                    aria-disabled="true"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Anexo
+                  </a>
+                </div>
+
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>Observação</mat-label>
+                  <textarea matInput rows="4"></textarea>
+                </mat-form-field>
+              </mat-step>
+
+              <!-- ========================================================= -->
+              <!-- FASE 9 -->
+              <!-- ========================================================= -->
+
+              <mat-step>
+                <ng-template matStepLabel>
+                  Fase 9 - Deliberação do CDR
+                </ng-template>
+
+                <div class="form-grid">
+                  <mat-form-field appearance="outline">
+                    <mat-label>
+                      Resolução CDR/Portaria de aquisição do imóvel
+                    </mat-label>
+                    <input matInput [matDatepicker]="pickerF9A" />
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerF9A">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerF9A></mat-datepicker>
+                  </mat-form-field>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="anexo-link"
+                    aria-disabled="true"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Anexo
+                  </a>
+
+                  <mat-form-field appearance="outline">
+                    <mat-label>Publicação no D.O.U.</mat-label>
+                    <input matInput [matDatepicker]="pickerF9B" />
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerF9B">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerF9B></mat-datepicker>
+                  </mat-form-field>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="anexo-link"
+                    aria-disabled="true"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Anexo
+                  </a>
+                </div>
+
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>Observação</mat-label>
+                  <textarea matInput rows="4"></textarea>
+                </mat-form-field>
+              </mat-step>
+
+              <!-- ========================================================= -->
+              <!-- FASE 10 -->
+              <!-- ========================================================= -->
+
+              <mat-step>
+                <ng-template matStepLabel>
+                  Fase 10 - Deliberação do CD
+                </ng-template>
+
+                <div class="form-grid">
+                  <mat-form-field appearance="outline">
+                    <mat-label>Análise de conformidade</mat-label>
+                    <input matInput [matDatepicker]="pickerF10A" />
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerF10A">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerF10A></mat-datepicker>
+                  </mat-form-field>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="anexo-link"
+                    aria-disabled="true"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Anexo
+                  </a>
+
+                  <mat-form-field appearance="outline">
+                    <mat-label>Voto para o CD</mat-label>
+                    <input matInput [matDatepicker]="pickerF10B" />
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerF10B">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerF10B></mat-datepicker>
+                  </mat-form-field>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="anexo-link"
+                    aria-disabled="true"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Anexo
+                  </a>
+
+                  <mat-form-field appearance="outline">
+                    <mat-label>Resolução do CD</mat-label>
+                    <input matInput [matDatepicker]="pickerF10C" />
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerF10C">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerF10C></mat-datepicker>
+                  </mat-form-field>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="anexo-link"
+                    aria-disabled="true"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Anexo
+                  </a>
+
+                  <mat-form-field appearance="outline">
+                    <mat-label>
+                      Publicação DOU Resolução CD/Portaria
+                    </mat-label>
+                    <input matInput [matDatepicker]="pickerF10D" />
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerF10D">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerF10D></mat-datepicker>
+                  </mat-form-field>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="anexo-link"
+                    aria-disabled="true"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Anexo
+                  </a>
+                </div>
+
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>Observação</mat-label>
+                  <textarea matInput rows="4"></textarea>
+                </mat-form-field>
+              </mat-step>
+
+              <!-- ========================================================= -->
+              <!-- FASE 11 -->
+              <!-- ========================================================= -->
+
+              <mat-step>
+                <ng-template matStepLabel>
+                  Fase 11 - Atos para Pagamento
+                </ng-template>
+
+                <div class="form-grid">
+                  <mat-form-field appearance="outline">
+                    <mat-label>
+                      Despacho decisório para Emissão de empenho
+                    </mat-label>
+                    <input matInput [matDatepicker]="pickerF11A" />
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerF11A">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerF11A></mat-datepicker>
+                  </mat-form-field>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="anexo-link"
+                    aria-disabled="true"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Anexo
+                  </a>
+
+                  <mat-form-field appearance="outline">
+                    <mat-label>Empenho dos recursos</mat-label>
+                    <input matInput [matDatepicker]="pickerF11B" />
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerF11B">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerF11B></mat-datepicker>
+                  </mat-form-field>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="anexo-link"
+                    aria-disabled="true"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Anexo
+                  </a>
+
+                  <mat-form-field appearance="outline">
+                    <mat-label> Ofício solicitação de emissão TDAs </mat-label>
+                    <input matInput [matDatepicker]="pickerF11C" />
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerF11C">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerF11C></mat-datepicker>
+                  </mat-form-field>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="anexo-link"
+                    aria-disabled="true"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Anexo
+                  </a>
+
+                  <mat-form-field appearance="outline">
+                    <mat-label> Demonstrativo de lançamento TDAs </mat-label>
+                    <input matInput [matDatepicker]="pickerF11D" />
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerF11D">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerF11D></mat-datepicker>
+                  </mat-form-field>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="anexo-link"
+                    aria-disabled="true"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Anexo
+                  </a>
+                </div>
+
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>Observação</mat-label>
+                  <textarea matInput rows="4"></textarea>
+                </mat-form-field>
+              </mat-step>
+
+              <!-- ========================================================= -->
+              <!-- FASE 12 -->
+              <!-- ========================================================= -->
+
+              <mat-step>
+                <ng-template matStepLabel>
+                  Fase 12 - Escrituração e Registro
+                </ng-template>
+
+                <div class="form-grid">
+                  <mat-form-field appearance="outline">
+                    <mat-label>
+                      Minuta de escritura de compra e venda
+                    </mat-label>
+                    <input matInput [matDatepicker]="pickerF12A" />
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerF12A">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerF12A></mat-datepicker>
+                  </mat-form-field>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="anexo-link"
+                    aria-disabled="true"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Anexo
+                  </a>
+
+                  <mat-form-field appearance="outline">
+                    <mat-label>Escritura de compra e venda</mat-label>
+                    <input matInput [matDatepicker]="pickerF12B" />
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerF12B">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerF12B></mat-datepicker>
+                  </mat-form-field>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="anexo-link"
+                    aria-disabled="true"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Anexo
+                  </a>
+
+                  <mat-form-field appearance="outline">
+                    <mat-label>Registro do imóvel no CRI</mat-label>
+                    <input matInput [matDatepicker]="pickerF12C" />
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerF12C">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerF12C></mat-datepicker>
+                  </mat-form-field>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="anexo-link"
+                    aria-disabled="true"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Anexo
+                  </a>
+
+                  <mat-form-field appearance="outline">
+                    <mat-label>
+                      Pagamento financeiro ou desbloqueio de TDAs
+                    </mat-label>
+                    <input matInput [matDatepicker]="pickerF12D" />
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerF12D">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerF12D></mat-datepicker>
+                  </mat-form-field>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="anexo-link"
+                    aria-disabled="true"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Anexo
+                  </a>
+                </div>
+
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>Observação</mat-label>
+                  <textarea matInput rows="4"></textarea>
+                </mat-form-field>
+              </mat-step>
+
+              <!-- ========================================================= -->
+              <!-- FASE 13 -->
+              <!-- ========================================================= -->
+
+              <mat-step>
+                <ng-template matStepLabel>
+                  Fase 13 - Destinação do Imóvel
+                </ng-template>
+
+                <div class="form-grid">
+                  <mat-form-field appearance="outline">
+                    <mat-label>
+                      Portaria de Criação de assentamento publicada no D.O.U.
+                    </mat-label>
+                    <input matInput [matDatepicker]="pickerF13A" />
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerF13A">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerF13A></mat-datepicker>
+                  </mat-form-field>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="anexo-link"
+                    aria-disabled="true"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Anexo
+                  </a>
+
+                  <mat-form-field appearance="outline">
+                    <mat-label>Registro na Matrícula</mat-label>
+                    <input matInput [matDatepicker]="pickerF13B" />
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerF13B">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerF13B></mat-datepicker>
+                  </mat-form-field>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="anexo-link"
+                    aria-disabled="true"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Anexo
+                  </a>
+
+                  <mat-form-field appearance="outline">
+                    <mat-label>Registro SPUNet</mat-label>
+                    <input matInput [matDatepicker]="pickerF13C" />
+                    <mat-datepicker-toggle matIconSuffix [for]="pickerF13C">
+                    </mat-datepicker-toggle>
+                    <mat-datepicker #pickerF13C></mat-datepicker>
+                  </mat-form-field>
+
+                  <a
+                    href="javascript:void(0)"
+                    class="anexo-link"
+                    aria-disabled="true"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Anexo
+                  </a>
+                </div>
+
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>Observação</mat-label>
+                  <textarea matInput rows="4"></textarea>
+                </mat-form-field>
+              </mat-step>
+            </mat-stepper>
+          </ng-container>
+
+          <!-- ============================================================= -->
+          <!-- NENHUMA INFORMAÇÃO -->
+          <!-- ============================================================= -->
+
+          <!--<ng-template #nenhumaInformacao>
             <div class="nenhuma-informacao">
               <mat-icon>info</mat-icon>
               <span>Nenhuma informação à ser exibida.</span>
             </div>
-          </ng-template>
+          </ng-template>-->
           <br /><br /><br />
         </mat-expansion-panel>
       </mat-accordion>

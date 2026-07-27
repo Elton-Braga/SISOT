@@ -1036,5 +1036,118 @@ export const IMOVEIS_MOCK: Dados[] = [
       observacoes: '',
     },
   },
+
+  {
+    imovel: {
+      sr: 'SR(27)MBA',
+      imovel: 'Fazenda Santa Helena',
+      sncr: '2589631478520',
+      areaHa: 8456.3271,
+      proprietario:
+        'João Carlos de Almeida, Maria de Fátima Almeida e Pedro Henrique Almeida',
+      processo: '54000.125478/2025-18',
+      modalidade: 'Desapropriação Lei 4132/62',
+      situacao: 'Em Trâmite',
+      municipio: 'Marabá',
+      uf: 'PA',
+      acoes: ['Espelho', 'Histórico', 'Editar', 'Log'],
+    },
+
+    obtencao: {
+      processoSei: '54000.125478/2025-18',
+      situacao: 'Em Trâmite',
+      entidadeDemandante:
+        'INCRA - Instituto Nacional de Colonização e Reforma Agrária',
+      processoCadeiaDominial: '',
+      formaObtencao: 'Desapropriação Lei 4132/62',
+      acampamentoVinculado: '',
+      imovelOcupado: false,
+      orgaoConcorrente: 'Nenhum',
+      capacidadeAssentamento: 156,
+      acoesReintegracao: '',
+      familiasCadastradas: undefined,
+    },
+
+    avaliacao: {
+      valorTotalImovelInferior: 87452136.42,
+      valorTotalImovelMedio: 96587324.18,
+      valorTotalImovelSuperior: 105478921.67,
+      valorTotalNegociado: undefined,
+      valorTerraNuaInferior: 79852136.42,
+      valorTerraNuaMedio: 86587324.18,
+      valorTerraNuaSuperior: 95478921.67,
+      valorBenfeitorias: 10000000,
+      valorPassivoAmbiental: 254321.88,
+      valorAtivoAmbiental: 0,
+    },
+
+    processo: {
+      fase: '',
+      processualPecaDocumento: '',
+      data: null,
+      campoComplementar: '',
+      defineFase: '',
+      obrigatorio: '',
+      responsavel: '',
+      temPrazo: '',
+      observacoes: '',
+    },
+  },
+
+  {
+    imovel: {
+      sr: 'SR(08)SP',
+      imovel: 'Fazenda Boa Esperança',
+      sncr: '3698521470369',
+      areaHa: 5234.7896,
+      proprietario: 'Espólio de Antônio Pereira da Silva e sucessores',
+      processo: '54000.298741/2025-63',
+      modalidade: 'Desapropriação Lei 4132/62',
+      situacao: 'Em Trâmite',
+      municipio: 'Presidente Prudente',
+      uf: 'SP',
+      acoes: ['Espelho', 'Histórico', 'Editar', 'Log'],
+    },
+
+    obtencao: {
+      processoSei: '54000.298741/2025-63',
+      situacao: 'Em Trâmite',
+      entidadeDemandante:
+        'INCRA - Instituto Nacional de Colonização e Reforma Agrária',
+      processoCadeiaDominial: '',
+      formaObtencao: 'Desapropriação Lei 4132/62',
+      acampamentoVinculado: '',
+      imovelOcupado: true,
+      orgaoConcorrente: 'Nenhum',
+      capacidadeAssentamento: 98,
+      acoesReintegracao: '',
+      familiasCadastradas: undefined,
+    },
+
+    avaliacao: {
+      valorTotalImovelInferior: 52368142.73,
+      valorTotalImovelMedio: 58742951.26,
+      valorTotalImovelSuperior: 65178324.91,
+      valorTotalNegociado: undefined,
+      valorTerraNuaInferior: 47852136.73,
+      valorTerraNuaMedio: 53242951.26,
+      valorTerraNuaSuperior: 59178324.91,
+      valorBenfeitorias: 5500000,
+      valorPassivoAmbiental: 128754.32,
+      valorAtivoAmbiental: 75000,
+    },
+
+    processo: {
+      fase: '',
+      processualPecaDocumento: '',
+      data: null,
+      campoComplementar: '',
+      defineFase: '',
+      obrigatorio: '',
+      responsavel: '',
+      temPrazo: '',
+      observacoes: '',
+    },
+  },
   // ...demais imóveis seguem exatamente o mesmo padrão
 ];
