@@ -307,6 +307,217 @@
             </td>
           </ng-container>
 
+          <!-- ==================== DADOS DE OBTENÇÃO ==================== -->
+
+          <ng-container matColumnDef="processoSei">
+            <th mat-header-cell *matHeaderCellDef>Processo SEI</th>
+            <td mat-cell *matCellDef="let item">
+              {{ item.obtencao.processoSei || "Não informado" }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="situacaoObtencao">
+            <th mat-header-cell *matHeaderCellDef>Situação de Obtenção</th>
+            <td mat-cell *matCellDef="let item">
+              {{ item.obtencao.situacao || "Não informado" }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="entidadeDemandante">
+            <th mat-header-cell *matHeaderCellDef>Entidade Demandante</th>
+            <td
+              mat-cell
+              *matCellDef="let item"
+              class="text-truncate-cell"
+              [matTooltip]="item.obtencao.entidadeDemandante"
+            >
+              {{ item.obtencao.entidadeDemandante || "Não informado" }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="formaObtencao">
+            <th mat-header-cell *matHeaderCellDef>Forma de Obtenção</th>
+            <td mat-cell *matCellDef="let item">
+              {{ item.obtencao.formaObtencao || "Não informado" }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="orgaoConcorrente">
+            <th mat-header-cell *matHeaderCellDef>Órgão Concorrente</th>
+            <td mat-cell *matCellDef="let item">
+              {{ item.obtencao.orgaoConcorrente || "Nenhum" }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="processoCadeiaDominial">
+            <th mat-header-cell *matHeaderCellDef>Processo Cadeia Dominial</th>
+            <td mat-cell *matCellDef="let item">
+              {{ item.obtencao.processoCadeiaDominial || "Não informado" }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="acampamentoVinculado">
+            <th mat-header-cell *matHeaderCellDef>Acampamento Vinculado</th>
+            <td mat-cell *matCellDef="let item">
+              {{ item.obtencao.acampamentoVinculado || "Não informado" }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="imovelOcupado">
+            <th mat-header-cell *matHeaderCellDef>Imóvel Ocupado?</th>
+            <td mat-cell *matCellDef="let item">
+              {{ item.obtencao.imovelOcupado ? "Sim" : "Não" }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="capacidadeAssentamento">
+            <th mat-header-cell *matHeaderCellDef>
+              Capacidade de Assentamento
+            </th>
+            <td mat-cell *matCellDef="let item">
+              {{ item.obtencao.capacidadeAssentamento ?? "Não informado" }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="acoesReintegracao">
+            <th mat-header-cell *matHeaderCellDef>Ações de Reintegração</th>
+            <td
+              mat-cell
+              *matCellDef="let item"
+              class="text-truncate-cell"
+              [matTooltip]="item.obtencao.acoesReintegracao"
+            >
+              {{ item.obtencao.acoesReintegracao || "Nenhuma" }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="familiasCadastradas">
+            <th mat-header-cell *matHeaderCellDef>Famílias Cadastradas</th>
+            <td mat-cell *matCellDef="let item">
+              {{ item.obtencao.familiasCadastradas ?? "Não informado" }}
+            </td>
+          </ng-container>
+
+          <!-- ==================== AVALIAÇÃO E VALORES ==================== -->
+
+          <ng-container matColumnDef="valorTotalImovelInferior">
+            <th mat-header-cell *matHeaderCellDef>
+              Valor Total do Imóvel — Inferior (R$)
+            </th>
+            <td mat-cell *matCellDef="let item">
+              {{
+                item.avaliacao.valorTotalImovelInferior
+                  | currency: "BRL" : "symbol" : "1.2-2" : "pt-BR"
+              }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="valorTotalImovelMedio">
+            <th mat-header-cell *matHeaderCellDef>
+              Valor Total do Imóvel — Médio (R$)
+            </th>
+            <td mat-cell *matCellDef="let item">
+              {{
+                item.avaliacao.valorTotalImovelMedio
+                  | currency: "BRL" : "symbol" : "1.2-2" : "pt-BR"
+              }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="valorTotalImovelSuperior">
+            <th mat-header-cell *matHeaderCellDef>
+              Valor Total do Imóvel — Superior (R$)
+            </th>
+            <td mat-cell *matCellDef="let item">
+              {{
+                item.avaliacao.valorTotalImovelSuperior
+                  | currency: "BRL" : "symbol" : "1.2-2" : "pt-BR"
+              }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="valorTerraNuaInferior">
+            <th mat-header-cell *matHeaderCellDef>
+              Valor da Terra Nua (VTN) — Inferior (R$)
+            </th>
+            <td mat-cell *matCellDef="let item">
+              {{
+                item.avaliacao.valorTerraNuaInferior
+                  | currency: "BRL" : "symbol" : "1.2-2" : "pt-BR"
+              }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="valorTerraNuaMedio">
+            <th mat-header-cell *matHeaderCellDef>
+              Valor da Terra Nua (VTN) — Médio (R$)
+            </th>
+            <td mat-cell *matCellDef="let item">
+              {{
+                item.avaliacao.valorTerraNuaMedio
+                  | currency: "BRL" : "symbol" : "1.2-2" : "pt-BR"
+              }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="valorTerraNuaSuperior">
+            <th mat-header-cell *matHeaderCellDef>
+              Valor da Terra Nua (VTN) — Superior (R$)
+            </th>
+            <td mat-cell *matCellDef="let item">
+              {{
+                item.avaliacao.valorTerraNuaSuperior
+                  | currency: "BRL" : "symbol" : "1.2-2" : "pt-BR"
+              }}
+            </td>
+          </ng-container>
+
+          <!-- ==================== VALORES COMPLEMENTARES ==================== -->
+
+          <ng-container matColumnDef="valorBenfeitorias">
+            <th mat-header-cell *matHeaderCellDef>
+              Valor das Benfeitorias (R$)
+            </th>
+            <td mat-cell *matCellDef="let item">
+              {{
+                item.avaliacao.valorBenfeitorias
+                  | currency: "BRL" : "symbol" : "1.2-2" : "pt-BR"
+              }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="valorTotalNegociado">
+            <th mat-header-cell *matHeaderCellDef>Valor Negociado (R$)</th>
+            <td mat-cell *matCellDef="let item">
+              {{
+                item.avaliacao.valorTotalNegociado
+                  ? (item.avaliacao.valorTotalNegociado
+                    | currency: "BRL" : "symbol" : "1.2-2" : "pt-BR")
+                  : "Não negociado"
+              }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="valorPassivoAmbiental">
+            <th mat-header-cell *matHeaderCellDef>Passivo Ambiental (R$)</th>
+            <td mat-cell *matCellDef="let item" class="text-danger">
+              {{
+                item.avaliacao.valorPassivoAmbiental
+                  | currency: "BRL" : "symbol" : "1.2-2" : "pt-BR"
+              }}
+            </td>
+          </ng-container>
+
+          <ng-container matColumnDef="valorAtivoAmbiental">
+            <th mat-header-cell *matHeaderCellDef>Ativo Ambiental (R$)</th>
+            <td mat-cell *matCellDef="let item" class="text-success">
+              {{
+                item.avaliacao.valorAtivoAmbiental
+                  | currency: "BRL" : "symbol" : "1.2-2" : "pt-BR"
+              }}
+            </td>
+          </ng-container>
+
           <ng-container matColumnDef="acoes">
             <th mat-header-cell *matHeaderCellDef class="text-center">Ações</th>
             <td mat-cell *matCellDef="let item" class="text-center no-wrap">
