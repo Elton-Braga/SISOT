@@ -3,6 +3,19 @@
   padding: 0;
 }
 
+/* Reseta o contêiner interno do step para que não herde estilos globais */
+.reset-container {
+  all: unset; /* ou 'initial' */
+  display: block; /* unset remove o display padrão, então redefinimos como block */
+  box-sizing: border-box;
+}
+
+/* Garante que elementos de tabela internos voltem ao comportamento nativo pré-estilizado */
+.documentos-table,
+.documentos-table * {
+  box-sizing: border-box;
+}
+
 /* Layout & Container Geral */
 .br-app-container {
   display: flex;
@@ -309,7 +322,10 @@ mat-form-field {
 ::ng-deep .mat-vertical-content-container {
   margin-left: 28px;
   border-left: 2px solid #d8d8d8;
-}
+} /*
+::ng-deep .mat-vertical-content-container {
+  margin-left: 24px;
+}*/
 
 ::ng-deep .mat-vertical-content {
   padding: 24px;
