@@ -1,0 +1,334 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* Layout & Container Geral */
+.br-app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.br-header {
+  background: #1351b4 !important;
+  color: #ffffff !important;
+  height: 64px;
+  padding: 0 2rem;
+}
+
+.header-sign {
+  font-size: 1.15rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.layout-body-container {
+  flex: 1;
+  height: calc(100vh - 64px);
+}
+
+/* Menu Lateral */
+.br-menu-lateral {
+  width: 260px;
+  background: #ffffff !important;
+  border-right: 1px solid #e9ecef !important;
+}
+
+.menu-nav .menu-item {
+  color: #333333 !important;
+  font-weight: 500;
+  margin: 4px 0;
+  border-left: 4px solid transparent;
+}
+
+.menu-nav .menu-item:hover,
+.menu-nav .menu-item.active {
+  background: #edf3fc !important;
+  color: #1351b4 !important;
+}
+
+.menu-nav .menu-item.active {
+  border-left-color: #1351b4;
+}
+
+.menu-nav mat-icon {
+  color: inherit !important;
+}
+
+/* Conteúdo Principal */
+.main-content {
+  background: #fafafa;
+}
+
+.page-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #1351b4;
+  margin-bottom: 0.25rem;
+}
+
+/* Card de Filtros */
+.filter-card {
+  border: 1px solid #ced4da !important;
+  border-radius: 4px !important;
+  box-shadow: none !important;
+  background: #ffffff;
+}
+
+.filter-card-header {
+  display: flex !important;
+  align-items: center;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+  padding: 1rem 1.5rem !important;
+}
+
+.filter-title {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  margin: 0 !important;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+:host ::ng-deep .filter-card-header .mat-mdc-card-header-text {
+  flex: 1;
+}
+
+/* Angular Material - Overrides Globais */
+::ng-deep .mat-mdc-form-field-subscript-wrapper {
+  display: none !important;
+}
+
+::ng-deep .mdc-notched-outline__lead,
+::ng-deep .mdc-notched-outline__notch,
+::ng-deep .mdc-notched-outline__trail {
+  border-color: #888888 !important;
+}
+
+::ng-deep .mat-mdc-form-field.mat-focused .mdc-notched-outline__lead,
+::ng-deep .mat-mdc-form-field.mat-focused .mdc-notched-outline__notch,
+::ng-deep .mat-mdc-form-field.mat-focused .mdc-notched-outline__trail {
+  border-color: #1351b4 !important;
+  border-width: 2px !important;
+}
+
+/* Rodapé do Card */
+.filter-actions {
+  display: flex;
+  justify-content: flex-start;
+  padding: 0 1rem 1rem;
+  border-top: 1px solid #e9ecef;
+  margin-top: 0.5rem;
+}
+
+/* Helpers */
+.mb-4 {
+  margin-bottom: 1.5rem;
+}
+
+.p-3 {
+  padding: 1rem !important;
+}
+
+.p-4 {
+  padding: 1.5rem !important;
+}
+
+/* ==========================================================
+   CABEÇALHO DAS SEÇÕES (STEPPER)
+   ========================================================== */
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 24px;
+  background: #edf5ff;
+  border: 1px solid #b5d4ff;
+  border-radius: 6px;
+  margin-bottom: 24px;
+}
+
+.section-title mat-icon {
+  color: #1351b4;
+  font-size: 34px;
+  width: 34px;
+  height: 34px;
+}
+
+.section-title h2 {
+  margin: 0;
+  color: #1351b4;
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+
+.section-title p {
+  margin-top: 4px;
+  color: #555;
+}
+
+/* ==========================================================
+   TABELA DE DOCUMENTOS (STEPPER)
+   ========================================================== */
+.documentos-table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+}
+
+.documentos-table thead th {
+  background: #1351b4;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 14px;
+  text-align: left;
+}
+
+.documentos-table tbody td {
+  padding: 16px;
+  border-bottom: 1px solid #ececec;
+  vertical-align: top;
+}
+
+.documentos-table tbody tr:nth-child(even) {
+  background: #fafafa;
+}
+
+.documentos-table tbody tr:hover {
+  background: #edf5ff;
+}
+
+.documentos-table th:nth-child(1),
+.documentos-table td:nth-child(1) {
+  width: auto;
+}
+
+.documentos-table th:nth-child(2),
+.documentos-table td:nth-child(2) {
+  width: 170px;
+}
+
+.documentos-table td:nth-child(3),
+.documentos-table th:nth-child(3) {
+  text-align: center;
+  vertical-align: middle;
+}
+
+/* ==========================================================
+   CAMPOS DOS FORMULÁRIOS
+   ========================================================== */
+mat-form-field {
+  width: 100%;
+}
+
+::ng-deep .mat-mdc-form-field {
+  margin-bottom: 0.5rem;
+}
+
+::ng-deep .mat-mdc-text-field-wrapper {
+  background: #fff;
+}
+
+::ng-deep .mat-mdc-form-field-focus-overlay {
+  background: transparent;
+}
+
+/* ==========================================================
+   LINKS DE ANEXO
+   ========================================================== */
+.anexo-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  white-space: nowrap;
+  color: #1351b4;
+  font-weight: 600;
+}
+
+.anexo-link:hover {
+  color: #0c326f;
+  text-decoration: underline;
+}
+
+.anexo-link mat-icon {
+  font-size: 20px;
+}
+
+/* ==========================================================
+   BOTÕES DO STEPPER
+   ========================================================== */
+.step-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid #d8d8d8;
+}
+
+/* ==========================================================
+   STEPPER - PADRÃO DSGOV
+   ========================================================== */
+::ng-deep .mat-step-header {
+  min-height: 64px;
+  background: #ffffff;
+  border-bottom: 1px solid #d8d8d8;
+  transition: background-color 0.2s;
+}
+
+::ng-deep .mat-step-header:hover {
+  background: #edf5ff;
+}
+
+::ng-deep .mat-step-header.cdk-program-focused,
+::ng-deep .mat-step-header:hover:not([aria-disabled]) {
+  background: #edf5ff;
+}
+
+::ng-deep .mat-step-header .mat-step-label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1351b4;
+}
+
+::ng-deep .mat-step-header .mat-step-icon {
+  background: #1351b4;
+  color: #fff;
+}
+
+::ng-deep .mat-step-header .mat-step-icon-selected,
+::ng-deep .mat-step-header .mat-step-icon-state-done {
+  background: #168821;
+}
+
+::ng-deep .mat-vertical-content-container {
+  margin-left: 28px;
+  border-left: 2px solid #d8d8d8;
+}
+
+::ng-deep .mat-vertical-content {
+  padding: 24px;
+}
+
+/* Classe Utilitária: Limpeza de margens, paddings e bordas do Stepper */
+.stepper-reset,
+::ng-deep .stepper-reset,
+::ng-deep .stepper-reset /*.mat-step*/,
+::ng-deep .stepper-reset .mat-step-header,
+::ng-deep .stepper-reset .mat-vertical-content-container,
+::ng-deep .stepper-reset .mat-vertical-content {
+  margin: 0rem 0.5rem !important;
+  padding: 0 !important;
+  border: none !important;
+  box-shadow: none !important;
+  font-weight: none !important;
+}
+
+::ng-deep ng-template {
+  margin: 0 1rem;
+}

@@ -20,7 +20,7 @@ import { Dados, Imovel } from '../../mock/imovel.model';
 import { IMOVEIS_MOCK } from '../../mock/imovel.mock';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { Espelho } from '../espelho/espelho';
 import { Log } from '../log/log';
@@ -47,6 +47,7 @@ import { Editar } from '../editar/editar';
     MatTooltipModule,
     MatCheckboxModule,
     MatDialogModule,
+    RouterLink,
   ],
   templateUrl: './lista.html',
   styleUrl: './lista.css',
