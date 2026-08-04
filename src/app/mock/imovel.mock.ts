@@ -30,6 +30,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 201,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
+      grupo: undefined,
     },
 
     avaliacao: {
@@ -85,6 +86,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 0,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
+      grupo: undefined,
     },
 
     avaliacao: {
@@ -141,6 +143,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 0,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
+      grupo: undefined,
     },
 
     avaliacao: {
@@ -195,6 +198,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 0,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
+      grupo: undefined,
     },
 
     avaliacao: {
@@ -249,6 +253,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 0,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
+      grupo: undefined,
     },
 
     avaliacao: {
@@ -305,6 +310,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 0,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
+      grupo: undefined,
     },
 
     avaliacao: {
@@ -359,6 +365,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 0,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
+      grupo: undefined,
     },
 
     avaliacao: {
@@ -413,6 +420,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 0,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
+      grupo: undefined,
     },
 
     avaliacao: {
@@ -467,6 +475,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 0,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
+      grupo: undefined,
     },
 
     avaliacao: {
@@ -521,6 +530,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 0,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
+      grupo: undefined,
     },
 
     avaliacao: {
@@ -575,6 +585,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 0,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
+      grupo: undefined,
     },
 
     avaliacao: {
@@ -629,6 +640,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 0,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
+      grupo: undefined,
     },
 
     avaliacao: {
@@ -683,6 +695,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 0,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
+      grupo: undefined,
     },
 
     avaliacao: {
@@ -738,6 +751,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 0,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
+      grupo: undefined,
     },
 
     avaliacao: {
@@ -792,6 +806,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 0,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
+      grupo: undefined,
     },
 
     avaliacao: {
@@ -847,6 +862,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 0,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
+      grupo: undefined,
     },
 
     avaliacao: {
@@ -901,6 +917,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 0,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
+      grupo: undefined,
     },
 
     avaliacao: {
@@ -955,6 +972,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 0,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
+      grupo: undefined,
     },
 
     avaliacao: {
@@ -1010,6 +1028,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 0,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
+      grupo: undefined,
     },
 
     avaliacao: {
@@ -1066,6 +1085,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 156,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
+      grupo: undefined,
     },
 
     avaliacao: {
@@ -1122,6 +1142,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 98,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
+      grupo: undefined,
     },
 
     avaliacao: {
@@ -1177,6 +1198,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 3214,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
+      grupo: undefined,
     },
 
     avaliacao: {
@@ -1231,6 +1253,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 654,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
+      grupo: undefined,
     },
 
     avaliacao: {
@@ -1285,6 +1308,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 34568,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
+      grupo: undefined,
     },
 
     avaliacao: {
@@ -1339,6 +1363,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 444,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
+      grupo: undefined,
     },
 
     avaliacao: {
@@ -1394,6 +1419,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 987,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
+      grupo: undefined,
     },
 
     avaliacao: {
@@ -1448,6 +1474,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 76,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
+      grupo: undefined,
     },
 
     avaliacao: {
@@ -1502,6 +1529,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 956,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
+      grupo: undefined,
     },
 
     avaliacao: {

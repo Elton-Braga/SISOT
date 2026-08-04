@@ -436,3 +436,31 @@ mat-form-field {
   height: 48px;
   opacity: 0.7;
 }
+
+/* =========================================================
+   CAMPOS DUPLOS (lado a lado)
+   ========================================================= */
+
+.campo-duplo {
+  display: flex;
+  gap: 20px;
+  grid-column: span 2;
+}
+
+.campo-duplo mat-form-field {
+  flex: 1;
+}
+
+/* Responsividade para campos duplos */
+@media (max-width: 768px) {
+  .campo-duplo {
+    flex-direction: column;
+    gap: 8px;
+    grid-column: span 1;
+  }
+
+  .campo-duplo mat-form-field {
+    flex: none;
+    width: 100%;
+  }
+}

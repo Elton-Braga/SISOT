@@ -167,6 +167,14 @@
                 />
               </mat-form-field>
             </div>
+
+            <!-- NOVO CAMPO: GRUPO -->
+            <div class="filter-item item-sm">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Grupo</mat-label>
+                <input matInput placeholder="Nome do grupo" />
+              </mat-form-field>
+            </div>
           </div>
         </mat-card-content>
         <mat-card-actions align="end" class="filter-actions">
@@ -241,6 +249,23 @@
           [dataSource]="imoveisPaginados()"
           class="w-100 table-dsgov"
         >
+          <!-- COLUNA DE SELEÇÃO COM CHECKBOX -->
+          <ng-container matColumnDef="selecao">
+            <th mat-header-cell *matHeaderCellDef>
+              <mat-checkbox
+                (change)="selecionarTodos($event.checked)"
+                [checked]="todosSelecionados()"
+                [indeterminate]="algunsSelecionados()"
+              ></mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let item">
+              <mat-checkbox
+                (change)="selecionarItem(item, $event.checked)"
+                [checked]="itemSelecionado(item)"
+              ></mat-checkbox>
+            </td>
+          </ng-container>
+
           <ng-container matColumnDef="sr">
             <th mat-header-cell *matHeaderCellDef>SR</th>
             <td mat-cell *matCellDef="let item">
@@ -517,7 +542,7 @@
               }}
             </td>
           </ng-container>
-          <!--teste-->
+
           <ng-container matColumnDef="acoes">
             <th mat-header-cell *matHeaderCellDef class="text-center">Ações</th>
             <td mat-cell *matCellDef="let item" class="text-center no-wrap">
@@ -546,15 +571,6 @@
                 >
                   <mat-icon>edit</mat-icon>
                 </button>
-                <!--
-                <button
-                  mat-icon-button
-                  color="warn"
-                  matTooltip="Log"
-                  (click)="executarAcao('Log', item)"
-                >
-                  <mat-icon>assignment</mat-icon>
-                </button>-->
               </div>
             </td>
           </ng-container>

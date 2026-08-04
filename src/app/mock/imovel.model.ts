@@ -45,6 +45,7 @@ export interface DadosObtencao {
   capacidadeAssentamento: number;
   acoesReintegracao?: string;
   familiasCadastradas?: number;
+  grupo: any;
 }
 
 export interface DadosAvaliacao {

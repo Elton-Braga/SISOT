@@ -145,13 +145,13 @@
           <div class="section-title">
             <!--<mat-icon>assignment</mat-icon>
 
-            <div>
-              <h2>Dados de obtenção</h2>
-              <p>
-                Informações relacionadas ao processo de obtenção e destinação do
-                imóvel.
-              </p>
-            </div>-->
+    <div>
+      <h2>Dados de obtenção</h2>
+      <p>
+        Informações relacionadas ao processo de obtenção e destinação do
+        imóvel.
+      </p>
+    </div>-->
           </div>
 
           <div class="form-grid">
@@ -220,15 +220,24 @@
               <input matInput [(ngModel)]="dados.obtencao.acoesReintegracao" />
             </mat-form-field>
 
-            <!-- Famílias cadastradas -->
-            <mat-form-field appearance="outline">
-              <mat-label>Famílias cadastradas</mat-label>
-              <input
-                matInput
-                type="number"
-                [(ngModel)]="dados.obtencao.familiasCadastradas"
-              />
-            </mat-form-field>
+            <!-- Container para Famílias cadastradas e Grupo (lado a lado) -->
+            <div class="campo-duplo">
+              <!-- Famílias cadastradas -->
+              <mat-form-field appearance="outline">
+                <mat-label>Famílias cadastradas</mat-label>
+                <input
+                  matInput
+                  type="number"
+                  [(ngModel)]="dados.obtencao.familiasCadastradas"
+                />
+              </mat-form-field>
+
+              <!-- Grupo -->
+              <mat-form-field appearance="outline">
+                <mat-label>Grupo</mat-label>
+                <input matInput />
+              </mat-form-field>
+            </div>
           </div>
         </mat-expansion-panel>
 

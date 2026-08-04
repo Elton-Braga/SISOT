@@ -53,17 +53,43 @@ import { Editar } from '../editar/editar';
   styleUrl: './lista.css',
 })
 export class Lista implements OnInit {
-  //public imoveis = signal<Imovel[]>(IMOVEIS_MOCK);
   public imoveis = signal<Dados[]>(IMOVEIS_MOCK);
   public itensPorPagina = signal<number>(5);
-  public paginaAtual = signal<number>(0); // MatPaginator utiliza índice baseado em 0
+  public paginaAtual = signal<number>(0);
+
+  // Signal para armazenar os itens selecionados
+  private itensSelecionados = signal<Set<Dados>>(new Set());
+
+  // Computed para verificar se todos estão selecionados
+  public todosSelecionados = computed(() => {
+    const paginados = this.imoveisPaginados();
+    const selecionados = this.itensSelecionados();
+    return (
+      paginados.length > 0 && paginados.every((item) => selecionados.has(item))
+    );
+  });
+
+  // Computed para verificar se alguns estão selecionados (indeterminate)
+  public algunsSelecionados = computed(() => {
+    const paginados = this.imoveisPaginados();
+    const selecionados = this.itensSelecionados();
+    const selecionadosNaPagina = paginados.filter((item) =>
+      selecionados.has(item),
+    );
+    return (
+      selecionadosNaPagina.length > 0 &&
+      selecionadosNaPagina.length < paginados.length
+    );
+  });
 
   public atualizarColunas(): void {
     this.colunasExibidas = this.configuracaoColunas
       .filter((c) => c.visivel)
       .map((c) => c.id);
   }
-
+  public itemSelecionado(item: Dados): boolean {
+    return this.itensSelecionados().has(item);
+  }
   // Objeto de filtros vinculados ao formulário
   public filtros = signal({
     sr: '',
@@ -76,6 +102,7 @@ export class Lista implements OnInit {
     situacao: '',
     municipio: '',
     uf: '',
+    grupo: '', // Adicionado filtro de grupo
   });
 
   constructor(
@@ -86,6 +113,8 @@ export class Lista implements OnInit {
   ngOnInit(): void {}
 
   public configuracaoColunas = [
+    // Coluna de Seleção (sempre visível)
+    { id: 'selecao', titulo: '', visivel: true },
     // Dados do Imóvel
     { id: 'sr', titulo: 'SR', visivel: true },
     { id: 'imovel', titulo: 'Imóvel', visivel: true },
@@ -139,6 +168,11 @@ export class Lista implements OnInit {
     {
       id: 'familiasCadastradas',
       titulo: 'Famílias Cadastradas',
+      visivel: false,
+    },
+    {
+      id: 'grupo', // Adicionado coluna de grupo
+      titulo: 'Grupo',
       visivel: false,
     },
 
@@ -218,10 +252,47 @@ export class Lista implements OnInit {
         this.matchString(item.imovel.modalidade, f.modalidade) &&
         this.matchString(item.imovel.situacao, f.situacao) &&
         this.matchString(item.imovel.municipio, f.municipio) &&
-        this.matchString(item.imovel.uf, f.uf)
+        this.matchString(item.imovel.uf, f.uf) &&
+        this.matchString(item.obtencao.grupo, f.grupo) // Filtro de grupo
       );
     });
   });
+
+  // Método para verificar se um item está selecionado
+
+  // Método para selecionar/deselecionar um item individual
+  public selecionarItem(item: Dados, selecionado: boolean): void {
+    const novoSet = new Set(this.itensSelecionados());
+    if (selecionado) {
+      novoSet.add(item);
+    } else {
+      novoSet.delete(item);
+    }
+    this.itensSelecionados.set(novoSet);
+  }
+
+  // Método para selecionar/deselecionar todos os itens da página atual
+  public selecionarTodos(selecionado: boolean): void {
+    const novoSet = new Set(this.itensSelecionados());
+    const paginados = this.imoveisPaginados();
+
+    if (selecionado) {
+      paginados.forEach((item) => novoSet.add(item));
+    } else {
+      paginados.forEach((item) => novoSet.delete(item));
+    }
+    this.itensSelecionados.set(novoSet);
+  }
+
+  // Método para obter os itens selecionados
+  public getItensSelecionados(): Dados[] {
+    return Array.from(this.itensSelecionados());
+  }
+
+  // Método para limpar seleção
+  public limparSelecao(): void {
+    this.itensSelecionados.set(new Set());
+  }
 
   public abrirEspelho(dados: Dados): void {
     this.dialog.open(Espelho, {
@@ -279,8 +350,10 @@ export class Lista implements OnInit {
       situacao: '',
       municipio: '',
       uf: '',
+      grupo: '', // Limpar filtro de grupo
     });
     this.paginaAtual.set(0);
+    this.limparSelecao(); // Limpar seleção ao limpar filtros
   }
 
   public abrirHistorico(dados: Dados): void {
@@ -326,8 +399,26 @@ export class Lista implements OnInit {
 
       case 'pdf':
         this.router.navigate(['/relatorio']);
-
         break;
+    }
+  }
+
+  // Método para ações em massa (exemplo)
+  public executarAcaoEmMassa(acao: string): void {
+    const selecionados = this.getItensSelecionados();
+    if (selecionados.length === 0) return;
+
+    switch (acao) {
+      case 'Exportar':
+        console.log('Exportando itens selecionados:', selecionados);
+        // Implementar exportação
+        break;
+      case 'Excluir':
+        // Implementar exclusão em massa
+        console.log('Excluindo itens selecionados:', selecionados);
+        break;
+      default:
+        console.log('Ação em massa não implementada:', acao);
     }
   }
 }
