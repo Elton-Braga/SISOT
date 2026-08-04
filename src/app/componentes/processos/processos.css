@@ -348,3 +348,27 @@ mat-form-field {
 ::ng-deep ng-template {
   margin: 0 1rem;
 }
+
+.campo-com-anexo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 80%;
+}
+
+.campo-com-anexo mat-form-field {
+  flex: 1;
+}
+
+.anexo-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.campo-observacao {
+  width: 100%;
+}
