@@ -1,1 +1,100 @@
-<p>cadastrar-grupo works!</p>
+<div class="br-app-container">
+  <mat-toolbar class="br-header shadow-sm">
+    <div class="br-logo d-flex align-items-center">
+      <!--<img
+        src="https://cdngovbr.azureedge.net/design-system/images/logo-positive.png"
+        alt="Logo GovBR"
+        height="30"
+      />
+      <span class="br-divider mx-3"></span>-->
+      <span class="header-sign">Sistema de Gestão de Imóveis Rurais</span>
+    </div>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="layout-body-container">
+    <mat-sidenav mode="side" opened class="br-menu-lateral">
+      <mat-nav-list class="menu-nav">
+        <a mat-list-item href="#/home">
+          <mat-icon matListItemIcon>home</mat-icon>
+          <span matListItemTitle>Home</span>
+        </a>
+        <a
+          mat-list-item
+          href="#/imoveis"
+          class="menu-item"
+          class="menu-item active"
+        >
+          <mat-icon matListItemIcon>layers</mat-icon>
+          <span matListItemTitle>Cadastrar grupo</span>
+        </a>
+        <a mat-list-item routerLink="/processos" class="menu-item">
+          <mat-icon matListItemIcon>description</mat-icon>
+          <span matListItemTitle>Processos</span>
+        </a>
+        <a mat-list-item href="#/configuracoes" class="menu-item">
+          <mat-icon matListItemIcon>settings</mat-icon>
+          <span matListItemTitle>Configurações</span>
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="main-content p-4">
+      <div class="page-title-container mb-4">
+        <h1 class="page-title">Cadastrar Grupo</h1>
+        <p class="text-muted text-sm">
+          Gerencie, filtre e visualize os imóveis sob trâmite e decretos
+          associados.
+        </p>
+      </div>
+
+      <mat-card class="filter-card mb-4">
+        <mat-card-header class="filter-card-header">
+          <mat-card-title class="filter-title">
+            <mat-icon class="me-2">filter_list</mat-icon>
+            Filtros de Pesquisa
+          </mat-card-title>
+
+          <button mat-stroked-button color="warn" (click)="limparFiltros()">
+            Limpar Filtros
+          </button>
+        </mat-card-header>
+
+        <mat-card-content class="p-3">
+          <div class="filter-flex-container">
+            <div class="filter-item item-xs">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Grupo</mat-label>
+                <input
+                  matInput
+                  [(ngModel)]="filtros().grupo"
+                  placeholder="Ex: SR(27)MBA"
+                />
+              </mat-form-field>
+            </div>
+          </div>
+
+          <div class="filter-flex-container">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Imóveis SNCR</mat-label>
+              <input
+                matInput
+                [(ngModel)]="filtros().grupo"
+                placeholder="Ex: SR(27)MBA"
+              />
+            </mat-form-field>
+          </div>
+        </mat-card-content>
+        <mat-card-actions align="end" class="filter-actions">
+          <button mat-raised-button color="primary">
+            <mat-icon>search</mat-icon>
+            Criar Grupo
+          </button>
+        </mat-card-actions>
+      </mat-card>
+
+      <!-- Barra de ações -->
+
+      <div class="mat-elevation-z2 table-container-dsgov"></div>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

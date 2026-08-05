@@ -4,6 +4,7 @@ import { Lista } from './componentes/lista/lista';
 import { Relatorio } from './componentes/container/relatorio/relatorio';
 import { Editar } from './componentes/editar/editar';
 import { Processos } from './componentes/processos/processos';
+import { CadastrarGrupo } from './componentes/cadastrar-grupo/cadastrar-grupo';
 
 export const routes: Routes = [
   {
@@ -27,5 +28,9 @@ export const routes: Routes = [
   {
     path: 'processos',
     component: Processos,
+  },
+  {
+    path: 'CadastrarGrupo',
+    component: CadastrarGrupo,
   },
 ];
