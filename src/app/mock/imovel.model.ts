@@ -5,7 +5,12 @@ export interface Dados {
   imovel: Imovel;
   obtencao: DadosObtencao;
   avaliacao: DadosAvaliacao;
+  //nomeGrupo: Grupo;
 }
+/*
+export interface Grupo {
+  nome: string;
+}*/
 
 export interface DadosProcesso {
   fase: any;

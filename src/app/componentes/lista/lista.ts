@@ -56,10 +56,10 @@ export class Lista implements OnInit {
   public imoveis = signal<Dados[]>(IMOVEIS_MOCK);
   public itensPorPagina = signal<number>(5);
   public paginaAtual = signal<number>(0);
-
+  public nomeGrupo: string = '';
   // Signal para armazenar os itens selecionados
   private itensSelecionados = signal<Set<Dados>>(new Set());
-
+  public totalSelecionados = computed(() => this.itensSelecionados().size);
   // Computed para verificar se todos estão selecionados
   public todosSelecionados = computed(() => {
     const paginados = this.imoveisPaginados();
@@ -81,6 +81,24 @@ export class Lista implements OnInit {
       selecionadosNaPagina.length < paginados.length
     );
   });
+
+  public criarGrupo(): void {
+    const selecionados = this.getItensSelecionados();
+    if (selecionados.length === 0 || !this.nomeGrupo.trim()) {
+      return;
+    }
+
+    console.log(
+      `Criando grupo "${this.nomeGrupo}" com os itens:`,
+      selecionados,
+    );
+
+    // Aqui você pode implementar a lógica real (ex: chamar uma API, abrir um modal, etc.)
+
+    // Limpa o campo e a seleção após a ação
+    this.nomeGrupo = '';
+    this.limparSelecao();
+  }
 
   public atualizarColunas(): void {
     this.colunasExibidas = this.configuracaoColunas

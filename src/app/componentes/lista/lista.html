@@ -191,6 +191,7 @@
 
       <!-- Barra de ações -->
       <div class="table-toolbar">
+        <!-- Botão Exportar -->
         <button
           mat-raised-button
           color="primary"
@@ -200,26 +201,56 @@
           Exportar
           <mat-icon>arrow_drop_down</mat-icon>
         </button>
-
         <mat-menu #menuExportar="matMenu">
           <button mat-menu-item (click)="exportar('excel')">
             <mat-icon>table_view</mat-icon>
             Excel
           </button>
-
           <button mat-menu-item (click)="exportar('csv')">
             <mat-icon>description</mat-icon>
             CSV
           </button>
-
           <button mat-menu-item (click)="exportar('pdf')">
             <mat-icon>picture_as_pdf</mat-icon>
             PDF
           </button>
         </mat-menu>
 
+        <span class="toolbar-divider"></span>
+
+        <!-- Grupo de criação de grupo (visível apenas com itens selecionados) -->
+        <ng-container
+          *ngIf="totalSelecionados() > 0"
+          style="margin-left: 1.5rem"
+          ;
+        >
+          <div class="grupo-wrapper">
+            <mat-form-field appearance="outline" class="grupo-input">
+              <mat-label>Nome do grupo</mat-label>
+              <input
+                matInput
+                [(ngModel)]="nomeGrupo"
+                placeholder="Ex: Grupo A"
+              />
+            </mat-form-field>
+            <button
+              mat-raised-button
+              color="primary"
+              (click)="criarGrupo()"
+              [disabled]="!nomeGrupo.trim()"
+            >
+              <mat-icon>group_add</mat-icon>
+              Criar grupo
+            </button>
+            <!--<span class="selecionados-info"
+              >{{ totalSelecionados() }} selecionado(s)</span
+            >-->
+          </div>
+        </ng-container>
+
         <span class="toolbar-spacer"></span>
 
+        <!-- Botão Ajustar Colunas -->
         <button
           mat-stroked-button
           color="primary"
@@ -229,7 +260,6 @@
           Ajustar Colunas
           <mat-icon>arrow_drop_down</mat-icon>
         </button>
-
         <mat-menu #menuColunas="matMenu">
           <div class="menu-colunas" (click)="$event.stopPropagation()">
             <mat-checkbox
