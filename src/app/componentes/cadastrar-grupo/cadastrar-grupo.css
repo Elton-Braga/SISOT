@@ -13,11 +13,6 @@
   padding: 0 2rem;
 }
 
-.br-divider {
-  border-left: 1px solid rgba(255, 255, 255, 0.4);
-  height: 24px;
-}
-
 .header-sign {
   font-size: 1.15rem;
   font-weight: 500;
@@ -92,6 +87,7 @@
   font-size: 1rem;
   font-weight: 600;
 }
+
 :host ::ng-deep .filter-card-header .mat-mdc-card-header-text {
   flex: 1;
 }
@@ -101,57 +97,33 @@
   font-weight: 600;
 }
 
-/* Filtros (MatCard Overrides) */
-.filter-card {
-  border: 1px solid #ced4da !important;
-  border-radius: 4px !important;
-  box-shadow: none !important;
-  background: #ffffff;
+.filter-actions {
+  display: flex;
+  justify-content: flex-start;
+  padding: 0 1rem 1rem 1rem;
+  border-top: 1px solid #e9ecef;
+  margin-top: 0.5rem;
 }
 
-.filter-card-header {
-  background-color: #f8f9fa;
-  border-bottom: 1px solid #e9ecef;
-}
-
-.text-md {
-  font-size: 1rem;
-  font-weight: 600;
-}
-
-/* --- NOVAS CLASSES DE CONFIGURAÇÃO DO FLEXBOX NATIVO --- */
-
+/* Flexbox dos Filtros */
 .filter-flex-container {
   display: flex;
-  flex-wrap: wrap; /* Permite que os itens quebrem linha dinamicamente */
-  gap: 1rem; /* Substitui o g-3 (espaçamento de 16px entre linhas e colunas) */
+  flex-wrap: wrap;
+  gap: 1rem;
   width: 100%;
 }
 
 .filter-item {
-  flex: 1 1 200px; /* Comportamento padrão: cresce, encolhe e assume base de 200px */
+  flex: 1 1 200px;
 }
 
-/* Modificadores de proporção baseados na semântica dos dados do Incra */
 .filter-item.item-xs {
-  flex: 1 1 90px; /* Ideal para campos curtíssimos como UF e SR */
+  flex: 1 1 90px;
 }
 
-.filter-item.item-sm {
-  flex: 1 1 150px; /* Ideal para SNCR, Área e Situação */
-}
-
-.filter-item.item-md {
-  flex: 1.5 1 240px; /* Ideal para Imóvel, Nº Processo, Modalidade e Município */
-}
-
-.filter-item.item-lg {
-  flex: 3 1 320px; /* Dá prioridade total de expansão para a razão social/proprietário */
-}
-
-/* Redução de densidade do FormField para alinhar com dsgov */
+/* Sobrescritas Material Design FormField */
 ::v-deep .mat-mdc-form-field-subscript-wrapper {
-  display: none !important; /* Remove o espaço de erro reservado embaixo do input */
+  display: none !important;
 }
 
 ::v-deep .mdc-notched-outline__lead,
@@ -191,39 +163,53 @@
   background-color: #f1f5f9;
 }
 
-/* Elementos de Tags e Badges */
-.badge-sr {
-  background: #e6f0fa;
-  color: #0c4a6e;
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  font-weight: bold;
-  font-size: 0.75rem;
+/* Alinhamento da coluna Grupo */
+.table-dsgov th.mat-mdc-header-cell:nth-child(2),
+.table-dsgov td.mat-mdc-cell:nth-child(2) {
+  text-align: left !important;
 }
 
-.br-tag.info {
-  background-color: #feeddb;
-  color: #854d0e;
-  padding: 0.25rem 0.6rem;
-  border-radius: 12px;
-  font-size: 0.75rem;
-  font-weight: 600;
-  display: inline-block;
-}
-
-.text-truncate-cell {
-  max-width: 180px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
+/* Ações nas tabelas */
 .btn-actions-group {
   display: flex;
-  gap: 2px;
-  justify-content: center;
+  gap: 4px;
+  justify-content: flex-end;
 }
 
+/* Estrutura de Expansão e Sub-Tabela */
+tr.mat-row.expanded {
+  background-color: #e6f0fa;
+}
+
+tr.detail-row {
+  height: 0 !important;
+}
+
+td.detail-cell-padding {
+  padding: 0 !important;
+  border-bottom: none !important;
+}
+
+.celula-especifica {
+  text-align: left !important;
+}
+
+.detail-row-content {
+  background-color: #f8f9fa;
+  border-top: 1px solid #dee2e6;
+  padding: 0.5rem;
+}
+
+.table-sm {
+  font-size: 0.9rem;
+}
+
+.table-sm td,
+.table-sm th {
+  padding: 0.3rem 0.5rem;
+}
+
+/* Classes Auxiliares e Utilitários */
 .no-wrap {
   white-space: nowrap;
 }
@@ -232,54 +218,30 @@
   vertical-align: middle;
 }
 
-/* Helpers Bootstrap Grid utilities fallback se necessário */
 .w-100 {
   width: 100%;
 }
+
 .me-2 {
   margin-right: 0.5rem;
 }
+
 .mb-4 {
   margin-bottom: 1.5rem;
 }
+
 .p-3 {
   padding: 1rem !important;
 }
+
 .p-4 {
   padding: 1.5rem !important;
 }
+
 .text-end {
   text-align: right;
 }
+
 .text-center {
   text-align: center;
-}
-.filter-actions {
-  display: flex;
-  justify-content: flex-start;
-  padding: 0 1rem 1rem 1rem;
-  border-top: 1px solid #e9ecef;
-  margin-top: 0.5rem;
-}
-
-/* Barra acima da tabela */
-.table-toolbar {
-  display: flex;
-  align-items: center;
-  margin-bottom: 16px;
-}
-
-.toolbar-spacer {
-  flex: 1;
-}
-
-.menu-colunas {
-  display: flex;
-  flex-direction: column;
-  padding: 12px 16px;
-  min-width: 230px;
-}
-
-.menu-colunas mat-checkbox {
-  margin: 4px 0;
 }

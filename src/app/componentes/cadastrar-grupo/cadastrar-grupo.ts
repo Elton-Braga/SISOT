@@ -21,7 +21,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { Router, RouterLink } from '@angular/router';
 
 // Modelos e dados mock
-import { Dados } from '../../mock/imovel.model';
+import { Dados, Grupo } from '../../mock/imovel.model';
 import { IMOVEIS_MOCK } from '../../mock/imovel.mock';
 
 @Component({
@@ -51,37 +51,20 @@ import { IMOVEIS_MOCK } from '../../mock/imovel.mock';
   styleUrls: ['./cadastrar-grupo.css'],
 })
 export class CadastrarGrupo implements OnInit {
-  // Dados
+  // Estado de expansão: guarda o grupo que está expandido (ou null)
+  expandedGroup: Grupo | null = null;
+
+  // Dados brutos (imóveis)
   public imoveis = signal<Dados[]>(IMOVEIS_MOCK);
+
+  // Paginação (sobre grupos)
   public itensPorPagina = signal<number>(5);
   public paginaAtual = signal<number>(0);
-  public nomeGrupo: string = ''; // usado se houver campo de nome, mas pode ser removido
 
-  // Seleção
+  // Seleção de imóveis (para ações em lote)
   private itensSelecionados = signal<Set<Dados>>(new Set());
-  public totalSelecionados = computed(() => this.itensSelecionados().size);
 
-  public todosSelecionados = computed(() => {
-    const paginados = this.imoveisPaginados();
-    const selecionados = this.itensSelecionados();
-    return (
-      paginados.length > 0 && paginados.every((item) => selecionados.has(item))
-    );
-  });
-
-  public algunsSelecionados = computed(() => {
-    const paginados = this.imoveisPaginados();
-    const selecionados = this.itensSelecionados();
-    const selecionadosNaPagina = paginados.filter((item) =>
-      selecionados.has(item),
-    );
-    return (
-      selecionadosNaPagina.length > 0 &&
-      selecionadosNaPagina.length < paginados.length
-    );
-  });
-
-  // Filtros
+  // Filtros (mantidos iguais)
   public filtros = signal({
     sr: '',
     imovel: '',
@@ -96,120 +79,13 @@ export class CadastrarGrupo implements OnInit {
     grupo: '',
   });
 
-  // Configuração das colunas (idêntica à do componente Lista)
-  public configuracaoColunas = [
-    { id: 'selecao', titulo: '', visivel: true },
-    { id: 'sr', titulo: 'SR', visivel: true },
-    { id: 'imovel', titulo: 'Imóvel', visivel: true },
-    { id: 'sncr', titulo: 'SNCR', visivel: true },
-    { id: 'areaHa', titulo: 'Área (Ha)', visivel: true },
-    { id: 'proprietario', titulo: 'Proprietário', visivel: true },
-    { id: 'processo', titulo: 'Processo', visivel: true },
-    { id: 'modalidade', titulo: 'Modalidade', visivel: true },
-    { id: 'situacao', titulo: 'Situação', visivel: true },
-    { id: 'municipioUf', titulo: 'Município / UF', visivel: true },
-    { id: 'processoSei', titulo: 'Processo SEI', visivel: false },
-    { id: 'situacaoObtencao', titulo: 'Situação de Obtenção', visivel: false },
-    { id: 'entidadeDemandante', titulo: 'Entidade Demandante', visivel: false },
-    { id: 'formaObtencao', titulo: 'Forma de Obtenção', visivel: false },
-    { id: 'orgaoConcorrente', titulo: 'Órgão Concorrente', visivel: false },
-    {
-      id: 'processoCadeiaDominial',
-      titulo: 'Processo Cadeia Dominial',
-      visivel: false,
-    },
-    {
-      id: 'acampamentoVinculado',
-      titulo: 'Acampamento Vinculado',
-      visivel: false,
-    },
-    { id: 'imovelOcupado', titulo: 'Imóvel Ocupado?', visivel: false },
-    {
-      id: 'capacidadeAssentamento',
-      titulo: 'Capacidade de Assentamento',
-      visivel: false,
-    },
-    {
-      id: 'acoesReintegracao',
-      titulo: 'Ações de Reintegração',
-      visivel: false,
-    },
-    {
-      id: 'familiasCadastradas',
-      titulo: 'Famílias Cadastradas',
-      visivel: false,
-    },
-    { id: 'grupo', titulo: 'Grupo', visivel: true },
-    {
-      id: 'valorTotalImovelInferior',
-      titulo: 'Valor Total do Imóvel — Inferior (R$)',
-      visivel: false,
-    },
-    {
-      id: 'valorTotalImovelMedio',
-      titulo: 'Valor Total do Imóvel — Médio (R$)',
-      visivel: false,
-    },
-    {
-      id: 'valorTotalImovelSuperior',
-      titulo: 'Valor Total do Imóvel — Superior (R$)',
-      visivel: false,
-    },
-    {
-      id: 'valorTerraNuaInferior',
-      titulo: 'Valor da Terra Nua (VTN) — Inferior (R$)',
-      visivel: false,
-    },
-    {
-      id: 'valorTerraNuaMedio',
-      titulo: 'Valor da Terra Nua (VTN) — Médio (R$)',
-      visivel: false,
-    },
-    {
-      id: 'valorTerraNuaSuperior',
-      titulo: 'Valor da Terra Nua (VTN) — Superior (R$)',
-      visivel: false,
-    },
-    {
-      id: 'valorBenfeitorias',
-      titulo: 'Valor das Benfeitorias (R$)',
-      visivel: false,
-    },
-    {
-      id: 'valorTotalNegociado',
-      titulo: 'Valor Negociado (R$)',
-      visivel: false,
-    },
-    {
-      id: 'valorPassivoAmbiental',
-      titulo: 'Passivo Ambiental (R$)',
-      visivel: false,
-    },
-    {
-      id: 'valorAtivoAmbiental',
-      titulo: 'Ativo Ambiental (R$)',
-      visivel: false,
-    },
-    { id: 'acoes', titulo: 'Ações', visivel: true },
-  ];
+  // --------------------- COMPUTEDS ---------------------
 
-  public colunasExibidas: string[] = this.configuracaoColunas
-    .filter((c) => c.visivel)
-    .map((c) => c.id);
-
-  constructor(
-    private router: Router,
-    // private dialog: MatDialog // se for usar diálogos, descomente e importe
-  ) {}
-
-  ngOnInit(): void {}
-
-  // --------------------- FILTROS E PAGINAÇÃO ---------------------
-
+  // 1. Imóveis filtrados (aplicando os filtros)
   public imoveisFiltrados = computed(() => {
     const f = this.filtros();
     return this.imoveis().filter((item) => {
-      // Só exibe se o grupo existir e não for vazio
+      // Só exibe se o grupo existir
       const temGrupo = item.obtencao.grupo && item.obtencao.grupo.trim() !== '';
       if (!temGrupo) return false;
 
@@ -229,18 +105,96 @@ export class CadastrarGrupo implements OnInit {
     });
   });
 
-  public imoveisPaginados = computed(() => {
-    const inicio = this.paginaAtual() * this.itensPorPagina();
-    const fim = inicio + this.itensPorPagina();
-    return this.imoveisFiltrados().slice(inicio, fim);
+  // 2. Agrupa os imóveis filtrados por grupo
+  public gruposFiltrados = computed(() => {
+    const filtrados = this.imoveisFiltrados();
+    const map = new Map<string, Dados[]>();
+
+    filtrados.forEach((item) => {
+      const nome = item.obtencao.grupo || 'Não definido';
+      if (!map.has(nome)) {
+        map.set(nome, []);
+      }
+      map.get(nome)!.push(item);
+    });
+
+    // Converte para array de Grupo e ordena por nome (opcional)
+    return Array.from(map.entries())
+      .map(([nome, imoveis]) => ({ nome, imoveis }))
+      .sort((a, b) => a.nome.localeCompare(b.nome));
   });
 
-  public tratarPaginacao(event: PageEvent): void {
+  // 3. Grupos paginados (fatia de acordo com página atual)
+  public gruposPaginados = computed(() => {
+    const inicio = this.paginaAtual() * this.itensPorPagina();
+    const fim = inicio + this.itensPorPagina();
+    return this.gruposFiltrados().slice(inicio, fim);
+  });
+
+  // 4. Total de grupos (para o paginator)
+  public totalGrupos = computed(() => this.gruposFiltrados().length);
+
+  // 5. Seleção (mantida para os imóveis)
+  public totalSelecionados = computed(() => this.itensSelecionados().size);
+
+  // Verifica se todos os imóveis de todos os grupos paginados estão selecionados
+  public todosSelecionados = computed(() => {
+    const grupos = this.gruposPaginados();
+    const selecionados = this.itensSelecionados();
+    const todosImoveis = grupos.flatMap((g) => g.imoveis);
+    return (
+      todosImoveis.length > 0 &&
+      todosImoveis.every((item) => selecionados.has(item))
+    );
+  });
+
+  public algunsSelecionados = computed(() => {
+    const grupos = this.gruposPaginados();
+    const selecionados = this.itensSelecionados();
+    const todosImoveis = grupos.flatMap((g) => g.imoveis);
+    const selecionadosNaPagina = todosImoveis.filter((item) =>
+      selecionados.has(item),
+    );
+    return (
+      selecionadosNaPagina.length > 0 &&
+      selecionadosNaPagina.length < todosImoveis.length
+    );
+  });
+
+  // --------------------- CONFIGURAÇÃO DE COLUNAS DA TABELA PRINCIPAL ---------------------
+  public colunasExibidas: string[] = ['expandIcon', 'grupo', 'acoes'];
+
+  // Colunas da sub‑tabela (dentro da expansão)
+  public colunasSubTabela: string[] = [
+    'selecao',
+    'sr',
+    'imovel',
+    'proprietario',
+    'acoesImovel',
+  ];
+
+  // --------------------- MÉTODOS ---------------------
+
+  constructor(private router: Router) {}
+
+  ngOnInit(): void {}
+
+  // Expansão: alterna a expansão de um grupo
+  toggleExpansion(grupo: any) {
+    this.expandedGroup = this.expandedGroup === grupo ? null : grupo;
+  }
+  // Função usada no *matRowDef when para decidir se a linha de detalhe é exibida
+  isExpanded = (index: number, row: any): boolean => {
+    return true; // Retorna true para que a mat-table crie a linha de detalhe para cada grupo. O *ngIf do HTML controla a exibição do conteúdo.
+  };
+
+  // Paginação
+  tratarPaginacao(event: PageEvent): void {
     this.paginaAtual.set(event.pageIndex);
     this.itensPorPagina.set(event.pageSize);
   }
 
-  public limparFiltros(): void {
+  limparFiltros(): void {
     this.filtros.set({
       sr: '',
       imovel: '',
@@ -258,13 +212,13 @@ export class CadastrarGrupo implements OnInit {
     this.limparSelecao();
   }
 
-  // --------------------- SELEÇÃO ---------------------
+  // --------------------- SELEÇÃO DE IMÓVEIS ---------------------
 
-  public itemSelecionado(item: Dados): boolean {
+  itemSelecionado(item: Dados): boolean {
     return this.itensSelecionados().has(item);
   }
 
-  public selecionarItem(item: Dados, selecionado: boolean): void {
+  selecionarItem(item: Dados, selecionado: boolean): void {
     const novoSet = new Set(this.itensSelecionados());
     if (selecionado) {
       novoSet.add(item);
@@ -274,60 +228,87 @@ export class CadastrarGrupo implements OnInit {
     this.itensSelecionados.set(novoSet);
   }
 
-  public selecionarTodos(selecionado: boolean): void {
+  // Seleciona todos os imóveis de todos os grupos da página atual
+  selecionarTodos(selecionado: boolean): void {
     const novoSet = new Set(this.itensSelecionados());
-    const paginados = this.imoveisPaginados();
+    const grupos = this.gruposPaginados();
+    const todosImoveis = grupos.flatMap((g) => g.imoveis);
     if (selecionado) {
-      paginados.forEach((item) => novoSet.add(item));
+      todosImoveis.forEach((item) => novoSet.add(item));
     } else {
-      paginados.forEach((item) => novoSet.delete(item));
+      todosImoveis.forEach((item) => novoSet.delete(item));
     }
     this.itensSelecionados.set(novoSet);
   }
 
-  public getItensSelecionados(): Dados[] {
+  // Seleciona todos os imóveis de um grupo específico
+  selecionarTodosDoGrupo(grupo: Grupo, selecionado: boolean): void {
+    const novoSet = new Set(this.itensSelecionados());
+    grupo.imoveis.forEach((item) => {
+      if (selecionado) {
+        novoSet.add(item);
+      } else {
+        novoSet.delete(item);
+      }
+    });
+    this.itensSelecionados.set(novoSet);
+  }
+
+  // Verifica se todos os imóveis de um grupo estão selecionados
+  todosSelecionadosNoGrupo(grupo: Grupo): boolean {
+    const selecionados = this.itensSelecionados();
+    return (
+      grupo.imoveis.length > 0 &&
+      grupo.imoveis.every((item) => selecionados.has(item))
+    );
+  }
+
+  // Verifica se alguns (mas não todos) imóveis do grupo estão selecionados
+  algunsSelecionadosNoGrupo(grupo: Grupo): boolean {
+    const selecionados = this.itensSelecionados();
+    const selecionadosNoGrupo = grupo.imoveis.filter((item) =>
+      selecionados.has(item),
+    );
+    return (
+      selecionadosNoGrupo.length > 0 &&
+      selecionadosNoGrupo.length < grupo.imoveis.length
+    );
+  }
+
+  getItensSelecionados(): Dados[] {
     return Array.from(this.itensSelecionados());
   }
 
-  public limparSelecao(): void {
+  limparSelecao(): void {
     this.itensSelecionados.set(new Set());
   }
 
-  // --------------------- CRIAÇÃO DE GRUPO ---------------------
+  // --------------------- AÇÕES ---------------------
 
-  public criarGrupo(): void {
+  criarGrupo(): void {
+    // Como já estamos agrupando, talvez essa ação seja para criar um novo grupo a partir dos selecionados?
     const selecionados = this.getItensSelecionados();
     if (selecionados.length === 0) {
       console.warn('Nenhum imóvel selecionado.');
       return;
     }
-
-    // Aqui você pode implementar a lógica real de criação do grupo
-    // Ex: chamar uma API, abrir um modal, etc.
     console.log('Criando grupo com os imóveis:', selecionados);
-
-    // Exemplo: limpar seleção após criar
     this.limparSelecao();
   }
 
-  // --------------------- AÇÕES DOS BOTÕES NA TABELA ---------------------
-
-  public executarAcao(acao: string, dados: Dados): void {
-    switch (acao) {
-      case 'Editar':
-        console.log('Vrau');
-        break;
-      default:
-        console.log('Ação não reconhecida:', acao);
-    }
+  editar(item: Dados): void {
+    console.log('Editar imóvel:', item);
+    // navegar para edição, etc.
   }
 
-  editar(item: any): void {
-    console.log('Editar:', item);
+  excluir(item: Dados): void {
+    console.log('Excluir imóvel:', item);
   }
 
-  excluir(item: any): void {
-    console.log('Excluir:', item);
+  // Ações em lote no grupo (ex: excluir todos os imóveis do grupo)
+  excluirGrupo(grupo: Grupo): void {
+    console.log('Excluir todos os imóveis do grupo:', grupo.nome);
+    // Implementar lógica
   }
 
   // --------------------- AUXILIARES DE FILTRO ---------------------

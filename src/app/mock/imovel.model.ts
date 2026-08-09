@@ -7,10 +7,10 @@ export interface Dados {
   avaliacao: DadosAvaliacao;
   //nomeGrupo: Grupo;
 }
-/*
 export interface Grupo {
   nome: string;
-}*/
+  imoveis: Dados[];
+}
 
 export interface DadosProcesso {
   fase: any;
