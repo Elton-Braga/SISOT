@@ -30,7 +30,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 201,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
-      grupo: 'Catinguelê',
+      grupo: 'Silvio Santos',
     },
 
     avaliacao: {
@@ -86,7 +86,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 0,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
-      grupo: 'Catinguelê',
+      grupo: 'Silvio Santos',
     },
 
     avaliacao: {
@@ -143,7 +143,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 0,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
-      grupo: 'Catinguelê',
+      grupo: 'Silvio Santos',
     },
 
     avaliacao: {
@@ -198,7 +198,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 0,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
-      grupo: 'Catinguelê',
+      grupo: 'Silvio Santos',
     },
 
     avaliacao: {
@@ -253,7 +253,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 0,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
-      grupo: 'Parangolé',
+      grupo: undefined,
     },
 
     avaliacao: {
@@ -310,7 +310,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 0,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
-      grupo: 'Parangolé',
+      grupo: undefined,
     },
 
     avaliacao: {
@@ -365,7 +365,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 0,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
-      grupo: 'Parangolé',
+      grupo: undefined,
     },
 
     avaliacao: {
@@ -420,7 +420,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 0,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
-      grupo: 'Parangolé',
+      grupo: undefined,
     },
 
     avaliacao: {
@@ -475,7 +475,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 0,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
-      grupo: 'Parangolé',
+      grupo: undefined,
     },
 
     avaliacao: {
@@ -530,7 +530,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 0,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
-      grupo: 'Dominó',
+      grupo: undefined,
     },
 
     avaliacao: {
@@ -585,7 +585,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 0,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
-      grupo: 'Dominó',
+      grupo: undefined,
     },
 
     avaliacao: {
@@ -640,7 +640,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 0,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
-      grupo: 'Dominó',
+      grupo: undefined,
     },
 
     avaliacao: {
@@ -695,7 +695,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 0,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
-      grupo: 'Dominó',
+      grupo: undefined,
     },
 
     avaliacao: {
@@ -751,7 +751,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 0,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
-      grupo: 'Dominó',
+      grupo: undefined,
     },
 
     avaliacao: {
@@ -806,7 +806,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 0,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
-      grupo: 'Bomde do Tigrão',
+      grupo: 'Banco do Brasil',
     },
 
     avaliacao: {
@@ -862,7 +862,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 0,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
-      grupo: 'Bomde do Tigrão',
+      grupo: 'Banco do Brasil',
     },
 
     avaliacao: {
@@ -917,7 +917,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 0,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
-      grupo: 'Bomde do Tigrão',
+      grupo: 'Banco do Brasil',
     },
 
     avaliacao: {
@@ -972,7 +972,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 0,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
-      grupo: 'Bomde do Tigrão',
+      grupo: 'Banco do Brasil',
     },
 
     avaliacao: {
@@ -1028,7 +1028,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       capacidadeAssentamento: 0,
       acoesReintegracao: '',
       familiasCadastradas: undefined,
-      grupo: 'Bomde do Tigrão',
+      grupo: 'Banco do Brasil',
     },
 
     avaliacao: {

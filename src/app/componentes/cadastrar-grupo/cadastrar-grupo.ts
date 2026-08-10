@@ -23,6 +23,7 @@ import { Router, RouterLink } from '@angular/router';
 // Modelos e dados mock
 import { Dados, Grupo } from '../../mock/imovel.model';
 import { IMOVEIS_MOCK } from '../../mock/imovel.mock';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-cadastrar-grupo',
@@ -46,6 +47,7 @@ import { IMOVEIS_MOCK } from '../../mock/imovel.mock';
     MatCheckboxModule,
     MatDialogModule,
     RouterLink,
+    MatSelectModule,
   ],
   templateUrl: './cadastrar-grupo.html',
   styleUrls: ['./cadastrar-grupo.css'],
@@ -60,6 +62,19 @@ export class CadastrarGrupo implements OnInit {
   // Paginação (sobre grupos)
   public itensPorPagina = signal<number>(5);
   public paginaAtual = signal<number>(0);
+  // Controla a exibição do modo de seleção para criação de grupo
+  public modoSelecaoGrupo = signal(false);
+
+  // Nome do novo grupo
+  public nomeGrupo = '';
+
+  public selectedImoveisArray = signal<Dados[]>([]);
+
+  // Imóveis disponíveis para inclusão no grupo
+  public imoveisDisponiveis = computed(() => this.imoveis());
+
+  // Imóveis selecionados especificamente para o novo grupo
+  private imoveisSelecionadosGrupo = signal<Set<Dados>>(new Set());
 
   // Seleção de imóveis (para ações em lote)
   private itensSelecionados = signal<Set<Dados>>(new Set());
@@ -78,6 +93,19 @@ export class CadastrarGrupo implements OnInit {
     uf: '',
     grupo: '',
   });
+
+  // --------------------- CRIAÇÃO DE GRUPO ---------------------
+
+  /**
+   * Inicia o processo de criação de um grupo.
+   * Apenas abre a lista de imóveis para seleção.
+   */
+  iniciarCriacaoGrupo(): void {
+    // Remove a verificação do nome
+    this.imoveisSelecionadosGrupo.set(new Set());
+    this.selectedImoveisArray.set([]);
+    this.modoSelecaoGrupo.set(true);
+  }
 
   // --------------------- COMPUTEDS ---------------------
 
@@ -179,6 +207,34 @@ export class CadastrarGrupo implements OnInit {
 
   ngOnInit(): void {}
 
+  /**
+   * Verifica se o imóvel está selecionado para o novo grupo.
+   */
+  imovelSelecionadoParaGrupo(item: Dados): boolean {
+    return this.imoveisSelecionadosGrupo().has(item);
+  }
+
+  selecionarImovelParaGrupo(item: Dados, selecionado: boolean): void {
+    const novoSet = new Set(this.imoveisSelecionadosGrupo());
+    if (selecionado) {
+      novoSet.add(item);
+    } else {
+      novoSet.delete(item);
+    }
+    this.imoveisSelecionadosGrupo.set(novoSet);
+    this.selectedImoveisArray.set(Array.from(novoSet)); // sincroniza
+  }
+
+  selecionarTodosImoveisParaGrupo(): void {
+    const todos = this.imoveisDisponiveis();
+    this.imoveisSelecionadosGrupo.set(new Set(todos));
+    this.selectedImoveisArray.set(todos); // sincroniza
+  }
+
+  public totalImoveisSelecionadosGrupo = computed(
+    () => this.imoveisSelecionadosGrupo().size,
+  );
+
   // Expansão: alterna a expansão de um grupo
   toggleExpansion(grupo: any) {
     this.expandedGroup = this.expandedGroup === grupo ? null : grupo;
@@ -241,6 +297,14 @@ export class CadastrarGrupo implements OnInit {
     this.itensSelecionados.set(novoSet);
   }
 
+  onSelectionChange(event: any): void {
+    const valores: Dados[] = event.value; // array com os itens selecionados
+    // Atualiza o Set com os novos valores
+    this.imoveisSelecionadosGrupo.set(new Set(valores));
+    // Atualiza o array para manter sincronia
+    this.selectedImoveisArray.set(valores);
+  }
+
   // Seleciona todos os imóveis de um grupo específico
   selecionarTodosDoGrupo(grupo: Grupo, selecionado: boolean): void {
     const novoSet = new Set(this.itensSelecionados());
@@ -286,14 +350,69 @@ export class CadastrarGrupo implements OnInit {
   // --------------------- AÇÕES ---------------------
 
   criarGrupo(): void {
-    // Como já estamos agrupando, talvez essa ação seja para criar um novo grupo a partir dos selecionados?
-    const selecionados = this.getItensSelecionados();
-    if (selecionados.length === 0) {
-      console.warn('Nenhum imóvel selecionado.');
+    // Se ainda não estamos no modo de seleção,
+    // primeiro abrimos a lista de imóveis.
+    if (!this.modoSelecaoGrupo()) {
+      this.iniciarCriacaoGrupo();
       return;
     }
-    console.log('Criando grupo com os imóveis:', selecionados);
+
+    this.confirmarCriacaoGrupo();
+  }
+
+  limparSelecaoGrupo(): void {
+    this.imoveisSelecionadosGrupo.set(new Set());
+    this.selectedImoveisArray.set([]);
+  }
+
+  /**
+   * Confirma a criação do grupo e associa
+   * os imóveis selecionados ao grupo informado.
+   */
+  confirmarCriacaoGrupo(): void {
+    const nome = this.nomeGrupo.trim();
+
+    if (!nome) {
+      console.warn('Informe o nome do grupo.');
+      return;
+    }
+
+    const selecionados = Array.from(this.imoveisSelecionadosGrupo());
+
+    if (selecionados.length === 0) {
+      console.warn('Nenhum imóvel selecionado para o grupo.');
+      return;
+    }
+
+    // Atualiza o grupo de cada imóvel
+    selecionados.forEach((item) => {
+      item.obtencao.grupo = nome;
+    });
+
+    console.log('Grupo criado:', nome);
+    console.log('Imóveis vinculados:', selecionados);
+
+    // Finaliza o modo de criação
+    this.modoSelecaoGrupo.set(false);
+
+    // Limpa seleção do novo grupo
+    this.imoveisSelecionadosGrupo.set(new Set());
+
+    // Limpa o nome
+    this.nomeGrupo = '';
+
+    // Volta para a primeira página
+    this.paginaAtual.set(0);
+
+    // Limpa a seleção geral
     this.limparSelecao();
+  }
+
+  cancelarCriacaoGrupo(): void {
+    this.modoSelecaoGrupo.set(false);
+    this.imoveisSelecionadosGrupo.set(new Set());
+    this.selectedImoveisArray.set([]);
+    this.nomeGrupo = '';
   }
 
   editar(item: Dados): void {
