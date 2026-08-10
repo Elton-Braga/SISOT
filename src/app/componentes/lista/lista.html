@@ -224,28 +224,6 @@
           style="margin-left: 1.5rem"
           ;
         >
-          <!-- <div class="grupo-wrapper">
-            <mat-form-field appearance="outline" class="grupo-input">
-              <mat-label>Nome do grupo</mat-label>
-              <input
-                matInput
-                [(ngModel)]="nomeGrupo"
-                placeholder="Ex: Grupo A"
-              />
-            </mat-form-field>
-            <button
-              mat-raised-button
-              color="primary"
-              (click)="criarGrupo()"
-              [disabled]="!nomeGrupo.trim()"
-            >
-              <mat-icon>group_add</mat-icon>
-              Criar grupo
-            </button>
-            <span class="selecionados-info"
-              >{{ totalSelecionados() }} selecionado(s)</span
-            >
-          </div>-->
         </ng-container>
 
         <span class="toolbar-spacer"></span>
@@ -279,6 +257,34 @@
           [dataSource]="imoveisPaginados()"
           class="w-100 table-dsgov"
         >
+          <!-- COLUNA Favoritos -->
+          <ng-container matColumnDef="favoritos">
+            <th mat-header-cell *matHeaderCellDef>
+              <mat-icon
+                (click)="toggleFavoritoTodos()"
+                [matTooltip]="
+                  (todosFavoritos() ? 'Desmarcar todos' : 'Marcar todos') +
+                  ' como favoritos'
+                "
+                class="pointer"
+              >
+                {{ todosFavoritos() ? "star" : "star_border" }}
+              </mat-icon>
+            </th>
+            <td mat-cell *matCellDef="let item">
+              <mat-icon
+                (click)="toggleFavorito(item)"
+                [matTooltip]="
+                  (isFavorito(item) ? 'Remover' : 'Adicionar') +
+                  ' dos favoritos'
+                "
+                class="pointer favorito-icon"
+                [class.favoritado]="isFavorito(item)"
+              >
+                {{ isFavorito(item) ? "star" : "star_border" }}
+              </mat-icon>
+            </td>
+          </ng-container>
           <!-- COLUNA DE SELEÇÃO COM CHECKBOX -->
           <ng-container matColumnDef="selecao">
             <th mat-header-cell *matHeaderCellDef>

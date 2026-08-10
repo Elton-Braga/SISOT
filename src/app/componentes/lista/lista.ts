@@ -122,7 +122,7 @@ export class Lista implements OnInit {
     uf: '',
     grupo: '', // Adicionado filtro de grupo
   });
-
+  private favoritos = signal<Set<Dados>>(new Set());
   constructor(
     private router: Router,
     private dialog: MatDialog,
@@ -130,8 +130,47 @@ export class Lista implements OnInit {
 
   ngOnInit(): void {}
 
+  public todosFavoritos = computed(() => {
+    const paginados = this.imoveisPaginados();
+    const favSet = this.favoritos();
+    return paginados.length > 0 && paginados.every((item) => favSet.has(item));
+  });
+
+  // Verifica se um item específico está favoritado
+  public isFavorito(item: Dados): boolean {
+    return this.favoritos().has(item);
+  }
+
+  // Alterna o favorito de um único item
+  public toggleFavorito(item: Dados): void {
+    const novoSet = new Set(this.favoritos());
+    if (novoSet.has(item)) {
+      novoSet.delete(item);
+    } else {
+      novoSet.add(item);
+    }
+    this.favoritos.set(novoSet);
+  }
+
+  // Alterna o favorito de todos os itens da página atual
+  public toggleFavoritoTodos(): void {
+    const paginados = this.imoveisPaginados();
+    const todosFav = this.todosFavoritos();
+    const novoSet = new Set(this.favoritos());
+
+    if (todosFav) {
+      // Remove todos da página
+      paginados.forEach((item) => novoSet.delete(item));
+    } else {
+      // Adiciona todos da página
+      paginados.forEach((item) => novoSet.add(item));
+    }
+    this.favoritos.set(novoSet);
+  }
+
   public configuracaoColunas = [
     // Coluna de Seleção (sempre visível)
+    { id: 'favoritos', titulo: '', visivel: true },
     { id: 'selecao', titulo: '', visivel: true },
     // Dados do Imóvel
     { id: 'sr', titulo: 'SR', visivel: true },
