@@ -190,10 +190,37 @@ td.detail-cell-padding {
   border-bottom: none !important;
 }
 
+.linha-inclusao {
+  display: grid;
+  grid-template-columns: 40px 1fr 2fr 2fr 120px;
+  gap: 8px;
+  padding: 8px 16px;
+  background-color: #f8f9fa;
+  border-top: 1px solid #dee2e6;
+  align-items: center;
+}
+
+.linha-inclusao .coluna-imovel {
+  grid-column: 3;
+}
+
+.linha-inclusao .coluna-proprietario {
+  grid-column: 4;
+  display: flex;
+  gap: 8px;
+  justify-content: flex-start;
+}
+
 .celula-especifica {
   text-align: left !important;
 }
-
+/* No arquivo .css do componente */
+.form-control-sm {
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  border-radius: 0.2rem;
+}
 .detail-row-content {
   background-color: #f8f9fa;
   border-top: 1px solid #dee2e6;

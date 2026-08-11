@@ -70,37 +70,6 @@
         </mat-card-actions>
       </mat-card>
 
-      <!-- Área de criação de grupo -->
-      <ng-container *ngIf="totalSelecionados() > 0">
-        <div class="grupo-criacao" style="margin-left: 1.5rem">
-          <mat-form-field appearance="outline">
-            <mat-label>Nome do grupo</mat-label>
-
-            <input matInput [(ngModel)]="nomeGrupo" placeholder="Ex: Grupo A" />
-          </mat-form-field>
-
-          <button
-            mat-raised-button
-            color="primary"
-            (click)="criarGrupo()"
-            [disabled]="!nomeGrupo.trim()"
-          >
-            <mat-icon>group_add</mat-icon>
-            Criar grupo
-          </button>
-
-          <span class="selecionados-info">
-            {{ totalSelecionados() }} selecionado(s)
-          </span>
-        </div>
-      </ng-container>
-
-      <!-- ===================================================== -->
-      <!-- SELEÇÃO DE IMÓVEIS PARA O GRUPO                       -->
-      <!-- ===================================================== -->
-
-      <!-- Botão que inicia o processo de criação (visível apenas quando não estiver em modo de seleção) -->
-      <!-- Botão "Criar grupo" (visível apenas fora do modo) -->
       <button
         mat-raised-button
         color="primary"
@@ -122,17 +91,6 @@
           <mat-label>Nome do grupo</mat-label>
           <input matInput [(ngModel)]="nomeGrupo" placeholder="Ex: Grupo A" />
         </mat-form-field>
-
-        <div class="acoes-selecao">
-          <!--<button
-            mat-stroked-button
-            type="button"
-            (click)="limparSelecaoGrupo()"
-          >
-            <mat-icon>deselect</mat-icon>
-            Limpar seleção
-          </button>-->
-        </div>
 
         <br />
 
@@ -197,10 +155,39 @@
             Grupo
           </th>
           <td mat-cell *matCellDef="let grupo" class="celula-especifica">
-            <strong>{{ grupo.nome }}</strong>
-            <span class="badge bg-secondary ms-2">
-              <br />{{ grupo.imoveis?.length || 0 }} imóvel(is)
-            </span>
+            <!-- Modo de edição -->
+            <ng-container *ngIf="editandoGrupo() === grupo; else nomeGrupo">
+              <input
+                type="text"
+                [(ngModel)]="novoNomeGrupo"
+                (keydown.enter)="salvarEdicaoGrupo()"
+                (keydown.escape)="cancelarEdicaoGrupo()"
+                placeholder="Novo nome"
+                class="form-control form-control-sm d-inline-block"
+                style="width: auto; min-width: 200px"
+              />
+              <button
+                mat-icon-button
+                color="primary"
+                (click)="salvarEdicaoGrupo()"
+                matTooltip="Confirmar"
+              >
+                <mat-icon>check</mat-icon>
+              </button>
+              <button
+                mat-icon-button
+                (click)="cancelarEdicaoGrupo()"
+                matTooltip="Cancelar"
+              >
+                <mat-icon>close</mat-icon>
+              </button>
+            </ng-container>
+            <ng-template #nomeGrupo>
+              <strong>{{ grupo.nome }}</strong>
+              <span class="badge bg-secondary ms-2">
+                <br />{{ grupo.imoveis?.length || 0 }} imóvel(is)
+              </span>
+            </ng-template>
           </td>
         </ng-container>
 
@@ -221,7 +208,8 @@
                 mat-icon-button
                 color="primary"
                 matTooltip="Editar Nome do Grupo"
-                (click)="$event.stopPropagation(); editar(item)"
+                (click)="$event.stopPropagation(); iniciarEdicaoGrupo(item)"
+                [disabled]="item.source === 'mock'"
               >
                 <mat-icon>edit</mat-icon>
               </button>
@@ -230,7 +218,8 @@
                 mat-icon-button
                 color="primary"
                 matTooltip="Incluir imóveis"
-                (click)="$event.stopPropagation()"
+                (click)="$event.stopPropagation(); iniciarInclusaoImovel(item)"
+                [disabled]="item.source === 'mock'"
               >
                 <mat-icon>home_work</mat-icon>
               </button>
@@ -239,7 +228,8 @@
                 mat-icon-button
                 color="warn"
                 matTooltip="Excluir Grupo"
-                (click)="$event.stopPropagation(); excluir(item)"
+                (click)="$event.stopPropagation(); excluirGrupo(item)"
+                [disabled]="item.source === 'mock'"
               >
                 <mat-icon>delete</mat-icon>
               </button>
@@ -257,9 +247,10 @@
           >
             <div class="detail-row-content" *ngIf="expandedGroup === grupo">
               <div class="p-3 bg-light">
-                <!--<h6>Imóveis do grupo "{{ grupo.nome }}"</h6>
-
-                 Sub-tabela com os imóveis do grupo -->
+                <!--=======================================================
+                ===========================================================
+                Tabela Aninhada ===========================================
+                ===========================================================-->
                 <table
                   mat-table
                   [dataSource]="grupo.imoveis"
@@ -318,7 +309,9 @@
                         mat-icon-button
                         color="warn"
                         matTooltip="Excluir Linha"
-                        (click)="$event.stopPropagation(); excluir(item)"
+                        (click)="
+                          $event.stopPropagation(); excluirImovel(item, grupo)
+                        "
                       >
                         <mat-icon>delete</mat-icon>
                       </button>
@@ -340,6 +333,52 @@
                     </td>
                   </tr>
                 </table>
+
+                <!-- Linha de inclusão de imóvel -->
+                <div *ngIf="isInclusaoAtiva(grupo)" class="linha-inclusao">
+                  <div class="coluna-selecao"></div>
+                  <div class="coluna-sr"></div>
+                  <div class="coluna-imovel">
+                    <mat-form-field appearance="outline" style="width: 100%">
+                      <mat-label>Selecione imóveis</mat-label>
+                      <mat-select
+                        multiple
+                        [value]="inclusaoMap().get(grupo) || []"
+                        (selectionChange)="
+                          selecionarImoveisParaInclusao(grupo, $event.value)
+                        "
+                      >
+                        <mat-option
+                          *ngFor="
+                            let item of getImoveisDisponiveisParaGrupo(grupo)
+                          "
+                          [value]="item"
+                        >
+                          {{ item.imovel.imovel }} – SNCR:
+                          {{ item.imovel.sncr }}
+                        </mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+                  <div class="coluna-proprietario">
+                    <button
+                      mat-icon-button
+                      color="primary"
+                      matTooltip="Confirmar"
+                      (click)="confirmarInclusaoImovel(grupo)"
+                    >
+                      <mat-icon>check</mat-icon>
+                    </button>
+                    <button
+                      mat-icon-button
+                      matTooltip="Cancelar"
+                      (click)="cancelarInclusaoImovel(grupo)"
+                    >
+                      <mat-icon>close</mat-icon>
+                    </button>
+                  </div>
+                  <div class="coluna-acoes"></div>
+                </div>
               </div>
             </div>
           </td>
@@ -373,8 +412,9 @@
 
       <mat-paginator
         [length]="totalGrupos()"
+        [pageIndex]="paginaAtual()"
         [pageSize]="itensPorPagina()"
-        [pageSizeOptions]="[5, 10, 25, 100]"
+        [pageSizeOptions]="[10, 25, 100]"
         (page)="tratarPaginacao($event)"
       >
       </mat-paginator>

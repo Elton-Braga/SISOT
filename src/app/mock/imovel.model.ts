@@ -10,6 +10,7 @@ export interface Dados {
 export interface Grupo {
   nome: string;
   imoveis: Dados[];
+  source?: 'saved' | 'mock'; // indica a origem
 }
 
 export interface DadosProcesso {

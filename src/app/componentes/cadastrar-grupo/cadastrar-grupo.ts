@@ -24,6 +24,7 @@ import { Router, RouterLink } from '@angular/router';
 import { Dados, Grupo } from '../../mock/imovel.model';
 import { IMOVEIS_MOCK } from '../../mock/imovel.mock';
 import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-cadastrar-grupo',
@@ -58,9 +59,10 @@ export class CadastrarGrupo implements OnInit {
 
   // Dados brutos (imóveis)
   public imoveis = signal<Dados[]>(IMOVEIS_MOCK);
+  public gruposSalvos = signal<Grupo[]>([]);
 
   // Paginação (sobre grupos)
-  public itensPorPagina = signal<number>(5);
+  public itensPorPagina = signal<number>(10);
   public paginaAtual = signal<number>(0);
   // Controla a exibição do modo de seleção para criação de grupo
   public modoSelecaoGrupo = signal(false);
@@ -94,22 +96,36 @@ export class CadastrarGrupo implements OnInit {
     grupo: '',
   });
 
-  // --------------------- CRIAÇÃO DE GRUPO ---------------------
+  public inclusaoMap = signal<Map<Grupo, Dados[]>>(new Map());
+  public totalGrupos = computed(() => this.gruposFiltrados().length);
 
-  /**
-   * Inicia o processo de criação de um grupo.
-   * Apenas abre a lista de imóveis para seleção.
-   */
-  iniciarCriacaoGrupo(): void {
-    // Remove a verificação do nome
-    this.imoveisSelecionadosGrupo.set(new Set());
-    this.selectedImoveisArray.set([]);
-    this.modoSelecaoGrupo.set(true);
+  public totalSelecionados = computed(() => this.itensSelecionados().size);
+
+  public colunasExibidas: string[] = ['expandIcon', 'grupo', 'acoes'];
+
+  // Colunas da sub‑tabela (dentro da expansão)
+  public colunasSubTabela: string[] = [
+    'selecao',
+    'sr',
+    'imovel',
+    'proprietario',
+    'acoesImovel',
+  ];
+
+  public editandoGrupo = signal<Grupo | null>(null);
+  public novoNomeGrupo = signal<string>('');
+
+  // --------------------- MÉTODOS ---------------------
+
+  constructor(
+    private router: Router,
+    private snackBar: MatSnackBar,
+  ) {}
+
+  ngOnInit(): void {
+    this.carregarGruposSalvos();
   }
 
-  // --------------------- COMPUTEDS ---------------------
-
-  // 1. Imóveis filtrados (aplicando os filtros)
   public imoveisFiltrados = computed(() => {
     const f = this.filtros();
     return this.imoveis().filter((item) => {
@@ -133,23 +149,103 @@ export class CadastrarGrupo implements OnInit {
     });
   });
 
+  // Verifica se o grupo está em modo de inclusão
+  isInclusaoAtiva(grupo: Grupo): boolean {
+    return this.inclusaoMap().has(grupo);
+  }
+
+  // Inicia a inclusão: adiciona o grupo ao map com valor null (nenhum imóvel selecionado)
+  iniciarInclusaoImovel(grupo: Grupo): void {
+    if (grupo.source === 'mock') {
+      this.mostrarFeedback(
+        'Não é possível adicionar imóveis a grupos do mock.',
+        'error',
+      );
+      return;
+    }
+    // Expande o grupo
+    this.expandedGroup = grupo;
+    const novoMap = new Map(this.inclusaoMap());
+    novoMap.set(grupo, []); // array vazio
+    this.inclusaoMap.set(novoMap);
+  }
+
+  // Atualiza o imóvel selecionado temporariamente
+  selecionarImoveisParaInclusao(grupo: Grupo, imoveis: Dados[]): void {
+    const novoMap = new Map(this.inclusaoMap());
+    novoMap.set(grupo, imoveis);
+    this.inclusaoMap.set(novoMap);
+  }
+
+  // Cancela a inclusão
+  cancelarInclusaoImovel(grupo: Grupo): void {
+    const novoMap = new Map(this.inclusaoMap());
+    novoMap.delete(grupo);
+    this.inclusaoMap.set(novoMap);
+    // Não altera expandedGroup
+  }
+  // Confirma a inclusão
+  confirmarInclusaoImovel(grupo: Grupo): void {
+    const imoveisSelecionados = this.inclusaoMap().get(grupo);
+    if (!imoveisSelecionados || imoveisSelecionados.length === 0) {
+      this.mostrarFeedback(
+        'Selecione pelo menos um imóvel para adicionar.',
+        'error',
+      );
+      return;
+    }
+
+    const duplicados = imoveisSelecionados.filter((item) =>
+      grupo.imoveis.some((i) => i === item),
+    );
+    if (duplicados.length > 0) {
+      this.mostrarFeedback(
+        `Alguns imóveis já pertencem ao grupo: ${duplicados.map((i) => i.imovel.imovel).join(', ')}`,
+        'error',
+      );
+      return;
+    }
+
+    grupo.imoveis.push(...imoveisSelecionados);
+
+    const salvos = this.gruposSalvos();
+    const index = salvos.findIndex((g) => g.nome === grupo.nome);
+    if (index !== -1) {
+      salvos[index].imoveis = grupo.imoveis;
+      localStorage.setItem('grupos_imoveis', JSON.stringify(salvos));
+      this.gruposSalvos.set([...salvos]);
+
+      // 🔥 Mantém a expansão aberta após a atualização
+      this.atualizarExpandedGroup(grupo.nome);
+
+      this.cancelarInclusaoImovel(grupo);
+      this.mostrarFeedback(
+        `${imoveisSelecionados.length} imóvel(is) adicionado(s) ao grupo com sucesso.`,
+        'success',
+      );
+    } else {
+      this.mostrarFeedback('Erro ao salvar o grupo.', 'error');
+    }
+  }
+
+  // Retorna a lista de imóveis disponíveis para adição (exclui os já presentes no grupo)
+  getImoveisDisponiveisParaGrupo(grupo: Grupo): Dados[] {
+    return this.imoveisDisponiveis().filter(
+      (item) => !grupo.imoveis.some((i) => i === item),
+    );
+  }
+
   // 2. Agrupa os imóveis filtrados por grupo
   public gruposFiltrados = computed(() => {
-    const filtrados = this.imoveisFiltrados();
-    const map = new Map<string, Dados[]>();
-
-    filtrados.forEach((item) => {
-      const nome = item.obtencao.grupo || 'Não definido';
-      if (!map.has(nome)) {
-        map.set(nome, []);
-      }
-      map.get(nome)!.push(item);
-    });
-
-    // Converte para array de Grupo e ordena por nome (opcional)
-    return Array.from(map.entries())
-      .map(([nome, imoveis]) => ({ nome, imoveis }))
-      .sort((a, b) => a.nome.localeCompare(b.nome));
+    const salvos = this.gruposSalvos().map((g) => ({
+      ...g,
+      source: 'saved' as const,
+    }));
+    const mock = this.gruposDoMock().map((g) => ({
+      ...g,
+      source: 'mock' as const,
+    }));
+    return [...salvos, ...mock];
   });
 
   // 3. Grupos paginados (fatia de acordo com página atual)
@@ -159,13 +255,6 @@ export class CadastrarGrupo implements OnInit {
     return this.gruposFiltrados().slice(inicio, fim);
   });
 
-  // 4. Total de grupos (para o paginator)
-  public totalGrupos = computed(() => this.gruposFiltrados().length);
-
-  // 5. Seleção (mantida para os imóveis)
-  public totalSelecionados = computed(() => this.itensSelecionados().size);
-
-  // Verifica se todos os imóveis de todos os grupos paginados estão selecionados
   public todosSelecionados = computed(() => {
     const grupos = this.gruposPaginados();
     const selecionados = this.itensSelecionados();
@@ -175,6 +264,17 @@ export class CadastrarGrupo implements OnInit {
       todosImoveis.every((item) => selecionados.has(item))
     );
   });
+
+  /**
+   * Inicia o processo de criação de um grupo.
+   * Apenas abre a lista de imóveis para seleção.
+   */
+  iniciarCriacaoGrupo(): void {
+    // Remove a verificação do nome
+    this.imoveisSelecionadosGrupo.set(new Set());
+    this.selectedImoveisArray.set([]);
+    this.modoSelecaoGrupo.set(true);
+  }
 
   public algunsSelecionados = computed(() => {
     const grupos = this.gruposPaginados();
@@ -189,23 +289,10 @@ export class CadastrarGrupo implements OnInit {
     );
   });
 
-  // --------------------- CONFIGURAÇÃO DE COLUNAS DA TABELA PRINCIPAL ---------------------
-  public colunasExibidas: string[] = ['expandIcon', 'grupo', 'acoes'];
-
-  // Colunas da sub‑tabela (dentro da expansão)
-  public colunasSubTabela: string[] = [
-    'selecao',
-    'sr',
-    'imovel',
-    'proprietario',
-    'acoesImovel',
-  ];
-
-  // --------------------- MÉTODOS ---------------------
-
-  constructor(private router: Router) {}
-
-  ngOnInit(): void {}
+  private carregarGruposSalvos(): void {
+    const grupos = this.obterGruposSalvos();
+    this.gruposSalvos.set(grupos);
+  }
 
   /**
    * Verifica se o imóvel está selecionado para o novo grupo.
@@ -297,13 +384,22 @@ export class CadastrarGrupo implements OnInit {
     this.itensSelecionados.set(novoSet);
   }
 
-  onSelectionChange(event: any): void {
-    const valores: Dados[] = event.value; // array com os itens selecionados
-    // Atualiza o Set com os novos valores
-    this.imoveisSelecionadosGrupo.set(new Set(valores));
-    // Atualiza o array para manter sincronia
-    this.selectedImoveisArray.set(valores);
-  }
+  public gruposDoMock = computed(() => {
+    const map = new Map<string, Dados[]>();
+    this.imoveis().forEach((item) => {
+      const nome = item.obtencao.grupo;
+      if (nome && nome.trim() !== '') {
+        if (!map.has(nome)) {
+          map.set(nome, []);
+        }
+        map.get(nome)!.push(item);
+      }
+    });
+    return Array.from(map.entries()).map(([nome, imoveis]) => ({
+      nome,
+      imoveis,
+    }));
+  });
 
   // Seleciona todos os imóveis de um grupo específico
   selecionarTodosDoGrupo(grupo: Grupo, selecionado: boolean): void {
@@ -370,42 +466,123 @@ export class CadastrarGrupo implements OnInit {
    * os imóveis selecionados ao grupo informado.
    */
   confirmarCriacaoGrupo(): void {
-    const nome = this.nomeGrupo.trim();
-
-    if (!nome) {
-      console.warn('Informe o nome do grupo.');
+    // 1. Validação
+    if (!this.nomeGrupo?.trim()) {
+      this.mostrarFeedback('Por favor, informe um nome para o grupo.', 'error');
       return;
     }
 
-    const selecionados = Array.from(this.imoveisSelecionadosGrupo());
-
-    if (selecionados.length === 0) {
-      console.warn('Nenhum imóvel selecionado para o grupo.');
+    if (this.selectedImoveisArray().length === 0) {
+      this.mostrarFeedback(
+        'Selecione pelo menos um imóvel para o grupo.',
+        'error',
+      );
       return;
     }
 
-    // Atualiza o grupo de cada imóvel
-    selecionados.forEach((item) => {
-      item.obtencao.grupo = nome;
+    // 2. Monta o objeto do grupo (declaração da variável novoGrupo)
+    const novoGrupo = {
+      nome: this.nomeGrupo.trim(),
+      imoveis: this.selectedImoveisArray(), // array completo dos objetos
+    };
+
+    // 3. Recupera a lista existente no localStorage
+    const gruposSalvos = this.obterGruposSalvos();
+
+    // 4. (Opcional) Verifica se já existe um grupo com o mesmo nome
+    const nomeExistente = gruposSalvos.some((g) => g.nome === novoGrupo.nome);
+    if (nomeExistente) {
+      this.mostrarFeedback(
+        `Já existe um grupo com o nome "${novoGrupo.nome}".`,
+        'error',
+      );
+      return;
+    }
+
+    // 5. Adiciona o novo grupo e salva
+    gruposSalvos.push(novoGrupo);
+    localStorage.setItem('grupos_imoveis', JSON.stringify(gruposSalvos));
+
+    // 6. Recarrega os grupos salvos no signal
+    this.gruposSalvos.set(gruposSalvos);
+
+    // 7. Limpa o formulário e sai do modo de seleção
+    this.limparFormulario();
+    this.modoSelecaoGrupo.set(false);
+    this.mostrarFeedback(
+      `Grupo "${novoGrupo.nome}" salvo com sucesso!`,
+      'success',
+    );
+  }
+
+  excluirImovel(item: Dados, grupo: Grupo): void {
+    if (grupo.source === 'mock') {
+      this.mostrarFeedback(
+        'Não é possível remover imóveis de grupos do mock.',
+        'error',
+      );
+      return;
+    }
+
+    // Encontra o índice do imóvel no grupo
+    const index = grupo.imoveis.indexOf(item);
+    if (index === -1) {
+      this.mostrarFeedback('Imóvel não encontrado no grupo.', 'error');
+      return;
+    }
+
+    // Remove do grupo
+    grupo.imoveis.splice(index, 1);
+
+    // Atualiza no localStorage (apenas para grupos 'saved')
+    const salvos = this.gruposSalvos();
+    const grupoIndex = salvos.findIndex((g) => g.nome === grupo.nome);
+    if (grupoIndex !== -1) {
+      salvos[grupoIndex].imoveis = grupo.imoveis;
+      localStorage.setItem('grupos_imoveis', JSON.stringify(salvos));
+      this.gruposSalvos.set([...salvos]); // força atualização da view
+      this.atualizarExpandedGroup(grupo.nome);
+      this.mostrarFeedback('Imóvel removido do grupo com sucesso.', 'success');
+    } else {
+      this.mostrarFeedback('Erro ao salvar a remoção.', 'error');
+    }
+  }
+
+  private atualizarExpandedGroup(nome: string): void {
+    if (!this.expandedGroup) return;
+    // Busca o grupo atualizado em gruposFiltrados (que tem a nova referência)
+    const grupoAtualizado = this.gruposFiltrados().find((g) => g.nome === nome);
+    if (grupoAtualizado) {
+      this.expandedGroup = grupoAtualizado;
+    }
+  }
+
+  onSelectionChange(event: any): void {
+    this.selectedImoveisArray.set(event.value);
+  }
+
+  private limparFormulario(): void {
+    this.nomeGrupo = '';
+    this.selectedImoveisArray.set([]);
+    // Se houver um mat-select com ngModel, talvez seja necessário resetar também
+  }
+
+  private obterGruposSalvos(): any[] {
+    const dados = localStorage.getItem('grupos_imoveis');
+    const parsed = dados ? JSON.parse(dados) : [];
+    return parsed;
+  }
+
+  private mostrarFeedback(mensagem: string, tipo: 'success' | 'error'): void {
+    // Exemplo com MatSnackBar
+    this.snackBar.open(mensagem, 'Fechar', {
+      duration: 4000,
+      panelClass: tipo === 'success' ? 'snack-success' : 'snack-error',
+      verticalPosition: 'top',
     });
 
-    console.log('Grupo criado:', nome);
-    console.log('Imóveis vinculados:', selecionados);
-
-    // Finaliza o modo de criação
-    this.modoSelecaoGrupo.set(false);
-
-    // Limpa seleção do novo grupo
-    this.imoveisSelecionadosGrupo.set(new Set());
-
-    // Limpa o nome
-    this.nomeGrupo = '';
-
-    // Volta para a primeira página
-    this.paginaAtual.set(0);
-
-    // Limpa a seleção geral
-    this.limparSelecao();
+    // Caso não use MatSnackBar, pode usar um simples alert:
+    // alert(mensagem);
   }
 
   cancelarCriacaoGrupo(): void {
@@ -413,6 +590,61 @@ export class CadastrarGrupo implements OnInit {
     this.imoveisSelecionadosGrupo.set(new Set());
     this.selectedImoveisArray.set([]);
     this.nomeGrupo = '';
+  }
+
+  iniciarEdicaoGrupo(grupo: Grupo): void {
+    // Apenas grupos 'saved' podem ser editados
+    if (grupo.source === 'mock') {
+      this.mostrarFeedback('Grupos do JSON não podem ser editados.', 'error');
+      return;
+    }
+    this.editandoGrupo.set(grupo);
+    this.novoNomeGrupo.set(grupo.nome);
+  }
+
+  salvarEdicaoGrupo(): void {
+    const grupo = this.editandoGrupo();
+    if (!grupo) return;
+
+    const novoNome = this.novoNomeGrupo().trim();
+    if (!novoNome) {
+      this.mostrarFeedback('O nome do grupo não pode estar vazio.', 'error');
+      return;
+    }
+
+    const salvos = this.gruposSalvos();
+    // Busca pelo nome antigo (grupo.nome ainda é o original)
+    const index = salvos.findIndex((g) => g.nome === grupo.nome);
+    if (index === -1) {
+      this.mostrarFeedback('Grupo não encontrado para edição.', 'error');
+      return;
+    }
+
+    // Verifica se já existe outro grupo com o novo nome (ignorando o próprio)
+    const existe = salvos.some((g, i) => g.nome === novoNome && i !== index);
+    if (existe) {
+      this.mostrarFeedback(
+        `Já existe um grupo com o nome "${novoNome}".`,
+        'error',
+      );
+      return;
+    }
+
+    // Atualiza o nome no objeto existente
+    salvos[index].nome = novoNome;
+    localStorage.setItem('grupos_imoveis', JSON.stringify(salvos));
+    this.gruposSalvos.set([...salvos]); // nova referência para reatividade
+
+    this.cancelarEdicaoGrupo();
+    this.mostrarFeedback(
+      `Nome do grupo alterado para "${novoNome}" com sucesso.`,
+      'success',
+    );
+  }
+
+  cancelarEdicaoGrupo(): void {
+    this.editandoGrupo.set(null);
+    this.novoNomeGrupo.set('');
   }
 
   editar(item: Dados): void {
@@ -426,8 +658,37 @@ export class CadastrarGrupo implements OnInit {
 
   // Ações em lote no grupo (ex: excluir todos os imóveis do grupo)
   excluirGrupo(grupo: Grupo): void {
-    console.log('Excluir todos os imóveis do grupo:', grupo.nome);
-    // Implementar lógica
+    if (grupo.source === 'mock') {
+      this.mostrarFeedback(
+        'Grupos provenientes do JSON não podem ser excluídos.',
+        'error',
+      );
+      return;
+    }
+
+    const salvos = this.gruposSalvos();
+    const index = salvos.findIndex((g) => g.nome === grupo.nome);
+    if (index === -1) {
+      this.mostrarFeedback('Grupo não encontrado.', 'error');
+      return;
+    }
+
+    // Remove o grupo
+    salvos.splice(index, 1);
+
+    // 🔥 ATUALIZA O SIGNAL COM UMA NOVA REFERÊNCIA
+    this.gruposSalvos.set([...salvos]); // ou salvos.slice()
+
+    localStorage.setItem('grupos_imoveis', JSON.stringify(salvos));
+
+    if (this.expandedGroup === grupo) {
+      this.expandedGroup = null;
+    }
+
+    this.mostrarFeedback(
+      `Grupo "${grupo.nome}" removido com sucesso!`,
+      'success',
+    );
   }
 
   // --------------------- AUXILIARES DE FILTRO ---------------------
