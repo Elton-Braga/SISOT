@@ -371,10 +371,36 @@ export class Lista implements OnInit {
   }
 
   // Lista paginada derivada da lista filtrada
-  public imoveisPaginados = computed(() => {
+  /* imoveisPaginados = computed(() => {
     const inicio = this.paginaAtual() * this.itensPorPagina();
     const fim = inicio + this.itensPorPagina();
     return this.imoveisFiltrados().slice(inicio, fim);
+  });*/
+
+  // ADICIONE ESTE NOVO COMPUTED
+  public imoveisOrdenados = computed(() => {
+    const filtrados = this.imoveisFiltrados();
+    const favSet = this.favoritos();
+
+    const favoritos: Dados[] = [];
+    const naoFavoritos: Dados[] = [];
+
+    for (const item of filtrados) {
+      if (favSet.has(item)) {
+        favoritos.push(item);
+      } else {
+        naoFavoritos.push(item);
+      }
+    }
+
+    return [...favoritos, ...naoFavoritos];
+  });
+
+  // MODIFIQUE O EXISTENTE imoveisPaginados PARA USAR O imoveisOrdenados
+  public imoveisPaginados = computed(() => {
+    const inicio = this.paginaAtual() * this.itensPorPagina();
+    const fim = inicio + this.itensPorPagina();
+    return this.imoveisOrdenados().slice(inicio, fim); // <-- MUDANÇA AQUI
   });
 
   // Auxiliares de filtragem
