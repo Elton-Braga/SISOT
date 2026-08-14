@@ -6567,12 +6567,151 @@
               </mat-step>
 
               <!-- ========================================================= -->
-              <!-- FASE 5 -->
+              <!-- FASE Ordem de Serviço -->
               <!-- ========================================================= -->
 
               <mat-step>
                 <ng-template matStepLabel>
-                  Fase 5 - Publicidade da Proposta
+                  Fase 5 - Dados do Processo</ng-template
+                >
+
+                <div>
+                  <div class="step-content">
+                    <!-- ID + SR + Estado -->
+                    <div class="form-row row-3">
+                      <mat-form-field appearance="outline">
+                        <mat-label>ID (Código/Ano)</mat-label>
+                        <input matInput value="2026/0001" disabled />
+                      </mat-form-field>
+
+                      <mat-form-field appearance="outline">
+                        <mat-label>SR</mat-label>
+                        <mat-select disabled value="1">
+                          <mat-option value="1">SR-01</mat-option>
+                          <mat-option value="2">SR-02</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+
+                      <mat-form-field appearance="outline">
+                        <mat-label>Estado</mat-label>
+                        <mat-select disabled value="SP">
+                          <mat-option value="SP">São Paulo</mat-option>
+                          <mat-option value="RJ">Rio de Janeiro</mat-option>
+                          <mat-option value="MG">Minas Gerais</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+
+                    <!-- Imóvel + Município -->
+                    <div class="form-row row-2">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Imóvel</mat-label>
+                        <input matInput value="Fazenda Santa Maria" disabled />
+                      </mat-form-field>
+
+                      <mat-form-field appearance="outline">
+                        <mat-label>Município</mat-label>
+                        <mat-select disabled value="1">
+                          <mat-option value="1">São Paulo</mat-option>
+                          <mat-option value="2">Campinas</mat-option>
+                          <mat-option value="3">Ribeirão Preto</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+
+                    <!-- Considerações (texto longo) -->
+                    <div class="form-row full-width">
+                      <mat-form-field
+                        appearance="outline"
+                        class="campo-observacao"
+                      >
+                        <mat-label>Considerações</mat-label>
+                        <textarea
+                          matInput
+                          rows="4"
+                          placeholder="Digite suas considerações sobre o processo"
+                        ></textarea>
+                      </mat-form-field>
+                    </div>
+
+                    <!-- Data de abertura + Servidor -->
+                    <div class="form-row row-2">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Data de abertura</mat-label>
+                        <input matInput [matDatepicker]="pickerAbertura" />
+                        <mat-datepicker-toggle
+                          matIconSuffix
+                          [for]="pickerAbertura"
+                        ></mat-datepicker-toggle>
+                        <mat-datepicker #pickerAbertura></mat-datepicker>
+                      </mat-form-field>
+
+                      <mat-form-field appearance="outline">
+                        <mat-label>Servidor</mat-label>
+                        <mat-select value="1">
+                          <mat-option value="1">Daniele Ramos</mat-option>
+                          <mat-option value="2">Liz Onishi </mat-option>
+                          <mat-option value="3">Marcos Gonçalves</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+
+                    <!-- SIAPE + Cargo -->
+                    <div class="form-row row-2">
+                      <mat-form-field appearance="outline">
+                        <mat-label>SIAPE</mat-label>
+                        <mat-select value="123456">
+                          <mat-option value="123456">123456</mat-option>
+                          <mat-option value="789012">789012</mat-option>
+                          <mat-option value="789012">789012</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+
+                      <mat-form-field appearance="outline">
+                        <mat-label>Cargo</mat-label>
+                        <mat-select value="Analista">
+                          <mat-option value="Analista">Perito</mat-option>
+                          <mat-option value="Especialista">Perito</mat-option>
+                          <mat-option value="Tecnico">Perito</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+
+                    <!-- Prazo -->
+                    <div class="form-row row-1">
+                      <mat-form-field appearance="outline">
+                        <mat-label>Prazo</mat-label>
+                        <mat-select>
+                          <mat-option value="30">30 (trinta) dias</mat-option>
+                          <mat-option value="45"
+                            >45 (quarenta e cinco) dias</mat-option
+                          >
+                          <mat-option value="60">60 (sessenta) dias</mat-option>
+                          <mat-option value="90">90 (noventa) dias</mat-option>
+                          <mat-option value="120"
+                            >120 (cento e vinte) dias</mat-option
+                          >
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+
+                    <div class="step-actions">
+                      <button mat-flat-button matStepperPrevious>
+                        Anterior
+                      </button>
+                      <button mat-flat-button matStepperNext>Próximo</button>
+                    </div>
+                  </div>
+                </div>
+              </mat-step>
+
+              <!-- ========================================================= -->
+              <!-- FASE 6 -->
+              <!-- ========================================================= -->
+
+              <mat-step>
+                <ng-template matStepLabel>
+                  Fase 6 - Publicidade da Proposta
                 </ng-template>
 
                 <div class="form-grid">
@@ -6629,12 +6768,12 @@
               </mat-step>
 
               <!-- ========================================================= -->
-              <!-- FASE 6 -->
+              <!-- FASE 7 -->
               <!-- ========================================================= -->
 
               <mat-step>
                 <ng-template matStepLabel>
-                  Fase 6 - Consulta sobreposição de interesses públicos
+                  Fase 7 - Consulta sobreposição de interesses públicos
                 </ng-template>
 
                 <div class="table-container">
@@ -7043,12 +7182,12 @@
               </mat-step>
 
               <!-- ========================================================= -->
-              <!-- FASE 7 -->
+              <!-- FASE 8 -->
               <!-- ========================================================= -->
 
               <mat-step>
                 <ng-template matStepLabel>
-                  Fase 7 - Análise da Cadeia Dominial
+                  Fase 8 - Análise da Cadeia Dominial
                 </ng-template>
 
                 <div class="form-grid">
@@ -7134,12 +7273,12 @@
               </mat-step>
 
               <!-- ========================================================= -->
-              <!-- FASE 8 -->
+              <!-- FASE 89 -->
               <!-- ========================================================= -->
 
               <mat-step>
                 <ng-template matStepLabel>
-                  Fase 8 - Emissão de Parecer Técnico Revisor
+                  Fase 9 - Emissão de Parecer Técnico Revisor
                 </ng-template>
 
                 <div class="form-grid">
@@ -7208,12 +7347,12 @@
               </mat-step>
 
               <!-- ========================================================= -->
-              <!-- FASE 9 -->
+              <!-- FASE 10 -->
               <!-- ========================================================= -->
 
               <mat-step>
                 <ng-template matStepLabel>
-                  Fase 9 - Deliberação do CDR
+                  Fase 10 - Deliberação do CDR
                 </ng-template>
 
                 <div class="form-grid">
@@ -7267,12 +7406,12 @@
               </mat-step>
 
               <!-- ========================================================= -->
-              <!-- FASE 10 -->
+              <!-- FASE 11 -->
               <!-- ========================================================= -->
 
               <mat-step>
                 <ng-template matStepLabel>
-                  Fase 10 - Deliberação do CD
+                  Fase 11 - Deliberação do CD
                 </ng-template>
 
                 <div class="form-grid">
@@ -7360,12 +7499,12 @@
               </mat-step>
 
               <!-- ========================================================= -->
-              <!-- FASE 11 -->
+              <!-- FASE 12 -->
               <!-- ========================================================= -->
 
               <mat-step>
                 <ng-template matStepLabel>
-                  Fase 11 - Atos para Pagamento
+                  Fase 12 - Atos para Pagamento
                 </ng-template>
 
                 <div class="form-grid">
@@ -7453,12 +7592,12 @@
               </mat-step>
 
               <!-- ========================================================= -->
-              <!-- FASE 12 -->
+              <!-- FASE 13 -->
               <!-- ========================================================= -->
 
               <mat-step>
                 <ng-template matStepLabel>
-                  Fase 12 - Escrituração e Registro
+                  Fase 13 - Escrituração e Registro
                 </ng-template>
 
                 <div class="form-grid">
@@ -7548,12 +7687,12 @@
               </mat-step>
 
               <!-- ========================================================= -->
-              <!-- FASE 13 -->
+              <!-- FASE 14 -->
               <!-- ========================================================= -->
 
               <mat-step>
                 <ng-template matStepLabel>
-                  Fase 13 - Destinação do Imóvel
+                  Fase 14 - Destinação do Imóvel
                 </ng-template>
 
                 <div class="form-grid">
