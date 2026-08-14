@@ -1,0 +1,35 @@
+/* CSS */
+.form-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px; /* espaçamento entre linhas e colunas */
+  max-width: 100%;
+  margin: 3rem;
+}
+
+.field-item {
+  flex: 0 0 calc(50% - 8px); /* dois por linha, descontando metade do gap */
+  box-sizing: border-box;
+}
+
+/* O campo de Considerações ocupa a largura total */
+.field-full {
+  flex: 0 0 100%;
+}
+
+/* Ajuste para que os mat-form-field ocupem toda a largura do container */
+.field-item mat-form-field,
+.field-full mat-form-field {
+  width: 100%;
+}
+
+/* Opcional: manter a aparência dos campos desabilitados */
+.mat-form-field-disabled .mat-form-field-outline {
+  opacity: 0.7;
+}
+
+/* Ajuste para o textarea (já possui rows) */
+.campo-observacao textarea {
+  resize: vertical;
+  min-height: 80px;
+}

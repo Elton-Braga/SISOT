@@ -1,0 +1,122 @@
+<!-- HTML (Angular Material) -->
+<div class="form-container">
+  <!-- Linha 1: ID + SR -->
+  <div class="field-item">
+    <mat-form-field appearance="outline">
+      <mat-label>ID (Código/Ano)</mat-label>
+      <input matInput value="2026/0001" disabled />
+    </mat-form-field>
+  </div>
+  <div class="field-item">
+    <mat-form-field appearance="outline">
+      <mat-label>SR</mat-label>
+      <mat-select disabled value="1">
+        <mat-option value="1">SR-01</mat-option>
+        <mat-option value="2">SR-02</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!-- Linha 2: Estado + Imóvel -->
+  <div class="field-item">
+    <mat-form-field appearance="outline">
+      <mat-label>Estado</mat-label>
+      <mat-select disabled value="SP">
+        <mat-option value="SP">São Paulo</mat-option>
+        <mat-option value="RJ">Rio de Janeiro</mat-option>
+        <mat-option value="MG">Minas Gerais</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="field-item">
+    <mat-form-field appearance="outline">
+      <mat-label>Imóvel</mat-label>
+      <input matInput value="Fazenda Santa Maria" disabled />
+    </mat-form-field>
+  </div>
+
+  <!-- Linha 3: Município + Data de abertura -->
+  <div class="field-item">
+    <mat-form-field appearance="outline">
+      <mat-label>Município</mat-label>
+      <mat-select disabled value="1">
+        <mat-option value="1">São Paulo</mat-option>
+        <mat-option value="2">Campinas</mat-option>
+        <mat-option value="3">Ribeirão Preto</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="field-item">
+    <mat-form-field appearance="outline">
+      <mat-label>Data de abertura</mat-label>
+      <input matInput [matDatepicker]="pickerAbertura" />
+      <mat-datepicker-toggle
+        matIconSuffix
+        [for]="pickerAbertura"
+      ></mat-datepicker-toggle>
+      <mat-datepicker #pickerAbertura></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <!-- Linha 4: Servidor + SIAPE -->
+  <div class="field-item">
+    <mat-form-field appearance="outline">
+      <mat-label>Servidor</mat-label>
+      <mat-select value="1">
+        <mat-option value="1">Daniele Ramos</mat-option>
+        <mat-option value="2">Liz Onishi</mat-option>
+        <mat-option value="3">Marcos Gonçalves</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="field-item">
+    <mat-form-field appearance="outline">
+      <mat-label>SIAPE</mat-label>
+      <mat-select value="123456">
+        <mat-option value="123456">123456</mat-option>
+        <mat-option value="789012">789012</mat-option>
+        <mat-option value="789012">789012</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!-- Linha 5: Cargo + Prazo -->
+  <div class="field-item">
+    <mat-form-field appearance="outline">
+      <mat-label>Cargo</mat-label>
+      <mat-select value="Analista">
+        <mat-option value="Analista">Perito</mat-option>
+        <mat-option value="Especialista">Perito</mat-option>
+        <mat-option value="Tecnico">Perito</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div class="field-item">
+    <mat-form-field appearance="outline">
+      <mat-label>Prazo</mat-label>
+      <mat-select>
+        <mat-option value="30">30 (trinta) dias</mat-option>
+        <mat-option value="45">45 (quarenta e cinco) dias</mat-option>
+        <mat-option value="60">60 (sessenta) dias</mat-option>
+        <mat-option value="90">90 (noventa) dias</mat-option>
+        <mat-option value="120">120 (cento e vinte) dias</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!-- Linha 6 (full width): Considerações -->
+  <div class="field-item field-full">
+    <mat-form-field appearance="outline" class="campo-observacao">
+      <mat-label>Considerações</mat-label>
+      <textarea
+        matInput
+        rows="4"
+        placeholder="Digite suas considerações sobre o processo"
+      ></textarea>
+    </mat-form-field>
+  </div>
+
+  <div class="form-actions">
+    <button mat-flat-button color="primary" (click)="salvar()">Salvar</button>
+  </div>
+</div>

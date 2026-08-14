@@ -14,6 +14,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { OrdemServico } from './ordem-servico/ordem-servico';
+//import { OrdemServico } from './ordem-servico/ordem-servico.component';
 
 @Component({
   selector: 'app-editar',
@@ -30,6 +33,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     MatSelectModule,
     MatStepperModule,
     MatExpansionModule,
+    MatDialogModule,
   ],
   templateUrl: './editar.html',
   styleUrl: './editar.css',
@@ -37,7 +41,10 @@ import { MatExpansionModule } from '@angular/material/expansion';
 export class Editar implements OnInit {
   public dados!: Dados;
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private dialog: MatDialog,
+  ) {}
 
   ngOnInit(): void {
     const navigation = this.router.getCurrentNavigation();
@@ -57,6 +64,14 @@ export class Editar implements OnInit {
     }
 
     this.dados = dadosRecebidos;
+  }
+
+  abrirOrdemServico(): void {
+    this.dialog.open(OrdemServico, {
+      width: '1000px',
+      // Você pode passar dados, se necessário:
+      // data: { algumDado: 'valor' }
+    });
   }
 
   salvar(): void {
