@@ -120,3 +120,8 @@
     <button mat-flat-button color="primary" (click)="salvar()">Salvar</button>
   </div>
 </div>
+
+<!-- Área que será impressa (invisível na tela, visível na impressão) -->
+<div class="print-area" id="printArea">
+  <app-print-os [dados]="dadosOrdem"></app-print-os>
+</div>

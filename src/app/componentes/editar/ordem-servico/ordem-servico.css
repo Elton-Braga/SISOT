@@ -33,3 +33,37 @@
   resize: vertical;
   min-height: 80px;
 }
+
+/* styles.css ou no componente com encapsulamento adequado */
+/* ordem-servico.css */
+
+/* Oculta a área de impressão na tela */
+.print-area {
+  display: none;
+}
+
+@media print {
+  /* Esconde tudo que não está na print-area */
+  body * {
+    visibility: hidden;
+  }
+  .print-area,
+  .print-area * {
+    visibility: visible;
+  }
+  .print-area {
+    display: block !important;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    padding: 20px;
+    background: white;
+  }
+  /* Oculta o formulário e botões */
+  .form-container,
+  .form-actions,
+  button {
+    display: none !important;
+  }
+}

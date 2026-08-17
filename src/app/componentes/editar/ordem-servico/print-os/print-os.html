@@ -1,0 +1,62 @@
+<!-- print-os.html -->
+<div class="documento">
+  <p style="text-align: center; font-weight: bold">
+    MINISTÉRIO DO DESENVOLVIMENTO AGRÁRIO<br />
+    INSTITUTO NACIONAL DE COLONIZAÇÃO E REFORMA AGRÁRIA<br />
+    SUPERINTENDÊNCIA REGIONAL ({{ dadosExibicao.sr }})<br />
+    DIVISÃO DE OBTENÇÃO DE TERRAS
+  </p>
+
+  <p style="text-align: center; font-weight: bold; font-size: 1.2em">
+    ORDEM DE SERVIÇO/INCRA/{{ dadosExibicao.sr }}/G/Nº {{ dadosExibicao.id }}
+  </p>
+
+  <p style="text-align: right">
+    {{ dadosExibicao.estado }}, {{ dadosExibicao.dataAbertura }}
+  </p>
+
+  <p>
+    O SUPERINTENDENTE REGIONAL DO INCRA, NO ESTADO “{{ dadosExibicao.estado }}”,
+    no uso das atribuições que lhe são conferidas pelo Art. 21, da Estrutura
+    Regimental deste Instituto, aprovada pelo Decreto nº 5.735, de 27 de março
+    de 2006, combinado com o Art. 119 do Regimento Interno da Autarquia,
+    aprovado pela Portaria MDA nº 69 de 19 de outubro de 2006, publicado no DOU
+    de 20 de outubro de 2006.
+  </p>
+
+  <p>
+    CONSIDERANDO o disposto (legislação referente à desapropriação ou aquisição)
+    “{{ dadosExibicao.consideracoes }}”.
+  </p>
+
+  <p style="font-weight: bold">RESOLVE:</p>
+
+  <p>
+    Constituir EQUIPE TÉCNICA DE VISTORIA formada pelos servidores
+    <!-- Lista de servidores -->
+    <span *ngFor="let servidor of dadosExibicao.servidores; let i = index">
+      <span *ngIf="i > 0">, </span>
+      “{{ servidor.nome }}”, “{{ servidor.cargo }}”, SIAPE nº “{{
+        servidor.siape
+      }}”
+    </span>
+    , sob coordenação do primeiro, para efetuar levantamento de dados e
+    informações visando à elaboração do Laudo Agronômico de Fiscalização (LAF),
+    Laudo de Vistoria e Avaliação (LVA) e Estudo acerca da Capacidade de Geração
+    de Renda e Assentamento (ECGA) do imóvel rural denominado “{{
+      dadosExibicao.imovel
+    }}”, localizado no(s) município(s) de “{{ dadosExibicao.municipio }}”. Tudo
+    conforme atividades programadas no Diagnóstico Regional Participativo e
+    Plano de ação para obtenção de terras.
+  </p>
+
+  <p>
+    Determinar o prazo de “{{ dadosExibicao.prazo }}” dias após o término dos
+    trabalhos em campo para a apresentação dos relatórios técnicos.
+  </p>
+
+  <p>
+    A presente Ordem de Serviço entrará em vigor a partir de sua assinatura e
+    publicação e terá validade por “{{ dadosExibicao.prazo }}” dias.
+  </p>
+</div>
