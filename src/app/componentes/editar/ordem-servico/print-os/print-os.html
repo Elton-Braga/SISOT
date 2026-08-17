@@ -1,5 +1,6 @@
 <!-- print-os.html -->
-<div class="documento">
+
+<div class="documento" #conteudoImpressao>
   <p style="text-align: center; font-weight: bold">
     MINISTÉRIO DO DESENVOLVIMENTO AGRÁRIO<br />
     INSTITUTO NACIONAL DE COLONIZAÇÃO E REFORMA AGRÁRIA<br />
@@ -33,13 +34,15 @@
 
   <p>
     Constituir EQUIPE TÉCNICA DE VISTORIA formada pelos servidores
-    <!-- Lista de servidores -->
+
     <span *ngFor="let servidor of dadosExibicao.servidores; let i = index">
       <span *ngIf="i > 0">, </span>
+
       “{{ servidor.nome }}”, “{{ servidor.cargo }}”, SIAPE nº “{{
         servidor.siape
       }}”
     </span>
+
     , sob coordenação do primeiro, para efetuar levantamento de dados e
     informações visando à elaboração do Laudo Agronômico de Fiscalização (LAF),
     Laudo de Vistoria e Avaliação (LVA) e Estudo acerca da Capacidade de Geração

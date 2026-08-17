@@ -50,22 +50,11 @@ export class OrdemServico {
   salvar() {
     console.log('Salvo!');
     // Abre o modal com o componente PrintOS
-    const dialogRef = this.dialog.open(PrintOS, {
-      data: this.dadosOrdem, // passa os dados para o PrintOS
+    this.dialog.open(PrintOS, {
+      data: this.dadosOrdem,
       width: '90%',
       maxWidth: '800px',
-      panelClass: 'print-dialog', // classe para estilização
+      panelClass: 'print-dialog',
     });
-
-    // Após o modal ser aberto, dispara a impressão
-    dialogRef.afterOpened().subscribe(() => {
-      // Pequeno delay para garantir que o conteúdo foi renderizado
-      setTimeout(() => {
-        window.print();
-      }, 300);
-    });
-
-    // Opcional: fechar o modal após a impressão (se desejar)
-    // dialogRef.afterClosed().subscribe(() => { ... });
   }
 }
