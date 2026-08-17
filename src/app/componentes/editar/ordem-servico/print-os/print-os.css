@@ -1,3 +1,12 @@
 .documento {
   margin: 2rem;
 }
+
+.print {
+  color: rgb(7, 94, 94);
+}
+
+.print:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}

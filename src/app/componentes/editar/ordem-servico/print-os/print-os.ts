@@ -4,16 +4,18 @@ import {
   ElementRef,
   Inject,
   Input,
+  OnInit,
   ViewChild,
 } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-print-os',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, MatButtonModule],
   templateUrl: './print-os.html',
   styleUrl: './print-os.css',
 })
@@ -28,13 +30,8 @@ export class PrintOS implements AfterViewInit {
   get dadosExibicao() {
     return this.dados || this.dialogData;
   }
-
   ngAfterViewInit(): void {
-    // Aguarda o Angular terminar de renderizar o conteúdo,
-    // inclusive o *ngFor dos servidores.
-    setTimeout(() => {
-      this.imprimir();
-    }, 300);
+    //this.imprimir();
   }
 
   imprimir(): void {
