@@ -67,3 +67,86 @@
     display: none !important;
   }
 }
+
+.imoveis-section {
+  width: 100%;
+  margin: 16px 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+}
+
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-weight: 500;
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Largura da tabela ajustada para 90% com ng-deep para maior especificidade */
+::ng-deep .imoveis-table {
+  width: 100% !important;
+  border-collapse: collapse;
+  background: #fafafa;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+table {
+  width: 100% !important;
+}
+
+/* Os demais estilos permanecem */
+.imoveis-table th {
+  text-align: left;
+  padding: 8px 12px;
+  background: #f0f0f0;
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: #555;
+  border-bottom: 1px solid #ddd;
+}
+
+.imoveis-table td {
+  padding: 4px 12px;
+  vertical-align: middle;
+  border-bottom: 1px solid #eee;
+}
+
+.imoveis-table tr:last-child td {
+  border-bottom: none;
+}
+
+.acoes-col {
+  width: 60px;
+  text-align: center;
+}
+
+.table-field {
+  width: 100%;
+  margin: 4px 0;
+}
+
+.table-field .mat-form-field-wrapper {
+  padding-bottom: 0;
+}
+
+.table-field .mat-form-field-outline {
+  background: white;
+}
+
+.sem-imoveis {
+  padding: 12px;
+  text-align: center;
+  color: #999;
+  background: #f9f9f9;
+  border-radius: 4px;
+  border: 1px dashed #ddd;
+}

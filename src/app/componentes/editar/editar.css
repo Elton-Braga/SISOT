@@ -464,3 +464,9 @@ mat-form-field {
     width: 100%;
   }
 }
+
+.dialog-com-rolagem .mat-dialog-container {
+  max-height: 80vh; /* limita a altura a 80% da viewport */
+  overflow-y: auto; /* adiciona rolagem vertical quando necessário */
+  padding: 0; /* opcional, ajuste conforme layout */
+}

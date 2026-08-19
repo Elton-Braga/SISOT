@@ -68,9 +68,11 @@ export class Editar implements OnInit {
 
   abrirOrdemServico(): void {
     this.dialog.open(OrdemServico, {
-      width: '1000px',
-      // Você pode passar dados, se necessário:
-      // data: { algumDado: 'valor' }
+      maxWidth: '1100px',
+      width: '800px',
+      maxHeight: '1100px',
+      height: '90%',
+      panelClass: 'dialog-com-rolagem',
     });
   }
 

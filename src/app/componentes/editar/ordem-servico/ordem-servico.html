@@ -1,4 +1,3 @@
-<!-- HTML (Angular Material) -->
 <div class="form-container">
   <!-- Linha 1: ID + SR -->
   <div class="field-item">
@@ -17,7 +16,7 @@
     </mat-form-field>
   </div>
 
-  <!-- Linha 2: Estado + Imóvel -->
+  <!-- Linha 2: Estado + Data de abertura -->
   <div class="field-item">
     <mat-form-field appearance="outline">
       <mat-label>Estado</mat-label>
@@ -25,24 +24,6 @@
         <mat-option value="SP">São Paulo</mat-option>
         <mat-option value="RJ">Rio de Janeiro</mat-option>
         <mat-option value="MG">Minas Gerais</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-  <div class="field-item">
-    <mat-form-field appearance="outline">
-      <mat-label>Imóvel</mat-label>
-      <input matInput value="Fazenda Santa Maria" disabled />
-    </mat-form-field>
-  </div>
-
-  <!-- Linha 3: Município + Data de abertura -->
-  <div class="field-item">
-    <mat-form-field appearance="outline">
-      <mat-label>Município</mat-label>
-      <mat-select disabled value="1">
-        <mat-option value="1">São Paulo</mat-option>
-        <mat-option value="2">Campinas</mat-option>
-        <mat-option value="3">Ribeirão Preto</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
@@ -58,7 +39,64 @@
     </mat-form-field>
   </div>
 
-  <!-- Linha 4: Servidor + SIAPE -->
+  <!-- Seção: Imóveis (tabela) -->
+  <div class="imoveis-section">
+    <!-- Cabeçalho da tabela com botão adicionar -->
+    <div class="table-header">
+      <span class="section-title">Imóveis</span>
+      <button
+        mat-flat-button
+        color="primary"
+        (click)="adicionarImovel()"
+        [disabled]="!podeAdicionar"
+      >
+        <mat-icon>add</mat-icon> Adicionar imóvel
+      </button>
+    </div>
+
+    <!-- Tabela de imóveis -->
+    <table class="imoveis-table" *ngIf="imoveisSelecionados.length > 0">
+      <thead>
+        <tr>
+          <th>Imóvel</th>
+          <th>Município</th>
+          <th class="acoes-col">Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of imoveisSelecionados; let i = index">
+          <td>
+            <mat-form-field appearance="outline" class="table-field">
+              <mat-select
+                [(ngModel)]="item.imovel"
+                (selectionChange)="onImovelChange(i)"
+              >
+                <mat-option *ngFor="let op of listaImoveis" [value]="op.imovel">
+                  {{ op.imovel }} - {{ op.municipio }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </td>
+          <td>
+            <mat-form-field appearance="outline" class="table-field">
+              <input matInput [value]="item.municipio" disabled />
+            </mat-form-field>
+          </td>
+          <td class="acoes-col">
+            <button mat-icon-button color="warn" (click)="removerImovel(i)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <!-- Mensagem quando não há imóveis -->
+    <div *ngIf="imoveisSelecionados.length === 0" class="sem-imoveis">
+      Nenhum imóvel adicionado.
+    </div>
+  </div>
+
+  <!-- Linha 3: Servidor + SIAPE -->
   <div class="field-item">
     <mat-form-field appearance="outline">
       <mat-label>Servidor</mat-label>
@@ -75,12 +113,11 @@
       <mat-select value="123456">
         <mat-option value="123456">123456</mat-option>
         <mat-option value="789012">789012</mat-option>
-        <mat-option value="789012">789012</mat-option>
       </mat-select>
     </mat-form-field>
   </div>
 
-  <!-- Linha 5: Cargo + Prazo -->
+  <!-- Linha 4: Cargo + Prazo -->
   <div class="field-item">
     <mat-form-field appearance="outline">
       <mat-label>Cargo</mat-label>
@@ -104,7 +141,24 @@
     </mat-form-field>
   </div>
 
-  <!-- Linha 6 (full width): Considerações -->
+  <!-- Linha 5: Serviço (seleção múltipla) -->
+  <div class="field-item field-full">
+    <mat-form-field appearance="outline">
+      <mat-label>Serviço</mat-label>
+      <mat-select [(ngModel)]="servicosSelecionados" multiple>
+        <mat-option value="LAF"
+          >Laudo Agronômico de Fiscalização (LAF)</mat-option
+        >
+        <mat-option value="LVA">Laudo de Vistoria e Avaliação (LVA)</mat-option>
+        <mat-option value="ECGA"
+          >Estudo acerca da Capacidade de Geração de Renda e Assentamento
+          (ECGA)</mat-option
+        >
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!-- Linha 6: Considerações -->
   <div class="field-item field-full">
     <mat-form-field appearance="outline" class="campo-observacao">
       <mat-label>Considerações</mat-label>
@@ -121,7 +175,7 @@
   </div>
 </div>
 
-<!-- Área que será impressa (invisível na tela, visível na impressão) -->
+<!-- Área que será impressa -->
 <div class="print-area" id="printArea">
   <app-print-os [dados]="dadosOrdem"></app-print-os>
 </div>
