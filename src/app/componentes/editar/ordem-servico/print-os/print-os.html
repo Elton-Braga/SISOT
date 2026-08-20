@@ -34,23 +34,34 @@
 
   <p>
     Constituir EQUIPE TÉCNICA DE VISTORIA formada pelos servidores
-
     <span *ngFor="let servidor of dadosExibicao.servidores; let i = index">
       <span *ngIf="i > 0">, </span>
-
       “{{ servidor.nome }}”, “{{ servidor.cargo }}”, SIAPE nº “{{
         servidor.siape
       }}”
     </span>
-
     , sob coordenação do primeiro, para efetuar levantamento de dados e
     informações visando à elaboração do Laudo Agronômico de Fiscalização (LAF),
     Laudo de Vistoria e Avaliação (LVA) e Estudo acerca da Capacidade de Geração
-    de Renda e Assentamento (ECGA) do imóvel rural denominado “{{
-      dadosExibicao.imovel
-    }}”, localizado no(s) município(s) de “{{ dadosExibicao.municipio }}”. Tudo
-    conforme atividades programadas no Diagnóstico Regional Participativo e
-    Plano de ação para obtenção de terras.
+    de Renda e Assentamento (ECGA)
+    <ng-container *ngIf="dadosExibicao.imoveis.length === 1">
+      do imóvel rural denominado “{{ dadosExibicao.imoveis[0].imovel }}”,
+      localizado no(s) município(s) de “{{
+        dadosExibicao.imoveis[0].municipio
+      }}”
+    </ng-container>
+    <ng-container *ngIf="dadosExibicao.imoveis.length > 1">
+      dos imóveis rurais denominados
+      <span *ngFor="let imovel of dadosExibicao.imoveis; let i = index">
+        <span *ngIf="i > 0 && i < dadosExibicao.imoveis.length - 1">, </span>
+        <span *ngIf="i === dadosExibicao.imoveis.length - 1 && i > 0"> e </span>
+        “{{ imovel.imovel }}”, localizado no(s) município(s) de “{{
+          imovel.municipio
+        }}”
+      </span>
+    </ng-container>
+    . Tudo conforme atividades programadas no Diagnóstico Regional Participativo
+    e Plano de ação para obtenção de terras.
   </p>
 
   <p>
