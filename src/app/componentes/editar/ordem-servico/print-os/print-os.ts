@@ -55,88 +55,84 @@ export class PrintOS implements AfterViewInit {
     janela.document.open();
 
     janela.document.write(`
-      <!DOCTYPE html>
-      <html lang="pt-BR">
-        <head>
-          <meta charset="UTF-8">
+    <!DOCTYPE html>
+    <html lang="pt-BR">
+      <head>
+        <meta charset="UTF-8">
+        <title>Ordem de Serviço</title>
+        <style>
+          @page {
+            size: A4;
+            margin: 2cm;
+          }
 
-          <title>Ordem de Serviço</title>
+          * {
+            box-sizing: border-box;
+          }
 
-          <style>
-            @page {
-              size: A4;
-              margin: 2cm;
-            }
+          html, body {
+            margin: 0;
+            padding: 0;
+            background: white;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 12pt;
+            color: #000;
+          }
 
-            * {
-              box-sizing: border-box;
-            }
+          body {
+            width: 100%;
+          }
 
-            html,
-            body {
-              margin: 0;
-              padding: 0;
-              background: white;
-              font-family: Arial, Helvetica, sans-serif;
-              font-size: 12pt;
-              color: #000;
-            }
+          .documento {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+          }
 
-            body {
+          p {
+            margin-top: 0;
+            margin-bottom: 16px;
+            line-height: 1.5;
+            text-align: justify;
+          }
+
+          /* Oculta elementos com a classe no-print */
+          .no-print {
+            display: none !important;
+          }
+
+          @media print {
+            html, body {
               width: 100%;
+              height: auto;
             }
-
             .documento {
               width: 100%;
-              margin: 0;
-              padding: 0;
             }
-
-            p {
-              margin-top: 0;
-              margin-bottom: 16px;
-              line-height: 1.5;
-              text-align: justify;
-            }
-
-            @media print {
-              html,
-              body {
-                width: 100%;
-                height: auto;
-              }
-
-              .documento {
-                width: 100%;
-              }
-            }
-          </style>
-        </head>
-
-        <body>
-
-          ${conteudo.outerHTML}
-
-        </body>
-      </html>
-    `);
+          }
+        </style>
+      </head>
+      <body>
+        ${conteudo.outerHTML}
+      </body>
+    </html>
+  `);
 
     janela.document.close();
 
-    // Aguarda a renderização da nova janela
-    // antes de abrir a caixa de impressão.
     janela.onload = () => {
       janela.focus();
-
       setTimeout(() => {
         janela.print();
-
-        // Fecha a janela depois que o usuário
-        // terminar/cancelar a impressão.
         janela.onafterprint = () => {
           janela.close();
         };
       }, 300);
     };
+  }
+  enviarParaAssinatura(): void {
+    // Aqui você deve implementar a lógica para enviar o documento para assinatura.
+    // Exemplo: chamar um serviço, abrir um modal, etc.
+    alert('Encaminhado para o Superintendente Regional.');
   }
 }

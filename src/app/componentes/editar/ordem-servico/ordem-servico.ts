@@ -49,6 +49,7 @@ export class OrdemServico {
     ],
     servicos: [] as string[],
   };
+  servidoresSelecionados: any[] = [];
 
   // Lista de opções de imóveis extraída do mock
   listaImoveis = IMOVEIS_MOCK.map((item) => ({
@@ -95,13 +96,13 @@ export class OrdemServico {
   }
 
   salvar() {
-    // Atualiza dadosOrdem com os imóveis e serviços selecionados
+    // Atualiza dadosOrdem com os imóveis, serviços e servidores selecionados
     this.dadosOrdem.imoveis = this.imoveisSelecionados.filter((i) => i.imovel);
     this.dadosOrdem.servicos = this.servicosSelecionados;
+    this.dadosOrdem.servidores = this.servidoresSelecionados; // ← repassa os servidores escolhidos
 
     console.log('Dados salvos:', this.dadosOrdem);
 
-    // Abre o modal de impressão
     this.dialog.open(PrintOS, {
       data: this.dadosOrdem,
       width: '100%',

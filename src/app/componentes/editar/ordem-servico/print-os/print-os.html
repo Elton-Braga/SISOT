@@ -74,7 +74,14 @@
     publicação e terá validade por “{{ dadosExibicao.prazo }}” dias.
   </p>
   <br /><br />
-  <div class="form-actions">
-    <a class="print" (click)="imprimir()"> Imprimir </a>
+  <div class="form-actions no-print">
+    <a class="print" (click)="imprimir()">Imprimir</a>
+    <button
+      mat-raised-button
+      style="background-color: #0168d6; color: white"
+      (click)="enviarParaAssinatura()"
+    >
+      Enviar para assinatura
+    </button>
   </div>
 </div>

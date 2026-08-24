@@ -97,36 +97,55 @@
   </div>
 
   <!-- Linha 3: Servidor + SIAPE -->
-  <div class="field-item">
+  <div class="field-item field-full">
     <mat-form-field appearance="outline">
-      <mat-label>Servidor</mat-label>
-      <mat-select value="1">
-        <mat-option value="1">Daniele Ramos</mat-option>
-        <mat-option value="2">Liz Onishi</mat-option>
-        <mat-option value="3">Marcos Gonçalves</mat-option>
+      <mat-label>Servidores</mat-label>
+      <mat-select [(ngModel)]="servidoresSelecionados" multiple>
+        <mat-option
+          *ngFor="let servidor of dadosOrdem.servidores"
+          [value]="servidor"
+        >
+          {{ servidor.nome }} – {{ servidor.cargo }} (SIAPE:
+          {{ servidor.siape }})
+        </mat-option>
       </mat-select>
     </mat-form-field>
   </div>
-  <div class="field-item">
-    <mat-form-field appearance="outline">
-      <mat-label>SIAPE</mat-label>
-      <mat-select value="123456">
-        <mat-option value="123456">123456</mat-option>
-        <mat-option value="789012">789012</mat-option>
-      </mat-select>
-    </mat-form-field>
+  <!-- Exibição dos servidores selecionados em campos desabilitados -->
+  <div class="field-item field-full" *ngIf="servidoresSelecionados.length > 0">
+    <div class="servidores-campos">
+      <p><strong>Servidor(es) selecionado(s):</strong></p>
+      <div
+        class="servidor-linha"
+        *ngFor="let serv of servidoresSelecionados; let i = index"
+      >
+        <mat-form-field appearance="outline" class="campo-servidor nome">
+          <mat-label>Nome</mat-label>
+          <input matInput [value]="serv.nome" disabled />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="campo-servidor cargo">
+          <mat-label>Cargo</mat-label>
+          <input matInput [value]="serv.cargo" disabled />
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="campo-servidor siape">
+          <mat-label>SIAPE</mat-label>
+          <input matInput [value]="serv.siape" disabled />
+        </mat-form-field>
+      </div>
+    </div>
   </div>
 
-  <!-- Linha 4: Cargo + Prazo -->
-  <div class="field-item">
-    <mat-form-field appearance="outline">
-      <mat-label>Cargo</mat-label>
-      <mat-select value="Analista">
-        <mat-option value="Analista">Perito</mat-option>
-        <mat-option value="Especialista">Perito</mat-option>
-        <mat-option value="Tecnico">Perito</mat-option>
-      </mat-select>
-    </mat-form-field>
+  <div
+    class="field-item field-full"
+    *ngIf="servidoresSelecionados.length === 0"
+  >
+    <p class="sem-servidores">Nenhum servidor selecionado.</p>
+  </div>
+  <div
+    class="field-item field-full"
+    *ngIf="servidoresSelecionados.length === 0"
+  >
+    <p class="sem-servidores">Nenhum servidor selecionado.</p>
   </div>
   <div class="field-item">
     <mat-form-field appearance="outline">
