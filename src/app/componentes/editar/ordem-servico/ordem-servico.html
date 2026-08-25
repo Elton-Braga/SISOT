@@ -1,200 +1,324 @@
-<div class="form-container">
-  <!-- Linha 1: ID + SR -->
-  <div class="field-item">
-    <mat-form-field appearance="outline">
-      <mat-label>ID (Código/Ano)</mat-label>
-      <input matInput value="2026/0001" disabled />
-    </mat-form-field>
-  </div>
-  <div class="field-item">
-    <mat-form-field appearance="outline">
-      <mat-label>SR</mat-label>
-      <mat-select disabled value="1">
-        <mat-option value="1">SR-01</mat-option>
-        <mat-option value="2">SR-02</mat-option>
-      </mat-select>
-    </mat-form-field>
+<div class="form-page">
+  <!-- ================================================= -->
+  <!-- CABEÇALHO -->
+  <!-- ================================================= -->
+
+  <div class="pagina-cabecalho">
+    <h1>Ordem de Serviço</h1>
+
+    <p>Preencha as informações necessárias para emissão da ordem de serviço.</p>
   </div>
 
-  <!-- Linha 2: Estado + Data de abertura -->
-  <div class="field-item">
-    <mat-form-field appearance="outline">
-      <mat-label>Estado</mat-label>
-      <mat-select disabled value="SP">
-        <mat-option value="SP">São Paulo</mat-option>
-        <mat-option value="RJ">Rio de Janeiro</mat-option>
-        <mat-option value="MG">Minas Gerais</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-  <div class="field-item">
-    <mat-form-field appearance="outline">
-      <mat-label>Data de abertura</mat-label>
-      <input matInput [matDatepicker]="pickerAbertura" />
-      <mat-datepicker-toggle
-        matIconSuffix
-        [for]="pickerAbertura"
-      ></mat-datepicker-toggle>
-      <mat-datepicker #pickerAbertura></mat-datepicker>
-    </mat-form-field>
-  </div>
+  <!-- ================================================= -->
+  <!-- DADOS GERAIS -->
+  <!-- ================================================= -->
 
-  <!-- Seção: Imóveis (tabela) -->
-  <div class="imoveis-section">
-    <!-- Cabeçalho da tabela com botão adicionar -->
-    <div class="table-header">
-      <span class="section-title">Imóveis</span>
+  <section class="form-section">
+    <h2>Dados Gerais</h2>
+
+    <div class="form-grid">
+      <!-- ID -->
+
+      <mat-form-field appearance="outline">
+        <mat-label>ID (Código/Ano)</mat-label>
+
+        <input matInput value="2026/0001" disabled />
+      </mat-form-field>
+
+      <!-- SR -->
+
+      <mat-form-field appearance="outline">
+        <mat-label>SR</mat-label>
+
+        <mat-select disabled value="1">
+          <mat-option value="1"> SR-01 </mat-option>
+
+          <mat-option value="2"> SR-02 </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- ESTADO -->
+
+      <mat-form-field appearance="outline">
+        <mat-label>Estado</mat-label>
+
+        <mat-select disabled value="SP">
+          <mat-option value="SP"> São Paulo </mat-option>
+
+          <mat-option value="RJ"> Rio de Janeiro </mat-option>
+
+          <mat-option value="MG"> Minas Gerais </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- DATA DE ABERTURA -->
+
+      <mat-form-field appearance="outline">
+        <mat-label>Data de abertura</mat-label>
+
+        <input matInput [matDatepicker]="pickerAbertura" />
+
+        <mat-datepicker-toggle matIconSuffix [for]="pickerAbertura">
+        </mat-datepicker-toggle>
+
+        <mat-datepicker #pickerAbertura> </mat-datepicker>
+      </mat-form-field>
+    </div>
+  </section>
+
+  <!-- ================================================= -->
+  <!-- IMÓVEIS -->
+  <!-- ================================================= -->
+
+  <section class="form-section">
+    <div class="section-header">
+      <div>
+        <h2>Imóveis</h2>
+
+        <p class="section-description">
+          Adicione os imóveis relacionados à ordem de serviço.
+        </p>
+      </div>
+
       <button
         mat-flat-button
         color="primary"
+        type="button"
         (click)="adicionarImovel()"
         [disabled]="!podeAdicionar"
       >
-        <mat-icon>add</mat-icon> Adicionar imóvel
+        <mat-icon>add</mat-icon>
+
+        Adicionar imóvel
       </button>
     </div>
 
-    <!-- Tabela de imóveis -->
-    <table class="imoveis-table" *ngIf="imoveisSelecionados.length > 0">
-      <thead>
-        <tr>
-          <th>Imóvel</th>
-          <th>Município</th>
-          <th class="acoes-col">Ações</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let item of imoveisSelecionados; let i = index">
-          <td>
-            <mat-form-field appearance="outline" class="table-field">
-              <mat-select
-                [(ngModel)]="item.imovel"
-                (selectionChange)="onImovelChange(i)"
-              >
-                <mat-option *ngFor="let op of listaImoveis" [value]="op.imovel">
-                  {{ op.imovel }} - {{ op.municipio }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </td>
-          <td>
-            <mat-form-field appearance="outline" class="table-field">
-              <input matInput [value]="item.municipio" disabled />
-            </mat-form-field>
-          </td>
-          <td class="acoes-col">
-            <button mat-icon-button color="warn" (click)="removerImovel(i)">
-              <mat-icon>delete</mat-icon>
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <!-- Mensagem quando não há imóveis -->
-    <div *ngIf="imoveisSelecionados.length === 0" class="sem-imoveis">
-      Nenhum imóvel adicionado.
-    </div>
-  </div>
+    <!-- TABELA -->
 
-  <!-- Linha 3: Servidor + SIAPE -->
-  <div class="field-item field-full">
-    <mat-form-field appearance="outline">
-      <mat-label>Servidores</mat-label>
+    <div class="table-container">
+      <table class="imoveis-table" *ngIf="imoveisSelecionados.length > 0">
+        <thead>
+          <tr>
+            <th>Imóvel</th>
+
+            <th>Município</th>
+
+            <th class="acoes-col">Ações</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let item of imoveisSelecionados; let i = index">
+            <!-- IMÓVEL -->
+
+            <td>
+              <mat-form-field appearance="outline" class="table-field">
+                <mat-select
+                  [(ngModel)]="item.imovel"
+                  (selectionChange)="onImovelChange(i)"
+                >
+                  <mat-option
+                    *ngFor="let op of listaImoveis"
+                    [value]="op.imovel"
+                  >
+                    {{ op.imovel }} -
+                    {{ op.municipio }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </td>
+
+            <!-- MUNICÍPIO -->
+
+            <td>
+              <mat-form-field appearance="outline" class="table-field">
+                <input matInput [value]="item.municipio" disabled />
+              </mat-form-field>
+            </td>
+
+            <!-- AÇÕES -->
+
+            <td class="acoes-col">
+              <button
+                mat-icon-button
+                color="warn"
+                type="button"
+                (click)="removerImovel(i)"
+              >
+                <mat-icon> delete </mat-icon>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <!-- SEM IMÓVEIS -->
+
+      <div *ngIf="imoveisSelecionados.length === 0" class="sem-imoveis">
+        Nenhum imóvel adicionado.
+      </div>
+    </div>
+  </section>
+
+  <!-- ================================================= -->
+  <!-- SERVIDORES -->
+  <!-- ================================================= -->
+
+  <section class="form-section">
+    <h2>Servidores</h2>
+
+    <!-- SELEÇÃO -->
+
+    <mat-form-field appearance="outline" class="campo-completo">
+      <mat-label> Servidores </mat-label>
+
       <mat-select [(ngModel)]="servidoresSelecionados" multiple>
         <mat-option
           *ngFor="let servidor of dadosOrdem.servidores"
           [value]="servidor"
         >
-          {{ servidor.nome }} – {{ servidor.cargo }} (SIAPE:
-          {{ servidor.siape }})
+          {{ servidor.nome }}
+          –
+          {{ servidor.cargo }}
+          (SIAPE: {{ servidor.siape }})
         </mat-option>
       </mat-select>
     </mat-form-field>
-  </div>
-  <!-- Exibição dos servidores selecionados em campos desabilitados -->
-  <div class="field-item field-full" *ngIf="servidoresSelecionados.length > 0">
-    <div class="servidores-campos">
-      <p><strong>Servidor(es) selecionado(s):</strong></p>
+
+    <!-- SERVIDORES SELECIONADOS -->
+
+    <div class="servidores-container" *ngIf="servidoresSelecionados.length > 0">
+      <div class="servidores-titulo">Servidor(es) selecionado(s)</div>
+
       <div
         class="servidor-linha"
         *ngFor="let serv of servidoresSelecionados; let i = index"
       >
+        <!-- NOME -->
+
         <mat-form-field appearance="outline" class="campo-servidor nome">
-          <mat-label>Nome</mat-label>
+          <mat-label> Nome </mat-label>
+
           <input matInput [value]="serv.nome" disabled />
         </mat-form-field>
+
+        <!-- CARGO -->
+
         <mat-form-field appearance="outline" class="campo-servidor cargo">
-          <mat-label>Cargo</mat-label>
+          <mat-label> Cargo </mat-label>
+
           <input matInput [value]="serv.cargo" disabled />
         </mat-form-field>
+
+        <!-- SIAPE -->
+
         <mat-form-field appearance="outline" class="campo-servidor siape">
-          <mat-label>SIAPE</mat-label>
+          <mat-label> SIAPE </mat-label>
+
           <input matInput [value]="serv.siape" disabled />
         </mat-form-field>
       </div>
+      <hr />
     </div>
-  </div>
 
-  <div
-    class="field-item field-full"
-    *ngIf="servidoresSelecionados.length === 0"
-  >
-    <p class="sem-servidores">Nenhum servidor selecionado.</p>
-  </div>
-  <div
-    class="field-item field-full"
-    *ngIf="servidoresSelecionados.length === 0"
-  >
-    <p class="sem-servidores">Nenhum servidor selecionado.</p>
-  </div>
-  <div class="field-item">
-    <mat-form-field appearance="outline">
-      <mat-label>Prazo</mat-label>
-      <mat-select>
-        <mat-option value="30">30 (trinta) dias</mat-option>
-        <mat-option value="45">45 (quarenta e cinco) dias</mat-option>
-        <mat-option value="60">60 (sessenta) dias</mat-option>
-        <mat-option value="90">90 (noventa) dias</mat-option>
-        <mat-option value="120">120 (cento e vinte) dias</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
+    <!-- NENHUM SERVIDOR -->
 
-  <!-- Linha 5: Serviço (seleção múltipla) -->
-  <div class="field-item field-full">
-    <mat-form-field appearance="outline">
-      <mat-label>Serviço</mat-label>
+    <div *ngIf="servidoresSelecionados.length === 0" class="sem-servidores">
+      Nenhum servidor selecionado.
+    </div>
+  </section>
+
+  <!-- ================================================= -->
+  <!-- PRAZO -->
+  <!-- ================================================= -->
+
+  <section class="form-section">
+    <h2>Prazo</h2>
+
+    <div class="form-grid">
+      <mat-form-field appearance="outline">
+        <mat-label> Prazo </mat-label>
+
+        <mat-select>
+          <mat-option value="30"> 30 (trinta) dias </mat-option>
+
+          <mat-option value="45"> 45 (quarenta e cinco) dias </mat-option>
+
+          <mat-option value="60"> 60 (sessenta) dias </mat-option>
+
+          <mat-option value="90"> 90 (noventa) dias </mat-option>
+
+          <mat-option value="120"> 120 (cento e vinte) dias </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </section>
+
+  <!-- ================================================= -->
+  <!-- SERVIÇOS -->
+  <!-- ================================================= -->
+
+  <section class="form-section">
+    <h2>Serviços</h2>
+
+    <mat-form-field appearance="outline" class="campo-completo">
+      <mat-label> Serviço </mat-label>
+
       <mat-select [(ngModel)]="servicosSelecionados" multiple>
-        <mat-option value="LAF"
-          >Laudo Agronômico de Fiscalização (LAF)</mat-option
-        >
-        <mat-option value="LVA">Laudo de Vistoria e Avaliação (LVA)</mat-option>
-        <mat-option value="ECGA"
-          >Estudo acerca da Capacidade de Geração de Renda e Assentamento
-          (ECGA)</mat-option
-        >
+        <mat-option value="LAF">
+          Laudo Agronômico de Fiscalização (LAF)
+        </mat-option>
+
+        <mat-option value="LVA">
+          Laudo de Vistoria e Avaliação (LVA)
+        </mat-option>
+
+        <mat-option value="ECGA">
+          Estudo acerca da Capacidade de Geração de Renda e Assentamento (ECGA)
+        </mat-option>
       </mat-select>
     </mat-form-field>
-  </div>
+  </section>
 
-  <!-- Linha 6: Considerações -->
-  <div class="field-item field-full">
-    <mat-form-field appearance="outline" class="campo-observacao">
-      <mat-label>Considerações</mat-label>
+  <!-- ================================================= -->
+  <!-- CONSIDERAÇÕES -->
+  <!-- ================================================= -->
+
+  <section class="form-section">
+    <h2>Considerações</h2>
+
+    <mat-form-field
+      appearance="outline"
+      class="campo-completo campo-observacao"
+    >
+      <mat-label> Considerações </mat-label>
+
       <textarea
         matInput
-        rows="4"
+        rows="5"
         placeholder="Digite suas considerações sobre o processo"
-      ></textarea>
+      >
+      </textarea>
     </mat-form-field>
-  </div>
+  </section>
+
+  <!-- ================================================= -->
+  <!-- AÇÕES -->
+  <!-- ================================================= -->
 
   <div class="form-actions">
-    <button mat-flat-button color="primary" (click)="salvar()">Salvar</button>
+    <button mat-flat-button color="primary" type="button" (click)="salvar()">
+      <mat-icon> save </mat-icon>
+
+      Salvar
+    </button>
   </div>
 </div>
 
-<!-- Área que será impressa -->
+<!-- ================================================= -->
+<!-- ÁREA DE IMPRESSÃO -->
+<!-- ================================================= -->
+
 <div class="print-area" id="printArea">
-  <app-print-os [dados]="dadosOrdem"></app-print-os>
+  <app-print-os [dados]="dadosOrdem"> </app-print-os>
 </div>

@@ -1,0 +1,295 @@
+<div class="resolucao-container">
+  <!-- CABEÇALHO -->
+
+  <div class="pagina-cabecalho">
+    <h1>Resolução CDR</h1>
+
+    <p>Preencha as informações necessárias para elaboração da resolução.</p>
+  </div>
+
+  <!-- ================================================= -->
+  <!-- DADOS DA RESOLUÇÃO -->
+  <!-- ================================================= -->
+
+  <section class="form-section">
+    <h2>Dados da Resolução</h2>
+
+    <div class="form-grid">
+      <!-- SR -->
+
+      <mat-form-field appearance="outline">
+        <mat-label>SR</mat-label>
+
+        <mat-select [(ngModel)]="sr">
+          <mat-option value=""> Selecione </mat-option>
+
+          <mat-option value="SR01"> SR 01 </mat-option>
+
+          <mat-option value="SR02"> SR 02 </mat-option>
+
+          <mat-option value="SR03"> SR 03 </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- ID DA RESOLUÇÃO -->
+
+      <mat-form-field appearance="outline">
+        <mat-label>ID da resolução CDR</mat-label>
+
+        <input matInput [(ngModel)]="idResolucaoCdr" readonly />
+      </mat-form-field>
+
+      <!-- DATA DA RESOLUÇÃO -->
+
+      <mat-form-field appearance="outline">
+        <mat-label>Data da resolução CDR</mat-label>
+
+        <input
+          matInput
+          [matDatepicker]="pickerResolucao"
+          [(ngModel)]="dataResolucaoCdr"
+        />
+
+        <mat-datepicker-toggle matIconSuffix [for]="pickerResolucao">
+        </mat-datepicker-toggle>
+
+        <mat-datepicker #pickerResolucao> </mat-datepicker>
+      </mat-form-field>
+
+      <!-- DATA DA REUNIÃO -->
+
+      <mat-form-field appearance="outline">
+        <mat-label>Data da reunião CDR</mat-label>
+
+        <input
+          matInput
+          [matDatepicker]="pickerReuniao"
+          [(ngModel)]="dataReuniaoCdr"
+        />
+
+        <mat-datepicker-toggle matIconSuffix [for]="pickerReuniao">
+        </mat-datepicker-toggle>
+
+        <mat-datepicker #pickerReuniao> </mat-datepicker>
+      </mat-form-field>
+    </div>
+  </section>
+
+  <!-- ================================================= -->
+  <!-- CONSIDERAÇÕES -->
+  <!-- ================================================= -->
+
+  <section class="form-section">
+    <h2>Considerações</h2>
+
+    @for (consideracao of consideracoes; track $index) {
+      <mat-form-field appearance="outline" class="campo-completo">
+        <mat-label> Considerações {{ $index + 1 }} </mat-label>
+
+        <textarea matInput [(ngModel)]="consideracoes[$index]" rows="5">
+        </textarea>
+      </mat-form-field>
+    }
+
+    <div class="acao-consideracao">
+      <button
+        mat-stroked-button
+        type="button"
+        (click)="adicionarConsideracao()"
+      >
+        <mat-icon> add </mat-icon>
+
+        Adicionar Considerações
+      </button>
+    </div>
+
+    <!-- CONSIDERAÇÃO FINAL -->
+
+    <mat-form-field appearance="outline" class="campo-completo">
+      <mat-label> Consideração final </mat-label>
+
+      <textarea matInput [(ngModel)]="consideracaoFinal" rows="5"> </textarea>
+    </mat-form-field>
+  </section>
+
+  <!-- ================================================= -->
+  <!-- DADOS DO IMÓVEL -->
+  <!-- ================================================= -->
+
+  <section class="form-section">
+    <h2>Dados do Imóvel</h2>
+
+    <div class="form-grid">
+      <!-- IMÓVEL -->
+
+      <mat-form-field appearance="outline" class="coluna-dupla">
+        <mat-label>Imóvel</mat-label>
+
+        <input matInput [(ngModel)]="imovel" readonly />
+      </mat-form-field>
+
+      <!-- ÁREA -->
+
+      <mat-form-field appearance="outline">
+        <mat-label>Área</mat-label>
+
+        <input matInput type="number" [(ngModel)]="area" readonly />
+      </mat-form-field>
+
+      <!-- MUNICÍPIO -->
+
+      <mat-form-field appearance="outline">
+        <mat-label>Município</mat-label>
+
+        <input matInput [(ngModel)]="municipio" readonly />
+      </mat-form-field>
+
+      <!-- PROPRIETÁRIO -->
+
+      <mat-form-field appearance="outline" class="coluna-dupla">
+        <mat-label>Proprietário</mat-label>
+
+        <input matInput [(ngModel)]="proprietario" readonly />
+      </mat-form-field>
+
+      <!-- SNCR -->
+
+      <mat-form-field appearance="outline">
+        <mat-label>SNCR</mat-label>
+
+        <input matInput [(ngModel)]="sncr" readonly />
+      </mat-form-field>
+    </div>
+  </section>
+
+  <!-- ================================================= -->
+  <!-- VALORES -->
+  <!-- ================================================= -->
+
+  <section class="form-section">
+    <h2>Valores</h2>
+
+    <div class="form-grid">
+      <!-- VALOR TOTAL -->
+
+      <mat-form-field appearance="outline">
+        <mat-label>Valor total</mat-label>
+
+        <span matTextPrefix>R$&nbsp;</span>
+
+        <input matInput type="number" [(ngModel)]="valorTotal" readonly />
+      </mat-form-field>
+
+      <!-- VALOR TOTAL POR EXTENSO -->
+
+      <mat-form-field appearance="outline" class="coluna-dupla">
+        <mat-label> Valor total por extenso </mat-label>
+
+        <input matInput [(ngModel)]="valorTotalPorExtenso" readonly />
+      </mat-form-field>
+
+      <!-- VALOR TDA -->
+
+      <mat-form-field appearance="outline">
+        <mat-label>Valor TDA</mat-label>
+
+        <span matTextPrefix>R$&nbsp;</span>
+
+        <input matInput type="number" [(ngModel)]="valorTda" readonly />
+      </mat-form-field>
+
+      <!-- VALOR TDA POR EXTENSO -->
+
+      <mat-form-field appearance="outline" class="coluna-dupla">
+        <mat-label> Valor TDA por extenso </mat-label>
+
+        <input matInput [(ngModel)]="valorTdaPorExtenso" readonly />
+      </mat-form-field>
+
+      <!-- VALOR MOEDA -->
+
+      <mat-form-field appearance="outline">
+        <mat-label>Valor moeda</mat-label>
+
+        <span matTextPrefix>R$&nbsp;</span>
+
+        <input matInput type="number" [(ngModel)]="valorMoeda" readonly />
+      </mat-form-field>
+
+      <!-- VALOR MOEDA POR EXTENSO -->
+
+      <mat-form-field appearance="outline" class="coluna-dupla">
+        <mat-label> Valor moeda por extenso </mat-label>
+
+        <input matInput [(ngModel)]="valorMoedaPorExtenso" readonly />
+      </mat-form-field>
+    </div>
+  </section>
+
+  <!-- ================================================= -->
+  <!-- PAGAMENTO -->
+  <!-- ================================================= -->
+
+  <section class="form-section">
+    <h2>Informações do Pagamento</h2>
+
+    <div class="form-grid">
+      <!-- PRAZO -->
+
+      <mat-form-field appearance="outline">
+        <mat-label>Prazo</mat-label>
+
+        <mat-select [(ngModel)]="prazo">
+          <mat-option value=""> Selecione </mat-option>
+
+          <mat-option value="30"> 30 dias </mat-option>
+
+          <mat-option value="60"> 60 dias </mat-option>
+
+          <mat-option value="90"> 90 dias </mat-option>
+
+          <mat-option value="120"> 120 dias </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- RESPONSÁVEL -->
+
+      <mat-form-field appearance="outline" class="coluna-dupla">
+        <mat-label> Responsável pelo pagamento </mat-label>
+
+        <input matInput [(ngModel)]="responsavelPagamento" readonly />
+      </mat-form-field>
+
+      <!-- CPF -->
+
+      <mat-form-field appearance="outline">
+        <mat-label> CPF do responsável </mat-label>
+
+        <input matInput [(ngModel)]="cpfResponsavel" readonly />
+      </mat-form-field>
+    </div>
+  </section>
+
+  <!-- ================================================= -->
+  <!-- AÇÕES -->
+  <!-- ================================================= -->
+
+  <div class="acoes-finais">
+    <!-- BOTÃO SALVAR -->
+
+    <button mat-button type="button" (click)="salvar()">Salvar</button>
+
+    <!-- ENVIAR PARA ASSINATURA 
+
+    <button
+      mat-flat-button
+      type="button"
+      class="botao-assinatura"
+      (click)="enviarParaAssinatura()"
+    >
+      <mat-icon> draw </mat-icon>
+
+      Enviar para assinatura
+    </button>-->
+  </div>
+</div>

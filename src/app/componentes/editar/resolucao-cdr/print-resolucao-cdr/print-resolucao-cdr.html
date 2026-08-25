@@ -1,0 +1,190 @@
+<div class="print-resolucao-container">
+  <!-- ========================================================= -->
+  <!-- ÁREA DO DOCUMENTO -->
+  <!-- ========================================================= -->
+
+  <div id="conteudoImpressao" class="resolucao-documento">
+    <!-- ========================================================= -->
+    <!-- CABEÇALHO DA RESOLUÇÃO -->
+    <!-- ========================================================= -->
+
+    <div class="cabecalho-resolucao">
+      <p class="titulo-resolucao">
+        RESOLUÇÃO/INCRA/CDR/ SR- {{ dados.sr }}/No {{ dados.idResolucaoCdr }} DE
+        {{ dados.dataResolucaoCdr | date: "dd/MM/yyyy" }}.
+      </p>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- PREÂMBULO -->
+    <!-- ========================================================= -->
+
+    <p class="texto">
+      O COMITÊ DE DECISÃO REGIONAL - CDR da Superintendência Regional do INCRA
+      {{ dados.sr }}, em cumprimento ao disposto no inciso I do art. 9° da
+      ESTRUTURA REGIMENTAL DO INCRA, aprovada pelo Decreto nº. 5.735, de 27 de
+      março de 2006, no uso das atribuições que lhe são conferidas pelo inciso I
+      do art.° 7° da Estrutura Regimental, bem como pelas disposições contidas
+      na PORTARIA INCRA/P/Nº. 126/2008 de 09 de abril de 2008, publicada no
+      D.O.U. de 09 de abril de 2008, e tendo em vista o contido na ATA de
+      Reunião do Comitê de Decisão Regional, realizada em
+      {{ dados.dataReuniaoCdr | date: "dd/MM/yyyy" }}, e
+    </p>
+
+    <!-- ========================================================= -->
+    <!-- CONSIDERAÇÕES -->
+    <!-- ========================================================= -->
+
+    @for (consideracao of dados.consideracoes; track $index) {
+      @if (consideracao.trim()) {
+        <p class="texto consideracao">Considerando {{ consideracao }};</p>
+      }
+    }
+
+    <!-- ========================================================= -->
+    <!-- CONSIDERAÇÃO FINAL -->
+    <!-- ========================================================= -->
+
+    <p class="texto consideracao">
+      Considerando finalmente, {{ dados.consideracaoFinal }}, resolve:
+    </p>
+
+    <!-- ========================================================= -->
+    <!-- ARTIGO 1º -->
+    <!-- ========================================================= -->
+
+    <p class="texto artigo">
+      <strong>Art. 1º.</strong>
+      Autorizar o INCRA adquirir o imóvel rural denominado
+      {{ dados.imovel }}, com área medida de {{ dados.area }} hectares,
+      localizado no município {{ dados.municipio }}, Estado do Rio de Janeiro,
+      de propriedade de {{ dados.proprietario }}, devidamente cadastrado no
+      INCRA sob o código {{ dados.sncr }}, pelo valor total de R$
+      {{ dados.valorTotal }} ({{ dados.valorTotalPorExtenso }}), sendo R$
+      {{ dados.valorTda }} ({{ dados.valorTdaPorExtenso }}) referentes à terra
+      nua, a serem pagos em Títulos da Dívida Agrária – TDA, com prazo de
+      resgate de até {{ dados.prazo }} anos, do qual já foi deduzido o valor de
+      R$ {{ dados.valorMoeda }} ({{ dados.valorMoedaPorExtenso }}) em moeda
+      corrente, para pagamento das benfeitorias, condicionado à disponibilidade
+      orçamentária. Os Títulos da Dívida Agrária – TDA serão lançados
+      nominativos a {{ dados.responsavelPagamento }}, CPF/CNPJ n°.
+      {{ dados.cpfResponsavel }}.
+    </p>
+
+    <!-- ========================================================= -->
+    <!-- ARTIGO 2º -->
+    <!-- ========================================================= -->
+
+    <p class="texto artigo">
+      <strong>Art. 2.º</strong>
+      Autorizar o Senhor Superintendente, em consequência, baixar Portaria de
+      que trata o Art. 10, do Decreto n.º 433, de 24 de janeiro de 1992,
+      alterado pelos Decretos 2.614, de 03 de junho de 1998 e 2.680, de 17 de
+      julho de 1998, observada a alçada de competência e os requisitos daquele
+      dispositivo.
+    </p>
+
+    <!-- ========================================================= -->
+    <!-- ARTIGO 3º -->
+    <!-- ========================================================= -->
+
+    <p class="texto artigo">
+      <strong>Art. 3.º</strong>
+      Determinar às Divisões de Obtenção de Terras e Implantação de Projetos de
+      Assentamento e de Administração a adotarem, no âmbito das competências
+      desta unidade regional, as providências necessárias para a consecução do
+      objetivo previsto no Art. 1º e, em especial, as recomendações jurídicas no
+      parecer jurídico expedido pela Procuradoria Regional.
+    </p>
+
+    <!-- ========================================================= -->
+    <!-- ARTIGO 4º -->
+    <!-- ========================================================= -->
+
+    <p class="texto artigo">
+      <strong>Art. 4.º</strong>
+      Determinar que a aquisição se opere livre e desembaraçada de quaisquer
+      ônus e/ou gravames, inclusive, com prévia comprovação de quitação do
+      Imposto sobre a Propriedade Territorial Rural – ITR, relativo aos 05
+      (cinco) últimos exercícios, inclusive o atual, conforme previsto no Art.
+      21, da Lei n.º 9.393, de 19 de dezembro de 1996, bem como a Taxa de
+      Serviços Cadastrais – CCIR e, ainda, fazer constar da escritura pública de
+      compra e venda que cabe aos promitentes vendedores a responsabilidade
+      total quanto ao pagamento dos encargos e obrigações trabalhistas
+      decorrentes de eventuais vínculos empregatícios mantidos com os empregados
+      que trabalham ou tenham trabalhado no imóvel sob aquisição ou outras
+      reclamações de terceiros, incluindo aquelas relativas a indenizações por
+      benfeitorias.
+    </p>
+
+    <!-- ========================================================= -->
+    <!-- ARTIGO 5º -->
+    <!-- ========================================================= -->
+
+    <p class="texto artigo">
+      <strong>Art. 5.º</strong>
+      Condicionar a efetivação da compra e venda ao atendimento das exigências
+      previstas no Decreto n.º 433, de 24 de janeiro de 1992, alterado pelos
+      Decretos 2.614, de 03 de junho de 1998 e 2.680, de 17 de julho de 1998, em
+      especial o Art. 4.º A.
+    </p>
+
+    <!-- ========================================================= -->
+    <!-- ARTIGO 6º -->
+    <!-- ========================================================= -->
+
+    <p class="texto artigo">
+      <strong>Art. 6.º</strong>
+      Condicionar a liberação dos recursos financeiros para o pagamento do
+      imóvel ao seu registro, em nome do INCRA, no competente Cartório de
+      Registro de Imóveis.
+    </p>
+
+    <!-- ========================================================= -->
+    <!-- ARTIGO 7º -->
+    <!-- ========================================================= -->
+
+    <p class="texto artigo">
+      <strong>Art. 7.º</strong>
+      Esta Resolução entra em vigor na data de sua publicação.
+    </p>
+
+    <!-- ========================================================= -->
+    <!-- ASSINATURA -->
+    <!-- ========================================================= -->
+
+    <div class="assinatura">
+      <p>______________________________________________</p>
+
+      <p>Superintendente Regional</p>
+
+      <p>INCRA – {{ dados.sr }}</p>
+    </div>
+  </div>
+
+  <!-- ========================================================= -->
+  <!-- AÇÕES -->
+  <!-- ========================================================= -->
+
+  <div class="acoes-finais">
+    <button
+      mat-button
+      type="button"
+      class="botao-imprimir"
+      (click)="imprimir()"
+    >
+      <mat-icon>print</mat-icon>
+      Imprimir
+    </button>
+
+    <button
+      mat-flat-button
+      type="button"
+      class="botao-assinatura"
+      (click)="enviarParaAssinatura()"
+    >
+      <mat-icon>draw</mat-icon>
+      Enviar para assinatura
+    </button>
+  </div>
+</div>

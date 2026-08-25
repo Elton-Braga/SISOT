@@ -1,174 +1,240 @@
-/* CSS */
-.form-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px; /* espaçamento entre linhas e colunas */
-  max-width: 100%;
-  margin: 3rem;
-}
+/* =========================================================
+   CONTAINER PRINCIPAL
+========================================================= */
 
-.field-item {
-  flex: 0 0 calc(50% - 8px); /* dois por linha, descontando metade do gap */
+.form-page {
+  width: 100%;
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  padding: 24px;
+
   box-sizing: border-box;
 }
 
-/* O campo de Considerações ocupa a largura total */
-.field-full {
-  flex: 0 0 100%;
+/* =========================================================
+   CABEÇALHO
+========================================================= */
+
+.pagina-cabecalho {
+  margin-bottom: 32px;
 }
 
-/* Ajuste para que os mat-form-field ocupem toda a largura do container */
-.field-item mat-form-field,
-.field-full mat-form-field {
-  width: 100%;
-}
+.pagina-cabecalho h1 {
+  margin: 0 0 8px;
 
-/* Opcional: manter a aparência dos campos desabilitados */
-.mat-form-field-disabled .mat-form-field-outline {
-  opacity: 0.7;
-}
-
-/* Ajuste para o textarea (já possui rows) */
-.campo-observacao textarea {
-  resize: vertical;
-  min-height: 80px;
-}
-
-/* styles.css ou no componente com encapsulamento adequado */
-/* ordem-servico.css */
-
-/* Oculta a área de impressão na tela */
-.print-area {
-  display: none;
-}
-
-@media print {
-  /* Esconde tudo que não está na print-area */
-  body * {
-    visibility: hidden;
-  }
-  .print-area,
-  .print-area * {
-    visibility: visible;
-  }
-  .print-area {
-    display: block !important;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    padding: 20px;
-    background: white;
-  }
-  /* Oculta o formulário e botões */
-  .form-container,
-  .form-actions,
-  button {
-    display: none !important;
-  }
-}
-
-.imoveis-section {
-  width: 100%;
-  margin: 16px 0;
-  padding: 0;
-  background: transparent;
-  border: none;
-}
-
-.table-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 12px;
-}
-
-.section-title {
+  font-size: 32px;
   font-weight: 500;
-  font-size: 1rem;
-  color: #333;
+
+  color: #1b1b1b;
 }
 
-/* Largura da tabela ajustada para 90% com ng-deep para maior especificidade */
-::ng-deep .imoveis-table {
-  width: 100% !important;
-  border-collapse: collapse;
-  background: #fafafa;
+.pagina-cabecalho p {
+  margin: 0;
+
+  font-size: 16px;
+
+  color: #555555;
+}
+
+/* =========================================================
+   SEÇÕES
+========================================================= */
+
+.form-section {
+  margin-bottom: 24px;
+
+  padding: 24px;
+
+  background: #ffffff;
+
+  border: 1px solid #d9d9d9;
+
   border-radius: 4px;
-  overflow: hidden;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-table {
-  width: 100% !important;
-}
+.form-section h2 {
+  margin: 0 0 24px;
 
-/* Os demais estilos permanecem */
-.imoveis-table th {
-  text-align: left;
-  padding: 8px 12px;
-  background: #f0f0f0;
+  font-size: 20px;
   font-weight: 500;
-  font-size: 0.9rem;
-  color: #555;
-  border-bottom: 1px solid #ddd;
+
+  color: #1b1b1b;
+}
+
+/* =========================================================
+   CABEÇALHO DE SEÇÃO COM BOTÃO
+========================================================= */
+
+.section-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 24px;
+
+  margin-bottom: 24px;
+}
+
+.section-header h2 {
+  margin-bottom: 4px;
+}
+
+.section-description {
+  margin: 0;
+
+  color: #555555;
+
+  font-size: 14px;
+}
+
+/* =========================================================
+   GRID DE CAMPOS
+========================================================= */
+
+.form-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 20px;
+}
+
+/* =========================================================
+   CAMPOS
+========================================================= */
+
+mat-form-field {
+  width: 100%;
+}
+
+.campo-completo {
+  width: 100%;
+}
+
+/* =========================================================
+   TABELA DE IMÓVEIS
+========================================================= */
+
+.table-container {
+  width: 100%;
+
+  overflow-x: auto;
+}
+
+.imoveis-table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  background: #ffffff;
+
+  border: 1px solid #d9d9d9;
+
+  border-radius: 4px;
+
+  overflow: hidden;
+}
+
+.imoveis-table th {
+  padding: 12px 16px;
+
+  text-align: left;
+
+  background: #f8f8f8;
+
+  font-size: 14px;
+
+  font-weight: 600;
+
+  color: #333333;
+
+  border-bottom: 1px solid #d9d9d9;
 }
 
 .imoveis-table td {
-  padding: 4px 12px;
+  padding: 8px 16px;
+
   vertical-align: middle;
-  border-bottom: 1px solid #eee;
+
+  border-bottom: 1px solid #eeeeee;
 }
 
 .imoveis-table tr:last-child td {
   border-bottom: none;
 }
 
+/* Coluna de ações */
+
 .acoes-col {
-  width: 60px;
+  width: 80px;
+
   text-align: center;
 }
+
+/* Campo dentro da tabela */
 
 .table-field {
   width: 100%;
-  margin: 4px 0;
+
+  margin: 0;
 }
 
-.table-field .mat-form-field-wrapper {
-  padding-bottom: 0;
-}
-
-.table-field .mat-form-field-outline {
-  background: white;
-}
+/* =========================================================
+   SEM IMÓVEIS
+========================================================= */
 
 .sem-imoveis {
-  padding: 12px;
+  padding: 24px;
+
   text-align: center;
-  color: #999;
-  background: #f9f9f9;
+
+  color: #666666;
+
+  background: #f8f8f8;
+
+  border: 1px dashed #cccccc;
+
   border-radius: 4px;
-  border: 1px dashed #ddd;
-}
-.servidores-campos {
-  background: #f9f9f9;
-  padding: 12px 16px;
-  border-radius: 4px;
-  border-left: 4px solid #3f51b5;
-  margin-top: 4px;
 }
 
-.servidores-campos p {
-  margin: 0 0 10px 0;
+/* =========================================================
+   SERVIDORES
+========================================================= */
+
+.servidores-container {
+  margin-top: 8px;
+
+  padding: 20px;
+
+  background: #f8f8f8;
+
+  border-left: 4px solid #1351b4;
+
+  border-radius: 4px;
+}
+
+.servidores-titulo {
+  margin-bottom: 16px;
+
+  font-size: 16px;
+
   font-weight: 500;
+
+  color: #333333;
 }
 
 .servidor-linha {
   display: flex;
+
   flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 8px;
-  align-items: flex-start;
+
+  gap: 16px;
+
+  margin-bottom: 12px;
 }
 
 .servidor-linha:last-child {
@@ -176,24 +242,135 @@ table {
 }
 
 .campo-servidor {
-  flex: 1 1 0; /* distribui igualmente */
-  min-width: 120px;
+  flex: 1 1 250px;
 }
 
-/* Ajuste para telas menores */
-@media (max-width: 600px) {
+.sem-servidores {
+  margin-top: 8px;
+
+  padding: 16px;
+
+  color: #666666;
+
+  font-style: italic;
+
+  background: #f8f8f8;
+
+  border-radius: 4px;
+}
+
+/* =========================================================
+   TEXTAREA
+========================================================= */
+
+.campo-observacao textarea {
+  resize: vertical;
+
+  min-height: 120px;
+}
+
+/* =========================================================
+   AÇÕES
+========================================================= */
+
+.form-actions {
+  display: flex;
+
+  justify-content: flex-end;
+
+  align-items: center;
+
+  margin-top: 32px;
+
+  padding-top: 24px;
+
+  border-top: 1px solid #d9d9d9;
+}
+
+/* =========================================================
+   ÁREA DE IMPRESSÃO
+========================================================= */
+
+.print-area {
+  display: none;
+}
+
+/* =========================================================
+   RESPONSIVIDADE
+========================================================= */
+
+@media (max-width: 768px) {
+  .form-page {
+    padding: 16px;
+  }
+
+  .form-section {
+    padding: 16px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-header {
+    flex-direction: column;
+
+    align-items: flex-start;
+  }
+
   .servidor-linha {
     flex-direction: column;
+
     gap: 4px;
   }
+
   .campo-servidor {
-    flex: 1 1 auto;
     width: 100%;
   }
 }
 
-.sem-servidores {
-  color: #888;
-  font-style: italic;
-  margin: 8px 0 0 0;
+@media (max-width: 600px) {
+  .pagina-cabecalho h1 {
+    font-size: 26px;
+  }
+
+  .imoveis-table {
+    min-width: 600px;
+  }
+}
+
+/* =========================================================
+   IMPRESSÃO
+========================================================= */
+
+@media print {
+  body * {
+    visibility: hidden;
+  }
+
+  .print-area,
+  .print-area * {
+    visibility: visible;
+  }
+
+  .print-area {
+    display: block !important;
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    padding: 20px;
+
+    background: #ffffff;
+  }
+
+  .form-page,
+  .form-actions,
+  button {
+    display: none !important;
+  }
 }

@@ -1,0 +1,254 @@
+/* ========================================================= */
+/* CONTAINER PRINCIPAL */
+/* ========================================================= */
+
+.print-resolucao-container {
+  width: 100%;
+
+  min-height: 100%;
+
+  padding: 32px;
+
+  background-color: #f8f8f8;
+}
+
+/* ========================================================= */
+/* DOCUMENTO */
+/* ========================================================= */
+
+.resolucao-documento {
+  width: 100%;
+
+  max-width: 900px;
+
+  margin: 0 auto;
+
+  padding: 56px 64px;
+
+  background: #ffffff;
+
+  border: 1px solid #cccccc;
+
+  border-radius: 4px;
+
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+
+  color: #1b1b1b;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 16px;
+
+  line-height: 1.6;
+}
+
+/* ========================================================= */
+/* CABEÇALHO */
+/* ========================================================= */
+
+.cabecalho-resolucao {
+  margin-bottom: 48px;
+
+  text-align: center;
+}
+
+.titulo-resolucao {
+  margin: 0;
+
+  color: #1b1b1b;
+
+  font-size: 18px;
+
+  font-weight: 700;
+
+  line-height: 1.5;
+
+  text-transform: uppercase;
+}
+
+/* ========================================================= */
+/* TEXTO */
+/* ========================================================= */
+
+.texto {
+  margin: 0 0 24px 0;
+
+  text-align: justify;
+
+  text-indent: 2.5rem;
+
+  line-height: 1.75;
+
+  word-break: normal;
+
+  overflow-wrap: break-word;
+}
+
+/* ========================================================= */
+/* CONSIDERAÇÕES */
+/* ========================================================= */
+
+.consideracao {
+  margin-bottom: 20px;
+}
+
+/* ========================================================= */
+/* ARTIGOS */
+/* ========================================================= */
+
+.artigo {
+  margin-top: 28px;
+
+  margin-bottom: 28px;
+
+  page-break-inside: avoid;
+}
+
+.artigo strong {
+  font-weight: 700;
+}
+
+/* ========================================================= */
+/* ASSINATURA */
+/* ========================================================= */
+
+.assinatura {
+  margin-top: 80px;
+
+  padding-top: 20px;
+
+  text-align: center;
+
+  page-break-inside: avoid;
+}
+
+.assinatura p {
+  margin: 6px 0;
+}
+
+.assinatura p:first-child {
+  margin-bottom: 8px;
+
+  letter-spacing: 1px;
+}
+
+/* ========================================================= */
+/* AÇÕES */
+/* ========================================================= */
+
+.acoes-finais {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: flex-end;
+
+  gap: 16px;
+
+  width: 100%;
+
+  max-width: 900px;
+
+  margin: 24px auto 0;
+
+  padding: 24px 0;
+}
+
+/* ========================================================= */
+/* BOTÃO IMPRIMIR */
+/* ========================================================= */
+
+.botao-imprimir {
+  color: #1351b4;
+
+  font-weight: 600;
+}
+
+.botao-imprimir mat-icon {
+  margin-right: 8px;
+}
+
+/* ========================================================= */
+/* BOTÃO ASSINATURA */
+/* ========================================================= */
+
+.botao-assinatura {
+  min-height: 40px;
+
+  padding: 0 24px;
+}
+
+.botao-assinatura mat-icon {
+  margin-right: 8px;
+}
+
+/* ========================================================= */
+/* RESPONSIVIDADE */
+/* ========================================================= */
+
+@media screen and (max-width: 768px) {
+  .print-resolucao-container {
+    padding: 16px;
+  }
+
+  .resolucao-documento {
+    padding: 32px 24px;
+
+    font-size: 15px;
+  }
+
+  .titulo-resolucao {
+    font-size: 16px;
+  }
+
+  .texto {
+    text-indent: 1.5rem;
+
+    text-align: left;
+  }
+
+  .acoes-finais {
+    flex-direction: column-reverse;
+
+    align-items: stretch;
+
+    gap: 0px;
+  }
+
+  .botao-imprimir,
+  .botao-assinatura {
+    width: 100%;
+  }
+}
+
+/* ========================================================= */
+/* IMPRESSÃO */
+/* ========================================================= */
+
+@media print {
+  .print-resolucao-container {
+    padding: 0;
+
+    background: #ffffff;
+  }
+
+  .resolucao-documento {
+    width: 100%;
+
+    max-width: none;
+
+    margin: 0;
+
+    padding: 0;
+
+    border: none;
+
+    border-radius: 0;
+
+    box-shadow: none;
+  }
+
+  .acoes-finais {
+    display: none !important;
+  }
+}

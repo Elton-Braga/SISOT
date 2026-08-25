@@ -16,6 +16,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { OrdemServico } from './ordem-servico/ordem-servico';
+import { ResolucaoCdr } from './resolucao-cdr/resolucao-cdr';
 //import { OrdemServico } from './ordem-servico/ordem-servico.component';
 
 @Component({
@@ -85,5 +86,15 @@ export class Editar implements OnInit {
 
   cancelar(): void {
     this.router.navigate(['/lista']);
+  }
+
+  abrirResolucaoCdr(): void {
+    this.dialog.open(ResolucaoCdr, {
+      maxWidth: '1100px',
+      width: '800px',
+      maxHeight: '1100px',
+      height: '90%',
+      panelClass: 'dialog-com-rolagem',
+    });
   }
 }

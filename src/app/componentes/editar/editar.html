@@ -6504,6 +6504,7 @@
                     mat-flat-button
                     color="primary"
                     (click)="abrirOrdemServico()"
+                    class="step-actions"
                   >
                     Ordem de serviço
                   </button>
@@ -7232,6 +7233,12 @@
                   Fase 9 - Deliberação do CDR
                 </ng-template>
 
+                <div class="step-actions">
+                  <button mat-flat-button (click)="abrirResolucaoCdr()">
+                    Resolucão CDR
+                  </button>
+                </div>
+                <br />
                 <div class="form-grid">
                   <mat-form-field appearance="outline">
                     <mat-label>
