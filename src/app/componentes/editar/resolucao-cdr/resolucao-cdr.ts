@@ -35,32 +35,32 @@ import { MatDialog } from '@angular/material/dialog';
 })
 export class ResolucaoCdr {
   sr: string = '';
-  idResolucaoCdr: string = '';
+  idResolucaoCdr: string = '000';
 
   dataResolucaoCdr: Date | null = null;
   dataReuniaoCdr: Date | null = null;
 
   consideracoes: string[] = [''];
-  consideracaoFinal: string = '';
+  consideracaoFinal: string = '...';
 
-  imovel: string = '';
+  imovel: string = 'teste';
   area: number = 0;
-  municipio: string = '';
-  proprietario: string = '';
-  sncr: string = '';
+  municipio: string = 'teste123';
+  proprietario: string = '...';
+  sncr: string = '...';
 
   valorTotal: number = 0;
-  valorTotalPorExtenso: string = '';
+  valorTotalPorExtenso: string = '...';
 
   valorTda: number = 0;
-  valorTdaPorExtenso: string = '';
+  valorTdaPorExtenso: string = '...';
 
   valorMoeda: number = 0;
-  valorMoedaPorExtenso: string = '';
+  valorMoedaPorExtenso: string = '...';
 
-  prazo: string = '';
-  responsavelPagamento: string = '';
-  cpfResponsavel: string = '';
+  prazo: string = '30';
+  responsavelPagamento: string = '...';
+  cpfResponsavel: string = '000.000.000-00';
   constructor(private dialog: MatDialog) {}
   adicionarConsideracao(): void {
     this.consideracoes.push('');
