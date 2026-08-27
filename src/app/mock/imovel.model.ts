@@ -5,6 +5,7 @@ export interface Dados {
   imovel: Imovel;
   obtencao: DadosObtencao;
   avaliacao: DadosAvaliacao;
+  resolucaoCdr: ResolucaoCdr
   //nomeGrupo: Grupo;
 }
 export interface Grupo {
@@ -65,4 +66,22 @@ export interface DadosAvaliacao {
   valorBenfeitorias: number;
   valorPassivoAmbiental: number;
   valorAtivoAmbiental: number;
+}
+
+export interface ResolucaoCdr {
+  idResolucaoCdr: string;
+  dataResolucaoCdr: Date | null;
+  dataReuniaoCdr: Date | null;
+  consideracoes: string[];
+  consideracaoFinal: string;
+  area: number;
+  valorTotal: number;
+  valorTotalPorExtenso: string;
+  valorTda: number;
+  valorTdaPorExtenso: string;
+  valorMoeda: number;
+  valorMoedaPorExtenso: string;
+  prazo: string;
+  responsavelPagamento: string;
+  cpfResponsavel: string;
 }

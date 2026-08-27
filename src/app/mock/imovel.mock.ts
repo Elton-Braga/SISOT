@@ -56,6 +56,31 @@ export const IMOVEIS_MOCK: Dados[] = [
       temPrazo: '',
       observacoes: '',
     },
+    resolucaoCdr: {
+      idResolucaoCdr: '001',
+      dataResolucaoCdr: new Date('2026-08-27'),
+      dataReuniaoCdr: new Date('2026-08-20'),
+      consideracoes: [
+        'Parecer técnico favorável à avaliação do imóvel.',
+        'Documentação de propriedade verificada e aprovada.',
+      ],
+      consideracaoFinal:
+        'Resolução aprovada para aquisição do imóvel mediante as condições estabelecidas.',
+      area: 10978.8258, // Valor espelhado do areaHa, mas como é um campo separado, fica aqui.
+      valorTotal: 192387136.53,
+      valorTotalPorExtenso:
+        'Cento e noventa e dois milhões, trezentos e oitenta e sete mil, cento e trinta e seis reais e cinquenta e três centavos',
+      valorTda: 175172428.5,
+      valorTdaPorExtenso:
+        'Cento e setenta e cinco milhões, cento e setenta e dois mil, quatrocentos e vinte e oito reais e cinquenta centavos',
+      valorMoeda: 17214708.03,
+      valorMoedaPorExtenso:
+        'Dezessete milhões, duzentos e catorze mil, setecentos e oito reais e três centavos',
+      prazo: '30',
+      responsavelPagamento:
+        'INCRA - Instituto Nacional de Colonização e Reforma Agrária',
+      cpfResponsavel: '111.222.333-44',
+    },
   },
 
   {
@@ -111,6 +136,30 @@ export const IMOVEIS_MOCK: Dados[] = [
       responsavel: '',
       temPrazo: '',
       observacoes: '',
+    },
+    resolucaoCdr: {
+      idResolucaoCdr: '002',
+      dataResolucaoCdr: new Date('2026-07-15'),
+      dataReuniaoCdr: new Date('2026-07-10'),
+      consideracoes: [
+        'Avaliação econômica concluída com metodologia Decreto 433/92.',
+        'Presença de ocupação prévia por famílias acampadas.',
+      ],
+      consideracaoFinal:
+        'Resolução aprovada com condicionantes de reassentamento das famílias no prazo de 45 dias.',
+      area: 5234.12,
+      valorTotal: 78997328.31,
+      valorTotalPorExtenso:
+        'Setenta e oito milhões, novecentos e noventa e sete mil, trezentos e vinte e oito reais e trinta e um centavos',
+      valorTda: 75172428.5,
+      valorTdaPorExtenso:
+        'Setenta e cinco milhões, cento e setenta e dois mil, quatrocentos e vinte e oito reais e cinquenta centavos',
+      valorMoeda: 7214708.03,
+      valorMoedaPorExtenso:
+        'Sete milhões, duzentos e catorze mil, setecentos e oito reais e três centavos',
+      prazo: '45',
+      responsavelPagamento: 'Caixa Econômica Federal - Agência Redenção',
+      cpfResponsavel: '222.333.444-55',
     },
   },
 
@@ -169,6 +218,28 @@ export const IMOVEIS_MOCK: Dados[] = [
       temPrazo: '',
       observacoes: '',
     },
+    resolucaoCdr: {
+      idResolucaoCdr: '003',
+      dataResolucaoCdr: new Date('2026-05-20'),
+      dataReuniaoCdr: new Date('2026-05-15'),
+      consideracoes: [
+        'Imóvel produtivo com alto valor de benfeitorias.',
+        'Não há ocupação irregular ou conflitos fundiários.',
+      ],
+      consideracaoFinal:
+        'Resolução aprovada sem ressalvas, liberado para pagamento imediato.',
+      area: 8456.0,
+      valorTotal: 148500000.0,
+      valorTotalPorExtenso:
+        'Cento e quarenta e oito milhões e quinhentos mil reais',
+      valorTda: 140000000.0,
+      valorTdaPorExtenso: 'Cento e quarenta milhões de reais',
+      valorMoeda: 8500000.0,
+      valorMoedaPorExtenso: 'Oito milhões e quinhentos mil reais',
+      prazo: '30',
+      responsavelPagamento: 'Banco do Brasil S.A - Sinop',
+      cpfResponsavel: '333.444.555-66',
+    },
   },
   {
     imovel: {
@@ -224,6 +295,28 @@ export const IMOVEIS_MOCK: Dados[] = [
       temPrazo: '',
       observacoes: '',
     },
+    resolucaoCdr: {
+      idResolucaoCdr: '003',
+      dataResolucaoCdr: new Date('2026-05-20'),
+      dataReuniaoCdr: new Date('2026-05-15'),
+      consideracoes: [
+        'Imóvel produtivo com alto valor de benfeitorias.',
+        'Não há ocupação irregular ou conflitos fundiários.',
+      ],
+      consideracaoFinal:
+        'Resolução aprovada sem ressalvas, liberado para pagamento imediato.',
+      area: 8456.0,
+      valorTotal: 148500000.0,
+      valorTotalPorExtenso:
+        'Cento e quarenta e oito milhões e quinhentos mil reais',
+      valorTda: 140000000.0,
+      valorTdaPorExtenso: 'Cento e quarenta milhões de reais',
+      valorMoeda: 8500000.0,
+      valorMoedaPorExtenso: 'Oito milhões e quinhentos mil reais',
+      prazo: '30',
+      responsavelPagamento: 'Banco do Brasil S.A - Sinop',
+      cpfResponsavel: '333.444.555-66',
+    },
   },
   {
     imovel: {
@@ -278,6 +371,28 @@ export const IMOVEIS_MOCK: Dados[] = [
       responsavel: '',
       temPrazo: '',
       observacoes: '',
+    },
+
+    resolucaoCdr: {
+      idResolucaoCdr: '004',
+      dataResolucaoCdr: new Date('2026-04-10'),
+      dataReuniaoCdr: new Date('2026-04-05'),
+      consideracoes: [
+        'Extensa área com alta capacidade de assentamento.',
+        'Existe sobreposição com área de proteção ambiental.',
+      ],
+      consideracaoFinal:
+        'Resolução aprovada condicionada à demarcação da APA e reassentamento das 245 famílias em até 60 dias.',
+      area: 15200.5,
+      valorTotal: 255000000.0,
+      valorTotalPorExtenso: 'Duzentos e cinquenta e cinco milhões de reais',
+      valorTda: 230000000.0,
+      valorTdaPorExtenso: 'Duzentos e trinta milhões de reais',
+      valorMoeda: 2500000.0,
+      valorMoedaPorExtenso: 'Dois milhões e quinhentos mil reais',
+      prazo: '60',
+      responsavelPagamento: 'Tesouro Nacional / SPU',
+      cpfResponsavel: '444.555.666-77',
     },
   },
 
@@ -336,6 +451,27 @@ export const IMOVEIS_MOCK: Dados[] = [
       temPrazo: '',
       observacoes: '',
     },
+    resolucaoCdr: {
+      idResolucaoCdr: '005',
+      dataResolucaoCdr: new Date('2026-03-05'),
+      dataReuniaoCdr: new Date('2026-02-28'),
+      consideracoes: [
+        'Pequena área com alta produtividade agrícola.',
+        'Documentação fundiária em dia.',
+      ],
+      consideracaoFinal:
+        'Resolução aprovada com prioridade de pagamento devido à regularidade documental.',
+      area: 3200.75,
+      valorTotal: 43000000.0,
+      valorTotalPorExtenso: 'Quarenta e três milhões de reais',
+      valorTda: 40000000.0,
+      valorTdaPorExtenso: 'Quarenta milhões de reais',
+      valorMoeda: 3000000.0,
+      valorMoedaPorExtenso: 'Três milhões de reais',
+      prazo: '20',
+      responsavelPagamento: 'INCRA - Superintendência Regional RO',
+      cpfResponsavel: '555.666.777-88',
+    },
   },
   {
     imovel: {
@@ -390,6 +526,27 @@ export const IMOVEIS_MOCK: Dados[] = [
       responsavel: '',
       temPrazo: '',
       observacoes: '',
+    },
+    resolucaoCdr: {
+      idResolucaoCdr: '006',
+      dataResolucaoCdr: new Date('2026-02-15'),
+      dataReuniaoCdr: new Date('2026-02-10'),
+      consideracoes: [
+        'Imóvel com relevante passivo e ativo ambiental.',
+        'Necessidade de compensação por área de preservação permanente.',
+      ],
+      consideracaoFinal:
+        'Resolução aprovada com cláusulas compensatórias ambientais, prazo de 90 dias para pagamento parcelado.',
+      area: 18900.3,
+      valorTotal: 310000000.0,
+      valorTotalPorExtenso: 'Trezentos e dez milhões de reais',
+      valorTda: 290000000.0,
+      valorTdaPorExtenso: 'Duzentos e noventa milhões de reais',
+      valorMoeda: 1500000.0,
+      valorMoedaPorExtenso: 'Um milhão e quinhentos mil reais',
+      prazo: '90',
+      responsavelPagamento: 'Fundo Nacional de Reforma Agrária - FNRA',
+      cpfResponsavel: '666.777.888-99',
     },
   },
   {
@@ -446,6 +603,30 @@ export const IMOVEIS_MOCK: Dados[] = [
       temPrazo: '',
       observacoes: '',
     },
+    resolucaoCdr: {
+      idResolucaoCdr: '002',
+      dataResolucaoCdr: new Date('2026-07-15'),
+      dataReuniaoCdr: new Date('2026-07-10'),
+      consideracoes: [
+        'Avaliação econômica concluída com metodologia Decreto 433/92.',
+        'Presença de ocupação prévia por famílias acampadas.',
+      ],
+      consideracaoFinal:
+        'Resolução aprovada com condicionantes de reassentamento das famílias no prazo de 45 dias.',
+      area: 5234.12,
+      valorTotal: 78997328.31,
+      valorTotalPorExtenso:
+        'Setenta e oito milhões, novecentos e noventa e sete mil, trezentos e vinte e oito reais e trinta e um centavos',
+      valorTda: 75172428.5,
+      valorTdaPorExtenso:
+        'Setenta e cinco milhões, cento e setenta e dois mil, quatrocentos e vinte e oito reais e cinquenta centavos',
+      valorMoeda: 7214708.03,
+      valorMoedaPorExtenso:
+        'Sete milhões, duzentos e catorze mil, setecentos e oito reais e três centavos',
+      prazo: '45',
+      responsavelPagamento: 'Caixa Econômica Federal - Agência Redenção',
+      cpfResponsavel: '222.333.444-55',
+    },
   },
   {
     imovel: {
@@ -500,6 +681,28 @@ export const IMOVEIS_MOCK: Dados[] = [
       responsavel: '',
       temPrazo: '',
       observacoes: '',
+    },
+    resolucaoCdr: {
+      idResolucaoCdr: '003',
+      dataResolucaoCdr: new Date('2026-05-20'),
+      dataReuniaoCdr: new Date('2026-05-15'),
+      consideracoes: [
+        'Imóvel produtivo com alto valor de benfeitorias.',
+        'Não há ocupação irregular ou conflitos fundiários.',
+      ],
+      consideracaoFinal:
+        'Resolução aprovada sem ressalvas, liberado para pagamento imediato.',
+      area: 8456.0,
+      valorTotal: 148500000.0,
+      valorTotalPorExtenso:
+        'Cento e quarenta e oito milhões e quinhentos mil reais',
+      valorTda: 140000000.0,
+      valorTdaPorExtenso: 'Cento e quarenta milhões de reais',
+      valorMoeda: 8500000.0,
+      valorMoedaPorExtenso: 'Oito milhões e quinhentos mil reais',
+      prazo: '30',
+      responsavelPagamento: 'Banco do Brasil S.A - Sinop',
+      cpfResponsavel: '333.444.555-66',
     },
   },
   {
@@ -556,6 +759,28 @@ export const IMOVEIS_MOCK: Dados[] = [
       temPrazo: '',
       observacoes: '',
     },
+    resolucaoCdr: {
+      idResolucaoCdr: '003',
+      dataResolucaoCdr: new Date('2026-05-20'),
+      dataReuniaoCdr: new Date('2026-05-15'),
+      consideracoes: [
+        'Imóvel produtivo com alto valor de benfeitorias.',
+        'Não há ocupação irregular ou conflitos fundiários.',
+      ],
+      consideracaoFinal:
+        'Resolução aprovada sem ressalvas, liberado para pagamento imediato.',
+      area: 8456.0,
+      valorTotal: 148500000.0,
+      valorTotalPorExtenso:
+        'Cento e quarenta e oito milhões e quinhentos mil reais',
+      valorTda: 140000000.0,
+      valorTdaPorExtenso: 'Cento e quarenta milhões de reais',
+      valorMoeda: 8500000.0,
+      valorMoedaPorExtenso: 'Oito milhões e quinhentos mil reais',
+      prazo: '30',
+      responsavelPagamento: 'Banco do Brasil S.A - Sinop',
+      cpfResponsavel: '333.444.555-66',
+    },
   },
   {
     imovel: {
@@ -610,6 +835,28 @@ export const IMOVEIS_MOCK: Dados[] = [
       responsavel: '',
       temPrazo: '',
       observacoes: '',
+    },
+    resolucaoCdr: {
+      idResolucaoCdr: '003',
+      dataResolucaoCdr: new Date('2026-05-20'),
+      dataReuniaoCdr: new Date('2026-05-15'),
+      consideracoes: [
+        'Imóvel produtivo com alto valor de benfeitorias.',
+        'Não há ocupação irregular ou conflitos fundiários.',
+      ],
+      consideracaoFinal:
+        'Resolução aprovada sem ressalvas, liberado para pagamento imediato.',
+      area: 8456.0,
+      valorTotal: 148500000.0,
+      valorTotalPorExtenso:
+        'Cento e quarenta e oito milhões e quinhentos mil reais',
+      valorTda: 140000000.0,
+      valorTdaPorExtenso: 'Cento e quarenta milhões de reais',
+      valorMoeda: 8500000.0,
+      valorMoedaPorExtenso: 'Oito milhões e quinhentos mil reais',
+      prazo: '30',
+      responsavelPagamento: 'Banco do Brasil S.A - Sinop',
+      cpfResponsavel: '333.444.555-66',
     },
   },
   {
@@ -666,6 +913,28 @@ export const IMOVEIS_MOCK: Dados[] = [
       temPrazo: '',
       observacoes: '',
     },
+    resolucaoCdr: {
+      idResolucaoCdr: '003',
+      dataResolucaoCdr: new Date('2026-05-20'),
+      dataReuniaoCdr: new Date('2026-05-15'),
+      consideracoes: [
+        'Imóvel produtivo com alto valor de benfeitorias.',
+        'Não há ocupação irregular ou conflitos fundiários.',
+      ],
+      consideracaoFinal:
+        'Resolução aprovada sem ressalvas, liberado para pagamento imediato.',
+      area: 8456.0,
+      valorTotal: 148500000.0,
+      valorTotalPorExtenso:
+        'Cento e quarenta e oito milhões e quinhentos mil reais',
+      valorTda: 140000000.0,
+      valorTdaPorExtenso: 'Cento e quarenta milhões de reais',
+      valorMoeda: 8500000.0,
+      valorMoedaPorExtenso: 'Oito milhões e quinhentos mil reais',
+      prazo: '30',
+      responsavelPagamento: 'Banco do Brasil S.A - Sinop',
+      cpfResponsavel: '333.444.555-66',
+    },
   },
   {
     imovel: {
@@ -720,6 +989,28 @@ export const IMOVEIS_MOCK: Dados[] = [
       responsavel: '',
       temPrazo: '',
       observacoes: '',
+    },
+    resolucaoCdr: {
+      idResolucaoCdr: '003',
+      dataResolucaoCdr: new Date('2026-05-20'),
+      dataReuniaoCdr: new Date('2026-05-15'),
+      consideracoes: [
+        'Imóvel produtivo com alto valor de benfeitorias.',
+        'Não há ocupação irregular ou conflitos fundiários.',
+      ],
+      consideracaoFinal:
+        'Resolução aprovada sem ressalvas, liberado para pagamento imediato.',
+      area: 8456.0,
+      valorTotal: 148500000.0,
+      valorTotalPorExtenso:
+        'Cento e quarenta e oito milhões e quinhentos mil reais',
+      valorTda: 140000000.0,
+      valorTdaPorExtenso: 'Cento e quarenta milhões de reais',
+      valorMoeda: 8500000.0,
+      valorMoedaPorExtenso: 'Oito milhões e quinhentos mil reais',
+      prazo: '30',
+      responsavelPagamento: 'Banco do Brasil S.A - Sinop',
+      cpfResponsavel: '333.444.555-66',
     },
   },
   {
@@ -777,6 +1068,28 @@ export const IMOVEIS_MOCK: Dados[] = [
       temPrazo: '',
       observacoes: '',
     },
+    resolucaoCdr: {
+      idResolucaoCdr: '003',
+      dataResolucaoCdr: new Date('2026-05-20'),
+      dataReuniaoCdr: new Date('2026-05-15'),
+      consideracoes: [
+        'Imóvel produtivo com alto valor de benfeitorias.',
+        'Não há ocupação irregular ou conflitos fundiários.',
+      ],
+      consideracaoFinal:
+        'Resolução aprovada sem ressalvas, liberado para pagamento imediato.',
+      area: 8456.0,
+      valorTotal: 148500000.0,
+      valorTotalPorExtenso:
+        'Cento e quarenta e oito milhões e quinhentos mil reais',
+      valorTda: 140000000.0,
+      valorTdaPorExtenso: 'Cento e quarenta milhões de reais',
+      valorMoeda: 8500000.0,
+      valorMoedaPorExtenso: 'Oito milhões e quinhentos mil reais',
+      prazo: '30',
+      responsavelPagamento: 'Banco do Brasil S.A - Sinop',
+      cpfResponsavel: '333.444.555-66',
+    },
   },
   {
     imovel: {
@@ -831,6 +1144,28 @@ export const IMOVEIS_MOCK: Dados[] = [
       responsavel: '',
       temPrazo: '',
       observacoes: '',
+    },
+    resolucaoCdr: {
+      idResolucaoCdr: '003',
+      dataResolucaoCdr: new Date('2026-05-20'),
+      dataReuniaoCdr: new Date('2026-05-15'),
+      consideracoes: [
+        'Imóvel produtivo com alto valor de benfeitorias.',
+        'Não há ocupação irregular ou conflitos fundiários.',
+      ],
+      consideracaoFinal:
+        'Resolução aprovada sem ressalvas, liberado para pagamento imediato.',
+      area: 8456.0,
+      valorTotal: 148500000.0,
+      valorTotalPorExtenso:
+        'Cento e quarenta e oito milhões e quinhentos mil reais',
+      valorTda: 140000000.0,
+      valorTdaPorExtenso: 'Cento e quarenta milhões de reais',
+      valorMoeda: 8500000.0,
+      valorMoedaPorExtenso: 'Oito milhões e quinhentos mil reais',
+      prazo: '30',
+      responsavelPagamento: 'Banco do Brasil S.A - Sinop',
+      cpfResponsavel: '333.444.555-66',
     },
   },
   {
@@ -888,6 +1223,28 @@ export const IMOVEIS_MOCK: Dados[] = [
       temPrazo: '',
       observacoes: '',
     },
+    resolucaoCdr: {
+      idResolucaoCdr: '003',
+      dataResolucaoCdr: new Date('2026-05-20'),
+      dataReuniaoCdr: new Date('2026-05-15'),
+      consideracoes: [
+        'Imóvel produtivo com alto valor de benfeitorias.',
+        'Não há ocupação irregular ou conflitos fundiários.',
+      ],
+      consideracaoFinal:
+        'Resolução aprovada sem ressalvas, liberado para pagamento imediato.',
+      area: 8456.0,
+      valorTotal: 148500000.0,
+      valorTotalPorExtenso:
+        'Cento e quarenta e oito milhões e quinhentos mil reais',
+      valorTda: 140000000.0,
+      valorTdaPorExtenso: 'Cento e quarenta milhões de reais',
+      valorMoeda: 8500000.0,
+      valorMoedaPorExtenso: 'Oito milhões e quinhentos mil reais',
+      prazo: '30',
+      responsavelPagamento: 'Banco do Brasil S.A - Sinop',
+      cpfResponsavel: '333.444.555-66',
+    },
   },
   {
     imovel: {
@@ -942,6 +1299,28 @@ export const IMOVEIS_MOCK: Dados[] = [
       responsavel: '',
       temPrazo: '',
       observacoes: '',
+    },
+    resolucaoCdr: {
+      idResolucaoCdr: '003',
+      dataResolucaoCdr: new Date('2026-05-20'),
+      dataReuniaoCdr: new Date('2026-05-15'),
+      consideracoes: [
+        'Imóvel produtivo com alto valor de benfeitorias.',
+        'Não há ocupação irregular ou conflitos fundiários.',
+      ],
+      consideracaoFinal:
+        'Resolução aprovada sem ressalvas, liberado para pagamento imediato.',
+      area: 8456.0,
+      valorTotal: 148500000.0,
+      valorTotalPorExtenso:
+        'Cento e quarenta e oito milhões e quinhentos mil reais',
+      valorTda: 140000000.0,
+      valorTdaPorExtenso: 'Cento e quarenta milhões de reais',
+      valorMoeda: 8500000.0,
+      valorMoedaPorExtenso: 'Oito milhões e quinhentos mil reais',
+      prazo: '30',
+      responsavelPagamento: 'Banco do Brasil S.A - Sinop',
+      cpfResponsavel: '333.444.555-66',
     },
   },
   {
@@ -998,6 +1377,28 @@ export const IMOVEIS_MOCK: Dados[] = [
       temPrazo: '',
       observacoes: '',
     },
+    resolucaoCdr: {
+      idResolucaoCdr: '003',
+      dataResolucaoCdr: new Date('2026-05-20'),
+      dataReuniaoCdr: new Date('2026-05-15'),
+      consideracoes: [
+        'Imóvel produtivo com alto valor de benfeitorias.',
+        'Não há ocupação irregular ou conflitos fundiários.',
+      ],
+      consideracaoFinal:
+        'Resolução aprovada sem ressalvas, liberado para pagamento imediato.',
+      area: 8456.0,
+      valorTotal: 148500000.0,
+      valorTotalPorExtenso:
+        'Cento e quarenta e oito milhões e quinhentos mil reais',
+      valorTda: 140000000.0,
+      valorTdaPorExtenso: 'Cento e quarenta milhões de reais',
+      valorMoeda: 8500000.0,
+      valorMoedaPorExtenso: 'Oito milhões e quinhentos mil reais',
+      prazo: '30',
+      responsavelPagamento: 'Banco do Brasil S.A - Sinop',
+      cpfResponsavel: '333.444.555-66',
+    },
   },
 
   {
@@ -1053,6 +1454,28 @@ export const IMOVEIS_MOCK: Dados[] = [
       responsavel: '',
       temPrazo: '',
       observacoes: '',
+    },
+    resolucaoCdr: {
+      idResolucaoCdr: '003',
+      dataResolucaoCdr: new Date('2026-05-20'),
+      dataReuniaoCdr: new Date('2026-05-15'),
+      consideracoes: [
+        'Imóvel produtivo com alto valor de benfeitorias.',
+        'Não há ocupação irregular ou conflitos fundiários.',
+      ],
+      consideracaoFinal:
+        'Resolução aprovada sem ressalvas, liberado para pagamento imediato.',
+      area: 8456.0,
+      valorTotal: 148500000.0,
+      valorTotalPorExtenso:
+        'Cento e quarenta e oito milhões e quinhentos mil reais',
+      valorTda: 140000000.0,
+      valorTdaPorExtenso: 'Cento e quarenta milhões de reais',
+      valorMoeda: 8500000.0,
+      valorMoedaPorExtenso: 'Oito milhões e quinhentos mil reais',
+      prazo: '30',
+      responsavelPagamento: 'Banco do Brasil S.A - Sinop',
+      cpfResponsavel: '333.444.555-66',
     },
   },
 
@@ -1112,6 +1535,28 @@ export const IMOVEIS_MOCK: Dados[] = [
       temPrazo: '',
       observacoes: '',
     },
+    resolucaoCdr: {
+      idResolucaoCdr: '003',
+      dataResolucaoCdr: new Date('2026-05-20'),
+      dataReuniaoCdr: new Date('2026-05-15'),
+      consideracoes: [
+        'Imóvel produtivo com alto valor de benfeitorias.',
+        'Não há ocupação irregular ou conflitos fundiários.',
+      ],
+      consideracaoFinal:
+        'Resolução aprovada sem ressalvas, liberado para pagamento imediato.',
+      area: 8456.0,
+      valorTotal: 148500000.0,
+      valorTotalPorExtenso:
+        'Cento e quarenta e oito milhões e quinhentos mil reais',
+      valorTda: 140000000.0,
+      valorTdaPorExtenso: 'Cento e quarenta milhões de reais',
+      valorMoeda: 8500000.0,
+      valorMoedaPorExtenso: 'Oito milhões e quinhentos mil reais',
+      prazo: '30',
+      responsavelPagamento: 'Banco do Brasil S.A - Sinop',
+      cpfResponsavel: '333.444.555-66',
+    },
   },
 
   {
@@ -1169,6 +1614,28 @@ export const IMOVEIS_MOCK: Dados[] = [
       temPrazo: '',
       observacoes: '',
     },
+    resolucaoCdr: {
+      idResolucaoCdr: '003',
+      dataResolucaoCdr: new Date('2026-05-20'),
+      dataReuniaoCdr: new Date('2026-05-15'),
+      consideracoes: [
+        'Imóvel produtivo com alto valor de benfeitorias.',
+        'Não há ocupação irregular ou conflitos fundiários.',
+      ],
+      consideracaoFinal:
+        'Resolução aprovada sem ressalvas, liberado para pagamento imediato.',
+      area: 8456.0,
+      valorTotal: 148500000.0,
+      valorTotalPorExtenso:
+        'Cento e quarenta e oito milhões e quinhentos mil reais',
+      valorTda: 140000000.0,
+      valorTdaPorExtenso: 'Cento e quarenta milhões de reais',
+      valorMoeda: 8500000.0,
+      valorMoedaPorExtenso: 'Oito milhões e quinhentos mil reais',
+      prazo: '30',
+      responsavelPagamento: 'Banco do Brasil S.A - Sinop',
+      cpfResponsavel: '333.444.555-66',
+    },
   },
 
   {
@@ -1225,6 +1692,28 @@ export const IMOVEIS_MOCK: Dados[] = [
       temPrazo: '',
       observacoes: '',
     },
+    resolucaoCdr: {
+      idResolucaoCdr: '003',
+      dataResolucaoCdr: new Date('2026-05-20'),
+      dataReuniaoCdr: new Date('2026-05-15'),
+      consideracoes: [
+        'Imóvel produtivo com alto valor de benfeitorias.',
+        'Não há ocupação irregular ou conflitos fundiários.',
+      ],
+      consideracaoFinal:
+        'Resolução aprovada sem ressalvas, liberado para pagamento imediato.',
+      area: 8456.0,
+      valorTotal: 148500000.0,
+      valorTotalPorExtenso:
+        'Cento e quarenta e oito milhões e quinhentos mil reais',
+      valorTda: 140000000.0,
+      valorTdaPorExtenso: 'Cento e quarenta milhões de reais',
+      valorMoeda: 8500000.0,
+      valorMoedaPorExtenso: 'Oito milhões e quinhentos mil reais',
+      prazo: '30',
+      responsavelPagamento: 'Banco do Brasil S.A - Sinop',
+      cpfResponsavel: '333.444.555-66',
+    },
   },
   {
     imovel: {
@@ -1279,6 +1768,28 @@ export const IMOVEIS_MOCK: Dados[] = [
       responsavel: '',
       temPrazo: '',
       observacoes: '',
+    },
+    resolucaoCdr: {
+      idResolucaoCdr: '003',
+      dataResolucaoCdr: new Date('2026-05-20'),
+      dataReuniaoCdr: new Date('2026-05-15'),
+      consideracoes: [
+        'Imóvel produtivo com alto valor de benfeitorias.',
+        'Não há ocupação irregular ou conflitos fundiários.',
+      ],
+      consideracaoFinal:
+        'Resolução aprovada sem ressalvas, liberado para pagamento imediato.',
+      area: 8456.0,
+      valorTotal: 148500000.0,
+      valorTotalPorExtenso:
+        'Cento e quarenta e oito milhões e quinhentos mil reais',
+      valorTda: 140000000.0,
+      valorTdaPorExtenso: 'Cento e quarenta milhões de reais',
+      valorMoeda: 8500000.0,
+      valorMoedaPorExtenso: 'Oito milhões e quinhentos mil reais',
+      prazo: '30',
+      responsavelPagamento: 'Banco do Brasil S.A - Sinop',
+      cpfResponsavel: '333.444.555-66',
     },
   },
   {
@@ -1335,6 +1846,28 @@ export const IMOVEIS_MOCK: Dados[] = [
       temPrazo: '',
       observacoes: '',
     },
+    resolucaoCdr: {
+      idResolucaoCdr: '003',
+      dataResolucaoCdr: new Date('2026-05-20'),
+      dataReuniaoCdr: new Date('2026-05-15'),
+      consideracoes: [
+        'Imóvel produtivo com alto valor de benfeitorias.',
+        'Não há ocupação irregular ou conflitos fundiários.',
+      ],
+      consideracaoFinal:
+        'Resolução aprovada sem ressalvas, liberado para pagamento imediato.',
+      area: 8456.0,
+      valorTotal: 148500000.0,
+      valorTotalPorExtenso:
+        'Cento e quarenta e oito milhões e quinhentos mil reais',
+      valorTda: 140000000.0,
+      valorTdaPorExtenso: 'Cento e quarenta milhões de reais',
+      valorMoeda: 8500000.0,
+      valorMoedaPorExtenso: 'Oito milhões e quinhentos mil reais',
+      prazo: '30',
+      responsavelPagamento: 'Banco do Brasil S.A - Sinop',
+      cpfResponsavel: '333.444.555-66',
+    },
   },
   {
     imovel: {
@@ -1389,6 +1922,28 @@ export const IMOVEIS_MOCK: Dados[] = [
       responsavel: '',
       temPrazo: '',
       observacoes: '',
+    },
+    resolucaoCdr: {
+      idResolucaoCdr: '003',
+      dataResolucaoCdr: new Date('2026-05-20'),
+      dataReuniaoCdr: new Date('2026-05-15'),
+      consideracoes: [
+        'Imóvel produtivo com alto valor de benfeitorias.',
+        'Não há ocupação irregular ou conflitos fundiários.',
+      ],
+      consideracaoFinal:
+        'Resolução aprovada sem ressalvas, liberado para pagamento imediato.',
+      area: 8456.0,
+      valorTotal: 148500000.0,
+      valorTotalPorExtenso:
+        'Cento e quarenta e oito milhões e quinhentos mil reais',
+      valorTda: 140000000.0,
+      valorTdaPorExtenso: 'Cento e quarenta milhões de reais',
+      valorMoeda: 8500000.0,
+      valorMoedaPorExtenso: 'Oito milhões e quinhentos mil reais',
+      prazo: '30',
+      responsavelPagamento: 'Banco do Brasil S.A - Sinop',
+      cpfResponsavel: '333.444.555-66',
     },
   },
   {
@@ -1446,6 +2001,28 @@ export const IMOVEIS_MOCK: Dados[] = [
       temPrazo: '',
       observacoes: '',
     },
+    resolucaoCdr: {
+      idResolucaoCdr: '003',
+      dataResolucaoCdr: new Date('2026-05-20'),
+      dataReuniaoCdr: new Date('2026-05-15'),
+      consideracoes: [
+        'Imóvel produtivo com alto valor de benfeitorias.',
+        'Não há ocupação irregular ou conflitos fundiários.',
+      ],
+      consideracaoFinal:
+        'Resolução aprovada sem ressalvas, liberado para pagamento imediato.',
+      area: 8456.0,
+      valorTotal: 148500000.0,
+      valorTotalPorExtenso:
+        'Cento e quarenta e oito milhões e quinhentos mil reais',
+      valorTda: 140000000.0,
+      valorTdaPorExtenso: 'Cento e quarenta milhões de reais',
+      valorMoeda: 8500000.0,
+      valorMoedaPorExtenso: 'Oito milhões e quinhentos mil reais',
+      prazo: '30',
+      responsavelPagamento: 'Banco do Brasil S.A - Sinop',
+      cpfResponsavel: '333.444.555-66',
+    },
   },
   {
     imovel: {
@@ -1501,6 +2078,28 @@ export const IMOVEIS_MOCK: Dados[] = [
       temPrazo: '',
       observacoes: '',
     },
+    resolucaoCdr: {
+      idResolucaoCdr: '003',
+      dataResolucaoCdr: new Date('2026-05-20'),
+      dataReuniaoCdr: new Date('2026-05-15'),
+      consideracoes: [
+        'Imóvel produtivo com alto valor de benfeitorias.',
+        'Não há ocupação irregular ou conflitos fundiários.',
+      ],
+      consideracaoFinal:
+        'Resolução aprovada sem ressalvas, liberado para pagamento imediato.',
+      area: 8456.0,
+      valorTotal: 148500000.0,
+      valorTotalPorExtenso:
+        'Cento e quarenta e oito milhões e quinhentos mil reais',
+      valorTda: 140000000.0,
+      valorTdaPorExtenso: 'Cento e quarenta milhões de reais',
+      valorMoeda: 8500000.0,
+      valorMoedaPorExtenso: 'Oito milhões e quinhentos mil reais',
+      prazo: '30',
+      responsavelPagamento: 'Banco do Brasil S.A - Sinop',
+      cpfResponsavel: '333.444.555-66',
+    },
   },
   {
     imovel: {
@@ -1555,6 +2154,28 @@ export const IMOVEIS_MOCK: Dados[] = [
       responsavel: '',
       temPrazo: '',
       observacoes: '',
+    },
+    resolucaoCdr: {
+      idResolucaoCdr: '003',
+      dataResolucaoCdr: new Date('2026-05-20'),
+      dataReuniaoCdr: new Date('2026-05-15'),
+      consideracoes: [
+        'Imóvel produtivo com alto valor de benfeitorias.',
+        'Não há ocupação irregular ou conflitos fundiários.',
+      ],
+      consideracaoFinal:
+        'Resolução aprovada sem ressalvas, liberado para pagamento imediato.',
+      area: 8456.0,
+      valorTotal: 148500000.0,
+      valorTotalPorExtenso:
+        'Cento e quarenta e oito milhões e quinhentos mil reais',
+      valorTda: 140000000.0,
+      valorTdaPorExtenso: 'Cento e quarenta milhões de reais',
+      valorMoeda: 8500000.0,
+      valorMoedaPorExtenso: 'Oito milhões e quinhentos mil reais',
+      prazo: '30',
+      responsavelPagamento: 'Banco do Brasil S.A - Sinop',
+      cpfResponsavel: '333.444.555-66',
     },
   },
 

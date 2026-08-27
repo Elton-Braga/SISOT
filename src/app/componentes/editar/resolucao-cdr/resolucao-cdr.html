@@ -36,41 +36,21 @@
       <mat-form-field appearance="outline">
         <mat-label>ID da resolução CDR</mat-label>
 
-        <input matInput [(ngModel)]="idResolucaoCdr"  />
+        <input matInput [(ngModel)]="idResolucaoCdr" />
       </mat-form-field>
 
       <!-- DATA DA RESOLUÇÃO -->
 
       <mat-form-field appearance="outline">
         <mat-label>Data da resolução CDR</mat-label>
-
-        <input
-          matInput
-          [matDatepicker]="pickerResolucao"
-          [(ngModel)]="dataResolucaoCdr"
-        />
-
-        <mat-datepicker-toggle matIconSuffix [for]="pickerResolucao">
-        </mat-datepicker-toggle>
-
-        <mat-datepicker #pickerResolucao> </mat-datepicker>
+        <input matInput [(ngModel)]="dataResolucaoCdr" />
       </mat-form-field>
 
       <!-- DATA DA REUNIÃO -->
 
       <mat-form-field appearance="outline">
         <mat-label>Data da reunião CDR</mat-label>
-
-        <input
-          matInput
-          [matDatepicker]="pickerReuniao"
-          [(ngModel)]="dataReuniaoCdr"
-        />
-
-        <mat-datepicker-toggle matIconSuffix [for]="pickerReuniao">
-        </mat-datepicker-toggle>
-
-        <mat-datepicker #pickerReuniao> </mat-datepicker>
+        <input matInput [(ngModel)]="dataReuniaoCdr" />
       </mat-form-field>
     </div>
   </section>
@@ -78,6 +58,14 @@
   <!-- ================================================= -->
   <!-- CONSIDERAÇÕES -->
   <!-- ================================================= -->
+
+  <div class="acao-consideracao">
+    <button mat-stroked-button type="button" (click)="adicionarConsideracao()">
+      <mat-icon> add </mat-icon>
+
+      Adicionar Considerações
+    </button>
+  </div>
 
   <section class="form-section">
     <h2>Considerações</h2>
@@ -90,18 +78,6 @@
         </textarea>
       </mat-form-field>
     }
-
-    <div class="acao-consideracao">
-      <button
-        mat-stroked-button
-        type="button"
-        (click)="adicionarConsideracao()"
-      >
-        <mat-icon> add </mat-icon>
-
-        Adicionar Considerações
-      </button>
-    </div>
 
     <!-- CONSIDERAÇÃO FINAL -->
 
@@ -125,7 +101,7 @@
       <mat-form-field appearance="outline" class="coluna-dupla">
         <mat-label>Imóvel</mat-label>
 
-        <input matInput [(ngModel)]="imovel"  />
+        <input matInput [(ngModel)]="imovel" />
       </mat-form-field>
 
       <!-- ÁREA -->
@@ -133,7 +109,7 @@
       <mat-form-field appearance="outline">
         <mat-label>Área</mat-label>
 
-        <input matInput type="number" [(ngModel)]="area"  />
+        <input matInput type="number" [(ngModel)]="area" />
       </mat-form-field>
 
       <!-- MUNICÍPIO -->
@@ -141,7 +117,7 @@
       <mat-form-field appearance="outline">
         <mat-label>Município</mat-label>
 
-        <input matInput [(ngModel)]="municipio"  />
+        <input matInput [(ngModel)]="municipio" />
       </mat-form-field>
 
       <!-- PROPRIETÁRIO -->
@@ -149,7 +125,7 @@
       <mat-form-field appearance="outline" class="coluna-dupla">
         <mat-label>Proprietário</mat-label>
 
-        <input matInput [(ngModel)]="proprietario"  />
+        <input matInput [(ngModel)]="proprietario" />
       </mat-form-field>
 
       <!-- SNCR -->
@@ -157,7 +133,7 @@
       <mat-form-field appearance="outline">
         <mat-label>SNCR</mat-label>
 
-        <input matInput [(ngModel)]="sncr"  />
+        <input matInput [(ngModel)]="sncr" />
       </mat-form-field>
     </div>
   </section>
@@ -177,7 +153,7 @@
 
         <span matTextPrefix>R$&nbsp;</span>
 
-        <input matInput type="number" [(ngModel)]="valorTotal"  />
+        <input matInput type="number" [(ngModel)]="valorTotal" />
       </mat-form-field>
 
       <!-- VALOR TOTAL POR EXTENSO -->
@@ -185,7 +161,7 @@
       <mat-form-field appearance="outline" class="coluna-dupla">
         <mat-label> Valor total por extenso </mat-label>
 
-        <input matInput [(ngModel)]="valorTotalPorExtenso"  />
+        <input matInput [(ngModel)]="valorTotalPorExtenso" />
       </mat-form-field>
 
       <!-- VALOR TDA -->
@@ -195,7 +171,7 @@
 
         <span matTextPrefix>R$&nbsp;</span>
 
-        <input matInput type="number" [(ngModel)]="valorTda"  />
+        <input matInput type="number" [(ngModel)]="valorTda" />
       </mat-form-field>
 
       <!-- VALOR TDA POR EXTENSO -->
@@ -203,7 +179,7 @@
       <mat-form-field appearance="outline" class="coluna-dupla">
         <mat-label> Valor TDA por extenso </mat-label>
 
-        <input matInput [(ngModel)]="valorTdaPorExtenso"  />
+        <input matInput [(ngModel)]="valorTdaPorExtenso" />
       </mat-form-field>
 
       <!-- VALOR MOEDA -->
@@ -213,7 +189,7 @@
 
         <span matTextPrefix>R$&nbsp;</span>
 
-        <input matInput type="number" [(ngModel)]="valorMoeda"  />
+        <input matInput type="number" [(ngModel)]="valorMoeda" />
       </mat-form-field>
 
       <!-- VALOR MOEDA POR EXTENSO -->
@@ -221,7 +197,7 @@
       <mat-form-field appearance="outline" class="coluna-dupla">
         <mat-label> Valor moeda por extenso </mat-label>
 
-        <input matInput [(ngModel)]="valorMoedaPorExtenso"  />
+        <input matInput [(ngModel)]="valorMoedaPorExtenso" />
       </mat-form-field>
     </div>
   </section>
@@ -257,7 +233,7 @@
       <mat-form-field appearance="outline" class="coluna-dupla">
         <mat-label> Responsável pelo pagamento </mat-label>
 
-        <input matInput [(ngModel)]="responsavelPagamento"  />
+        <input matInput [(ngModel)]="responsavelPagamento" />
       </mat-form-field>
 
       <!-- CPF -->
@@ -265,7 +241,7 @@
       <mat-form-field appearance="outline">
         <mat-label> CPF do responsável </mat-label>
 
-        <input matInput [(ngModel)]="cpfResponsavel"  />
+        <input matInput [(ngModel)]="cpfResponsavel" />
       </mat-form-field>
     </div>
   </section>
