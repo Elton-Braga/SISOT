@@ -8,8 +8,8 @@ import { MatIconModule } from '@angular/material/icon';
 export interface DadosResolucaoCdr {
   sr: string;
   idResolucaoCdr: string;
-  dataResolucaoCdr: Date | null;
-  dataReuniaoCdr: Date | null;
+  dataResolucaoCdr: string;
+  dataReuniaoCdr: string;
 
   consideracoes: string[];
   consideracaoFinal: string;
@@ -37,7 +37,7 @@ export interface DadosResolucaoCdr {
 @Component({
   selector: 'app-print-resolucao-cdr',
   standalone: true,
-  imports: [DatePipe, MatButtonModule, MatIconModule],
+  imports: [MatButtonModule, MatIconModule],
   templateUrl: './print-resolucao-cdr.html',
   styleUrl: './print-resolucao-cdr.css',
 })

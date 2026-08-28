@@ -8,12 +8,11 @@
     <!-- CABEÇALHO DA RESOLUÇÃO -->
     <!-- ========================================================= -->
 
-    <div class="cabecalho-resolucao">
-      <p class="titulo-resolucao">
-        RESOLUÇÃO/INCRA/CDR/ SR- {{ dados.sr }}/No {{ dados.idResolucaoCdr }} DE
-        {{ dados.dataResolucaoCdr | date: "dd/MM/yyyy" }}.
-      </p>
-    </div>
+    <p class="titulo-resolucao">
+      RESOLUÇÃO/INCRA/CDR/ SR- {{ dados.sr }}/No {{ dados.idResolucaoCdr }} DE
+      {{ dados.dataResolucaoCdr }}.
+      <!-- ← sem pipe -->
+    </p>
 
     <!-- ========================================================= -->
     <!-- PREÂMBULO -->
@@ -28,7 +27,7 @@
       na PORTARIA INCRA/P/Nº. 126/2008 de 09 de abril de 2008, publicada no
       D.O.U. de 09 de abril de 2008, e tendo em vista o contido na ATA de
       Reunião do Comitê de Decisão Regional, realizada em
-      {{ dados.dataReuniaoCdr | date: "dd/MM/yyyy" }}, e
+      {{ dados.dataReuniaoCdr }}, e
     </p>
 
     <!-- ========================================================= -->
