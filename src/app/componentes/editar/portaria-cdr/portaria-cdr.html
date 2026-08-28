@@ -1,0 +1,132 @@
+<div class="resolucao-container">
+  <div class="pagina-cabecalho">
+    <h1>Portaria CDR</h1>
+    <p>Preencha as informações necessárias para elaboração da Portaria.</p>
+  </div>
+
+  <section class="form-section">
+    <h2>Dados da Portaria</h2>
+    <div class="form-grid">
+      <!-- SR -->
+      <mat-form-field appearance="outline">
+        <mat-label>SR</mat-label>
+        <mat-select [(ngModel)]="sr">
+          <mat-option value=""> Selecione </mat-option>
+          <mat-option value="SR01"> SR 01 </mat-option>
+          <mat-option value="SR02"> SR 02 </mat-option>
+          <mat-option value="SR03"> SR 03 </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- ID da Portaria CDR -->
+      <mat-form-field appearance="outline">
+        <mat-label>ID da Portaria CDR</mat-label>
+        <input matInput [(ngModel)]="idResolucaoCdr" />
+      </mat-form-field>
+
+      <!-- Data da Portaria CDR -->
+      <mat-form-field appearance="outline">
+        <mat-label>Data da Portaria CDR</mat-label>
+        <input matInput [(ngModel)]="dataResolucaoCdr" />
+      </mat-form-field>
+    </div>
+  </section>
+
+  <section class="form-section">
+    <h2>Dados do Imóvel</h2>
+    <div class="form-grid">
+      <mat-form-field appearance="outline" class="coluna-dupla">
+        <mat-label>Imóvel</mat-label>
+        <input matInput [(ngModel)]="imovel" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Área</mat-label>
+        <input matInput type="number" [(ngModel)]="area" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Município</mat-label>
+        <input matInput [(ngModel)]="municipio" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="coluna-dupla">
+        <mat-label>Proprietário</mat-label>
+        <input matInput [(ngModel)]="proprietario" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>SNCR</mat-label>
+        <input matInput [(ngModel)]="sncr" />
+      </mat-form-field>
+    </div>
+  </section>
+
+  <section class="form-section">
+    <h2>Valores</h2>
+    <div class="form-grid">
+      <mat-form-field appearance="outline">
+        <mat-label>Valor total</mat-label>
+        <span matTextPrefix>R$&nbsp;</span>
+        <input matInput type="number" [(ngModel)]="valorTotal" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="coluna-dupla">
+        <mat-label>Valor total por extenso</mat-label>
+        <input matInput [(ngModel)]="valorTotalPorExtenso" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Valor TDA</mat-label>
+        <span matTextPrefix>R$&nbsp;</span>
+        <input matInput type="number" [(ngModel)]="valorTda" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="coluna-dupla">
+        <mat-label>Valor TDA por extenso</mat-label>
+        <input matInput [(ngModel)]="valorTdaPorExtenso" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Valor moeda</mat-label>
+        <span matTextPrefix>R$&nbsp;</span>
+        <input matInput type="number" [(ngModel)]="valorMoeda" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="coluna-dupla">
+        <mat-label>Valor moeda por extenso</mat-label>
+        <input matInput [(ngModel)]="valorMoedaPorExtenso" />
+      </mat-form-field>
+    </div>
+  </section>
+
+  <section class="form-section">
+    <h2>Informações do Pagamento</h2>
+    <div class="form-grid">
+      <mat-form-field appearance="outline">
+        <mat-label>Prazo</mat-label>
+        <mat-select [(ngModel)]="prazo">
+          <mat-option value=""> Selecione </mat-option>
+          <mat-option value="30"> 30 dias </mat-option>
+          <mat-option value="60"> 60 dias </mat-option>
+          <mat-option value="90"> 90 dias </mat-option>
+          <mat-option value="120"> 120 dias </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="coluna-dupla">
+        <mat-label>Responsável pelo pagamento</mat-label>
+        <input matInput [(ngModel)]="responsavelPagamento" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>CPF do responsável</mat-label>
+        <input matInput [(ngModel)]="cpfResponsavel" />
+      </mat-form-field>
+    </div>
+  </section>
+
+  <div class="acoes-finais">
+    <button mat-button type="button" (click)="salvar()">Salvar</button>
+  </div>
+</div>
