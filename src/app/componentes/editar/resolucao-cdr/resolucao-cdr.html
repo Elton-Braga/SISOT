@@ -20,14 +20,15 @@
       <mat-form-field appearance="outline">
         <mat-label>SR</mat-label>
 
-        <mat-select [(ngModel)]="sr">
-          <mat-option value=""> Selecione </mat-option>
+        <mat-select [(ngModel)]="sr" [disabled]="true">
+          <mat-option value="SR(27)MBA"> SR 27 </mat-option>
 
-          <mat-option value="SR01"> SR 01 </mat-option>
+          <mat-option value="SR(12)MA"> SR 12 </mat-option>
 
-          <mat-option value="SR02"> SR 02 </mat-option>
-
-          <mat-option value="SR03"> SR 03 </mat-option>
+          <mat-option value="SR(20)ES"> SR 20 </mat-option>
+          <mat-option value="SR(09)PR"> SR 09 </mat-option>
+          <mat-option value="SR(02)PE"> SR 02 </mat-option
+          ><mat-option value="SR(13)MT"> SR 13 </mat-option>
         </mat-select>
       </mat-form-field>
 
@@ -36,7 +37,7 @@
       <mat-form-field appearance="outline">
         <mat-label>ID da resolução CDR</mat-label>
 
-        <input matInput [(ngModel)]="idResolucaoCdr" />
+        <input matInput [(ngModel)]="idResolucaoCdr" disabled />
       </mat-form-field>
 
       <!-- DATA DA RESOLUÇÃO -->
@@ -101,7 +102,7 @@
       <mat-form-field appearance="outline" class="coluna-dupla">
         <mat-label>Imóvel</mat-label>
 
-        <input matInput [(ngModel)]="imovel" />
+        <input matInput [(ngModel)]="imovel" [disabled]="true" />
       </mat-form-field>
 
       <!-- ÁREA -->
@@ -109,7 +110,7 @@
       <mat-form-field appearance="outline">
         <mat-label>Área</mat-label>
 
-        <input matInput type="number" [(ngModel)]="area" />
+        <input matInput type="number" [(ngModel)]="area" [disabled]="true" />
       </mat-form-field>
 
       <!-- MUNICÍPIO -->
@@ -117,7 +118,7 @@
       <mat-form-field appearance="outline">
         <mat-label>Município</mat-label>
 
-        <input matInput [(ngModel)]="municipio" />
+        <input matInput [(ngModel)]="municipio" [disabled]="true" />
       </mat-form-field>
 
       <!-- PROPRIETÁRIO -->
@@ -125,7 +126,7 @@
       <mat-form-field appearance="outline" class="coluna-dupla">
         <mat-label>Proprietário</mat-label>
 
-        <input matInput [(ngModel)]="proprietario" />
+        <input matInput [(ngModel)]="proprietario" [disabled]="true" />
       </mat-form-field>
 
       <!-- SNCR -->
@@ -133,7 +134,7 @@
       <mat-form-field appearance="outline">
         <mat-label>SNCR</mat-label>
 
-        <input matInput [(ngModel)]="sncr" />
+        <input matInput [(ngModel)]="sncr" [disabled]="true" />
       </mat-form-field>
     </div>
   </section>
@@ -153,7 +154,12 @@
 
         <span matTextPrefix>R$&nbsp;</span>
 
-        <input matInput type="number" [(ngModel)]="valorTotal" />
+        <input
+          matInput
+          type="number"
+          [(ngModel)]="valorTotal"
+          [disabled]="true"
+        />
       </mat-form-field>
 
       <!-- VALOR TOTAL POR EXTENSO -->
@@ -161,7 +167,7 @@
       <mat-form-field appearance="outline" class="coluna-dupla">
         <mat-label> Valor total por extenso </mat-label>
 
-        <input matInput [(ngModel)]="valorTotalPorExtenso" />
+        <input matInput [(ngModel)]="valorTotalPorExtenso" [disabled]="true" />
       </mat-form-field>
 
       <!-- VALOR TDA -->
@@ -171,7 +177,12 @@
 
         <span matTextPrefix>R$&nbsp;</span>
 
-        <input matInput type="number" [(ngModel)]="valorTda" />
+        <input
+          matInput
+          type="number"
+          [(ngModel)]="valorTda"
+          [disabled]="true"
+        />
       </mat-form-field>
 
       <!-- VALOR TDA POR EXTENSO -->
@@ -179,7 +190,7 @@
       <mat-form-field appearance="outline" class="coluna-dupla">
         <mat-label> Valor TDA por extenso </mat-label>
 
-        <input matInput [(ngModel)]="valorTdaPorExtenso" />
+        <input matInput [(ngModel)]="valorTdaPorExtenso" [disabled]="true" />
       </mat-form-field>
 
       <!-- VALOR MOEDA -->
@@ -189,7 +200,12 @@
 
         <span matTextPrefix>R$&nbsp;</span>
 
-        <input matInput type="number" [(ngModel)]="valorMoeda" />
+        <input
+          matInput
+          type="number"
+          [(ngModel)]="valorMoeda"
+          [disabled]="true"
+        />
       </mat-form-field>
 
       <!-- VALOR MOEDA POR EXTENSO -->
@@ -197,7 +213,7 @@
       <mat-form-field appearance="outline" class="coluna-dupla">
         <mat-label> Valor moeda por extenso </mat-label>
 
-        <input matInput [(ngModel)]="valorMoedaPorExtenso" />
+        <input matInput [(ngModel)]="valorMoedaPorExtenso" [disabled]="true" />
       </mat-form-field>
     </div>
   </section>
@@ -254,18 +270,5 @@
     <!-- BOTÃO SALVAR -->
 
     <button mat-button type="button" (click)="salvar()">Salvar</button>
-
-    <!-- ENVIAR PARA ASSINATURA 
-
-    <button
-      mat-flat-button
-      type="button"
-      class="botao-assinatura"
-      (click)="enviarParaAssinatura()"
-    >
-      <mat-icon> draw </mat-icon>
-
-      Enviar para assinatura
-    </button>-->
   </div>
 </div>
