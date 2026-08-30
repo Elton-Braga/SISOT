@@ -21,12 +21,23 @@
       <!-- ID da Portaria CDR -->
       <mat-form-field appearance="outline">
         <mat-label>ID da Portaria CDR</mat-label>
-        <input matInput [(ngModel)]="idResolucaoCdr" />
+        <input matInput [(ngModel)]="idPortariaCdr" />
       </mat-form-field>
 
       <!-- Data da Portaria CDR -->
       <mat-form-field appearance="outline">
         <mat-label>Data da Portaria CDR</mat-label>
+        <input matInput [(ngModel)]="dataPortariaCdr" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>ID da resolução CDR</mat-label>
+        <input matInput [(ngModel)]="idResolucaoCdr" />
+      </mat-form-field>
+
+      <!-- Data da Portaria CDR -->
+      <mat-form-field appearance="outline">
+        <mat-label>Data da resolução CDR</mat-label>
         <input matInput [(ngModel)]="dataResolucaoCdr" />
       </mat-form-field>
     </div>
@@ -39,6 +50,11 @@
         <mat-label>Imóvel</mat-label>
         <input matInput [(ngModel)]="imovel" />
       </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Estado</mat-label>
+        <input matInput [(ngModel)]="estado" /> </mat-form-field
+      ><!--Remover depois-->
 
       <mat-form-field appearance="outline">
         <mat-label>Área</mat-label>

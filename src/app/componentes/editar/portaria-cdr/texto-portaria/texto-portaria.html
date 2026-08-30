@@ -1,0 +1,144 @@
+<div class="print-portaria-container">
+  <!-- ========================================================= -->
+  <!-- ÁREA DO DOCUMENTO -->
+  <!-- ========================================================= -->
+
+  <div id="conteudoImpressao" class="portaria-documento">
+    <!-- ========================================================= -->
+    <!-- CABEÇALHO DA PORTARIA -->
+    <!-- ========================================================= -->
+
+    <p class="titulo-portaria">
+      PORTARIA/INCRA/SR {{ dados.sr }}/Nº {{ dados.idPortariaCdr }}, DE
+      {{ dados.dataPortariaCdr }}.
+    </p>
+
+    <!-- ========================================================= -->
+    <!-- PREÂMBULO -->
+    <!-- ========================================================= -->
+
+    <p class="texto">
+      O PRESIDENTE DO INSTITUTO NACIONAL DE COLONIZAÇÃO E REFORMA AGRÁRIA -
+      INCRA, no uso das atribuições que lhe são conferidas pelos Incisos I e IV
+      do Art. 21, da Estrutura Regimental, aprovada pelo Decreto n.º 6.812, de 3
+      de abril de 2009, combinado com os Incisos I e IV, do Art. 122 do
+      Regimento Interno do INCRA, aprovado pela Portaria/MDA/No 20, de 8 de
+      abril de 2009, e Considerando os termos da Resolução/CDR/No
+      {{ dados.idResolucaoCdr }}, de {{ dados.dataResolucaoCdr }}, resolve:
+    </p>
+
+    <!-- ========================================================= -->
+    <!-- ARTIGO 1º -->
+    <!-- ========================================================= -->
+
+    <p class="texto artigo">
+      <strong>Art. 1º.</strong>
+      Autorizar o INCRA adquirir o imóvel rural denominado
+      {{ dados.imovel }}, com área medida de {{ dados.area }} hectares,
+      localizado no município {{ dados.municipio }}, Estado {{ dados.estado }},
+      de propriedade de {{ dados.proprietario }}, devidamente cadastrado no
+      INCRA sob o código {{ dados.sncr }}, pelo valor total de R$
+      {{ dados.valorTotal | currency: "BRL" : "symbol" : "1.2-2" }} ({{
+        dados.valorTotalPorExtenso
+      }}), sendo R$
+      {{ dados.valorTda | currency: "BRL" : "symbol" : "1.2-2" }}
+      ({{ dados.valorTdaPorExtenso }}) referentes à terra nua, a serem pagos em
+      Títulos da Dívida Agrária – TDA, com prazo de resgate de até
+      {{ dados.prazo }} anos, do qual já foi deduzido o valor de R$
+      {{ dados.valorMoeda | currency: "BRL" : "symbol" : "1.2-2" }}
+      ({{ dados.valorMoedaPorExtenso }}) em moeda corrente, para pagamento das
+      benfeitorias, condicionado à disponibilidade orçamentária. Os Títulos da
+      Dívida Agrária – TDA serão lançados nominativos a
+      {{ dados.responsavelPagamento }}, CPF/CNPJ n°. {{ dados.cpfResponsavel }}.
+    </p>
+
+    <!-- ========================================================= -->
+    <!-- ARTIGO 2º -->
+    <!-- ========================================================= -->
+
+    <p class="texto artigo">
+      <strong>Art. 2º.</strong>
+      Determinar às Divisões de Obtenção de Terras e Implantação de Projetos de
+      Assentamento e de Administração a adotarem, no âmbito das competências
+      desta unidade regional, as providências necessárias para a consecução do
+      objetivo previsto no Art. 1º e, em especial, as recomendações jurídicas no
+      parecer jurídico expedido pela Procuradoria Regional.
+    </p>
+
+    <!-- ========================================================= -->
+    <!-- ARTIGO 3º -->
+    <!-- ========================================================= -->
+
+    <p class="texto artigo">
+      <strong>Art. 3º.</strong>
+      Determinar que a aquisição se opere livre e desembaraçada de quaisquer
+      ônus e/ou gravames, inclusive, com prévia comprovação de quitação do
+      Imposto sobre a Propriedade Territorial Rural – ITR, relativo aos 05
+      (cinco) últimos exercícios, inclusive o atual, conforme previsto no art.
+      21, da Lei no 9.393, de 19 de dezembro de 1996, bem como a Taxa de
+      Serviços Cadastrais – CCIR e ainda, fazer constar das escrituras públicas
+      de compra e venda que cabe a promitente vendedora, a responsabilidade
+      total quanto ao pagamento dos encargos e obrigações trabalhistas
+      decorrentes de eventuais vínculos empregatícios mantidos com os empregados
+      que trabalham ou tenham trabalhado no imóvel sob aquisição ou outras
+      reclamações de terceiros, incluindo aquelas relativas a indenizações por
+      benfeitorias.
+    </p>
+
+    <!-- ========================================================= -->
+    <!-- ARTIGO 4º -->
+    <!-- ========================================================= -->
+
+    <p class="texto artigo">
+      <strong>Art. 4º.</strong>
+      Condicionar a efetivação da compra e venda ao atendimento das exigências
+      previstas no Decreto n.º 433, de 24 de janeiro de 1992, alterado pelos
+      Decretos 2.614, de 03 de junho de 1998 e 2.680, de 17 de julho de 1998, em
+      especial o Art. 4.º A.
+    </p>
+
+    <!-- ========================================================= -->
+    <!-- ARTIGO 5º -->
+    <!-- ========================================================= -->
+
+    <p class="texto artigo">
+      <strong>Art. 5º.</strong>
+      Esta portaria entra em vigor na data de sua publicação.
+    </p>
+
+    <!-- ========================================================= -->
+    <!-- ASSINATURA -->
+    <!-- ========================================================= -->
+
+    <div class="assinatura">
+      <p>______________________________________________</p>
+      <p>Presidente do INCRA</p>
+    </div>
+  </div>
+
+  <!-- ========================================================= -->
+  <!-- AÇÕES -->
+  <!-- ========================================================= -->
+
+  <div class="acoes-finais">
+    <button
+      mat-button
+      type="button"
+      class="botao-imprimir"
+      (click)="imprimir()"
+    >
+      <mat-icon>print</mat-icon>
+      Imprimir
+    </button>
+
+    <button
+      mat-flat-button
+      type="button"
+      class="botao-assinatura"
+      (click)="enviarParaAssinatura()"
+    >
+      <mat-icon>draw</mat-icon>
+      Enviar para assinatura
+    </button>
+  </div>
+</div>
