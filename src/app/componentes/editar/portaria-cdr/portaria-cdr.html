@@ -10,8 +10,7 @@
       <!-- SR -->
       <mat-form-field appearance="outline">
         <mat-label>SR</mat-label>
-        <mat-select [(ngModel)]="sr">
-          <mat-option value=""> Selecione </mat-option>
+        <mat-select [(ngModel)]="sr" disabled>
           <mat-option value="SR01"> SR 01 </mat-option>
           <mat-option value="SR02"> SR 02 </mat-option>
           <mat-option value="SR03"> SR 03 </mat-option>
@@ -21,7 +20,7 @@
       <!-- ID da Portaria CDR -->
       <mat-form-field appearance="outline">
         <mat-label>ID da Portaria CDR</mat-label>
-        <input matInput [(ngModel)]="idPortariaCdr" />
+        <input matInput [(ngModel)]="idPortariaCdr" disabled />
       </mat-form-field>
 
       <!-- Data da Portaria CDR -->
@@ -32,7 +31,7 @@
 
       <mat-form-field appearance="outline">
         <mat-label>ID da resolução CDR</mat-label>
-        <input matInput [(ngModel)]="idResolucaoCdr" />
+        <input matInput [(ngModel)]="idResolucaoCdr" disabled />
       </mat-form-field>
 
       <!-- Data da Portaria CDR -->
@@ -48,32 +47,32 @@
     <div class="form-grid">
       <mat-form-field appearance="outline" class="coluna-dupla">
         <mat-label>Imóvel</mat-label>
-        <input matInput [(ngModel)]="imovel" />
+        <input matInput [(ngModel)]="imovel" disabled />
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Estado</mat-label>
-        <input matInput [(ngModel)]="estado" /> </mat-form-field
+        <input matInput [(ngModel)]="estado" disabled /> </mat-form-field
       ><!--Remover depois-->
 
       <mat-form-field appearance="outline">
         <mat-label>Área</mat-label>
-        <input matInput type="number" [(ngModel)]="area" />
+        <input matInput type="number" [(ngModel)]="area" disabled />
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Município</mat-label>
-        <input matInput [(ngModel)]="municipio" />
+        <input matInput [(ngModel)]="municipio" disabled />
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="coluna-dupla">
         <mat-label>Proprietário</mat-label>
-        <input matInput [(ngModel)]="proprietario" />
+        <input matInput [(ngModel)]="proprietario" disabled />
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>SNCR</mat-label>
-        <input matInput [(ngModel)]="sncr" />
+        <input matInput [(ngModel)]="sncr" disabled />
       </mat-form-field>
     </div>
   </section>
@@ -84,34 +83,34 @@
       <mat-form-field appearance="outline">
         <mat-label>Valor total</mat-label>
         <span matTextPrefix>R$&nbsp;</span>
-        <input matInput type="number" [(ngModel)]="valorTotal" />
+        <input matInput type="number" [(ngModel)]="valorTotal" disabled />
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="coluna-dupla">
         <mat-label>Valor total por extenso</mat-label>
-        <input matInput [(ngModel)]="valorTotalPorExtenso" />
+        <input matInput [(ngModel)]="valorTotalPorExtenso" disabled />
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Valor TDA</mat-label>
         <span matTextPrefix>R$&nbsp;</span>
-        <input matInput type="number" [(ngModel)]="valorTda" />
+        <input matInput type="number" [(ngModel)]="valorTda" disabled />
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="coluna-dupla">
         <mat-label>Valor TDA por extenso</mat-label>
-        <input matInput [(ngModel)]="valorTdaPorExtenso" />
+        <input matInput [(ngModel)]="valorTdaPorExtenso" disabled />
       </mat-form-field>
 
       <mat-form-field appearance="outline">
         <mat-label>Valor moeda</mat-label>
         <span matTextPrefix>R$&nbsp;</span>
-        <input matInput type="number" [(ngModel)]="valorMoeda" />
+        <input matInput type="number" [(ngModel)]="valorMoeda" disabled />
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="coluna-dupla">
         <mat-label>Valor moeda por extenso</mat-label>
-        <input matInput [(ngModel)]="valorMoedaPorExtenso" />
+        <input matInput [(ngModel)]="valorMoedaPorExtenso" disabled />
       </mat-form-field>
     </div>
   </section>

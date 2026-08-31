@@ -60,12 +60,8 @@ export const IMOVEIS_MOCK: Dados[] = [
       idResolucaoCdr: '001',
       dataResolucaoCdr: new Date('2026-08-27'),
       dataReuniaoCdr: new Date('2026-08-20'),
-      consideracoes: [
-        'Parecer técnico favorável à avaliação do imóvel.',
-        'Documentação de propriedade verificada e aprovada.',
-      ],
-      consideracaoFinal:
-        'Resolução aprovada para aquisição do imóvel mediante as condições estabelecidas.',
+      consideracoes: [],
+      consideracaoFinal: '',
       area: 10978.8258, // Valor espelhado do areaHa, mas como é um campo separado, fica aqui.
       valorTotal: 192387136.53,
       valorTotalPorExtenso:
@@ -141,12 +137,8 @@ export const IMOVEIS_MOCK: Dados[] = [
       idResolucaoCdr: '002',
       dataResolucaoCdr: new Date('2026-07-15'),
       dataReuniaoCdr: new Date('2026-07-10'),
-      consideracoes: [
-        'Avaliação econômica concluída com metodologia Decreto 433/92.',
-        'Presença de ocupação prévia por famílias acampadas.',
-      ],
-      consideracaoFinal:
-        'Resolução aprovada com condicionantes de reassentamento das famílias no prazo de 45 dias.',
+      consideracoes: [],
+      consideracaoFinal: '',
       area: 5234.12,
       valorTotal: 78997328.31,
       valorTotalPorExtenso:
@@ -222,12 +214,8 @@ export const IMOVEIS_MOCK: Dados[] = [
       idResolucaoCdr: '003',
       dataResolucaoCdr: new Date('2026-05-20'),
       dataReuniaoCdr: new Date('2026-05-15'),
-      consideracoes: [
-        'Imóvel produtivo com alto valor de benfeitorias.',
-        'Não há ocupação irregular ou conflitos fundiários.',
-      ],
-      consideracaoFinal:
-        'Resolução aprovada sem ressalvas, liberado para pagamento imediato.',
+      consideracoes: [],
+      consideracaoFinal: '',
       area: 8456.0,
       valorTotal: 148500000.0,
       valorTotalPorExtenso:
@@ -299,12 +287,8 @@ export const IMOVEIS_MOCK: Dados[] = [
       idResolucaoCdr: '003',
       dataResolucaoCdr: new Date('2026-05-20'),
       dataReuniaoCdr: new Date('2026-05-15'),
-      consideracoes: [
-        'Imóvel produtivo com alto valor de benfeitorias.',
-        'Não há ocupação irregular ou conflitos fundiários.',
-      ],
-      consideracaoFinal:
-        'Resolução aprovada sem ressalvas, liberado para pagamento imediato.',
+      consideracoes: [],
+      consideracaoFinal: '',
       area: 8456.0,
       valorTotal: 148500000.0,
       valorTotalPorExtenso:
@@ -377,12 +361,8 @@ export const IMOVEIS_MOCK: Dados[] = [
       idResolucaoCdr: '004',
       dataResolucaoCdr: new Date('2026-04-10'),
       dataReuniaoCdr: new Date('2026-04-05'),
-      consideracoes: [
-        'Extensa área com alta capacidade de assentamento.',
-        'Existe sobreposição com área de proteção ambiental.',
-      ],
-      consideracaoFinal:
-        'Resolução aprovada condicionada à demarcação da APA e reassentamento das 245 famílias em até 60 dias.',
+      consideracoes: [],
+      consideracaoFinal: '',
       area: 15200.5,
       valorTotal: 255000000.0,
       valorTotalPorExtenso: 'Duzentos e cinquenta e cinco milhões de reais',
@@ -455,12 +435,8 @@ export const IMOVEIS_MOCK: Dados[] = [
       idResolucaoCdr: '005',
       dataResolucaoCdr: new Date('2026-03-05'),
       dataReuniaoCdr: new Date('2026-02-28'),
-      consideracoes: [
-        'Pequena área com alta produtividade agrícola.',
-        'Documentação fundiária em dia.',
-      ],
-      consideracaoFinal:
-        'Resolução aprovada com prioridade de pagamento devido à regularidade documental.',
+      consideracoes: [],
+      consideracaoFinal: '',
       area: 3200.75,
       valorTotal: 43000000.0,
       valorTotalPorExtenso: 'Quarenta e três milhões de reais',
@@ -531,12 +507,8 @@ export const IMOVEIS_MOCK: Dados[] = [
       idResolucaoCdr: '006',
       dataResolucaoCdr: new Date('2026-02-15'),
       dataReuniaoCdr: new Date('2026-02-10'),
-      consideracoes: [
-        'Imóvel com relevante passivo e ativo ambiental.',
-        'Necessidade de compensação por área de preservação permanente.',
-      ],
-      consideracaoFinal:
-        'Resolução aprovada com cláusulas compensatórias ambientais, prazo de 90 dias para pagamento parcelado.',
+      consideracoes: [],
+      consideracaoFinal: '',
       area: 18900.3,
       valorTotal: 310000000.0,
       valorTotalPorExtenso: 'Trezentos e dez milhões de reais',
@@ -607,12 +579,8 @@ export const IMOVEIS_MOCK: Dados[] = [
       idResolucaoCdr: '002',
       dataResolucaoCdr: new Date('2026-07-15'),
       dataReuniaoCdr: new Date('2026-07-10'),
-      consideracoes: [
-        'Avaliação econômica concluída com metodologia Decreto 433/92.',
-        'Presença de ocupação prévia por famílias acampadas.',
-      ],
-      consideracaoFinal:
-        'Resolução aprovada com condicionantes de reassentamento das famílias no prazo de 45 dias.',
+      consideracoes: [],
+      consideracaoFinal: '',
       area: 5234.12,
       valorTotal: 78997328.31,
       valorTotalPorExtenso:
@@ -686,12 +654,8 @@ export const IMOVEIS_MOCK: Dados[] = [
       idResolucaoCdr: '003',
       dataResolucaoCdr: new Date('2026-05-20'),
       dataReuniaoCdr: new Date('2026-05-15'),
-      consideracoes: [
-        'Imóvel produtivo com alto valor de benfeitorias.',
-        'Não há ocupação irregular ou conflitos fundiários.',
-      ],
-      consideracaoFinal:
-        'Resolução aprovada sem ressalvas, liberado para pagamento imediato.',
+      consideracoes: [],
+      consideracaoFinal: '',
       area: 8456.0,
       valorTotal: 148500000.0,
       valorTotalPorExtenso:
@@ -763,12 +727,8 @@ export const IMOVEIS_MOCK: Dados[] = [
       idResolucaoCdr: '003',
       dataResolucaoCdr: new Date('2026-05-20'),
       dataReuniaoCdr: new Date('2026-05-15'),
-      consideracoes: [
-        'Imóvel produtivo com alto valor de benfeitorias.',
-        'Não há ocupação irregular ou conflitos fundiários.',
-      ],
-      consideracaoFinal:
-        'Resolução aprovada sem ressalvas, liberado para pagamento imediato.',
+      consideracoes: [],
+      consideracaoFinal: '',
       area: 8456.0,
       valorTotal: 148500000.0,
       valorTotalPorExtenso:
@@ -840,12 +800,8 @@ export const IMOVEIS_MOCK: Dados[] = [
       idResolucaoCdr: '003',
       dataResolucaoCdr: new Date('2026-05-20'),
       dataReuniaoCdr: new Date('2026-05-15'),
-      consideracoes: [
-        'Imóvel produtivo com alto valor de benfeitorias.',
-        'Não há ocupação irregular ou conflitos fundiários.',
-      ],
-      consideracaoFinal:
-        'Resolução aprovada sem ressalvas, liberado para pagamento imediato.',
+      consideracoes: [],
+      consideracaoFinal: '',
       area: 8456.0,
       valorTotal: 148500000.0,
       valorTotalPorExtenso:
@@ -917,12 +873,8 @@ export const IMOVEIS_MOCK: Dados[] = [
       idResolucaoCdr: '003',
       dataResolucaoCdr: new Date('2026-05-20'),
       dataReuniaoCdr: new Date('2026-05-15'),
-      consideracoes: [
-        'Imóvel produtivo com alto valor de benfeitorias.',
-        'Não há ocupação irregular ou conflitos fundiários.',
-      ],
-      consideracaoFinal:
-        'Resolução aprovada sem ressalvas, liberado para pagamento imediato.',
+      consideracoes: [],
+      consideracaoFinal: '',
       area: 8456.0,
       valorTotal: 148500000.0,
       valorTotalPorExtenso:
@@ -994,12 +946,8 @@ export const IMOVEIS_MOCK: Dados[] = [
       idResolucaoCdr: '003',
       dataResolucaoCdr: new Date('2026-05-20'),
       dataReuniaoCdr: new Date('2026-05-15'),
-      consideracoes: [
-        'Imóvel produtivo com alto valor de benfeitorias.',
-        'Não há ocupação irregular ou conflitos fundiários.',
-      ],
-      consideracaoFinal:
-        'Resolução aprovada sem ressalvas, liberado para pagamento imediato.',
+      consideracoes: [],
+      consideracaoFinal: '',
       area: 8456.0,
       valorTotal: 148500000.0,
       valorTotalPorExtenso:
@@ -1072,12 +1020,8 @@ export const IMOVEIS_MOCK: Dados[] = [
       idResolucaoCdr: '003',
       dataResolucaoCdr: new Date('2026-05-20'),
       dataReuniaoCdr: new Date('2026-05-15'),
-      consideracoes: [
-        'Imóvel produtivo com alto valor de benfeitorias.',
-        'Não há ocupação irregular ou conflitos fundiários.',
-      ],
-      consideracaoFinal:
-        'Resolução aprovada sem ressalvas, liberado para pagamento imediato.',
+      consideracoes: [],
+      consideracaoFinal: '',
       area: 8456.0,
       valorTotal: 148500000.0,
       valorTotalPorExtenso:
@@ -1149,12 +1093,8 @@ export const IMOVEIS_MOCK: Dados[] = [
       idResolucaoCdr: '003',
       dataResolucaoCdr: new Date('2026-05-20'),
       dataReuniaoCdr: new Date('2026-05-15'),
-      consideracoes: [
-        'Imóvel produtivo com alto valor de benfeitorias.',
-        'Não há ocupação irregular ou conflitos fundiários.',
-      ],
-      consideracaoFinal:
-        'Resolução aprovada sem ressalvas, liberado para pagamento imediato.',
+      consideracoes: [],
+      consideracaoFinal: '',
       area: 8456.0,
       valorTotal: 148500000.0,
       valorTotalPorExtenso:
@@ -1227,12 +1167,8 @@ export const IMOVEIS_MOCK: Dados[] = [
       idResolucaoCdr: '003',
       dataResolucaoCdr: new Date('2026-05-20'),
       dataReuniaoCdr: new Date('2026-05-15'),
-      consideracoes: [
-        'Imóvel produtivo com alto valor de benfeitorias.',
-        'Não há ocupação irregular ou conflitos fundiários.',
-      ],
-      consideracaoFinal:
-        'Resolução aprovada sem ressalvas, liberado para pagamento imediato.',
+      consideracoes: [],
+      consideracaoFinal: '',
       area: 8456.0,
       valorTotal: 148500000.0,
       valorTotalPorExtenso:
@@ -1304,12 +1240,8 @@ export const IMOVEIS_MOCK: Dados[] = [
       idResolucaoCdr: '003',
       dataResolucaoCdr: new Date('2026-05-20'),
       dataReuniaoCdr: new Date('2026-05-15'),
-      consideracoes: [
-        'Imóvel produtivo com alto valor de benfeitorias.',
-        'Não há ocupação irregular ou conflitos fundiários.',
-      ],
-      consideracaoFinal:
-        'Resolução aprovada sem ressalvas, liberado para pagamento imediato.',
+      consideracoes: [],
+      consideracaoFinal: '',
       area: 8456.0,
       valorTotal: 148500000.0,
       valorTotalPorExtenso:
@@ -1381,12 +1313,8 @@ export const IMOVEIS_MOCK: Dados[] = [
       idResolucaoCdr: '003',
       dataResolucaoCdr: new Date('2026-05-20'),
       dataReuniaoCdr: new Date('2026-05-15'),
-      consideracoes: [
-        'Imóvel produtivo com alto valor de benfeitorias.',
-        'Não há ocupação irregular ou conflitos fundiários.',
-      ],
-      consideracaoFinal:
-        'Resolução aprovada sem ressalvas, liberado para pagamento imediato.',
+      consideracoes: [],
+      consideracaoFinal: '',
       area: 8456.0,
       valorTotal: 148500000.0,
       valorTotalPorExtenso:
@@ -1459,12 +1387,8 @@ export const IMOVEIS_MOCK: Dados[] = [
       idResolucaoCdr: '003',
       dataResolucaoCdr: new Date('2026-05-20'),
       dataReuniaoCdr: new Date('2026-05-15'),
-      consideracoes: [
-        'Imóvel produtivo com alto valor de benfeitorias.',
-        'Não há ocupação irregular ou conflitos fundiários.',
-      ],
-      consideracaoFinal:
-        'Resolução aprovada sem ressalvas, liberado para pagamento imediato.',
+      consideracoes: [],
+      consideracaoFinal: '',
       area: 8456.0,
       valorTotal: 148500000.0,
       valorTotalPorExtenso:
@@ -1539,12 +1463,8 @@ export const IMOVEIS_MOCK: Dados[] = [
       idResolucaoCdr: '003',
       dataResolucaoCdr: new Date('2026-05-20'),
       dataReuniaoCdr: new Date('2026-05-15'),
-      consideracoes: [
-        'Imóvel produtivo com alto valor de benfeitorias.',
-        'Não há ocupação irregular ou conflitos fundiários.',
-      ],
-      consideracaoFinal:
-        'Resolução aprovada sem ressalvas, liberado para pagamento imediato.',
+      consideracoes: [],
+      consideracaoFinal: '',
       area: 8456.0,
       valorTotal: 148500000.0,
       valorTotalPorExtenso:
@@ -1618,12 +1538,8 @@ export const IMOVEIS_MOCK: Dados[] = [
       idResolucaoCdr: '003',
       dataResolucaoCdr: new Date('2026-05-20'),
       dataReuniaoCdr: new Date('2026-05-15'),
-      consideracoes: [
-        'Imóvel produtivo com alto valor de benfeitorias.',
-        'Não há ocupação irregular ou conflitos fundiários.',
-      ],
-      consideracaoFinal:
-        'Resolução aprovada sem ressalvas, liberado para pagamento imediato.',
+      consideracoes: [],
+      consideracaoFinal: '',
       area: 8456.0,
       valorTotal: 148500000.0,
       valorTotalPorExtenso:
@@ -1696,12 +1612,8 @@ export const IMOVEIS_MOCK: Dados[] = [
       idResolucaoCdr: '003',
       dataResolucaoCdr: new Date('2026-05-20'),
       dataReuniaoCdr: new Date('2026-05-15'),
-      consideracoes: [
-        'Imóvel produtivo com alto valor de benfeitorias.',
-        'Não há ocupação irregular ou conflitos fundiários.',
-      ],
-      consideracaoFinal:
-        'Resolução aprovada sem ressalvas, liberado para pagamento imediato.',
+      consideracoes: [],
+      consideracaoFinal: '',
       area: 8456.0,
       valorTotal: 148500000.0,
       valorTotalPorExtenso:
@@ -1773,12 +1685,8 @@ export const IMOVEIS_MOCK: Dados[] = [
       idResolucaoCdr: '003',
       dataResolucaoCdr: new Date('2026-05-20'),
       dataReuniaoCdr: new Date('2026-05-15'),
-      consideracoes: [
-        'Imóvel produtivo com alto valor de benfeitorias.',
-        'Não há ocupação irregular ou conflitos fundiários.',
-      ],
-      consideracaoFinal:
-        'Resolução aprovada sem ressalvas, liberado para pagamento imediato.',
+      consideracoes: [],
+      consideracaoFinal: '',
       area: 8456.0,
       valorTotal: 148500000.0,
       valorTotalPorExtenso:
@@ -1850,12 +1758,8 @@ export const IMOVEIS_MOCK: Dados[] = [
       idResolucaoCdr: '003',
       dataResolucaoCdr: new Date('2026-05-20'),
       dataReuniaoCdr: new Date('2026-05-15'),
-      consideracoes: [
-        'Imóvel produtivo com alto valor de benfeitorias.',
-        'Não há ocupação irregular ou conflitos fundiários.',
-      ],
-      consideracaoFinal:
-        'Resolução aprovada sem ressalvas, liberado para pagamento imediato.',
+      consideracoes: [],
+      consideracaoFinal: '',
       area: 8456.0,
       valorTotal: 148500000.0,
       valorTotalPorExtenso:
