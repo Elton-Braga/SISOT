@@ -18,6 +18,8 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { OrdemServico } from './ordem-servico/ordem-servico';
 import { ResolucaoCdr } from './resolucao-cdr/resolucao-cdr';
 import { PortariaCdr } from './portaria-cdr/portaria-cdr';
+import { PortariaCd } from './portaria-cd/portaria-cd';
+import { ResolucaoCd } from './resolucao-cd/resolucao-cd';
 //import { OrdemServico } from './ordem-servico/ordem-servico.component';
 
 @Component({
@@ -101,6 +103,24 @@ export class Editar implements OnInit {
 
   abrirPortariaCdr(): void {
     this.dialog.open(PortariaCdr, {
+      maxWidth: '1100px',
+      width: '800px',
+      maxHeight: '1100px',
+      height: '90%',
+      panelClass: 'dialog-com-rolagem',
+    });
+  }
+  abrirResolucaoCd(): void {
+    this.dialog.open(ResolucaoCd, {
+      maxWidth: '1100px',
+      width: '800px',
+      maxHeight: '1100px',
+      height: '90%',
+      panelClass: 'dialog-com-rolagem',
+    });
+  }
+  abrirPortariaCd(): void {
+    this.dialog.open(PortariaCd, {
       maxWidth: '1100px',
       width: '800px',
       maxHeight: '1100px',

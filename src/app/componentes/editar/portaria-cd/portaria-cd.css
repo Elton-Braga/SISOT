@@ -1,0 +1,192 @@
+/* =========================================================
+   CONTAINER PRINCIPAL
+========================================================= */
+
+.resolucao-container {
+  width: 100%;
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  padding: 24px;
+
+  box-sizing: border-box;
+}
+
+/* =========================================================
+   CABEÇALHO
+========================================================= */
+
+.pagina-cabecalho {
+  margin-bottom: 32px;
+}
+
+.pagina-cabecalho h1 {
+  margin: 0 0 8px;
+
+  font-size: 32px;
+  font-weight: 500;
+
+  color: #1b1b1b;
+}
+
+.pagina-cabecalho p {
+  margin: 0;
+
+  font-size: 16px;
+
+  color: #555;
+}
+
+/* =========================================================
+   SEÇÕES
+========================================================= */
+
+.form-section {
+  margin-bottom: 24px;
+
+  padding: 24px;
+
+  background: #ffffff;
+
+  border: 1px solid #d9d9d9;
+
+  border-radius: 4px;
+}
+
+.form-section h2 {
+  margin-top: 0;
+  margin-bottom: 24px;
+
+  font-size: 20px;
+  font-weight: 500;
+
+  color: #1b1b1b;
+}
+
+/* =========================================================
+   GRID
+========================================================= */
+
+.form-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 20px;
+}
+
+/* Campo ocupando duas colunas */
+
+.coluna-dupla {
+  grid-column: span 2;
+}
+
+/* Campo ocupando toda a largura */
+
+.campo-completo {
+  width: 100%;
+
+  margin-bottom: 16px;
+}
+
+/* Todos os campos Material ocupam seu espaço */
+
+mat-form-field {
+  width: 100%;
+}
+
+/* =========================================================
+   CAMPOS AUTOMÁTICOS
+========================================================= */
+
+input[readonly] {
+  cursor: default;
+}
+
+/* =========================================================
+   CONSIDERAÇÕES
+========================================================= */
+
+.acao-consideracao {
+  margin-bottom: 24px;
+}
+
+/* =========================================================
+   AÇÕES FINAIS
+========================================================= */
+
+.acoes-finais {
+  display: flex;
+
+  justify-content: flex-end;
+
+  align-items: center;
+
+  gap: 16px;
+
+  margin-top: 32px;
+
+  padding-top: 24px;
+
+  border-top: 1px solid #d9d9d9;
+}
+
+/* =========================================================
+   BOTÃO IMPRIMIR
+========================================================= */
+
+.botao-imprimir {
+  text-decoration: underline;
+
+  color: #1351b4;
+}
+
+/* =========================================================
+   BOTÃO ASSINATURA
+========================================================= */
+
+.botao-assinatura {
+  min-height: 44px;
+
+  padding-left: 24px;
+  padding-right: 24px;
+
+  background-color: #1351b4 !important;
+
+  color: #ffffff !important;
+}
+
+/* =========================================================
+   RESPONSIVIDADE
+========================================================= */
+
+@media (max-width: 900px) {
+  .form-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .resolucao-container {
+    padding: 16px;
+  }
+
+  .form-section {
+    padding: 16px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .coluna-dupla {
+    grid-column: span 1;
+  }
+
+  .acoes-finais {
+    flex-direction: column-reverse;
+
+    align-items: flex-end;
+  }
+}
