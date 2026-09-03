@@ -1,0 +1,536 @@
+/* =========================================================
+   LAYOUT GERAL
+   ========================================================= */
+
+.br-app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.layout-body-container {
+  flex: 1;
+  height: calc(100vh - 64px);
+}
+
+.main-content {
+  background-color: #fafafa;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.br-header {
+  height: 64px;
+  padding: 0 2rem;
+  background-color: #1351b4 !important;
+  color: #ffffff !important;
+}
+
+.br-divider {
+  width: 1px;
+  height: 24px;
+  margin: 0 16px;
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+.header-sign {
+  font-size: 1.15rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* =========================================================
+   MENU LATERAL
+   ========================================================= */
+
+.br-menu-lateral {
+  width: 260px;
+  background-color: #ffffff !important;
+  border-right: 1px solid #e9ecef !important;
+}
+
+.menu-nav .menu-item {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  margin: 4px 0;
+  padding: 0 16px;
+  border-left: 4px solid transparent;
+  color: #333333 !important;
+  font-weight: 500;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.menu-nav .menu-item:hover {
+  background-color: #edf3fc !important;
+  color: #1351b4 !important;
+}
+
+.menu-nav .menu-item.active {
+  background-color: #edf3fc !important;
+  color: #1351b4 !important;
+  border-left-color: #1351b4;
+}
+
+.menu-nav mat-icon {
+  color: inherit !important;
+}
+
+/* =========================================================
+   TÍTULO DA PÁGINA
+   ========================================================= */
+
+.page-title {
+  margin-bottom: 0.25rem;
+  color: #1351b4;
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+/* =========================================================
+   CARD DE FILTROS
+   ========================================================= */
+
+.filter-card {
+  overflow: hidden;
+  border: 1px solid #ced4da !important;
+  border-radius: 4px !important;
+  background-color: #ffffff;
+  box-shadow: none !important;
+}
+
+.filter-card-header {
+  display: flex !important;
+  align-items: center;
+  padding: 1rem 1.5rem !important;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.filter-title {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  margin: 0 !important;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+:host ::ng-deep .filter-card-header .mat-mdc-card-header-text {
+  flex: 1;
+}
+
+.text-md {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* =========================================================
+   CAMPOS DE FILTRO
+   ========================================================= */
+
+.filter-flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 16px;
+}
+
+.filter-item {
+  flex: 1 1 200px;
+  min-width: 0;
+}
+
+.filter-item.item-xs {
+  flex: 1 1 90px;
+}
+
+.filter-item.item-sm {
+  flex: 1 1 150px;
+}
+
+.filter-item.item-md {
+  flex: 1.5 1 240px;
+}
+
+.filter-item.item-lg {
+  flex: 3 1 320px;
+}
+
+/* =========================================================
+   ANGULAR MATERIAL - FORM FIELD
+   ========================================================= */
+
+:host ::ng-deep .mat-mdc-form-field-subscript-wrapper {
+  display: none !important;
+}
+
+:host ::ng-deep .mdc-notched-outline__leading,
+:host ::ng-deep .mdc-notched-outline__notch,
+:host ::ng-deep .mdc-notched-outline__trailing {
+  border-color: #888888 !important;
+}
+
+:host ::ng-deep .mat-mdc-form-field.mat-focused .mdc-notched-outline__leading,
+:host ::ng-deep .mat-mdc-form-field.mat-focused .mdc-notched-outline__notch,
+:host ::ng-deep .mat-mdc-form-field.mat-focused .mdc-notched-outline__trailing {
+  border-color: #1351b4 !important;
+  border-width: 2px !important;
+}
+
+/* =========================================================
+   ÁREA DE AÇÕES DOS FILTROS
+   ========================================================= */
+
+.filter-actions {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  padding: 0 1rem 1rem;
+  border-top: 1px solid #e9ecef;
+}
+
+/* =========================================================
+   TABELA
+   ========================================================= */
+
+.table-container-dsgov {
+  overflow: hidden;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  background-color: #ffffff;
+}
+
+.table-dsgov {
+  width: 100%;
+}
+
+.table-dsgov th.mat-mdc-header-cell {
+  padding: 0 16px;
+  background-color: #1351b4 !important;
+  color: #ffffff !important;
+  font-size: 0.875rem;
+  font-weight: 600 !important;
+  white-space: nowrap;
+}
+
+.table-dsgov td.mat-mdc-cell {
+  padding: 0 16px;
+  color: #444444;
+  font-size: 0.875rem;
+}
+
+.table-dsgov tr.mat-mdc-row {
+  transition: background-color 0.15s ease;
+}
+
+.table-dsgov tr.mat-mdc-row:hover {
+  background-color: #f1f5f9;
+}
+
+/* =========================================================
+   BARRA DE FERRAMENTAS DA TABELA
+   ========================================================= */
+
+.table-toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  min-height: 56px;
+  margin-bottom: 16px;
+  gap: 10px;
+}
+
+/* Espaçador que empurra Ajustar Colunas para a direita */
+
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+/* Divisor vertical */
+
+.toolbar-divider {
+  width: 1px;
+  height: 34px;
+  margin: 0 4px;
+  background-color: #ced4da;
+}
+
+/* =========================================================
+   BOTÕES DA TOOLBAR
+   ========================================================= */
+
+.table-toolbar > button {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.table-toolbar mat-icon {
+  flex-shrink: 0;
+}
+
+/* =========================================================
+   GRUPO DE CRIAÇÃO
+   ========================================================= */
+
+.grupo-wrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.grupo-input {
+  width: 200px;
+  margin: 0;
+}
+
+.grupo-btn {
+  min-height: 56px;
+  white-space: nowrap;
+}
+
+.selecionados-info {
+  margin-left: 4px;
+  color: #6c757d;
+  font-size: 0.875rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+/* =========================================================
+   MENU "AJUSTAR COLUNAS"
+   ========================================================= */
+
+.menu-colunas {
+  display: flex;
+  flex-direction: column;
+  min-width: 250px;
+  max-width: 320px;
+  padding: 12px 16px;
+}
+
+.menu-colunas mat-checkbox {
+  margin: 3px 0;
+  padding: 4px 0;
+}
+
+/* =========================================================
+   TAGS / BADGES
+   ========================================================= */
+
+.badge-sr {
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  background-color: #e6f0fa;
+  color: #0c4a6e;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.br-tag.info {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  border-radius: 12px;
+  background-color: #feeddb;
+  color: #854d0e;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* =========================================================
+   CÉLULAS
+   ========================================================= */
+
+.text-truncate-cell {
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.no-wrap {
+  white-space: nowrap;
+}
+
+.vertical-align-middle {
+  vertical-align: middle;
+}
+
+/* =========================================================
+   BOTÕES DE AÇÃO DA TABELA
+   ========================================================= */
+
+.btn-actions-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.btn-actions-group button {
+  min-width: 36px;
+}
+
+/* =========================================================
+   UTILITÁRIOS
+   ========================================================= */
+
+.w-100 {
+  width: 100%;
+}
+
+.me-2 {
+  margin-right: 0.5rem;
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem;
+}
+
+.p-3 {
+  padding: 1rem !important;
+}
+
+.p-4 {
+  padding: 1.5rem !important;
+}
+
+.text-end {
+  text-align: right;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* =========================================================
+   RESPONSIVIDADE
+   ========================================================= */
+
+/* Tablets */
+
+@media (max-width: 992px) {
+  .br-header {
+    padding: 0 1rem;
+  }
+
+  .br-menu-lateral {
+    width: 220px;
+  }
+
+  .table-toolbar {
+    align-items: stretch;
+  }
+
+  .toolbar-spacer {
+    display: none;
+  }
+
+  .grupo-wrapper {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+
+  .grupo-input {
+    flex: 1 1 180px;
+  }
+}
+
+/* Smartphones */
+
+@media (max-width: 768px) {
+  .br-menu-lateral {
+    width: 100%;
+  }
+
+  .layout-body-container {
+    height: auto;
+  }
+
+  .page-title {
+    font-size: 1.4rem;
+  }
+
+  .table-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .table-toolbar > button {
+    width: 100%;
+  }
+
+  .toolbar-divider {
+    display: none;
+  }
+
+  .grupo-wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+
+  .grupo-input {
+    width: 100%;
+  }
+
+  .grupo-btn {
+    width: 100%;
+  }
+
+  .selecionados-info {
+    margin-left: 0;
+    text-align: center;
+  }
+
+  .menu-colunas {
+    min-width: 220px;
+  }
+}
+
+/* Telas muito pequenas */
+
+@media (max-width: 480px) {
+  .filter-flex-container {
+    flex-direction: column;
+  }
+
+  .filter-item,
+  .filter-item.item-xs,
+  .filter-item.item-sm,
+  .filter-item.item-md,
+  .filter-item.item-lg {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+
+  .filter-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-actions button {
+    width: 100%;
+  }
+
+  .table-container-dsgov {
+    overflow-x: auto;
+  }
+
+  .table-dsgov {
+    min-width: 800px;
+  }
+}

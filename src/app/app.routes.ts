@@ -5,6 +5,7 @@ import { Relatorio } from './componentes/container/relatorio/relatorio';
 import { Editar } from './componentes/editar/editar';
 import { Processos } from './componentes/processos/processos';
 import { CadastrarGrupo } from './componentes/cadastrar-grupo/cadastrar-grupo';
+import { MercadoTerras } from './mercado-terras/mercado-terras';
 
 export const routes: Routes = [
   {
@@ -15,6 +16,11 @@ export const routes: Routes = [
   {
     path: 'lista',
     component: Lista,
+    pathMatch: 'full',
+  },
+  {
+    path: 'mercado-terras',
+    component: MercadoTerras,
     pathMatch: 'full',
   },
   {

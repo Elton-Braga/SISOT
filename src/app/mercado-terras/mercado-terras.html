@@ -14,7 +14,7 @@
   <mat-sidenav-container class="layout-body-container">
     <mat-sidenav mode="side" opened class="br-menu-lateral">
       <mat-nav-list class="menu-nav">
-        <a mat-list-item href="#/home" class="menu-item active">
+        <a mat-list-item href="#/home" class="menu-item">
           <mat-icon matListItemIcon>home</mat-icon>
           <span matListItemTitle>Home</span>
         </a>
@@ -26,10 +26,11 @@
           <mat-icon matListItemIcon>description</mat-icon>
           <span matListItemTitle>Processos</span>
         </a>
-        <a mat-list-item class="menu-item" routerLink="/mercado-terras">
+        <a mat-list-item class="menu-item active">
           <mat-icon matListItemIcon>map</mat-icon>
           <span matListItemTitle>Mercado de Terras</span>
         </a>
+
         <a mat-list-item href="#/configuracoes" class="menu-item">
           <mat-icon matListItemIcon>settings</mat-icon>
           <span matListItemTitle>Configurações</span>
@@ -39,7 +40,7 @@
 
     <mat-sidenav-content class="main-content p-4">
       <div class="page-title-container mb-4">
-        <h1 class="page-title">Consulta de Imóveis Rurais</h1>
+        <h1 class="page-title">Consulta - Mercado de Terras</h1>
         <p class="text-muted text-sm">
           Gerencie, filtre e visualize os imóveis sob trâmite e decretos
           associados.
@@ -62,7 +63,7 @@
           <div class="filter-flex-container">
             <div class="filter-item item-xs">
               <mat-form-field appearance="outline" class="w-100">
-                <mat-label>SR</mat-label>
+                <mat-label>ID</mat-label>
                 <input
                   matInput
                   [(ngModel)]="filtros().sr"
@@ -78,73 +79,6 @@
                   matInput
                   [(ngModel)]="filtros().imovel"
                   placeholder="Nome do imóvel"
-                />
-              </mat-form-field>
-            </div>
-
-            <div class="filter-item item-sm">
-              <mat-form-field appearance="outline" class="w-100">
-                <mat-label>SNCR</mat-label>
-                <input
-                  matInput
-                  [(ngModel)]="filtros().sncr"
-                  placeholder="Código SNCR"
-                />
-              </mat-form-field>
-            </div>
-
-            <div class="filter-item item-sm">
-              <mat-form-field appearance="outline" class="w-100">
-                <mat-label>Área (Ha)</mat-label>
-                <input
-                  matInput
-                  type="number"
-                  [(ngModel)]="filtros().areaHa"
-                  placeholder="Área mínima"
-                />
-              </mat-form-field>
-            </div>
-
-            <div class="filter-item item-lg">
-              <mat-form-field appearance="outline" class="w-100">
-                <mat-label>Proprietário / Interessado</mat-label>
-                <input
-                  matInput
-                  [(ngModel)]="filtros().proprietario"
-                  placeholder="Razão social ou Nome"
-                />
-              </mat-form-field>
-            </div>
-
-            <div class="filter-item item-md">
-              <mat-form-field appearance="outline" class="w-100">
-                <mat-label>Nº Processo</mat-label>
-                <input
-                  matInput
-                  [(ngModel)]="filtros().processo"
-                  placeholder="00000.000000/0000-00"
-                />
-              </mat-form-field>
-            </div>
-
-            <div class="filter-item item-md">
-              <mat-form-field appearance="outline" class="w-100">
-                <mat-label>Modalidade</mat-label>
-                <input
-                  matInput
-                  [(ngModel)]="filtros().modalidade"
-                  placeholder="Ex: Adjudicação"
-                />
-              </mat-form-field>
-            </div>
-
-            <div class="filter-item item-sm">
-              <mat-form-field appearance="outline" class="w-100">
-                <mat-label>Situação</mat-label>
-                <input
-                  matInput
-                  [(ngModel)]="filtros().situacao"
-                  placeholder="Ex: Em Trâmite"
                 />
               </mat-form-field>
             </div>
@@ -175,7 +109,28 @@
             <!-- NOVO CAMPO: GRUPO -->
             <div class="filter-item item-sm">
               <mat-form-field appearance="outline" class="w-100">
-                <mat-label>Grupo</mat-label>
+                <mat-label>Nota Agronomica</mat-label>
+                <input matInput placeholder="Nome do grupo" />
+              </mat-form-field>
+            </div>
+
+            <div class="filter-item item-sm">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Area</mat-label>
+                <input matInput placeholder="Nome do grupo" />
+              </mat-form-field>
+            </div>
+
+            <div class="filter-item item-sm">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>VPN</mat-label>
+                <input matInput placeholder="Nome do grupo" />
+              </mat-form-field>
+            </div>
+
+            <div class="filter-item item-sm">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>Data da pesquisa</mat-label>
                 <input matInput placeholder="Nome do grupo" />
               </mat-form-field>
             </div>
@@ -585,27 +540,23 @@
 
           <ng-container matColumnDef="acoes">
             <th mat-header-cell *matHeaderCellDef class="text-center">Ações</th>
+
             <td mat-cell *matCellDef="let item" class="text-center no-wrap">
               <div class="btn-actions-group">
+                <!-- Visualizar -->
                 <button
                   mat-icon-button
                   color="primary"
-                  matTooltip="Espelho"
-                  (click)="executarAcao('Espelho', item)"
+                  matTooltip="Visualizar"
+                  (click)="executarAcao('Visualizar', item)"
                 >
-                  <mat-icon>description</mat-icon>
+                  <mat-icon>visibility</mat-icon>
                 </button>
+
+                <!-- Editar -->
                 <button
                   mat-icon-button
                   color="accent"
-                  matTooltip="Histórico"
-                  (click)="executarAcao('Histórico', item)"
-                >
-                  <mat-icon>history</mat-icon>
-                </button>
-                <button
-                  mat-icon-button
-                  color="warn"
                   matTooltip="Editar"
                   (click)="executarAcao('Editar', item)"
                 >
