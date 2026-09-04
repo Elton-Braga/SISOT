@@ -1,5 +1,4 @@
-//import { Component } from '@angular/core';
-import { Component, OnInit, computed, signal } from '@angular/core';
+import { Component, computed, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -16,21 +15,19 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatTooltipModule } from '@angular/material/tooltip';
-
 import { MatMenuModule } from '@angular/material/menu';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { Router, RouterLink } from '@angular/router';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { Espelho } from '../componentes/espelho/espelho';
-import { Log } from '../componentes/log/log';
-import { IMOVEIS_MOCK } from '../mock/imovel.mock';
-import { Dados } from '../mock/imovel.model';
+
+// Importe o mock e a interface
+import { mockPesquisasImoveis } from '../mock/mercadoTerrasMock/mercadoDeTerrasMock';
+import { PesquisaImovel } from '../mock/mercadoTerrasMock/interfaceMercadoDeTerras';
 
 @Component({
   selector: 'app-mercado-terras',
   standalone: true,
   imports: [
-    MatMenuModule,
     CommonModule,
     FormsModule,
     MatTableModule,
@@ -45,6 +42,7 @@ import { Dados } from '../mock/imovel.model';
     MatToolbarModule,
     MatChipsModule,
     MatTooltipModule,
+    MatMenuModule,
     MatCheckboxModule,
     MatDialogModule,
     RouterLink,
@@ -53,14 +51,36 @@ import { Dados } from '../mock/imovel.model';
   styleUrl: './mercado-terras.css',
 })
 export class MercadoTerras {
-  public imoveis = signal<Dados[]>(IMOVEIS_MOCK);
+  // ============================================================
+  // 1. DADOS E CONFIGURAÇÃO INICIAL
+  // ============================================================
+  public imoveis = signal<PesquisaImovel[]>(mockPesquisasImoveis);
+
+  // Paginação
   public itensPorPagina = signal<number>(5);
   public paginaAtual = signal<number>(0);
-  public nomeGrupo: string = '';
-  // Signal para armazenar os itens selecionados
-  private itensSelecionados = signal<Set<Dados>>(new Set());
+
+  // Busca por termo
+  public termoBusca = signal<string>('');
+
+  public filtros = signal({
+    id: '', // antes era "sr"
+    imovel: '',
+    municipio: '',
+    uf: '',
+    notaAgronomica: '',
+    area: '',
+    vtn: '',
+    dataPesquisa: '',
+  });
+
+  // ============================================================
+  // 2. SELEÇÃO (CHECKBOX)
+  // ============================================================
+  private itensSelecionados = signal<Set<PesquisaImovel>>(new Set());
+
   public totalSelecionados = computed(() => this.itensSelecionados().size);
-  // Computed para verificar se todos estão selecionados
+
   public todosSelecionados = computed(() => {
     const paginados = this.imoveisPaginados();
     const selecionados = this.itensSelecionados();
@@ -69,7 +89,6 @@ export class MercadoTerras {
     );
   });
 
-  // Computed para verificar se alguns estão selecionados (indeterminate)
   public algunsSelecionados = computed(() => {
     const paginados = this.imoveisPaginados();
     const selecionados = this.itensSelecionados();
@@ -82,22 +101,37 @@ export class MercadoTerras {
     );
   });
 
-  public criarGrupo(): void {
-    const selecionados = this.getItensSelecionados();
-    if (selecionados.length === 0 || !this.nomeGrupo.trim()) {
-      return;
+  public itemSelecionado(item: PesquisaImovel): boolean {
+    return this.itensSelecionados().has(item);
+  }
+
+  public selecionarItem(item: PesquisaImovel, selecionado: boolean): void {
+    const novoSet = new Set(this.itensSelecionados());
+    if (selecionado) {
+      novoSet.add(item);
+    } else {
+      novoSet.delete(item);
     }
+    this.itensSelecionados.set(novoSet);
+  }
 
-    console.log(
-      `Criando grupo "${this.nomeGrupo}" com os itens:`,
-      selecionados,
-    );
+  public selecionarTodos(selecionado: boolean): void {
+    const novoSet = new Set(this.itensSelecionados());
+    const paginados = this.imoveisPaginados();
+    if (selecionado) {
+      paginados.forEach((item) => novoSet.add(item));
+    } else {
+      paginados.forEach((item) => novoSet.delete(item));
+    }
+    this.itensSelecionados.set(novoSet);
+  }
 
-    // Aqui você pode implementar a lógica real (ex: chamar uma API, abrir um modal, etc.)
+  public getItensSelecionados(): PesquisaImovel[] {
+    return Array.from(this.itensSelecionados());
+  }
 
-    // Limpa o campo e a seleção após a ação
-    this.nomeGrupo = '';
-    this.limparSelecao();
+  public limparSelecao(): void {
+    this.itensSelecionados.set(new Set());
   }
 
   public atualizarColunas(): void {
@@ -105,30 +139,11 @@ export class MercadoTerras {
       .filter((c) => c.visivel)
       .map((c) => c.id);
   }
-  public itemSelecionado(item: Dados): boolean {
-    return this.itensSelecionados().has(item);
-  }
-  // Objeto de filtros vinculados ao formulário
-  public filtros = signal({
-    sr: '',
-    imovel: '',
-    sncr: '',
-    areaHa: null as number | null,
-    proprietario: '',
-    processo: '',
-    modalidade: '',
-    situacao: '',
-    municipio: '',
-    uf: '',
-    grupo: '', // Adicionado filtro de grupo
-  });
-  private favoritos = signal<Set<Dados>>(new Set());
-  constructor(
-    private router: Router,
-    private dialog: MatDialog,
-  ) {}
 
-  ngOnInit(): void {}
+  // ============================================================
+  // 3. FAVORITOS
+  // ============================================================
+  private favoritos = signal<Set<PesquisaImovel>>(new Set());
 
   public todosFavoritos = computed(() => {
     const paginados = this.imoveisPaginados();
@@ -136,13 +151,11 @@ export class MercadoTerras {
     return paginados.length > 0 && paginados.every((item) => favSet.has(item));
   });
 
-  // Verifica se um item específico está favoritado
-  public isFavorito(item: Dados): boolean {
+  public isFavorito(item: PesquisaImovel): boolean {
     return this.favoritos().has(item);
   }
 
-  // Alterna o favorito de um único item
-  public toggleFavorito(item: Dados): void {
+  public toggleFavorito(item: PesquisaImovel): void {
     const novoSet = new Set(this.favoritos());
     if (novoSet.has(item)) {
       novoSet.delete(item);
@@ -152,238 +165,51 @@ export class MercadoTerras {
     this.favoritos.set(novoSet);
   }
 
-  // Alterna o favorito de todos os itens da página atual
   public toggleFavoritoTodos(): void {
     const paginados = this.imoveisPaginados();
     const todosFav = this.todosFavoritos();
     const novoSet = new Set(this.favoritos());
 
     if (todosFav) {
-      // Remove todos da página
       paginados.forEach((item) => novoSet.delete(item));
     } else {
-      // Adiciona todos da página
       paginados.forEach((item) => novoSet.add(item));
     }
     this.favoritos.set(novoSet);
   }
 
-  public configuracaoColunas = [
-    // Coluna de Seleção (sempre visível)
-    { id: 'favoritos', titulo: '', visivel: true },
-    { id: 'selecao', titulo: '', visivel: true },
-    // Dados do Imóvel
-    { id: 'sr', titulo: 'SR', visivel: true },
-    { id: 'imovel', titulo: 'Imóvel', visivel: true },
-    { id: 'sncr', titulo: 'SNCR', visivel: true },
-    { id: 'areaHa', titulo: 'Área (Ha)', visivel: true },
-    { id: 'proprietario', titulo: 'Proprietário', visivel: true },
-    { id: 'processo', titulo: 'Processo', visivel: true },
-    { id: 'modalidade', titulo: 'Modalidade', visivel: true },
-    { id: 'situacao', titulo: 'Situação', visivel: true },
-    { id: 'municipioUf', titulo: 'Município / UF', visivel: true },
-
-    // Dados de Obtenção
-    { id: 'processoSei', titulo: 'Processo SEI', visivel: false },
-    { id: 'situacaoObtencao', titulo: 'Situação de Obtenção', visivel: false },
-    {
-      id: 'entidadeDemandante',
-      titulo: 'Entidade Demandante',
-      visivel: false,
-    },
-    { id: 'formaObtencao', titulo: 'Forma de Obtenção', visivel: false },
-    {
-      id: 'orgaoConcorrente',
-      titulo: 'Órgão Concorrente',
-      visivel: false,
-    },
-    {
-      id: 'processoCadeiaDominial',
-      titulo: 'Processo Cadeia Dominial',
-      visivel: false,
-    },
-    {
-      id: 'acampamentoVinculado',
-      titulo: 'Acampamento Vinculado',
-      visivel: false,
-    },
-    {
-      id: 'imovelOcupado',
-      titulo: 'Imóvel Ocupado?',
-      visivel: false,
-    },
-    {
-      id: 'capacidadeAssentamento',
-      titulo: 'Capacidade de Assentamento',
-      visivel: false,
-    },
-    {
-      id: 'acoesReintegracao',
-      titulo: 'Ações de Reintegração',
-      visivel: false,
-    },
-    {
-      id: 'familiasCadastradas',
-      titulo: 'Famílias Cadastradas',
-      visivel: false,
-    },
-    {
-      id: 'grupo', // Adicionado coluna de grupo
-      titulo: 'Grupo',
-      visivel: false,
-    },
-
-    // Dados de Avaliação e Valores
-    {
-      id: 'valorTotalImovelInferior',
-      titulo: 'Valor Total do Imóvel — Inferior (R$)',
-      visivel: false,
-    },
-    {
-      id: 'valorTotalImovelMedio',
-      titulo: 'Valor Total do Imóvel — Médio (R$)',
-      visivel: false,
-    },
-    {
-      id: 'valorTotalImovelSuperior',
-      titulo: 'Valor Total do Imóvel — Superior (R$)',
-      visivel: false,
-    },
-    {
-      id: 'valorTerraNuaInferior',
-      titulo: 'Valor da Terra Nua (VTN) — Inferior (R$)',
-      visivel: false,
-    },
-    {
-      id: 'valorTerraNuaMedio',
-      titulo: 'Valor da Terra Nua (VTN) — Médio (R$)',
-      visivel: false,
-    },
-    {
-      id: 'valorTerraNuaSuperior',
-      titulo: 'Valor da Terra Nua (VTN) — Superior (R$)',
-      visivel: false,
-    },
-
-    // Valores Complementares
-    {
-      id: 'valorBenfeitorias',
-      titulo: 'Valor das Benfeitorias (R$)',
-      visivel: false,
-    },
-    {
-      id: 'valorTotalNegociado',
-      titulo: 'Valor Negociado (R$)',
-      visivel: false,
-    },
-    {
-      id: 'valorPassivoAmbiental',
-      titulo: 'Passivo Ambiental (R$)',
-      visivel: false,
-    },
-    {
-      id: 'valorAtivoAmbiental',
-      titulo: 'Ativo Ambiental (R$)',
-      visivel: false,
-    },
-
-    // Ações
-    { id: 'acoes', titulo: 'Ações', visivel: true },
-  ];
-
-  public colunasExibidas: string[] = this.configuracaoColunas
-    .filter((c) => c.visivel)
-    .map((c) => c.id);
-
-  // Lista filtrada baseada nos inputs dos usuários
+  // ============================================================
+  // 4. FILTRAGEM E ORDENAÇÃO (com tratamento de null seguro)
+  // ============================================================
   public imoveisFiltrados = computed(() => {
-    const f = this.filtros();
+    const termo = this.termoBusca().toLowerCase().trim();
+    if (!termo) return this.imoveis();
+
     return this.imoveis().filter((item) => {
+      // Converte a data para string apenas se não for nula
+      const dataStr = item.dataPesquisa
+        ? new Date(item.dataPesquisa).toLocaleDateString('pt-BR')
+        : '';
+
       return (
-        this.matchString(item.imovel.sr, f.sr) &&
-        this.matchString(item.imovel.imovel, f.imovel) &&
-        this.matchString(item.imovel.sncr, f.sncr) &&
-        this.matchNumber(item.imovel.areaHa, f.areaHa) &&
-        this.matchString(item.imovel.proprietario, f.proprietario) &&
-        this.matchString(item.imovel.processo, f.processo) &&
-        this.matchString(item.imovel.modalidade, f.modalidade) &&
-        this.matchString(item.imovel.situacao, f.situacao) &&
-        this.matchString(item.imovel.municipio, f.municipio) &&
-        this.matchString(item.imovel.uf, f.uf) &&
-        this.matchString(item.obtencao.grupo, f.grupo) // Filtro de grupo
+        item.id.toString().includes(termo) ||
+        item.imovel.toLowerCase().includes(termo) ||
+        item.localizacao.estado.toLowerCase().includes(termo) ||
+        item.localizacao.municipioSede.toLowerCase().includes(termo) ||
+        (item.avaliacao.notaAgronomica?.toString() || '').includes(termo) ||
+        (item.valores.areaTotalHa?.toString() || '').includes(termo) ||
+        (item.valores.vtn?.toString() || '').includes(termo) ||
+        dataStr.includes(termo)
       );
     });
   });
 
-  // Método para verificar se um item está selecionado
-
-  // Método para selecionar/deselecionar um item individual
-  public selecionarItem(item: Dados, selecionado: boolean): void {
-    const novoSet = new Set(this.itensSelecionados());
-    if (selecionado) {
-      novoSet.add(item);
-    } else {
-      novoSet.delete(item);
-    }
-    this.itensSelecionados.set(novoSet);
-  }
-
-  // Método para selecionar/deselecionar todos os itens da página atual
-  public selecionarTodos(selecionado: boolean): void {
-    const novoSet = new Set(this.itensSelecionados());
-    const paginados = this.imoveisPaginados();
-
-    if (selecionado) {
-      paginados.forEach((item) => novoSet.add(item));
-    } else {
-      paginados.forEach((item) => novoSet.delete(item));
-    }
-    this.itensSelecionados.set(novoSet);
-  }
-
-  // Método para obter os itens selecionados
-  public getItensSelecionados(): Dados[] {
-    return Array.from(this.itensSelecionados());
-  }
-
-  // Método para limpar seleção
-  public limparSelecao(): void {
-    this.itensSelecionados.set(new Set());
-  }
-
-  public abrirEspelho(dados: Dados): void {
-    this.dialog.open(Espelho, {
-      width: '90vw',
-      maxWidth: '1200px',
-      maxHeight: '90vh',
-      data: dados,
-      disableClose: false,
-      autoFocus: false,
-    });
-  }
-
-  public abrirEditar(dados: Dados): void {
-    this.router.navigate(['/editar'], {
-      state: {
-        dados: structuredClone(dados),
-      },
-    });
-  }
-
-  // Lista paginada derivada da lista filtrada
-  /* imoveisPaginados = computed(() => {
-    const inicio = this.paginaAtual() * this.itensPorPagina();
-    const fim = inicio + this.itensPorPagina();
-    return this.imoveisFiltrados().slice(inicio, fim);
-  });*/
-
-  // ADICIONE ESTE NOVO COMPUTED
   public imoveisOrdenados = computed(() => {
     const filtrados = this.imoveisFiltrados();
     const favSet = this.favoritos();
 
-    const favoritos: Dados[] = [];
-    const naoFavoritos: Dados[] = [];
+    const favoritos: PesquisaImovel[] = [];
+    const naoFavoritos: PesquisaImovel[] = [];
 
     for (const item of filtrados) {
       if (favSet.has(item)) {
@@ -396,100 +222,104 @@ export class MercadoTerras {
     return [...favoritos, ...naoFavoritos];
   });
 
-  // MODIFIQUE O EXISTENTE imoveisPaginados PARA USAR O imoveisOrdenados
   public imoveisPaginados = computed(() => {
     const inicio = this.paginaAtual() * this.itensPorPagina();
     const fim = inicio + this.itensPorPagina();
-    return this.imoveisOrdenados().slice(inicio, fim); // <-- MUDANÇA AQUI
+    return this.imoveisOrdenados().slice(inicio, fim);
   });
 
-  // Auxiliares de filtragem
-  private matchString(valor: string, busca: string): boolean {
-    if (!busca) return true;
-    return (valor || '').toLowerCase().includes(busca.toLowerCase());
-  }
+  // ============================================================
+  // 5. CONFIGURAÇÃO DAS COLUNAS DA TABELA
+  // ============================================================
+  public configuracaoColunas = [
+    { id: 'favoritos', titulo: '', visivel: true },
+    { id: 'selecao', titulo: '', visivel: true },
+    { id: 'id', titulo: 'ID', visivel: true },
+    { id: 'imovel', titulo: 'Imóvel', visivel: true },
+    { id: 'uf', titulo: 'UF', visivel: true },
+    { id: 'municipio', titulo: 'Município', visivel: true },
+    { id: 'notaAgronomica', titulo: 'Nota Agronômica', visivel: true },
+    { id: 'area', titulo: 'Área (ha)', visivel: true },
+    { id: 'vtn', titulo: 'VTN (R$)', visivel: true },
+    { id: 'dataPesquisa', titulo: 'Data da Pesquisa', visivel: true },
+    { id: 'acoes', titulo: 'Ações', visivel: true },
+  ];
 
-  private matchNumber(valor: number | null, busca: any | null): boolean {
-    if (busca === null || busca === undefined || busca === '') return true;
-    if (valor === null) return false;
-    return valor.toString().includes(busca.toString());
-  }
+  public colunasExibidas: string[] = this.configuracaoColunas
+    .filter((c) => c.visivel)
+    .map((c) => c.id);
 
-  // Interceptador de paginação nativa do Angular Material
+  // ============================================================
+  // 6. PAGINAÇÃO
+  // ============================================================
   public tratarPaginacao(event: PageEvent): void {
     this.paginaAtual.set(event.pageIndex);
     this.itensPorPagina.set(event.pageSize);
   }
 
-  public limparFiltros(): void {
-    this.filtros.set({
-      sr: '',
-      imovel: '',
-      sncr: '',
-      areaHa: null,
-      proprietario: '',
-      processo: '',
-      modalidade: '',
-      situacao: '',
-      municipio: '',
-      uf: '',
-      grupo: '', // Limpar filtro de grupo
-    });
-    this.paginaAtual.set(0);
-    this.limparSelecao(); // Limpar seleção ao limpar filtros
-  }
+  // ============================================================
+  // 7. AÇÕES DOS BOTÕES
+  // ============================================================
+  constructor(
+    private router: Router,
+    private dialog: MatDialog,
+  ) {}
 
-  public abrirHistorico(dados: Dados): void {
-    this.dialog.open(Log, {
-      width: '90vw',
-      maxWidth: '1100px',
-      maxHeight: '90vh',
-      data: dados,
-      disableClose: false,
-      autoFocus: false,
-    });
-  }
-
-  public executarAcao(acao: string, dados: Dados): void {
+  public executarAcao(acao: string, dados: PesquisaImovel): void {
     switch (acao) {
-      case 'Editar':
-        console.log(dados);
+      case 'Visualizar':
+        console.log('Visualizar:', dados);
         break;
+      case 'Editar':
+        console.log('Editar:', dados);
+        this.router.navigate(['/editar', dados.id]);
+        break;
+      default:
+        console.log('Ação não mapeada:', acao);
     }
   }
 
+  // ============================================================
+  // 8. EXPORTAÇÃO E AÇÕES EM MASSA
+  // ============================================================
   public exportar(tipo: 'excel' | 'csv' | 'pdf'): void {
     switch (tipo) {
       case 'excel':
         console.log('Exportando Excel...');
         break;
-
       case 'csv':
         console.log('Exportando CSV...');
         break;
-
       case 'pdf':
         this.router.navigate(['/relatorio']);
         break;
     }
   }
 
-  // Método para ações em massa (exemplo)
   public executarAcaoEmMassa(acao: string): void {
     const selecionados = this.getItensSelecionados();
     if (selecionados.length === 0) return;
+    console.log(`Ação em massa "${acao}" em:`, selecionados);
+  }
 
-    switch (acao) {
-      case 'Exportar':
-        console.log('Exportando itens selecionados:', selecionados);
-        // Implementar exportação
-        break;
-      case 'Excluir':
-        // Implementar exclusão em massa
-        console.log('Excluindo itens selecionados:', selecionados);
-        break;
-      default:
-        console.log('Ação em massa não implementada:', acao);
+  // ============================================================
+  // 9. GRUPO (opcional)
+  // ============================================================
+  public nomeGrupo: string = '';
+
+  public criarGrupo(): void {
+    const selecionados = this.getItensSelecionados();
+    if (selecionados.length === 0 || !this.nomeGrupo.trim()) {
+      return;
     }
+    console.log(`Criando grupo "${this.nomeGrupo}" com:`, selecionados);
+    this.nomeGrupo = '';
+    this.limparSelecao();
+  }
+
+  public limparFiltros(): void {
+    this.termoBusca.set('');
+    this.paginaAtual.set(0);
+    this.limparSelecao();
   }
 }
