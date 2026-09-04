@@ -1,0 +1,20 @@
+@import url("../editar-merdado-de-terras/editar-merdado-de-terras.css");
+
+.modal-container {
+  padding: 24px;
+  max-height: 85vh;
+  overflow-y: auto;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid #e0e0e0;
+}
+
+/* Para garantir que os campos desabilitados fiquem com aparência de leitura */
+mat-form-field.mat-form-field-disabled .mat-form-field-outline {
+  opacity: 0.6;
+}

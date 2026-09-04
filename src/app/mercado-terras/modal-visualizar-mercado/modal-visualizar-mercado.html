@@ -1,0 +1,756 @@
+<div class="modal-container">
+  <mat-accordion class="sections-accordion" multi>
+    <!-- =========================================================
+         SEÇÃO 1 – IDENTIFICAÇÃO / CADASTROS
+         ========================================================= -->
+    <mat-expansion-panel expanded>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon>badge</mat-icon>
+          Identificação / Cadastros
+        </mat-panel-title>
+        <mat-panel-description>
+          Códigos e dados básicos do imóvel
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="form-grid">
+        <!-- Código do elemento (ID) -->
+        <mat-form-field appearance="outline">
+          <mat-label>Código do elemento</mat-label>
+          <input matInput [ngModel]="dados.id" disabled />
+        </mat-form-field>
+
+        <!-- Id gerado -->
+        <mat-form-field appearance="outline">
+          <mat-label>Id gerado</mat-label>
+          <input matInput [ngModel]="dados.id" disabled />
+        </mat-form-field>
+
+        <!-- RINT/IBGE -->
+        <mat-form-field appearance="outline">
+          <mat-label>RINT/IBGE</mat-label>
+          <input matInput [ngModel]="dados.rintIbge" disabled />
+        </mat-form-field>
+
+        <!-- RGI/IBGE -->
+        <mat-form-field appearance="outline">
+          <mat-label>RGI/IBGE</mat-label>
+          <input matInput [ngModel]="dados.rgiIbge" disabled />
+        </mat-form-field>
+
+        <!-- Data da pesquisa -->
+        <mat-form-field appearance="outline">
+          <mat-label>Data da pesquisa</mat-label>
+          <input
+            matInput
+            [matDatepicker]="pickerPesquisa"
+            [ngModel]="dados.dataPesquisa"
+            disabled
+          />
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="pickerPesquisa"
+            disabled
+          ></mat-datepicker-toggle>
+          <mat-datepicker #pickerPesquisa></mat-datepicker>
+        </mat-form-field>
+
+        <!-- Data do imóvel -->
+        <mat-form-field appearance="outline">
+          <mat-label>Data do imóvel</mat-label>
+          <input
+            matInput
+            [matDatepicker]="pickerImovel"
+            [ngModel]="dados.dataImovel"
+            disabled
+          />
+          <mat-datepicker-toggle
+            matIconSuffix
+            [for]="pickerImovel"
+            disabled
+          ></mat-datepicker-toggle>
+          <mat-datepicker #pickerImovel></mat-datepicker>
+        </mat-form-field>
+
+        <!-- Nome do imóvel -->
+        <mat-form-field appearance="outline" class="campo-full">
+          <mat-label>Nome do imóvel</mat-label>
+          <input matInput [ngModel]="dados.imovel" disabled />
+        </mat-form-field>
+
+        <!-- Área do imóvel (ha) -->
+        <mat-form-field appearance="outline">
+          <mat-label>Área do imóvel (ha)</mat-label>
+          <input
+            matInput
+            type="number"
+            step="0.0001"
+            [ngModel]="dados.valores.areaTotalHa"
+            disabled
+          />
+        </mat-form-field>
+
+        <!-- Tipo de dado -->
+        <mat-form-field appearance="outline">
+          <mat-label>Tipo de dado</mat-label>
+          <mat-select [ngModel]="dados.tipoDado" disabled>
+            <mat-option *ngFor="let opt of opcoesTipoDado" [value]="opt">
+              {{ opt }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- UF -->
+        <mat-form-field appearance="outline">
+          <mat-label>UF</mat-label>
+          <input
+            matInput
+            maxlength="2"
+            [ngModel]="dados.localizacao.estado"
+            disabled
+          />
+        </mat-form-field>
+
+        <!-- Município sede -->
+        <mat-form-field appearance="outline">
+          <mat-label>Município sede</mat-label>
+          <input
+            matInput
+            [ngModel]="dados.localizacao.municipioSede"
+            disabled
+          />
+        </mat-form-field>
+
+        <!-- Distância da sede (km) -->
+        <mat-form-field appearance="outline">
+          <mat-label>Distância da sede (km)</mat-label>
+          <input
+            matInput
+            type="number"
+            step="0.1"
+            [ngModel]="dados.localizacao.distanciaSedeKm"
+            disabled
+          />
+        </mat-form-field>
+
+        <!-- Mun. polo de influência -->
+        <mat-form-field appearance="outline">
+          <mat-label>Mun. polo de influência</mat-label>
+          <input
+            matInput
+            [ngModel]="dados.localizacao.municipioPolo"
+            disabled
+          />
+        </mat-form-field>
+
+        <!-- Dist. Polo de influência (km) -->
+        <mat-form-field appearance="outline">
+          <mat-label>Dist. Polo de influência (km)</mat-label>
+          <input
+            matInput
+            type="number"
+            step="0.1"
+            [ngModel]="dados.localizacao.distanciaPoloKm"
+            disabled
+          />
+        </mat-form-field>
+
+        <!-- Fonte do elemento -->
+        <mat-form-field appearance="outline">
+          <mat-label>Fonte do elemento</mat-label>
+          <mat-select [ngModel]="dados.fonteElemento" disabled>
+            <mat-option *ngFor="let opt of opcoesFonte" [value]="opt">
+              {{ opt }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Origem das informações -->
+        <mat-form-field appearance="outline">
+          <mat-label>Origem das informações</mat-label>
+          <mat-select [ngModel]="dados.origemInformacoes" disabled>
+            <mat-option *ngFor="let opt of opcoesOrigem" [value]="opt">
+              {{ opt }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Acesso -->
+        <mat-form-field appearance="outline">
+          <mat-label>Acesso</mat-label>
+          <mat-select [ngModel]="dados.localizacao.acesso" disabled>
+            <mat-option *ngFor="let opt of opcoesAcesso" [value]="opt">
+              {{ opt }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Coordenadas -->
+        <div class="campo-duplo">
+          <mat-form-field appearance="outline">
+            <mat-label>Longitude (graus dec.)</mat-label>
+            <input
+              matInput
+              type="number"
+              step="0.00001"
+              [ngModel]="dados.localizacao.coordenadas.longitude"
+              disabled
+            />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Latitude (graus dec.)</mat-label>
+            <input
+              matInput
+              type="number"
+              step="0.00001"
+              [ngModel]="dados.localizacao.coordenadas.latitude"
+              disabled
+            />
+          </mat-form-field>
+        </div>
+
+        <!-- Código SNCR -->
+        <mat-form-field appearance="outline">
+          <mat-label>Código SNCR</mat-label>
+          <input matInput [ngModel]="dados.identificacao.codigoSncr" disabled />
+        </mat-form-field>
+
+        <!-- Código CAR -->
+        <mat-form-field appearance="outline">
+          <mat-label>Código CAR</mat-label>
+          <input matInput [ngModel]="dados.identificacao.codigoCar" disabled />
+        </mat-form-field>
+
+        <!-- Código da certificação -->
+        <mat-form-field appearance="outline">
+          <mat-label>Código da certificação</mat-label>
+          <input
+            matInput
+            [ngModel]="dados.identificacao.codigoCertificacao"
+            disabled
+          />
+        </mat-form-field>
+      </div>
+
+      <!-- Roteiro de acesso (texto) -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Roteiro de acesso</mat-label>
+        <textarea
+          matInput
+          rows="3"
+          [ngModel]="dados.roteiroAcesso"
+          disabled
+        ></textarea>
+      </mat-form-field>
+    </mat-expansion-panel>
+
+    <!-- =========================================================
+         SEÇÃO 2 – NÍVEIS CATEGÓRICOS / TIPOLOGIAS
+         ========================================================= -->
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon>category</mat-icon>
+          Níveis categóricos / Tipologias
+        </mat-panel-title>
+        <mat-panel-description>
+          Classificação do imóvel por tipo e tecnologia
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="form-grid">
+        <!-- 1º nível -->
+        <mat-form-field appearance="outline">
+          <mat-label>1º</mat-label>
+          <mat-select [ngModel]="dados.nivel1" disabled>
+            <mat-option *ngFor="let opt of opcoesNivel1" [value]="opt">
+              {{ opt }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- 2º nível -->
+        <mat-form-field appearance="outline">
+          <mat-label>2º</mat-label>
+          <mat-select [ngModel]="dados.nivel2" disabled>
+            <mat-option *ngFor="let opt of opcoesNivel2" [value]="opt">
+              {{ opt }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- 3º nível -->
+        <mat-form-field appearance="outline">
+          <mat-label>3º</mat-label>
+          <mat-select [ngModel]="dados.nivel3" disabled>
+            <mat-option *ngFor="let opt of opcoesCidade" [value]="opt">
+              {{ opt }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+    </mat-expansion-panel>
+
+    <!-- =========================================================
+         SEÇÃO 3 – CARACTERÍSTICAS DO IMÓVEL
+         ========================================================= -->
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon>agriculture</mat-icon>
+          Características do imóvel
+        </mat-panel-title>
+        <mat-panel-description>
+          Notas, percentuais e infraestrutura
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="form-grid">
+        <!-- Nota CCU -->
+        <mat-form-field appearance="outline">
+          <mat-label>Nota CCU</mat-label>
+          <input
+            matInput
+            type="number"
+            step="0.001"
+            [ngModel]="dados.avaliacao.notaCcu"
+            disabled
+          />
+        </mat-form-field>
+
+        <!-- Nota de acesso -->
+        <mat-form-field appearance="outline">
+          <mat-label>Nota de acesso</mat-label>
+          <input
+            matInput
+            type="number"
+            step="0.001"
+            [ngModel]="dados.avaliacao.notaAcesso"
+            disabled
+          />
+        </mat-form-field>
+
+        <!-- Nota agronômica (calculada ou manual) -->
+        <mat-form-field appearance="outline">
+          <mat-label>Nota agronômica</mat-label>
+          <input
+            matInput
+            type="number"
+            step="0.001"
+            [ngModel]="dados.avaliacao.notaAgronomica"
+            disabled
+          />
+        </mat-form-field>
+
+        <!-- Perc. de área mecanizável -->
+        <mat-form-field appearance="outline">
+          <mat-label>Perc. de área mecanizável</mat-label>
+          <input
+            matInput
+            type="number"
+            step="0.01"
+            [ngModel]="dados.caracteristicas.percentualMecanizavel"
+            disabled
+          />
+        </mat-form-field>
+
+        <!-- Perc. de área aberta ou com pastagem -->
+        <mat-form-field appearance="outline">
+          <mat-label>Perc. de área aberta ou com pastagem</mat-label>
+          <input
+            matInput
+            type="number"
+            step="0.01"
+            [ngModel]="dados.caracteristicas.percentualAbertaPasto"
+            disabled
+          />
+        </mat-form-field>
+
+        <!-- Perc. de área com agricultura e/ou silvicultura -->
+        <mat-form-field appearance="outline">
+          <mat-label>Perc. de área com agricultura e/ou silvicultura</mat-label>
+          <input
+            matInput
+            type="number"
+            step="0.01"
+            [ngModel]="dados.percAgriculturaSilvicultura"
+            disabled
+          />
+        </mat-form-field>
+
+        <!-- Energia -->
+        <mat-form-field appearance="outline">
+          <mat-label>Energia</mat-label>
+          <mat-select [ngModel]="dados.caracteristicas.energia" disabled>
+            <mat-option *ngFor="let opt of opcoesEnergia" [value]="opt">
+              {{ opt }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Distância da energia (km) -->
+        <mat-form-field appearance="outline">
+          <mat-label>Distância da energia (km)</mat-label>
+          <input
+            matInput
+            type="number"
+            step="0.1"
+            [ngModel]="dados.distanciaEnergiaKm"
+            disabled
+          />
+        </mat-form-field>
+
+        <!-- Disponibilidade hídrica -->
+        <mat-form-field appearance="outline">
+          <mat-label>Disponibilidade hídrica</mat-label>
+          <mat-select
+            [ngModel]="dados.caracteristicas.disponibilidadeHidrica"
+            disabled
+          >
+            <mat-option *ngFor="let opt of opcoesHidrica" [value]="opt">
+              {{ opt }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Área irrigada -->
+        <mat-form-field appearance="outline">
+          <mat-label>Área irrigada</mat-label>
+          <input
+            matInput
+            type="number"
+            step="0.01"
+            [ngModel]="dados.areaIrrigada"
+            disabled
+          />
+        </mat-form-field>
+
+        <!-- Tecnologia -->
+        <mat-form-field appearance="outline">
+          <mat-label>Tecnologia</mat-label>
+          <mat-select [ngModel]="dados.tecnologia" disabled>
+            <mat-option *ngFor="let opt of opcoesTecnologia" [value]="opt">
+              {{ opt }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Conectividade -->
+        <mat-form-field appearance="outline">
+          <mat-label>Conectividade</mat-label>
+          <mat-select [ngModel]="dados.conectividade" disabled>
+            <mat-option *ngFor="let opt of opcoesConectividade" [value]="opt">
+              {{ opt }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Benfeitorias (em relação à atividade principal) -->
+        <mat-form-field appearance="outline">
+          <mat-label>Benfeitorias (em relação à atividade principal)</mat-label>
+          <mat-select [ngModel]="dados.benfeitoriasAtividade" disabled>
+            <mat-option *ngFor="let opt of opcoesBenfeitorias" [value]="opt">
+              {{ opt }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <!-- Estado de conservação geral das benfeitorias -->
+        <mat-form-field appearance="outline">
+          <mat-label>Estado de conservação geral das benfeitorias</mat-label>
+          <mat-select [ngModel]="dados.estadoConservacaoBenfeitorias" disabled>
+            <mat-option *ngFor="let opt of opcoesConservacao" [value]="opt">
+              {{ opt }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+
+      <!-- Tabela de Classe e índices -->
+      <!-- Tabela de Classe e índices -->
+      <div class="section-subtitle">
+        <h3>Classe / Localização / Índice</h3>
+      </div>
+      <div class="classe-grid">
+        <div
+          *ngFor="
+            let classe of ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII'];
+            let idx = index
+          "
+        >
+          <h4>Classe {{ classe }}</h4>
+          <div class="form-grid small-grid">
+            <mat-form-field appearance="outline">
+              <mat-label>% da área</mat-label>
+              <input
+                matInput
+                type="number"
+                step="0.01"
+                [ngModel]="getClasse(classe).percentual"
+                disabled
+              />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Localização</mat-label>
+              <mat-select [ngModel]="getClasse(classe).localizacao" disabled>
+                <mat-option *ngFor="let loc of opcoesLocalizacao" [value]="loc">
+                  {{ loc }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Índice</mat-label>
+              <input
+                matInput
+                type="number"
+                step="0.001"
+                [ngModel]="getClasse(classe).indice"
+                disabled
+              />
+            </mat-form-field>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nota agronômica (somatório) -->
+      <div class="nota-agronomica">
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>Nota agronômica (somatório)</mat-label>
+          <input
+            matInput
+            type="number"
+            step="0.001"
+            [ngModel]="dados.avaliacao.notaAgronomica"
+            disabled
+          />
+        </mat-form-field>
+      </div>
+    </mat-expansion-panel>
+
+    <!-- =========================================================
+         SEÇÃO 4 – VALORES DO IMÓVEL
+         ========================================================= -->
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon>attach_money</mat-icon>
+          Valores do Imóvel
+        </mat-panel-title>
+        <mat-panel-description>
+          Valores financeiros e condições de pagamento
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="form-grid">
+        <!-- Valor do Imóvel (VTI) -->
+        <mat-form-field appearance="outline">
+          <mat-label>Valor do Imóvel (R$)</mat-label>
+          <input
+            matInput
+            type="number"
+            step="0.01"
+            [ngModel]="dados.valores.vti"
+            disabled
+          />
+        </mat-form-field>
+
+        <!-- Prazo pagamento -->
+        <mat-form-field appearance="outline">
+          <mat-label>Prazo pagamento</mat-label>
+          <input
+            matInput
+            type="number"
+            step="1"
+            [ngModel]="dados.prazoPagamento"
+            disabled
+          />
+        </mat-form-field>
+
+        <!-- Quantidade de parcelas -->
+        <mat-form-field appearance="outline">
+          <mat-label>Quantidade de parcelas</mat-label>
+          <input
+            matInput
+            type="number"
+            step="1"
+            [ngModel]="dados.qtdParcelas"
+            disabled
+          />
+        </mat-form-field>
+
+        <!-- Taxa de juros aplicada -->
+        <mat-form-field appearance="outline">
+          <mat-label>Taxa de juros aplicada (%)</mat-label>
+          <input
+            matInput
+            type="number"
+            step="0.01"
+            [ngModel]="dados.taxaJuros"
+            disabled
+          />
+        </mat-form-field>
+
+        <!-- Valor das Benfeitorias -->
+        <mat-form-field appearance="outline">
+          <mat-label>Valor das Benfeitorias (R$)</mat-label>
+          <input
+            matInput
+            type="number"
+            step="0.01"
+            [ngModel]="dados.valores.benfeitorias"
+            disabled
+          />
+        </mat-form-field>
+
+        <!-- Valor da Terra Nua (VTN) -->
+        <mat-form-field appearance="outline">
+          <mat-label>Valor da Terra Nua (VTN) (R$)</mat-label>
+          <input
+            matInput
+            type="number"
+            step="0.01"
+            [ngModel]="dados.valores.vtn"
+            disabled
+          />
+        </mat-form-field>
+
+        <!-- VTI/ha -->
+        <mat-form-field appearance="outline">
+          <mat-label>VTI/ha (R$)</mat-label>
+          <input
+            matInput
+            type="number"
+            step="0.01"
+            [ngModel]="dados.valores.vtiPorHa"
+            disabled
+          />
+        </mat-form-field>
+
+        <!-- % de benfeitorias no VTI -->
+        <mat-form-field appearance="outline">
+          <mat-label>% de benfeitorias no VTI</mat-label>
+          <input
+            matInput
+            type="number"
+            step="0.01"
+            [ngModel]="dados.valores.percentualBenfeitoriasVti"
+            disabled
+          />
+        </mat-form-field>
+
+        <!-- VTN/ha -->
+        <mat-form-field appearance="outline">
+          <mat-label>VTN/ha (R$)</mat-label>
+          <input
+            matInput
+            type="number"
+            step="0.01"
+            [ngModel]="dados.valores.vtnPorHa"
+            disabled
+          />
+        </mat-form-field>
+
+        <!-- Fator elasticidade -->
+        <mat-form-field appearance="outline">
+          <mat-label>Fator elasticidade</mat-label>
+          <input
+            matInput
+            type="number"
+            step="0.001"
+            [ngModel]="dados.caracteristicas.fatorElasticidade"
+            disabled
+          />
+        </mat-form-field>
+      </div>
+
+      <!-- Descrição das benfeitorias (texto) -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Descrição das benfeitorias</mat-label>
+        <textarea
+          matInput
+          rows="4"
+          [ngModel]="dados.descricaoBenfeitorias"
+          disabled
+        ></textarea>
+      </mat-form-field>
+
+      <!-- Observações gerais -->
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Observações gerais</mat-label>
+        <textarea
+          matInput
+          rows="4"
+          [ngModel]="dados.observacoesGeral"
+          disabled
+        ></textarea>
+      </mat-form-field>
+    </mat-expansion-panel>
+
+    <!-- =========================================================
+         SEÇÃO 5 – INFORMAÇÕES DOS ENVOLVIDOS
+         ========================================================= -->
+    <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          <mat-icon>people</mat-icon>
+          Informações dos envolvidos
+        </mat-panel-title>
+        <mat-panel-description>
+          Vendedor, comprador, informante e contatos
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
+      <div class="form-grid">
+        <!-- Comprador -->
+        <mat-form-field appearance="outline">
+          <mat-label>Comprador</mat-label>
+          <input matInput [ngModel]="dados.envolvidos.comprador" disabled />
+        </mat-form-field>
+
+        <!-- Vendedor -->
+        <mat-form-field appearance="outline">
+          <mat-label>Vendedor</mat-label>
+          <input matInput [ngModel]="dados.envolvidos.vendedor" disabled />
+        </mat-form-field>
+
+        <!-- Informante -->
+        <mat-form-field appearance="outline">
+          <mat-label>Informante</mat-label>
+          <input matInput [ngModel]="dados.envolvidos.informante" disabled />
+        </mat-form-field>
+
+        <!-- Telefone do informante -->
+        <mat-form-field appearance="outline">
+          <mat-label>Telefone</mat-label>
+          <input
+            matInput
+            type="tel"
+            [ngModel]="dados.telefoneInformante"
+            disabled
+          />
+        </mat-form-field>
+
+        <!-- Pesquisadores -->
+        <mat-form-field appearance="outline" class="campo-full">
+          <mat-label>Pesquisadores</mat-label>
+          <input matInput [ngModel]="dados.pesquisadores" disabled />
+        </mat-form-field>
+
+        <!-- Log do usuário -->
+        <mat-form-field appearance="outline" class="campo-full">
+          <mat-label>Log do usuário</mat-label>
+          <input matInput [ngModel]="dados.logUsuario" disabled />
+        </mat-form-field>
+      </div>
+    </mat-expansion-panel>
+  </mat-accordion>
+
+  <!-- Botão Fechar -->
+  <div class="modal-actions">
+    <button mat-flat-button color="primary" (click)="fechar()">
+      <mat-icon>close</mat-icon>
+      Fechar
+    </button>
+  </div>
+</div>

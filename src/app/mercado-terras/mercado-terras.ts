@@ -23,6 +23,7 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 // Importe o mock e a interface
 import { mockPesquisasImoveis } from '../mock/mercadoTerrasMock/mercadoDeTerrasMock';
 import { PesquisaImovel } from '../mock/mercadoTerrasMock/interfaceMercadoDeTerras';
+import { ModalVisualizarMercado } from './modal-visualizar-mercado/modal-visualizar-mercado';
 
 @Component({
   selector: 'app-mercado-terras',
@@ -268,13 +269,20 @@ export class MercadoTerras {
   public executarAcao(acao: string, dados: PesquisaImovel): void {
     switch (acao) {
       case 'Visualizar':
-        console.log('Visualizar:', dados);
+        this.dialog.open(ModalVisualizarMercado, {
+          maxWidth: '1500px',
+          width: '1200px', // largura desejada
+          maxHeight: '1500',
+          height: '1000px', // altura desejada
+          data: dados, // transmite o objeto para a modal
+        });
         break;
+
       case 'Editar':
         console.log('Editar:', dados);
-        // Navega para a rota correta e passa os dados via state
         this.router.navigate(['/editarMercadoDeTerras'], { state: { dados } });
         break;
+
       default:
         console.log('Ação não mapeada:', acao);
     }
