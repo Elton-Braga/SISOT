@@ -1,0 +1,472 @@
+/* =========================================================
+   PÁGINA PRINCIPAL
+   ========================================================= */
+.mat-stepper-vertical {
+  margin-top: 8px;
+}
+
+.editar-page {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+
+/* =========================================================
+   CABEÇALHO
+   ========================================================= */
+
+.page-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  padding: 24px 5%;
+
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.header-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 48px;
+  height: 48px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background-color: #e8f0fe;
+  color: #1351b4;
+}
+
+.header-icon mat-icon {
+  font-size: 26px;
+  width: 26px;
+  height: 26px;
+}
+
+.header-content h1 {
+  margin: 0 0 4px;
+
+  font-size: 1.5rem;
+  font-weight: 600;
+
+  color: #333333;
+}
+
+.header-content p {
+  margin: 0;
+
+  font-size: 0.875rem;
+
+  color: #555555;
+}
+
+/* =========================================================
+   CONTEÚDO
+   ========================================================= */
+
+.page-content {
+  width: min(1200px, 90%);
+  margin: 32px auto;
+
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* =========================================================
+   SEÇÕES
+   ========================================================= */
+
+.form-section {
+  padding: 28px;
+
+  background-color: #ffffff;
+
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* =========================================================
+   TÍTULO DAS SEÇÕES
+   ========================================================= */
+
+.section-title {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 12px;
+
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.section-title > mat-icon {
+  margin-top: 2px;
+
+  color: #1351b4;
+
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+}
+
+.section-title h2 {
+  margin: 0 0 4px;
+
+  font-size: 1.125rem;
+  font-weight: 600;
+
+  color: #333333;
+}
+
+.section-title p {
+  margin: 0;
+
+  font-size: 0.875rem;
+
+  color: #666666;
+}
+
+/* =========================================================
+   GRID
+   ========================================================= */
+
+.form-grid {
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 8px 20px;
+}
+
+/* Campos em largura total */
+
+.campo-full,
+.campo-imovel,
+.campo-proprietario,
+.campo-modalidade {
+  grid-column: span 2;
+}
+
+/* =========================================================
+   CAMPOS
+   ========================================================= */
+
+mat-form-field {
+  width: 100%;
+}
+
+/* =========================================================
+   RODAPÉ / AÇÕES
+   ========================================================= */
+/*
+.page-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 20px 5%;
+
+  background-color: #ffffff;
+
+  border-top: 1px solid #e5e5e5;
+}*/
+.page-actions {
+  position: fixed;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+
+  width: fit-content;
+  min-width: 100%;
+
+  padding: 12px 16px;
+
+  background-color: #ffffff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+
+  z-index: 1000;
+}
+
+.page-actions button {
+  min-height: 40px;
+
+  font-weight: 600;
+}
+
+.page-actions mat-icon {
+  margin-right: 6px;
+}
+
+/* =========================================================
+   RESPONSIVIDADE
+   ========================================================= */
+
+@media (max-width: 768px) {
+  .page-header {
+    padding: 20px;
+  }
+
+  .page-content {
+    width: calc(100% - 32px);
+
+    margin: 16px auto;
+  }
+
+  .form-section {
+    padding: 20px;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .campo-full,
+  .campo-imovel,
+  .campo-proprietario,
+  .campo-modalidade {
+    grid-column: span 1;
+  }
+
+  .page-actions {
+    padding: 16px 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .page-header {
+    align-items: flex-start;
+  }
+
+  .header-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .header-icon mat-icon {
+    font-size: 22px;
+    width: 22px;
+    height: 22px;
+  }
+
+  .header-content h1 {
+    font-size: 1.25rem;
+  }
+
+  .page-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .page-actions button {
+    width: 100%;
+  }
+}
+
+.step-content {
+  padding: 20px 0;
+  width: 100%;
+}
+
+.documentos-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/* Remove todas as bordas */
+.documentos-table,
+.documentos-table th,
+.documentos-table td {
+  border: none;
+}
+
+.documentos-table th {
+  text-align: left;
+  font-weight: 600;
+  padding: 8px 12px 12px;
+  color: #333;
+}
+
+.documentos-table td {
+  padding: 6px 12px;
+  vertical-align: middle;
+}
+
+/* Largura das três colunas */
+.documentos-table th:nth-child(1),
+.documentos-table td:nth-child(1) {
+  width: 55%;
+}
+
+.documentos-table th:nth-child(2),
+.documentos-table td:nth-child(2) {
+  width: 25%;
+}
+
+.documentos-table th:nth-child(3),
+.documentos-table td:nth-child(3) {
+  width: 20%;
+}
+
+/* Form fields ocupam toda a célula */
+.documentos-table mat-form-field {
+  width: 100%;
+}
+
+/* Campo de observação */
+.campo-observacao {
+  width: 100%;
+  margin-top: 10px;
+}
+
+/* Link de anexo */
+.anexo-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+
+  color: #1351b4;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.anexo-link:hover {
+  text-decoration: underline;
+}
+
+.anexo-link mat-icon {
+  font-size: 20px;
+  width: 20px;
+  height: 20px;
+}
+
+/* Botões do stepper */
+.step-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .documentos-table {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .documentos-table {
+    min-width: 700px;
+  }
+}
+
+/*Acordeon++++++++++++++++++++++++++++++++++++++++++++++++++*/
+.sections-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  width: 100%;
+}
+
+.sections-accordion mat-expansion-panel {
+  border: 1px solid #e5e5e5;
+  border-radius: 8px !important;
+
+  overflow: hidden;
+}
+
+.sections-accordion mat-expansion-panel-header {
+  min-height: 64px;
+}
+
+.sections-accordion mat-panel-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.sections-accordion mat-panel-title mat-icon {
+  color: #1351b4;
+}
+
+.sections-accordion mat-panel-description {
+  color: #666666;
+}
+
+.sections-accordion .mat-expansion-panel-body {
+  padding: 24px;
+}
+.nenhuma-informacao {
+  min-height: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #666;
+  text-align: center;
+  padding: 32px;
+}
+
+.nenhuma-informacao mat-icon {
+  font-size: 48px;
+  width: 48px;
+  height: 48px;
+  opacity: 0.7;
+}
+
+/* =========================================================
+   CAMPOS DUPLOS (lado a lado)
+   ========================================================= */
+
+.campo-duplo {
+  display: flex;
+  gap: 20px;
+  grid-column: span 2;
+}
+
+.campo-duplo mat-form-field {
+  flex: 1;
+}
+
+/* Responsividade para campos duplos */
+@media (max-width: 768px) {
+  .campo-duplo {
+    flex-direction: column;
+    gap: 8px;
+    grid-column: span 1;
+  }
+
+  .campo-duplo mat-form-field {
+    flex: none;
+    width: 100%;
+  }
+}
+
+.dialog-com-rolagem .mat-dialog-container {
+  max-height: 80vh; /* limita a altura a 80% da viewport */
+  overflow-y: auto; /* adiciona rolagem vertical quando necessário */
+  padding: 0; /* opcional, ajuste conforme layout */
+}

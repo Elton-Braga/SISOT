@@ -6,6 +6,7 @@ import { Editar } from './componentes/editar/editar';
 import { Processos } from './componentes/processos/processos';
 import { CadastrarGrupo } from './componentes/cadastrar-grupo/cadastrar-grupo';
 import { MercadoTerras } from './mercado-terras/mercado-terras';
+import { EditarMerdadoDeTerras } from './mercado-terras/editar-merdado-de-terras/editar-merdado-de-terras';
 
 export const routes: Routes = [
   {
@@ -38,5 +39,9 @@ export const routes: Routes = [
   {
     path: 'CadastrarGrupo',
     component: CadastrarGrupo,
+  },
+  {
+    path: 'editarMercadoDeTerras',
+    component: EditarMerdadoDeTerras,
   },
 ];

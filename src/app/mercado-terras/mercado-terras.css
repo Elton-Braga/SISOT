@@ -419,7 +419,7 @@
    RESPONSIVIDADE
    ========================================================= */
 
-/* Tablets */
+/* Tablets
 
 @media (max-width: 992px) {
   .br-header {
@@ -446,9 +446,9 @@
   .grupo-input {
     flex: 1 1 180px;
   }
-}
+}*/
 
-/* Smartphones */
+/* Smartphones 
 
 @media (max-width: 768px) {
   .br-menu-lateral {
@@ -499,9 +499,9 @@
   .menu-colunas {
     min-width: 220px;
   }
-}
+}*/
 
-/* Telas muito pequenas */
+/* Telas muito pequenas 
 
 @media (max-width: 480px) {
   .filter-flex-container {
@@ -534,3 +534,4 @@
     min-width: 800px;
   }
 }
+*/

@@ -272,7 +272,8 @@ export class MercadoTerras {
         break;
       case 'Editar':
         console.log('Editar:', dados);
-        this.router.navigate(['/editar', dados.id]);
+        // Navega para a rota correta e passa os dados via state
+        this.router.navigate(['/editarMercadoDeTerras'], { state: { dados } });
         break;
       default:
         console.log('Ação não mapeada:', acao);
