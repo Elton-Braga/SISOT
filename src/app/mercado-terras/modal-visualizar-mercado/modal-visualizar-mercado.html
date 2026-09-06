@@ -473,6 +473,14 @@
         <h3>Classe / Localização / Índice</h3>
       </div>
       <div class="classe-grid">
+        <mat-form-field appearance="outline">
+          <mat-label>Localização</mat-label>
+          <mat-select disabled>
+            <mat-option *ngFor="let loc of opcoesLocalizacao" [value]="loc">
+              {{ loc }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
         <div
           *ngFor="
             let classe of ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII'];
@@ -491,14 +499,14 @@
                 disabled
               />
             </mat-form-field>
-            <mat-form-field appearance="outline">
+            <!-- <mat-form-field appearance="outline">
               <mat-label>Localização</mat-label>
               <mat-select [ngModel]="getClasse(classe).localizacao" disabled>
                 <mat-option *ngFor="let loc of opcoesLocalizacao" [value]="loc">
                   {{ loc }}
                 </mat-option>
               </mat-select>
-            </mat-form-field>
+            </mat-form-field>-->
             <mat-form-field appearance="outline">
               <mat-label>Índice</mat-label>
               <input
