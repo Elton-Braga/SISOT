@@ -37,7 +37,7 @@ import { PesquisaImovelCompleto } from './pesquisaImovelCompleto';
 })
 export class EditarMerdadoDeTerras implements OnInit {
   public dados!: PesquisaImovelCompleto;
-
+  localizacaoGeral: string = '';
   // Opções para comboboxes
   public opcoesTipoDado = ['Transação', 'Oferta'];
   public opcoesFonte = [
@@ -95,7 +95,14 @@ export class EditarMerdadoDeTerras implements OnInit {
     private router: Router,
     private dialog: MatDialog,
   ) {}
-
+  atualizarLocalizacaoClasses() {
+    const classes = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII'];
+    classes.forEach((cls) => {
+      if (this.dados['classe' + cls]) {
+        this.dados['classe' + cls].localizacao = this.localizacaoGeral;
+      }
+    });
+  }
   ngOnInit(): void {
     const navigation = this.router.getCurrentNavigation();
     const dadosRecebidos =
