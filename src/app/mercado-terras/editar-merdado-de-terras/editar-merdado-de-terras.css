@@ -470,3 +470,22 @@ mat-form-field {
   overflow-y: auto; /* adiciona rolagem vertical quando necessário */
   padding: 0; /* opcional, ajuste conforme layout */
 }
+
+.upload-area {
+  margin-top: 1.5rem;
+  padding: 0.5rem;
+}
+
+.arquivos-list {
+  margin-top: 1rem;
+}
+
+.sem-arquivos {
+  color: #888;
+  font-style: italic;
+  margin-top: 0.5rem;
+}
+
+mat-card {
+  background-color: #f9f9f9;
+}

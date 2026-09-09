@@ -241,6 +241,74 @@
               [(ngModel)]="dados.roteiroAcesso"
             ></textarea>
           </mat-form-field>
+
+          <div class="upload-area">
+            <mat-card>
+              <mat-card-header>
+                <mat-card-title>
+                  <mat-icon>cloud_upload</mat-icon> Anexar arquivos
+                </mat-card-title>
+                <mat-card-subtitle>
+                  Envie documentos, imagens ou outros arquivos relacionados ao
+                  imóvel
+                </mat-card-subtitle>
+              </mat-card-header>
+              <mat-card-content>
+                <!-- Botão para abrir seletor de arquivos -->
+                <button
+                  mat-raised-button
+                  color="primary"
+                  type="button"
+                  (click)="fileInput.click()"
+                >
+                  <mat-icon>attach_file</mat-icon> Selecionar arquivos
+                </button>
+                <input
+                  type="file"
+                  #fileInput
+                  multiple
+                  style="display: none"
+                  (change)="onFileSelected($event)"
+                />
+
+                <!-- Lista de arquivos selecionados -->
+                <div
+                  *ngIf="arquivosSelecionados.length > 0"
+                  class="arquivos-list"
+                >
+                  <mat-list>
+                    <mat-list-item
+                      *ngFor="
+                        let arquivo of arquivosSelecionados;
+                        let i = index
+                      "
+                    >
+                      <mat-icon mat-list-icon>insert_drive_file</mat-icon>
+                      <div mat-line>{{ arquivo.name }}</div>
+                      <div mat-line>
+                        {{ (arquivo.size / 1024).toFixed(2) }} KB
+                      </div>
+                      <button
+                        mat-icon-button
+                        color="warn"
+                        (click)="removerArquivo(i)"
+                      >
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                    </mat-list-item>
+                  </mat-list>
+                </div>
+
+                <!-- Mensagem quando nenhum arquivo selecionado -->
+                <p
+                  *ngIf="arquivosSelecionados.length === 0"
+                  class="sem-arquivos"
+                >
+                  Nenhum arquivo selecionado.
+                </p>
+              </mat-card-content>
+            </mat-card>
+          </div>
         </mat-expansion-panel>
 
         <!-- =====================================================

@@ -14,6 +14,8 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { PesquisaImovelCompleto } from './pesquisaImovelCompleto';
+import { MatListModule } from '@angular/material/list';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-editar',
@@ -31,11 +33,15 @@ import { PesquisaImovelCompleto } from './pesquisaImovelCompleto';
     MatStepperModule,
     MatExpansionModule,
     MatDialogModule,
+
+    MatCardModule,
+    MatListModule,
   ],
   templateUrl: './editar-merdado-de-terras.html',
   styleUrl: './editar-merdado-de-terras.css',
 })
 export class EditarMerdadoDeTerras implements OnInit {
+  arquivosSelecionados: File[] = [];
   public dados!: PesquisaImovelCompleto;
   localizacaoGeral: string = '';
   // Opções para comboboxes
@@ -213,5 +219,39 @@ export class EditarMerdadoDeTerras implements OnInit {
   }
   abrirPortariaCd(): void {
     /* ... */
+  }
+
+  // Evento disparado ao selecionar arquivos
+  onFileSelected(event: any): void {
+    const files: FileList = event.target.files;
+    if (files) {
+      for (let i = 0; i < files.length; i++) {
+        // Evita duplicatas (opcional)
+        const existe = this.arquivosSelecionados.some(
+          (f) => f.name === files[i].name && f.size === files[i].size,
+        );
+        if (!existe) {
+          this.arquivosSelecionados.push(files[i]);
+        }
+      }
+    }
+    // Limpa o input para permitir selecionar novamente o mesmo arquivo
+    event.target.value = '';
+  }
+
+  // Remove um arquivo da lista
+  removerArquivo(index: number): void {
+    this.arquivosSelecionados.splice(index, 1);
+  }
+
+  // (Opcional) Método para enviar os arquivos para o servidor
+  enviarArquivos(): void {
+    // Exemplo: FormData
+    const formData = new FormData();
+    this.arquivosSelecionados.forEach((file) => {
+      formData.append('anexos', file, file.name);
+    });
+    // Chame seu serviço de upload aqui
+    // this.uploadService.upload(formData).subscribe(...);
   }
 }
