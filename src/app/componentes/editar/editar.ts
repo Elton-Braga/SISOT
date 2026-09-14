@@ -20,6 +20,7 @@ import { ResolucaoCdr } from './resolucao-cdr/resolucao-cdr';
 import { PortariaCdr } from './portaria-cdr/portaria-cdr';
 import { PortariaCd } from './portaria-cd/portaria-cd';
 import { ResolucaoCd } from './resolucao-cd/resolucao-cd';
+import { EmitirLaudo } from './emitir-laudo/emitir-laudo';
 //import { OrdemServico } from './ordem-servico/ordem-servico.component';
 
 @Component({
@@ -72,6 +73,16 @@ export class Editar implements OnInit {
 
   abrirOrdemServico(): void {
     this.dialog.open(OrdemServico, {
+      maxWidth: '1100px',
+      width: '800px',
+      maxHeight: '1100px',
+      height: '90%',
+      panelClass: 'dialog-com-rolagem',
+    });
+  }
+
+  abrirLaudo(): void {
+    this.dialog.open(EmitirLaudo, {
       maxWidth: '1100px',
       width: '800px',
       maxHeight: '1100px',
