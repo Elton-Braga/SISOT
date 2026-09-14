@@ -1,0 +1,209 @@
+<div class="documento" #conteudoImpressao>
+  <!-- ================================================= -->
+  <!-- CABEÇALHO INSTITUCIONAL -->
+  <!-- ================================================= -->
+
+  <div class="cabecalho">
+    MINISTÉRIO DO DESENVOLVIMENTO AGRÁRIO E AGRICULTURA FAMILIAR<br />
+    INSTITUTO NACIONAL DE COLONIZAÇÃO E REFORMA AGRÁRIA<br />
+    SUPERINTENDÊNCIA REGIONAL ({{ dadosExibicao.sr }})
+  </div>
+
+  <!-- ================================================= -->
+  <!-- IDENTIFICAÇÃO DA ATA -->
+  <!-- ================================================= -->
+
+  <p><strong>Ata:</strong> {{ dadosExibicao.ata }}</p>
+
+  <p><strong>Processo:</strong> {{ dadosExibicao.processo }}</p>
+
+  <p class="titulo-ata">
+    ATA DO GRUPO TÉCNICO DO LAUDO DE VISTORIA E AVALIAÇÃO
+  </p>
+
+  <!-- ================================================= -->
+  <!-- TEXTO DA ATA -->
+  <!-- ================================================= -->
+
+  <p>
+    Em {{ dadosExibicao.dataLva }}, os Engenheiros Agrônomos
+    <span *ngIf="dadosExibicao.servidores?.length">
+      <ng-container *ngFor="let s of dadosExibicao.servidores; let i = index">
+        <span *ngIf="i > 0 && i < dadosExibicao.servidores.length - 1">, </span>
+        <span *ngIf="i === dadosExibicao.servidores.length - 1 && i > 0">
+          e
+        </span>
+        Servidores “{{ s.nome }}”
+      </ng-container>
+    </span>
+    , reuniram-se na sede da Superintendência Regional do INCRA em
+    {{ dadosExibicao.sr }}, Estado do {{ dadosExibicao.estado }}, para análise e
+    julgamento do “Laudo de Vistoria e Avaliação” do imóvel rural conhecido
+    como: <strong>{{ dadosExibicao.imovel }}</strong
+    >, localizado nos municípios de {{ dadosExibicao.municipio }}, neste Estado,
+    com área registrada de
+    <strong>{{ formatarArea(dadosExibicao.areaRegistrada) }}</strong> e medida /
+    avaliada de
+    <strong>{{ formatarArea(dadosExibicao.areaMedidaAvaliada) }}</strong
+    >, constante dos autos administrativos INCRA/{{ dadosExibicao.sr }}/Nº
+    {{ dadosExibicao.processo }}, conforme determinam os Artigos 17 e 18 da
+    Instrução Normativa/INCRA/nº 83, de 30/7/2015. Sob a relatoria do último,
+    co-responsável pela elaboração técnica do trabalho, foram analisados o
+    relatório, sua rotina, critérios e métodos, bem como o mapa de uso atual.
+  </p>
+
+  <p>
+    Partindo do pressuposto de que as informações integrantes do relatório e
+    mapa de uso refletem a realidade do imóvel, este Grupo Técnico do Laudo de
+    Vistoria e Avaliação concluiu que o mesmo foi corretamente elaborado,
+    observando os dispositivos e critérios estabelecidos na Lei nº 8.629/93 e
+    alterações, além das demais Normas e Instruções relativas à matéria,
+    encontrando-se os seguintes dados técnicos:
+  </p>
+
+  <!-- ================================================= -->
+  <!-- QUADRO RESUMO DA ESPACIALIZAÇÃO -->
+  <!-- ================================================= -->
+
+  <h3>Quadro Resumo da Espacialização</h3>
+
+  <ol>
+    <li>
+      Área avalianda (ha):
+      <strong>{{ formatarArea(dadosExibicao.areaMedidaAvaliada) }}</strong>
+    </li>
+
+    <li>
+      Capacidade estimada de famílias:
+      <strong>{{ dadosExibicao.capacidadeFamilias }}</strong>
+    </li>
+
+    <li>
+      Uso do imóvel:
+      <ng-container *ngIf="dadosExibicao.usoImovel?.length; else semUso">
+        <table class="uso">
+          <thead>
+            <tr>
+              <th>Uso do imóvel</th>
+
+              <th class="num">Área (ha)</th>
+
+              <th class="num">%</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let uso of dadosExibicao.usoImovel">
+              <td>{{ uso.descricao }}</td>
+
+              <td class="num">{{ formatarArea(uso.areaHa) }}</td>
+
+              <td class="num">{{ formatarPercentual(uso.percentual) }}</td>
+            </tr>
+          </tbody>
+
+          <tfoot>
+            <tr>
+              <td><strong>Total</strong></td>
+
+              <td class="num">
+                <strong>{{ totalAreaUso }}</strong>
+              </td>
+
+              <td class="num">
+                <strong>{{ totalPercentualUso }}</strong>
+              </td>
+            </tr>
+          </tfoot>
+        </table>
+      </ng-container>
+
+      <ng-template #semUso>
+        <em>Não informado.</em>
+      </ng-template>
+    </li>
+  </ol>
+
+  <!-- ================================================= -->
+  <!-- DADOS UNITÁRIOS COMPLEMENTARES -->
+  <!-- ================================================= -->
+
+  <h3>Dados Unitários Complementares</h3>
+
+  <ol>
+    <li>
+      Valor do passivo ambiental:
+      <strong>{{ formatarMoeda(dadosExibicao.valorPassivoAmbiental) }}</strong>
+    </li>
+
+    <li>
+      Valor das benfeitorias:
+      <strong>{{ formatarMoeda(dadosExibicao.valorBenfeitorias) }}</strong>
+    </li>
+
+    <li>
+      Custo por família:
+      <strong>{{ formatarMoeda(dadosExibicao.custoPorFamilia) }}</strong>
+    </li>
+
+    <li>
+      Valor da Terra Nua – VTN Médio:
+      <strong>{{ formatarMoeda(dadosExibicao.valorTerraNua) }}</strong>
+    </li>
+
+    <li>
+      Valor Total do Imóvel – VTI Médio:
+      <strong>{{ formatarMoeda(dadosExibicao.valorTotalImovel) }}</strong>
+    </li>
+  </ol>
+
+  <!-- ================================================= -->
+  <!-- ENCERRAMENTO -->
+  <!-- ================================================= -->
+
+  <p>
+    Estando unânimes e de acordo com os termos do relatório objeto desta
+    reunião, lavramos a presente ata que após lida e achada conforme, segue
+    assinada digitalmente pelos componentes deste Grupo Técnico.
+  </p>
+
+  <!-- ================================================= -->
+  <!-- ASSINATURAS -->
+  <!-- ================================================= -->
+
+  <div class="assinaturas">
+    <div
+      class="assinatura"
+      *ngFor="let s of dadosExibicao.servidores; let i = index"
+    >
+      <div class="linha"></div>
+
+      <div class="nome">{{ s.nome }}</div>
+
+      <div class="detalhe">
+        {{ s.cargo }} – SIAPE nº {{ s.siape }}
+        <ng-container *ngIf="i === dadosExibicao.servidores.length - 1">
+          (Relator)
+        </ng-container>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================================================= -->
+  <!-- AÇÕES (não impressas) -->
+  <!-- ================================================= -->
+
+  <div class="form-actions no-print">
+    <a class="print" (click)="imprimir()">Imprimir</a>
+
+    <button
+      mat-raised-button
+      class="btn-assinar"
+      (click)="enviarParaAssinatura()"
+    >
+      <mat-icon>draw</mat-icon>
+
+      Enviar para assinatura
+    </button>
+  </div>
+</div>

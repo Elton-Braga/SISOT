@@ -1,0 +1,261 @@
+/* =========================================================
+   DOCUMENTO
+========================================================= */
+
+.documento {
+  margin: 2rem;
+  padding-right: 12px; /* espaço para a scrollbar não colar no texto */
+
+  max-height: calc(100vh - 4rem); /* limita à altura da viewport */
+  overflow-y: auto; /* barra de rolagem vertical */
+  overflow-x: hidden;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12pt;
+  color: #000;
+
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: #b3b3b3 #f2f2f2;
+}
+
+/* WebKit (Chrome, Edge, Safari) */
+
+.documento::-webkit-scrollbar {
+  width: 8px;
+}
+
+.documento::-webkit-scrollbar-track {
+  background: #f2f2f2;
+  border-radius: 4px;
+}
+
+.documento::-webkit-scrollbar-thumb {
+  background: #b3b3b3;
+  border-radius: 4px;
+}
+
+.documento::-webkit-scrollbar-thumb:hover {
+  background: #8c8c8c;
+}
+
+/* Cabeçalho institucional */
+
+.cabecalho {
+  text-align: center;
+  font-weight: bold;
+  line-height: 1.4;
+  margin-bottom: 24px;
+}
+
+/* Título centralizado */
+
+.titulo-ata {
+  text-align: center;
+  font-weight: bold;
+  margin: 24px 0 16px;
+}
+
+/* Parágrafos gerais */
+
+.documento p {
+  margin-top: 0;
+  margin-bottom: 16px;
+  line-height: 1.5;
+  text-align: justify;
+}
+
+/* Subtítulos */
+
+.documento h3 {
+  margin-top: 24px;
+  margin-bottom: 12px;
+  font-size: 12pt;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Listas */
+
+.documento ol,
+.documento ul {
+  margin: 0 0 16px 0;
+  padding-left: 22px;
+  line-height: 1.5;
+}
+
+.documento ol li,
+.documento ul li {
+  margin-bottom: 6px;
+}
+
+/* =========================================================
+   TABELA DE USO DO IMÓVEL
+========================================================= */
+
+table.uso {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0 16px;
+  font-size: 11pt;
+}
+
+table.uso th,
+table.uso td {
+  border: 1px solid #000;
+  padding: 6px 8px;
+  text-align: left;
+}
+
+table.uso th {
+  background: #f2f2f2;
+  font-weight: bold;
+}
+
+table.uso td.num,
+table.uso th.num {
+  text-align: right;
+  white-space: nowrap;
+}
+
+table.uso tfoot td {
+  background: #fafafa;
+}
+
+/* =========================================================
+   ASSINATURAS
+========================================================= */
+
+.assinaturas {
+  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.assinatura {
+  text-align: center;
+  page-break-inside: avoid;
+}
+
+.assinatura .linha {
+  border-top: 1px solid #000;
+  width: 70%;
+  margin: 0 auto 6px;
+}
+
+.assinatura .nome {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.assinatura .detalhe {
+  font-size: 11pt;
+}
+
+/* =========================================================
+   AÇÕES
+========================================================= */
+
+.no-print {
+  display: block;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 12px;
+  margin-top: 40px;
+
+  /* mantém os botões fixos no rodapé enquanto o conteúdo rola */
+  position: sticky;
+  bottom: 0;
+
+  padding: 12px 0;
+  background: #ffffff;
+  border-top: 1px solid #e0e0e0;
+}
+
+.print,
+.btn-assinar {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  font-size: 12pt;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background: transparent;
+  transition: 0.2s;
+}
+
+.print {
+  color: rgb(7, 94, 94);
+}
+
+.print:hover {
+  text-decoration: underline;
+}
+
+.btn-assinar {
+  background-color: #0168d6;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.btn-assinar:hover {
+  background-color: #0056b3;
+}
+
+.btn-assinar mat-icon {
+  font-size: 18px;
+  height: 18px;
+  width: 18px;
+}
+
+/* =========================================================
+   RESPONSIVIDADE
+========================================================= */
+
+@media (max-width: 768px) {
+  .documento {
+    margin: 1rem;
+    padding-right: 8px;
+    max-height: calc(100vh - 2rem);
+  }
+
+  .form-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .form-actions .print,
+  .form-actions .btn-assinar {
+    justify-content: center;
+  }
+}
+
+/* =========================================================
+   IMPRESSÃO
+========================================================= */
+
+@media print {
+  .documento {
+    margin: 0;
+    padding-right: 0;
+
+    max-height: none;
+    overflow: visible;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .form-actions {
+    display: none !important;
+  }
+}

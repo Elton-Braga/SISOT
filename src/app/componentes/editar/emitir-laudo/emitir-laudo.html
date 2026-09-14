@@ -1,1 +1,346 @@
-<p>emitir-laudo works!</p>
+<div class="form-page">
+  <!-- ================================================= -->
+  <!-- CABEÇALHO -->
+  <!-- ================================================= -->
+
+  <div class="pagina-cabecalho">
+    <h1>Emitir Laudo</h1>
+
+    <p>
+      Confira as informações carregadas automaticamente a partir do processo
+      selecionado antes de emitir o laudo.
+    </p>
+  </div>
+
+  <!-- ================================================= -->
+  <!-- DADOS GERAIS -->
+  <!-- ================================================= -->
+
+  <section class="form-section">
+    <div class="section-header">
+      <div>
+        <h2>Dados Gerais</h2>
+
+        <p class="section-description">
+          Identificação da ata, do processo e da equipe responsável.
+        </p>
+      </div>
+
+      <span class="badge-auto">
+        <mat-icon>bolt</mat-icon>
+        Preenchimento automático
+      </span>
+    </div>
+
+    <div class="form-grid">
+      <!-- ATA (CÓDIGO) -->
+
+      <mat-form-field appearance="outline" class="campo-auto">
+        <mat-label>Ata (Código)</mat-label>
+
+        <input matInput [value]="ata" disabled />
+      </mat-form-field>
+
+      <!-- PROCESSO -->
+
+      <mat-form-field appearance="outline" class="campo-auto">
+        <mat-label>Processo</mat-label>
+
+        <input matInput [value]="processo" disabled />
+      </mat-form-field>
+
+      <!-- DATA DO LVA -->
+
+      <mat-form-field appearance="outline" class="campo-auto">
+        <mat-label>Data do LVA</mat-label>
+
+        <input matInput [value]="dataLvaFormatada" disabled />
+      </mat-form-field>
+
+      <!-- SERVIDORES -->
+
+      <mat-form-field appearance="outline">
+        <mat-label>Servidores</mat-label>
+
+        <mat-select [(ngModel)]="servidoresSelecionados" multiple>
+          <mat-option *ngFor="let servidor of servidores" [value]="servidor">
+            {{ servidor.nome }} – {{ servidor.cargo }} (SIAPE:
+            {{ servidor.siape }})
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </section>
+
+  <!-- ================================================= -->
+  <!-- IMÓVEL E LOCALIZAÇÃO -->
+  <!-- ================================================= -->
+
+  <section class="form-section">
+    <div class="section-header">
+      <div>
+        <h2>Imóvel e Localização</h2>
+
+        <p class="section-description">
+          Dados do imóvel vinculado ao processo.
+        </p>
+      </div>
+
+      <span class="badge-auto">
+        <mat-icon>bolt</mat-icon>
+        Preenchimento automático
+      </span>
+    </div>
+
+    <div class="form-grid">
+      <!-- SR -->
+
+      <mat-form-field appearance="outline" class="campo-auto">
+        <mat-label>SR</mat-label>
+
+        <mat-select [value]="sr" disabled>
+          <mat-option [value]="sr">{{ sr }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- ESTADO -->
+
+      <mat-form-field appearance="outline" class="campo-auto">
+        <mat-label>Estado</mat-label>
+
+        <mat-select [value]="estado" disabled>
+          <mat-option [value]="estado">{{ estado }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <!-- IMÓVEL -->
+
+      <mat-form-field appearance="outline" class="campo-auto">
+        <mat-label>Imóvel</mat-label>
+
+        <input matInput [value]="imovel" disabled />
+      </mat-form-field>
+
+      <!-- MUNICÍPIO -->
+
+      <mat-form-field appearance="outline" class="campo-auto">
+        <mat-label>Município</mat-label>
+
+        <mat-select [value]="municipio" disabled>
+          <mat-option [value]="municipio">{{ municipio }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </section>
+
+  <!-- ================================================= -->
+  <!-- DIMENSÕES E CAPACIDADE -->
+  <!-- ================================================= -->
+
+  <section class="form-section">
+    <div class="section-header">
+      <div>
+        <h2>Dimensões e Capacidade</h2>
+
+        <p class="section-description">
+          Áreas do imóvel e capacidade de assentamento.
+        </p>
+      </div>
+
+      <span class="badge-auto">
+        <mat-icon>bolt</mat-icon>
+        Preenchimento automático
+      </span>
+    </div>
+
+    <div class="form-grid">
+      <!-- ÁREA REGISTRADA -->
+
+      <mat-form-field appearance="outline" class="campo-auto">
+        <mat-label>Área registrada</mat-label>
+
+        <input matInput [value]="areaRegistradaFormatada" disabled />
+      </mat-form-field>
+
+      <!-- ÁREA MEDIDA / AVALIADA (CONTADOR) -->
+
+      <div class="campo-bloco">
+        <label class="campo-label">Área medida / avaliada</label>
+
+        <div class="contador">
+          <button
+            mat-icon-button
+            type="button"
+            (click)="decrementarArea()"
+            aria-label="Diminuir área"
+          >
+            <mat-icon>remove</mat-icon>
+          </button>
+
+          <input
+            class="contador-input"
+            type="number"
+            step="0.0001"
+            min="0"
+            [(ngModel)]="areaMedidaAvaliada"
+          />
+
+          <button
+            mat-icon-button
+            type="button"
+            (click)="incrementarArea()"
+            aria-label="Aumentar área"
+          >
+            <mat-icon>add</mat-icon>
+          </button>
+
+          <span class="contador-unidade">ha</span>
+        </div>
+      </div>
+
+      <!-- CAPACIDADE DE FAMÍLIAS -->
+
+      <mat-form-field appearance="outline" class="campo-auto">
+        <mat-label>Capacidade de famílias</mat-label>
+
+        <input matInput [value]="capacidadeFamiliasFormatada" disabled />
+      </mat-form-field>
+
+      <!-- CUSTO POR FAMÍLIA -->
+
+      <mat-form-field appearance="outline" class="campo-auto">
+        <mat-label>Custo por família</mat-label>
+
+        <input matInput [value]="custoPorFamiliaFormatado" disabled />
+      </mat-form-field>
+    </div>
+  </section>
+
+  <!-- ================================================= -->
+  <!-- USO DO IMÓVEL -->
+  <!-- ================================================= -->
+
+  <section class="form-section">
+    <div class="section-header">
+      <div>
+        <h2>Uso do Imóvel</h2>
+
+        <p class="section-description">
+          Distribuição das áreas por tipo de uso.
+        </p>
+      </div>
+
+      <span class="badge-auto">
+        <mat-icon>bolt</mat-icon>
+        Preenchimento automático
+      </span>
+    </div>
+
+    <div class="table-container">
+      <table class="uso-table">
+        <thead>
+          <tr>
+            <th>Uso do imóvel</th>
+
+            <th class="num">Área (ha)</th>
+
+            <th class="num">%</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr *ngFor="let uso of usoImovel">
+            <td>{{ uso.descricao }}</td>
+
+            <td class="num">{{ formatarArea(uso.areaHa) }}</td>
+
+            <td class="num">{{ formatarPercentual(uso.percentual) }}</td>
+          </tr>
+        </tbody>
+
+        <tfoot>
+          <tr>
+            <td>Total</td>
+
+            <td class="num">{{ formatarArea(areaTotalUso) }}</td>
+
+            <td class="num">{{ formatarPercentual(percentualTotalUso) }}</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </section>
+
+  <!-- ================================================= -->
+  <!-- VALORES -->
+  <!-- ================================================= -->
+
+  <section class="form-section">
+    <div class="section-header">
+      <div>
+        <h2>Valores</h2>
+
+        <p class="section-description">
+          Valores apurados na avaliação do imóvel.
+        </p>
+      </div>
+
+      <span class="badge-auto">
+        <mat-icon>bolt</mat-icon>
+        Preenchimento automático
+      </span>
+    </div>
+
+    <div class="form-grid">
+      <!-- VALOR PASSIVO AMBIENTAL -->
+
+      <mat-form-field appearance="outline" class="campo-auto">
+        <mat-label>Valor passivo ambiental</mat-label>
+
+        <input matInput [value]="valorPassivoAmbientalFormatado" disabled />
+      </mat-form-field>
+
+      <!-- VALOR DAS BENFEITORIAS -->
+
+      <mat-form-field appearance="outline" class="campo-auto">
+        <mat-label>Valor das benfeitorias</mat-label>
+
+        <input matInput [value]="valorBenfeitoriasFormatado" disabled />
+      </mat-form-field>
+
+      <!-- VALOR DA TERRA NUA -->
+
+      <mat-form-field appearance="outline" class="campo-auto">
+        <mat-label>Valor da Terra Nua</mat-label>
+
+        <input matInput [value]="valorTerraNuaFormatado" disabled />
+      </mat-form-field>
+
+      <!-- VALOR TOTAL DO IMÓVEL -->
+
+      <mat-form-field appearance="outline" class="campo-auto destaque">
+        <mat-label>Valor total do imóvel</mat-label>
+
+        <input matInput [value]="valorTotalImovelFormatado" disabled />
+      </mat-form-field>
+    </div>
+  </section>
+
+  <!-- ================================================= -->
+  <!-- AÇÕES -->
+  <!-- ================================================= -->
+
+  <div class="form-actions">
+    <button mat-stroked-button type="button" (click)="salvar()">
+      <mat-icon>save</mat-icon>
+
+      Salvar
+    </button>
+
+    <button mat-flat-button color="primary" type="button" (click)="emitir()">
+      <mat-icon>description</mat-icon>
+
+      Emitir laudo
+    </button>
+  </div>
+</div>
