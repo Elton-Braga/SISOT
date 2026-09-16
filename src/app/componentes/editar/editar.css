@@ -470,3 +470,156 @@ mat-form-field {
   overflow-y: auto; /* adiciona rolagem vertical quando necessário */
   padding: 0; /* opcional, ajuste conforme layout */
 }
+
+/****************************************/
+/* =========================================================
+   SEÇÕES DE TABELA (FASE 13)
+========================================================= */
+
+.tabela-section {
+  margin-top: 24px;
+  padding: 20px;
+  background: #fafafa;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+}
+
+.tabela-section .section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 16px;
+}
+
+.tabela-section h3 {
+  margin: 0 0 4px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #1b1b1b;
+}
+
+.tabela-section .section-description {
+  margin: 0;
+  font-size: 13px;
+  color: #555555;
+}
+
+/* =========================================================
+   TABELAS
+========================================================= */
+
+.table-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.dados-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #ffffff;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.dados-table th {
+  padding: 10px 12px;
+  text-align: left;
+  background: #f2f4f8;
+  font-size: 13px;
+  font-weight: 600;
+  color: #333333;
+  border-bottom: 1px solid #d9d9d9;
+  white-space: nowrap;
+}
+
+.dados-table td {
+  padding: 4px 12px;
+  vertical-align: middle;
+  border-bottom: 1px solid #eeeeee;
+}
+
+.dados-table tr:last-child td {
+  border-bottom: none;
+}
+
+/* Campo compacto dentro da tabela */
+
+.table-field {
+  width: 100%;
+  margin: 0;
+  font-size: 13px;
+}
+
+/* Coluna de ações */
+
+.acoes-col {
+  width: 70px;
+  text-align: center;
+}
+
+/* =========================================================
+   CÉLULA DE ANEXO
+========================================================= */
+
+.anexo-cell {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 4px 0;
+}
+
+.anexo-nome {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #1351b4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 220px;
+}
+
+.anexo-nome mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+.anexo-vazio {
+  font-size: 13px;
+  font-style: italic;
+  color: #888888;
+}
+
+/* =========================================================
+   ESTADO VAZIO
+========================================================= */
+
+.sem-registros {
+  padding: 20px;
+  text-align: center;
+  color: #666666;
+  background: #f8f8f8;
+  border: 1px dashed #cccccc;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+/* =========================================================
+   RESPONSIVIDADE
+========================================================= */
+
+@media (max-width: 768px) {
+  .tabela-section .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .dados-table {
+    min-width: 700px;
+  }
+}

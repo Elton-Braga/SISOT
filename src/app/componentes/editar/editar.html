@@ -7593,6 +7593,404 @@
                   <textarea matInput rows="4"></textarea>
                 </mat-form-field>
 
+                <!-- ================================================= -->
+                <!-- PROJETO DE ASSENTAMENTO -->
+                <!-- ================================================= -->
+
+                <section class="form-section tabela-section">
+                  <div class="section-header">
+                    <div>
+                      <h3>Projeto de Assentamento</h3>
+                      <p class="section-description">
+                        Dados obtidos na base do módulo projeto pelo SNCR do
+                        imóvel.
+                      </p>
+                    </div>
+
+                    <button
+                      mat-stroked-button
+                      color="primary"
+                      type="button"
+                      (click)="adicionarProjetoAssentamento()"
+                    >
+                      <mat-icon>add</mat-icon>
+                      Adicionar
+                    </button>
+                  </div>
+
+                  <div
+                    class="table-container"
+                    *ngIf="projetosAssentamento.length > 0; else semPA"
+                  >
+                    <table class="dados-table">
+                      <thead>
+                        <tr>
+                          <th>Código do PA</th>
+                          <th>Nome do PA</th>
+                          <th>Data de criação</th>
+                          <th>Situação</th>
+                          <th class="acoes-col">Ações</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        <tr
+                          *ngFor="let pa of projetosAssentamento; let i = index"
+                        >
+                          <td>
+                            <mat-form-field
+                              appearance="outline"
+                              class="table-field"
+                            >
+                              <input
+                                matInput
+                                [(ngModel)]="pa.codigo"
+                                disabled
+                              />
+                            </mat-form-field>
+                          </td>
+
+                          <td>
+                            <mat-form-field
+                              appearance="outline"
+                              class="table-field"
+                            >
+                              <input matInput [(ngModel)]="pa.nome" disabled />
+                            </mat-form-field>
+                          </td>
+
+                          <td>
+                            <mat-form-field
+                              appearance="outline"
+                              class="table-field"
+                            >
+                              <input
+                                matInput
+                                [(ngModel)]="pa.dataCriacao"
+                                disabled
+                              />
+                            </mat-form-field>
+                          </td>
+
+                          <td>
+                            <mat-form-field
+                              appearance="outline"
+                              class="table-field"
+                            >
+                              <input
+                                matInput
+                                [(ngModel)]="pa.situacao"
+                                disabled
+                              />
+                            </mat-form-field>
+                          </td>
+
+                          <td class="acoes-col">
+                            <button
+                              mat-icon-button
+                              color="warn"
+                              type="button"
+                              (click)="removerProjetoAssentamento(i)"
+                              aria-label="Remover projeto de assentamento"
+                            >
+                              <mat-icon>delete</mat-icon>
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <ng-template #semPA>
+                    <div class="sem-registros">
+                      Nenhum projeto de assentamento vinculado ao SNCR
+                      informado.
+                    </div>
+                  </ng-template>
+                </section>
+
+                <!-- ================================================= -->
+                <!-- REGISTRO DE MATRÍCULA -->
+                <!-- ================================================= -->
+
+                <section class="form-section tabela-section">
+                  <div class="section-header">
+                    <div>
+                      <h3>Registro de Matrícula</h3>
+                      <p class="section-description">
+                        Informe o protocolo, situação e o anexo da matrícula de
+                        inteiro teor atualizada.
+                      </p>
+                    </div>
+
+                    <button
+                      mat-stroked-button
+                      color="primary"
+                      type="button"
+                      (click)="adicionarRegistroMatricula()"
+                    >
+                      <mat-icon>add</mat-icon>
+                      Adicionar
+                    </button>
+                  </div>
+
+                  <div
+                    class="table-container"
+                    *ngIf="registrosMatricula.length > 0; else semMatricula"
+                  >
+                    <table class="dados-table">
+                      <thead>
+                        <tr>
+                          <th>Protocolo</th>
+                          <th>Situação</th>
+                          <th>Matrícula (inteiro teor atualizada)</th>
+                          <th class="acoes-col">Ações</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        <tr
+                          *ngFor="let reg of registrosMatricula; let i = index"
+                        >
+                          <td>
+                            <mat-form-field
+                              appearance="outline"
+                              class="table-field"
+                            >
+                              <input
+                                matInput
+                                [(ngModel)]="reg.protocolo"
+                                placeholder="Ex.: PROT-2026-000123"
+                              />
+                            </mat-form-field>
+                          </td>
+
+                          <td>
+                            <mat-form-field
+                              appearance="outline"
+                              class="table-field"
+                            >
+                              <mat-select [(ngModel)]="reg.situacao">
+                                <mat-option value="Em andamento"
+                                  >Em andamento</mat-option
+                                >
+                                <mat-option value="Concluído"
+                                  >Concluído</mat-option
+                                >
+                              </mat-select>
+                            </mat-form-field>
+                          </td>
+
+                          <td>
+                            <div class="anexo-cell">
+                              <span
+                                class="anexo-nome"
+                                *ngIf="reg.anexo; else semArquivo"
+                              >
+                                <mat-icon>description</mat-icon>
+                                {{ reg.anexo }}
+                              </span>
+
+                              <ng-template #semArquivo>
+                                <span class="anexo-vazio"
+                                  >Nenhum arquivo anexado</span
+                                >
+                              </ng-template>
+
+                              <button
+                                mat-stroked-button
+                                type="button"
+                                (click)="selecionarAnexoMatricula(i)"
+                              >
+                                <mat-icon>attach_file</mat-icon>
+                                Anexar
+                              </button>
+                            </div>
+                          </td>
+
+                          <td class="acoes-col">
+                            <button
+                              mat-icon-button
+                              color="warn"
+                              type="button"
+                              (click)="removerRegistroMatricula(i)"
+                              aria-label="Remover registro de matrícula"
+                            >
+                              <mat-icon>delete</mat-icon>
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <ng-template #semMatricula>
+                    <div class="sem-registros">
+                      Nenhum registro de matrícula adicionado.
+                    </div>
+                  </ng-template>
+                </section>
+
+                <!-- ================================================= -->
+                <!-- REGISTRO SPUNET -->
+                <!-- ================================================= -->
+
+                <section class="form-section tabela-section">
+                  <div class="section-header">
+                    <div>
+                      <h3>Registro SPUNet</h3>
+                      <p class="section-description">
+                        Informações do imóvel na base SPUNet e anexo em PDF.
+                      </p>
+                    </div>
+
+                    <button
+                      mat-stroked-button
+                      color="primary"
+                      type="button"
+                      (click)="adicionarRegistroSpunet()"
+                    >
+                      <mat-icon>add</mat-icon>
+                      Adicionar
+                    </button>
+                  </div>
+
+                  <div
+                    class="table-container"
+                    *ngIf="registrosSpunet.length > 0; else semSpunet"
+                  >
+                    <table class="dados-table">
+                      <thead>
+                        <tr>
+                          <th>Número do RIP</th>
+                          <th>Proprietário titular</th>
+                          <th>Situação do imóvel</th>
+                          <th>Pendências</th>
+                          <th>Anexo PDF</th>
+                          <th class="acoes-col">Ações</th>
+                        </tr>
+                      </thead>
+
+                      <tbody>
+                        <tr *ngFor="let sp of registrosSpunet; let i = index">
+                          <td>
+                            <mat-form-field
+                              appearance="outline"
+                              class="table-field"
+                            >
+                              <input
+                                matInput
+                                [(ngModel)]="sp.numeroRip"
+                                placeholder="Ex.: 0000.0000000-00"
+                              />
+                            </mat-form-field>
+                          </td>
+
+                          <td>
+                            <mat-form-field
+                              appearance="outline"
+                              class="table-field"
+                            >
+                              <mat-select [(ngModel)]="sp.proprietarioTitular">
+                                <mat-option value="Autarquia/Fundação">
+                                  Autarquia/Fundação
+                                </mat-option>
+                                <mat-option value="Terceiros"
+                                  >Terceiros</mat-option
+                                >
+                                <mat-option value="União">União</mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                          </td>
+
+                          <td>
+                            <mat-form-field
+                              appearance="outline"
+                              class="table-field"
+                            >
+                              <mat-select [(ngModel)]="sp.situacaoImovel">
+                                <mat-option value="Aguardando homologação">
+                                  Aguardando homologação
+                                </mat-option>
+                                <mat-option value="Ativo">Ativo</mat-option>
+                                <mat-option value="Cancelado"
+                                  >Cancelado</mat-option
+                                >
+                                <mat-option value="Não homologado - recusado">
+                                  Não homologado - recusado
+                                </mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                          </td>
+
+                          <td>
+                            <mat-form-field
+                              appearance="outline"
+                              class="table-field"
+                            >
+                              <mat-select [(ngModel)]="sp.pendencias">
+                                <mat-option
+                                  value="Aguardando sincronização SPIUNet"
+                                >
+                                  Aguardando sincronização SPIUNet
+                                </mat-option>
+                                <mat-option value="Validar cadastro SPIUNet">
+                                  Validar cadastro SPIUNet
+                                </mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                          </td>
+
+                          <td>
+                            <div class="anexo-cell">
+                              <span
+                                class="anexo-nome"
+                                *ngIf="sp.anexo; else semArquivoSp"
+                              >
+                                <mat-icon>picture_as_pdf</mat-icon>
+                                {{ sp.anexo }}
+                              </span>
+
+                              <ng-template #semArquivoSp>
+                                <span class="anexo-vazio"
+                                  >Nenhum PDF anexado</span
+                                >
+                              </ng-template>
+
+                              <button
+                                mat-stroked-button
+                                type="button"
+                                (click)="selecionarAnexoSpunet(i)"
+                              >
+                                <mat-icon>attach_file</mat-icon>
+                                Anexar
+                              </button>
+                            </div>
+                          </td>
+
+                          <td class="acoes-col">
+                            <button
+                              mat-icon-button
+                              color="warn"
+                              type="button"
+                              (click)="removerRegistroSpunet(i)"
+                              aria-label="Remover registro SPUNet"
+                            >
+                              <mat-icon>delete</mat-icon>
+                            </button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+
+                  <ng-template #semSpunet>
+                    <div class="sem-registros">
+                      Nenhum registro SPUNet adicionado.
+                    </div>
+                  </ng-template>
+                </section>
+
                 <div class="step-actions">
                   <button mat-stroked-button matStepperPrevious>Voltar</button>
                 </div>
