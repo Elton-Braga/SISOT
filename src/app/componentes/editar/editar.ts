@@ -21,7 +21,15 @@ import { PortariaCdr } from './portaria-cdr/portaria-cdr';
 import { PortariaCd } from './portaria-cd/portaria-cd';
 import { ResolucaoCd } from './resolucao-cd/resolucao-cd';
 import { EmitirLaudo } from './emitir-laudo/emitir-laudo';
+import { MatTableModule } from '@angular/material/table';
 //import { OrdemServico } from './ordem-servico/ordem-servico.component';
+
+export interface NotaEmpenho {
+  numero: string;
+  valor: number;
+  dataEmissao: string | Date;
+  anexo?: string;
+}
 
 @Component({
   selector: 'app-editar',
@@ -39,12 +47,21 @@ import { EmitirLaudo } from './emitir-laudo/emitir-laudo';
     MatStepperModule,
     MatExpansionModule,
     MatDialogModule,
+    MatTableModule,
   ],
   templateUrl: './editar.html',
   styleUrl: './editar.css',
 })
 export class Editar implements OnInit {
   public dados!: Dados;
+
+  public colunasNotaEmpenho: string[] = [
+    'numero',
+    'valor',
+    'dataEmissao',
+    'anexo',
+  ];
+  public notasEmpenho: NotaEmpenho[] = [];
 
   constructor(
     private router: Router,
@@ -69,6 +86,30 @@ export class Editar implements OnInit {
     }
 
     this.dados = dadosRecebidos;
+
+    this.carregarNotasEmpenho(this.dados);
+  }
+
+  private carregarNotasEmpenho(dados: any): void {
+    const json: any[] =
+      dados?.notasEmpenho ??
+      dados?.empenhos ??
+      dados?.fase11?.notasEmpenho ??
+      [];
+
+    this.notasEmpenho = json.map((item) => ({
+      numero: item.codigo ?? item.numero ?? '',
+      valor: Number(item.valor ?? item.valorEmpenho ?? 0),
+      dataEmissao: item.data ?? item.dataEmissao ?? '',
+      anexo: item.anexo ?? item.arquivo ?? '',
+    }));
+  }
+
+  adicionarNotaEmpenho(): void {
+    this.notasEmpenho = [
+      ...this.notasEmpenho,
+      { numero: '', valor: 0, dataEmissao: '', anexo: '' },
+    ];
   }
 
   abrirOrdemServico(): void {

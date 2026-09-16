@@ -242,149 +242,6 @@
         </mat-expansion-panel>
 
         <!-- =====================================================
-         SEÇÃO 3
-         ===================================================== 
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              <mat-icon>assignment</mat-icon>
-              Dados de avaliação
-            </mat-panel-title>
-
-            <mat-panel-description>
-              Informações referentes à avaliação econômica e ambiental do
-              imóvel.
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-
-          <div class="section-title">
-            
-          </div>
-
-          <div class="form-grid">
-            
-            <mat-form-field appearance="outline">
-              <mat-label>Valor total do imóvel — Inferior</mat-label>
-              <input
-                matInput
-                type="number"
-                step="0.01"
-                [(ngModel)]="dados.avaliacao.valorTotalImovelInferior"
-              />
-              <span matTextPrefix>R$&nbsp;</span>
-            </mat-form-field>
-
-            
-            <mat-form-field appearance="outline">
-              <mat-label>Valor total do imóvel — Médio</mat-label>
-              <input
-                matInput
-                type="number"
-                step="0.01"
-                [(ngModel)]="dados.avaliacao.valorTotalImovelMedio"
-              />
-              <span matTextPrefix>R$&nbsp;</span>
-            </mat-form-field>
-
-            
-            <mat-form-field appearance="outline">
-              <mat-label>Valor total do imóvel — Superior</mat-label>
-              <input
-                matInput
-                type="number"
-                step="0.01"
-                [(ngModel)]="dados.avaliacao.valorTotalImovelSuperior"
-              />
-              <span matTextPrefix>R$&nbsp;</span>
-            </mat-form-field>
-
-            
-            <mat-form-field appearance="outline">
-              <mat-label>Valor negociado</mat-label>
-              <input
-                matInput
-                type="number"
-                step="0.01"
-                [(ngModel)]="dados.avaliacao.valorTotalNegociado"
-              />
-              <span matTextPrefix>R$&nbsp;</span>
-            </mat-form-field>
-
-            
-            <mat-form-field appearance="outline">
-              <mat-label>Valor da terra nua — Inferior</mat-label>
-              <input
-                matInput
-                type="number"
-                step="0.01"
-                [(ngModel)]="dados.avaliacao.valorTerraNuaInferior"
-              />
-              <span matTextPrefix>R$&nbsp;</span>
-            </mat-form-field>
-
-            
-            <mat-form-field appearance="outline">
-              <mat-label>Valor da terra nua — Médio</mat-label>
-              <input
-                matInput
-                type="number"
-                step="0.01"
-                [(ngModel)]="dados.avaliacao.valorTerraNuaMedio"
-              />
-              <span matTextPrefix>R$&nbsp;</span>
-            </mat-form-field>
-
-            
-            <mat-form-field appearance="outline">
-              <mat-label>Valor da terra nua — Superior</mat-label>
-              <input
-                matInput
-                type="number"
-                step="0.01"
-                [(ngModel)]="dados.avaliacao.valorTerraNuaSuperior"
-              />
-              <span matTextPrefix>R$&nbsp;</span>
-            </mat-form-field>
-
-           
-            <mat-form-field appearance="outline">
-              <mat-label>Valor das benfeitorias</mat-label>
-              <input
-                matInput
-                type="number"
-                step="0.01"
-                [(ngModel)]="dados.avaliacao.valorBenfeitorias"
-              />
-              <span matTextPrefix>R$&nbsp;</span>
-            </mat-form-field>
-
-            
-            <mat-form-field appearance="outline">
-              <mat-label>Passivo ambiental</mat-label>
-              <input
-                matInput
-                type="number"
-                step="0.01"
-                [(ngModel)]="dados.avaliacao.valorPassivoAmbiental"
-              />
-              <span matTextPrefix>R$&nbsp;</span>
-            </mat-form-field>
-
-            
-            <mat-form-field appearance="outline">
-              <mat-label>Ativo ambiental</mat-label>
-              <input
-                matInput
-                type="number"
-                step="0.01"
-                [(ngModel)]="dados.avaliacao.valorAtivoAmbiental"
-              />
-              <span matTextPrefix>R$&nbsp;</span>
-            </mat-form-field>
-          </div>
-        </mat-expansion-panel>-->
-
-        <!-- =====================================================
          SEÇÃO 4
          ===================================================== -->
         <mat-expansion-panel>
@@ -399,17 +256,7 @@
             </mat-panel-description>
           </mat-expansion-panel-header>
 
-          <div class="section-title">
-            <!--<mat-icon>payments</mat-icon>
-
-            <div>
-              <h2>Dados de avaliação</h2>
-              <p>
-                Informações referentes à avaliação econômica e ambiental do
-                imóvel.
-              </p>
-            </div>-->
-          </div>
+          <div class="section-title"></div>
 
           <div class="form-grid">
             <!-- Valor total inferior -->
@@ -6412,7 +6259,15 @@
                   Fase 3 - Elaboração de Laudos
                 </ng-template>
 
-                <div style="margin-bottom: 16px">
+                <div class="step-actions">
+                  <button
+                    mat-flat-button
+                    color="primary"
+                    (click)="abrirOrdemServico()"
+                    class="step-actions"
+                  >
+                    Ordem de serviço</button
+                  ><br />
                   <button
                     mat-flat-button
                     color="primary"
@@ -6422,7 +6277,7 @@
                     Ata do grupo técnico
                   </button>
                 </div>
-
+                <br />
                 <div class="form-grid">
                   <mat-form-field appearance="outline">
                     <mat-label>Relatório de Viagem</mat-label>
@@ -6510,16 +6365,7 @@
                   Fase 4 - Negociação de Compra e Venda
                 </ng-template>
 
-                <div style="margin-bottom: 16px">
-                  <button
-                    mat-flat-button
-                    color="primary"
-                    (click)="abrirOrdemServico()"
-                    class="step-actions"
-                  >
-                    Ordem de serviço
-                  </button>
-                </div>
+                <div style="margin-bottom: 16px"></div>
 
                 <div class="form-grid">
                   <mat-form-field appearance="outline">
@@ -7493,6 +7339,88 @@
                   <mat-label>Observação</mat-label>
                   <textarea matInput rows="4"></textarea>
                 </mat-form-field>
+
+                <!-- ================= TABELA NOTA DE EMPENHO ================= -->
+                <div class="nota-empenho-section">
+                  <div class="nota-empenho-header">
+                    <h3>Nota de Empenho</h3>
+
+                    <button
+                      mat-stroked-button
+                      color="primary"
+                      type="button"
+                      (click)="adicionarNotaEmpenho()"
+                    >
+                      <mat-icon>add</mat-icon>
+                      Adicionar
+                    </button>
+                  </div>
+
+                  <table
+                    mat-table
+                    [dataSource]="notasEmpenho"
+                    class="nota-empenho-table full-width"
+                  >
+                    <!-- Número -->
+                    <ng-container matColumnDef="numero">
+                      <th mat-header-cell *matHeaderCellDef>Número</th>
+                      <td mat-cell *matCellDef="let nota">{{ nota.numero }}</td>
+                    </ng-container>
+
+                    <!-- Valor -->
+                    <ng-container matColumnDef="valor">
+                      <th mat-header-cell *matHeaderCellDef>Valor</th>
+                      <td mat-cell *matCellDef="let nota">
+                        {{
+                          nota.valor
+                            | currency: "BRL" : "symbol" : "1.2-2" : "pt-BR"
+                        }}
+                      </td>
+                    </ng-container>
+
+                    <!-- Data de emissão -->
+                    <ng-container matColumnDef="dataEmissao">
+                      <th mat-header-cell *matHeaderCellDef>Data de emissão</th>
+                      <td mat-cell *matCellDef="let nota">
+                        {{ nota.dataEmissao | date: "dd/MM/yyyy" }}
+                      </td>
+                    </ng-container>
+
+                    <!-- Anexo de arquivo -->
+                    <ng-container matColumnDef="anexo">
+                      <th mat-header-cell *matHeaderCellDef>
+                        Anexo de arquivo
+                      </th>
+                      <td mat-cell *matCellDef="let nota">
+                        <a
+                          *ngIf="nota.anexo; else semAnexo"
+                          href="javascript:void(0)"
+                          class="anexo-link"
+                        >
+                          <mat-icon>description</mat-icon>
+                          {{ nota.anexo }}
+                        </a>
+                        <ng-template #semAnexo>
+                          <span class="sem-anexo">Sem anexo</span>
+                        </ng-template>
+                      </td>
+                    </ng-container>
+
+                    <tr
+                      mat-header-row
+                      *matHeaderRowDef="colunasNotaEmpenho"
+                    ></tr>
+                    <tr
+                      mat-row
+                      *matRowDef="let row; columns: colunasNotaEmpenho"
+                    ></tr>
+                  </table>
+
+                  <div *ngIf="notasEmpenho.length === 0" class="sem-registros">
+                    Nenhuma nota de empenho cadastrada.
+                  </div>
+                </div>
+                <!-- ================ FIM TABELA NOTA DE EMPENHO ================ -->
 
                 <div class="step-actions">
                   <button mat-stroked-button matStepperPrevious>Voltar</button>
