@@ -22,7 +22,6 @@ import { PortariaCd } from './portaria-cd/portaria-cd';
 import { ResolucaoCd } from './resolucao-cd/resolucao-cd';
 import { EmitirLaudo } from './emitir-laudo/emitir-laudo';
 import { MatTableModule } from '@angular/material/table';
-//import { OrdemServico } from './ordem-servico/ordem-servico.component';
 
 export interface NotaEmpenho {
   numero: string;
@@ -53,82 +52,56 @@ export interface RegistroSpunet {
   anexo?: string;
 }
 
-/* Base mock de Projetos de Assentamento indexada pelo SNCR
-   (substituir pela API do módulo projeto). */
-const PA_POR_SNCR: Record<string, ProjetoAssentamento[]> = {
-  '1478523697412': [
-    {
-      codigo: 'PA-0001',
-      nome: 'Projeto de Assentamento Surubim',
-      dataCriacao: '15/03/2010',
-      situacao: 'Ativo',
-    },
-    {
-      codigo: 'PA-0002',
-      nome: 'Projeto de Assentamento Surubim II',
-      dataCriacao: '22/08/2014',
-      situacao: 'Em criação',
-    },
-  ],
-  '3978523697414': [
-    {
-      codigo: 'PA-0010',
-      nome: 'Projeto de Assentamento Baixa Fria',
-      dataCriacao: '10/01/2005',
-      situacao: 'Ativo',
-    },
-  ],
-  '7578523698912': [
-    {
-      codigo: 'PA-0021',
-      nome: 'Projeto de Assentamento Bloco 16 AR',
-      dataCriacao: '03/06/2008',
-      situacao: 'Ativo',
-    },
-  ],
-};
+/* ---------------------------------------------------------
+   MOCK FIXO — Fase 13
+   (substituir futuramente pela API do módulo projeto)
+--------------------------------------------------------- */
+const PA_FIXO: ProjetoAssentamento[] = [
+  {
+    codigo: 'PA-0001',
+    nome: 'Projeto de Assentamento Surubim',
+    dataCriacao: '15/03/2010',
+    situacao: 'Ativo',
+  },
+  {
+    codigo: 'PA-0002',
+    nome: 'Projeto de Assentamento Surubim II',
+    dataCriacao: '22/08/2014',
+    situacao: 'Em criação',
+  },
+];
 
-/* Base mock de Registros de Matrícula indexada pelo SNCR. */
-const MATRICULA_POR_SNCR: Record<string, RegistroMatricula[]> = {
-  '1478523697412': [
-    {
-      protocolo: 'PROT-2026-000123',
-      situacao: 'Em andamento',
-      matricula: 'Matrícula nº 12.345 – Cartório de Xinguara/PA',
-      anexo: 'matricula-surubim.pdf',
-    },
-  ],
-  '3978523697414': [
-    {
-      protocolo: 'PROT-2025-009876',
-      situacao: 'Concluído',
-      matricula: 'Matrícula nº 9.876 – Cartório de Coelho Neto/MA',
-      anexo: 'matricula-baixa-fria.pdf',
-    },
-  ],
-};
+const MATRICULA_FIXO: RegistroMatricula[] = [
+  {
+    protocolo: 'PROT-2026-000123',
+    situacao: 'Em andamento',
+    matricula: 'Matrícula nº 12.345 – Cartório de Xinguara/PA',
+    anexo: 'matricula-surubim.pdf',
+  },
+  {
+    protocolo: 'PROT-2025-009876',
+    situacao: 'Concluído',
+    matricula: 'Matrícula nº 9.876 – Cartório de Coelho Neto/MA',
+    anexo: 'matricula-baixa-fria.pdf',
+  },
+];
 
-/* Base mock de Registros SPUNet indexada pelo SNCR. */
-const SPUNET_POR_SNCR: Record<string, RegistroSpunet[]> = {
-  '1478523697412': [
-    {
-      numeroRip: '0000.1478523697-12',
-      proprietarioTitular: 'União',
-      situacaoImovel: 'Ativo',
-      pendencias: 'Validar cadastro SPIUNet',
-      anexo: 'spunet-surubim.pdf',
-    },
-  ],
-  '7578523698912': [
-    {
-      numeroRip: '0000.7578523698-12',
-      proprietarioTitular: 'Autarquia/Fundação',
-      situacaoImovel: 'Aguardando homologação',
-      pendencias: 'Aguardando sincronização SPIUNet',
-      anexo: 'spunet-bloco16.pdf',
-    },
-  ],
-};
+const SPUNET_FIXO: RegistroSpunet[] = [
+  {
+    numeroRip: '0000.1478523697-12',
+    proprietarioTitular: 'União',
+    situacaoImovel: 'Ativo',
+    pendencias: 'Validar cadastro SPIUNet',
+    anexo: 'spunet-surubim.pdf',
+  },
+  {
+    numeroRip: '0000.7578523698-12',
+    proprietarioTitular: 'Autarquia/Fundação',
+    situacaoImovel: 'Aguardando homologação',
+    pendencias: 'Aguardando sincronização SPIUNet',
+    anexo: 'spunet-bloco16.pdf',
+  },
+];
 
 @Component({
   selector: 'app-editar',
@@ -172,7 +145,6 @@ export class Editar implements OnInit {
 
   ngOnInit(): void {
     const navigation = this.router.getCurrentNavigation();
-    this.carregarFase13(this.dados);
     const dadosRecebidos =
       navigation?.extras?.state?.['dados'] ?? history.state?.['dados'];
 
@@ -189,80 +161,28 @@ export class Editar implements OnInit {
 
     this.dados = dadosRecebidos;
 
+    this.carregarFase13(this.dados);
     this.carregarNotasEmpenho(this.dados);
   }
 
-  private carregarFase13(dados: any): void {
-    const sncr = dados?.imovel?.sncr ?? '';
-
-    // Projeto de Assentamento — busca pelo SNCR
-    this.projetosAssentamento = [...(PA_POR_SNCR[sncr] ?? [])];
-
-    // Registro de Matrícula
-    this.registrosMatricula = [...(MATRICULA_POR_SNCR[sncr] ?? [])];
-
-    // Registro SPUNet
-    this.registrosSpunet = [...(SPUNET_POR_SNCR[sncr] ?? [])];
+  /* -------------------------------------------------------
+     FASE 13 — dados fixos (mock)
+  ------------------------------------------------------- */
+  private carregarFase13(_dados: any): void {
+    this.projetosAssentamento = [...PA_FIXO];
+    this.registrosMatricula = [...MATRICULA_FIXO];
+    this.registrosSpunet = [...SPUNET_FIXO];
   }
 
   /* -------------------------------------------------------
-   PROJETO DE ASSENTAMENTO
-------------------------------------------------------- */
-  adicionarProjetoAssentamento(): void {
-    this.projetosAssentamento = [
-      ...this.projetosAssentamento,
-      { codigo: '', nome: '', dataCriacao: '', situacao: '' },
-    ];
-  }
-
-  removerProjetoAssentamento(index: number): void {
-    this.projetosAssentamento.splice(index, 1);
-    this.projetosAssentamento = [...this.projetosAssentamento];
-  }
-
-  /* -------------------------------------------------------
-   REGISTRO DE MATRÍCULA
-------------------------------------------------------- */
-  adicionarRegistroMatricula(): void {
-    this.registrosMatricula = [
-      ...this.registrosMatricula,
-      { protocolo: '', situacao: 'Em andamento', matricula: '', anexo: '' },
-    ];
-  }
-
-  removerRegistroMatricula(index: number): void {
-    this.registrosMatricula.splice(index, 1);
-    this.registrosMatricula = [...this.registrosMatricula];
-  }
-
+     ANEXOS (mantidos — apenas upload, sem add/remover)
+  ------------------------------------------------------- */
   selecionarAnexoMatricula(index: number): void {
-    // Substituir pela chamada real de upload.
     const nome = prompt('Nome do arquivo (simulação):', 'matricula.pdf');
     if (nome) {
       this.registrosMatricula[index].anexo = nome;
       this.registrosMatricula = [...this.registrosMatricula];
     }
-  }
-
-  /* -------------------------------------------------------
-   REGISTRO SPUNET
-------------------------------------------------------- */
-  adicionarRegistroSpunet(): void {
-    this.registrosSpunet = [
-      ...this.registrosSpunet,
-      {
-        numeroRip: '',
-        proprietarioTitular: 'União',
-        situacaoImovel: 'Aguardando homologação',
-        pendencias: 'Aguardando sincronização SPIUNet',
-        anexo: '',
-      },
-    ];
-  }
-
-  removerRegistroSpunet(index: number): void {
-    this.registrosSpunet.splice(index, 1);
-    this.registrosSpunet = [...this.registrosSpunet];
   }
 
   selecionarAnexoSpunet(index: number): void {
@@ -353,6 +273,7 @@ export class Editar implements OnInit {
       panelClass: 'dialog-com-rolagem',
     });
   }
+
   abrirResolucaoCd(): void {
     this.dialog.open(ResolucaoCd, {
       maxWidth: '1100px',
@@ -362,6 +283,7 @@ export class Editar implements OnInit {
       panelClass: 'dialog-com-rolagem',
     });
   }
+
   abrirPortariaCd(): void {
     this.dialog.open(PortariaCd, {
       maxWidth: '1100px',

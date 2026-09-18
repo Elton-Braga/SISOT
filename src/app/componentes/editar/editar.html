@@ -7282,8 +7282,7 @@
                     <mat-icon>description</mat-icon>
                     Anexo
                   </a>
-
-                  <mat-form-field appearance="outline">
+                  <!--<mat-form-field appearance="outline" hidden>
                     <mat-label>Empenho dos recursos</mat-label>
                     <input matInput [matDatepicker]="pickerF11B" />
                     <mat-datepicker-toggle matIconSuffix [for]="pickerF11B">
@@ -7298,7 +7297,7 @@
                   >
                     <mat-icon>description</mat-icon>
                     Anexo
-                  </a>
+                  </a>-->
 
                   <mat-form-field appearance="outline">
                     <mat-label> Ofício solicitação de emissão TDAs </mat-label>
@@ -7534,7 +7533,7 @@
                 </ng-template>
 
                 <div class="form-grid">
-                  <mat-form-field appearance="outline">
+                  <!--<mat-form-field appearance="outline">
                     <mat-label>
                       Portaria de Criação de assentamento publicada no D.O.U.
                     </mat-label>
@@ -7552,7 +7551,7 @@
                     <mat-icon>description</mat-icon>
                     Anexo
                   </a>
-
+                  
                   <mat-form-field appearance="outline">
                     <mat-label>Registro na Matrícula</mat-label>
                     <input matInput [matDatepicker]="pickerF13B" />
@@ -7585,8 +7584,9 @@
                   >
                     <mat-icon>description</mat-icon>
                     Anexo
-                  </a>
+                  </a>-->
                 </div>
+                <br /><br /><br />
 
                 <mat-form-field appearance="outline" class="full-width">
                   <mat-label>Observação</mat-label>
@@ -7606,16 +7606,6 @@
                         imóvel.
                       </p>
                     </div>
-
-                    <button
-                      mat-stroked-button
-                      color="primary"
-                      type="button"
-                      (click)="adicionarProjetoAssentamento()"
-                    >
-                      <mat-icon>add</mat-icon>
-                      Adicionar
-                    </button>
                   </div>
 
                   <div
@@ -7629,14 +7619,11 @@
                           <th>Nome do PA</th>
                           <th>Data de criação</th>
                           <th>Situação</th>
-                          <th class="acoes-col">Ações</th>
                         </tr>
                       </thead>
 
                       <tbody>
-                        <tr
-                          *ngFor="let pa of projetosAssentamento; let i = index"
-                        >
+                        <tr *ngFor="let pa of projetosAssentamento">
                           <td>
                             <mat-form-field
                               appearance="outline"
@@ -7684,18 +7671,6 @@
                               />
                             </mat-form-field>
                           </td>
-
-                          <td class="acoes-col">
-                            <button
-                              mat-icon-button
-                              color="warn"
-                              type="button"
-                              (click)="removerProjetoAssentamento(i)"
-                              aria-label="Remover projeto de assentamento"
-                            >
-                              <mat-icon>delete</mat-icon>
-                            </button>
-                          </td>
                         </tr>
                       </tbody>
                     </table>
@@ -7722,16 +7697,6 @@
                         inteiro teor atualizada.
                       </p>
                     </div>
-
-                    <button
-                      mat-stroked-button
-                      color="primary"
-                      type="button"
-                      (click)="adicionarRegistroMatricula()"
-                    >
-                      <mat-icon>add</mat-icon>
-                      Adicionar
-                    </button>
                   </div>
 
                   <div
@@ -7744,7 +7709,6 @@
                           <th>Protocolo</th>
                           <th>Situação</th>
                           <th>Matrícula (inteiro teor atualizada)</th>
-                          <th class="acoes-col">Ações</th>
                         </tr>
                       </thead>
 
@@ -7807,18 +7771,6 @@
                               </button>
                             </div>
                           </td>
-
-                          <td class="acoes-col">
-                            <button
-                              mat-icon-button
-                              color="warn"
-                              type="button"
-                              (click)="removerRegistroMatricula(i)"
-                              aria-label="Remover registro de matrícula"
-                            >
-                              <mat-icon>delete</mat-icon>
-                            </button>
-                          </td>
                         </tr>
                       </tbody>
                     </table>
@@ -7843,16 +7795,6 @@
                         Informações do imóvel na base SPUNet e anexo em PDF.
                       </p>
                     </div>
-
-                    <button
-                      mat-stroked-button
-                      color="primary"
-                      type="button"
-                      (click)="adicionarRegistroSpunet()"
-                    >
-                      <mat-icon>add</mat-icon>
-                      Adicionar
-                    </button>
                   </div>
 
                   <div
@@ -7867,7 +7809,6 @@
                           <th>Situação do imóvel</th>
                           <th>Pendências</th>
                           <th>Anexo PDF</th>
-                          <th class="acoes-col">Ações</th>
                         </tr>
                       </thead>
 
@@ -7966,18 +7907,6 @@
                                 Anexar
                               </button>
                             </div>
-                          </td>
-
-                          <td class="acoes-col">
-                            <button
-                              mat-icon-button
-                              color="warn"
-                              type="button"
-                              (click)="removerRegistroSpunet(i)"
-                              aria-label="Remover registro SPUNet"
-                            >
-                              <mat-icon>delete</mat-icon>
-                            </button>
                           </td>
                         </tr>
                       </tbody>
