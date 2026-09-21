@@ -169,9 +169,9 @@ export class Editar implements OnInit {
      FASE 13 — dados fixos (mock)
   ------------------------------------------------------- */
   private carregarFase13(_dados: any): void {
-    this.projetosAssentamento = [...PA_FIXO];
-    this.registrosMatricula = [...MATRICULA_FIXO];
-    this.registrosSpunet = [...SPUNET_FIXO];
+    this.projetosAssentamento = PA_FIXO.slice(0, 1);
+    this.registrosMatricula = MATRICULA_FIXO.slice(0, 1);
+    this.registrosSpunet = SPUNET_FIXO.slice(0, 1);
   }
 
   /* -------------------------------------------------------
