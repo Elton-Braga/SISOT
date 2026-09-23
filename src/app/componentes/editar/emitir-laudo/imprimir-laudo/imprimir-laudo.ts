@@ -33,19 +33,31 @@ interface DadosLaudo {
   processo: string;
   dataLva: string;
   servidores: Servidor[];
+
   sr: string;
   estado: string;
   imovel: string;
   municipio: string;
+
   areaRegistrada: number;
   areaMedidaAvaliada: number;
   capacidadeFamilias: number;
+  familiasCadastradas: number;
+
   usoImovel: UsoImovel[];
+
   valorPassivoAmbiental: number;
+  valorAtivoAmbiental: number;
   valorBenfeitorias: number;
   custoPorFamilia: number;
-  valorTerraNua: number;
-  valorTotalImovel: number;
+
+  vtnInferior: number;
+  vtnMedio: number;
+  vtnSuperior: number;
+
+  vtiInferior: number;
+  valorPrevisto: number;
+  vtiSuperior: number;
 }
 
 /* =========================================================
@@ -120,11 +132,7 @@ export class ImprimirLaudo implements AfterViewInit {
 
             body { width: 100%; }
 
-            .documento {
-              width: 100%;
-              margin: 0;
-              padding: 0;
-            }
+            .documento { width: 100%; margin: 0; padding: 0; }
 
             p {
               margin-top: 0;
@@ -163,13 +171,8 @@ export class ImprimirLaudo implements AfterViewInit {
               text-align: left;
             }
 
-            table.uso th {
-              background: #f2f2f2;
-              font-weight: bold;
-            }
-
-            table.uso td.num,
-            table.uso th.num { text-align: right; }
+            table.uso th { background: #f2f2f2; font-weight: bold; }
+            table.uso td.num, table.uso th.num { text-align: right; }
 
             .cabecalho {
               text-align: center;
@@ -191,10 +194,7 @@ export class ImprimirLaudo implements AfterViewInit {
               gap: 40px;
             }
 
-            .assinatura {
-              text-align: center;
-              page-break-inside: avoid;
-            }
+            .assinatura { text-align: center; page-break-inside: avoid; }
 
             .assinatura .linha {
               border-top: 1px solid #000;
@@ -202,14 +202,8 @@ export class ImprimirLaudo implements AfterViewInit {
               margin: 0 auto 6px;
             }
 
-            .assinatura .nome {
-              font-weight: bold;
-              text-transform: uppercase;
-            }
-
-            .assinatura .detalhe {
-              font-size: 11pt;
-            }
+            .assinatura .nome { font-weight: bold; text-transform: uppercase; }
+            .assinatura .detalhe { font-size: 11pt; }
 
             .no-print { display: none !important; }
 

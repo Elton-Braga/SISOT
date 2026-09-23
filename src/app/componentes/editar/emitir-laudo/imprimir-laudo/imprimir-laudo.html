@@ -1,12 +1,11 @@
 <div class="documento" #conteudoImpressao>
   <!-- ================================================= -->
-  <!-- CABEÇALHO INSTITUCIONAL -->
+  <!-- CABEÇALHO INSTITUCIONAL + TÍTULO DA ATA -->
   <!-- ================================================= -->
 
   <div class="cabecalho">
-    MINISTÉRIO DO DESENVOLVIMENTO AGRÁRIO E AGRICULTURA FAMILIAR<br />
     INSTITUTO NACIONAL DE COLONIZAÇÃO E REFORMA AGRÁRIA<br />
-    SUPERINTENDÊNCIA REGIONAL ({{ dadosExibicao.sr }})
+    Ata do Grupo Técnico do Laudo de Vistoria e Avaliação
   </div>
 
   <!-- ================================================= -->
@@ -16,10 +15,6 @@
   <p><strong>Ata:</strong> {{ dadosExibicao.ata }}</p>
 
   <p><strong>Processo:</strong> {{ dadosExibicao.processo }}</p>
-
-  <p class="titulo-ata">
-    ATA DO GRUPO TÉCNICO DO LAUDO DE VISTORIA E AVALIAÇÃO
-  </p>
 
   <!-- ================================================= -->
   <!-- TEXTO DA ATA -->
@@ -54,8 +49,8 @@
 
   <p>
     Partindo do pressuposto de que as informações integrantes do relatório e
-    mapa de uso refletem a realidade do imóvel, este Grupo Técnico do Laudo de
-    Vistoria e Avaliação concluiu que o mesmo foi corretamente elaborado,
+    mapa de uso refletem a realidade do imóvel, este grupo técnico do laudo de
+    vistoria e avaliação concluiu que o mesmo foi corretamente elaborado,
     observando os dispositivos e critérios estabelecidos na Lei nº 8.629/93 e
     alterações, além das demais Normas e Instruções relativas à matéria,
     encontrando-se os seguintes dados técnicos:
@@ -69,7 +64,7 @@
 
   <ol>
     <li>
-      Área avalianda (ha):
+      Área avaliada (ha):
       <strong>{{ formatarArea(dadosExibicao.areaMedidaAvaliada) }}</strong>
     </li>
 
@@ -79,25 +74,26 @@
     </li>
 
     <li>
+      Famílias Cadastradas:
+      <strong>{{ dadosExibicao.familiasCadastradas }}</strong>
+    </li>
+
+    <li>
       Uso do imóvel:
       <ng-container *ngIf="dadosExibicao.usoImovel?.length; else semUso">
         <table class="uso">
           <thead>
             <tr>
               <th>Uso do imóvel</th>
-
               <th class="num">Área (ha)</th>
-
-              <th class="num">%</th>
+              <th class="num">% área</th>
             </tr>
           </thead>
 
           <tbody>
             <tr *ngFor="let uso of dadosExibicao.usoImovel">
               <td>{{ uso.descricao }}</td>
-
               <td class="num">{{ formatarArea(uso.areaHa) }}</td>
-
               <td class="num">{{ formatarPercentual(uso.percentual) }}</td>
             </tr>
           </tbody>
@@ -105,11 +101,9 @@
           <tfoot>
             <tr>
               <td><strong>Total</strong></td>
-
               <td class="num">
                 <strong>{{ totalAreaUso }}</strong>
               </td>
-
               <td class="num">
                 <strong>{{ totalPercentualUso }}</strong>
               </td>
@@ -137,6 +131,11 @@
     </li>
 
     <li>
+      Valor do ativo ambiental:
+      <strong>{{ formatarMoeda(dadosExibicao.valorAtivoAmbiental) }}</strong>
+    </li>
+
+    <li>
       Valor das benfeitorias:
       <strong>{{ formatarMoeda(dadosExibicao.valorBenfeitorias) }}</strong>
     </li>
@@ -147,13 +146,33 @@
     </li>
 
     <li>
-      Valor da Terra Nua – VTN Médio:
-      <strong>{{ formatarMoeda(dadosExibicao.valorTerraNua) }}</strong>
+      Valor Terra Nua Inferior:
+      <strong>{{ formatarMoeda(dadosExibicao.vtnInferior) }}</strong>
     </li>
 
     <li>
-      Valor Total do Imóvel – VTI Médio:
-      <strong>{{ formatarMoeda(dadosExibicao.valorTotalImovel) }}</strong>
+      Valor da Terra Nua – VTN Médio:
+      <strong>{{ formatarMoeda(dadosExibicao.vtnMedio) }}</strong>
+    </li>
+
+    <li>
+      Valor Terra Nua Superior:
+      <strong>{{ formatarMoeda(dadosExibicao.vtnSuperior) }}</strong>
+    </li>
+
+    <li>
+      Valor Total do Imóvel Inferior:
+      <strong>{{ formatarMoeda(dadosExibicao.vtiInferior) }}</strong>
+    </li>
+
+    <li>
+      Valor Previsto – VTI Médio:
+      <strong>{{ formatarMoeda(dadosExibicao.valorPrevisto) }}</strong>
+    </li>
+
+    <li>
+      Valor Total do Imóvel Superior:
+      <strong>{{ formatarMoeda(dadosExibicao.vtiSuperior) }}</strong>
     </li>
   </ol>
 
@@ -164,7 +183,7 @@
   <p>
     Estando unânimes e de acordo com os termos do relatório objeto desta
     reunião, lavramos a presente ata que após lida e achada conforme, segue
-    assinada digitalmente pelos componentes deste Grupo Técnico.
+    assinada digitalmente pelos componentes deste grupo técnico.
   </p>
 
   <!-- ================================================= -->
@@ -202,7 +221,6 @@
       (click)="enviarParaAssinatura()"
     >
       <mat-icon>draw</mat-icon>
-
       Enviar para assinatura
     </button>
   </div>

@@ -25,7 +25,6 @@ interface Servidor {
 interface UsoImovel {
   descricao: string;
   areaHa: number;
-  percentual: number;
 }
 
 /* =========================================================
@@ -39,7 +38,7 @@ const SERVIDORES_MOCK: Servidor[] = [
   { nome: 'Marcos Gonçalves', cargo: 'Técnico', siape: '345678' },
 ];
 
-const USO_IMOVEL_MOCK: { descricao: string; areaHa: number }[] = [
+const USO_IMOVEL_MOCK: UsoImovel[] = [
   { descricao: 'Vegetação nativa / Reserva Legal', areaHa: 6500.0 },
   { descricao: 'Pastagem', areaHa: 3200.0 },
   { descricao: 'Lavoura', areaHa: 900.0 },
@@ -63,7 +62,7 @@ const USO_IMOVEL_MOCK: { descricao: string; areaHa: number }[] = [
     MatButtonModule,
     MatIconModule,
     MatDialogModule,
-    //ImprimirLaudo,
+    // ImprimirLaudo,
   ],
   templateUrl: './emitir-laudo.html',
   styleUrl: './emitir-laudo.css',
@@ -96,17 +95,25 @@ export class EmitirLaudo {
   /* -------------------------------------------------------
      DIMENSÕES E CAPACIDADE
   ------------------------------------------------------- */
-  areaRegistrada: any;
-  areaMedidaAvaliada: any;
+  areaRegistrada = 0;
+  areaMedidaAvaliada = 0;
   capacidadeFamilias = 0;
+  familiasCadastradas = 0;
 
   /* -------------------------------------------------------
      VALORES
   ------------------------------------------------------- */
   valorPassivoAmbiental = 0;
+  valorAtivoAmbiental = 0;
   valorBenfeitorias = 0;
-  valorTerraNua = 0;
-  valorTotalImovel = 0;
+
+  vtnInferior = 0;
+  vtnMedio = 0;
+  vtnSuperior = 0;
+
+  vtiInferior = 0;
+  valorPrevisto = 0;
+  vtiSuperior = 0;
 
   /* -------------------------------------------------------
      USO DO IMÓVEL
@@ -121,26 +128,22 @@ export class EmitirLaudo {
      CARREGAMENTO AUTOMÁTICO A PARTIR DO MOCK
   ======================================================= */
   private carregarDados(): void {
-    const { imovel, obtencao, avaliacao, resolucaoCdr } = this.registro;
+    // `as any` porque o mock original não possui todos os campos novos
+    // (VTN inferior/superior, VTI inferior, valor ativo, famílias cadastradas etc.)
+    const { imovel, obtencao, avaliacao, resolucaoCdr } = this.registro as any;
 
     /* ---------- Dados gerais ---------- */
-
-    // Ata (Código) — geração automática a partir da resolução do CDR
-    const anoAta = resolucaoCdr.dataResolucaoCdr
+    const anoAta = resolucaoCdr?.dataResolucaoCdr
       ? new Date(resolucaoCdr.dataResolucaoCdr).getUTCFullYear()
       : new Date().getFullYear();
 
-    this.ata = `Ata nº ${resolucaoCdr.idResolucaoCdr}/${anoAta}`;
-
-    // Processo — numeral
+    this.ata = `Ata nº ${resolucaoCdr?.idResolucaoCdr}/${anoAta}`;
     this.processo = imovel.processo;
 
-    // Data do LVA — data da reunião do CDR
-    this.dataLva = resolucaoCdr.dataReuniaoCdr
-      ? new Date(resolucaoCdr.dataReuniaoCdr)
-      : null;
+    // Data do LVA — agora editável (input type="date")
+    this.dataLva = this.parseDate(resolucaoCdr?.dataReuniaoCdr);
 
-    // Servidores — pré-selecionados
+    /* ---------- Servidores ---------- */
     this.servidoresSelecionados = [...SERVIDORES_MOCK];
 
     /* ---------- Localização ---------- */
@@ -150,36 +153,61 @@ export class EmitirLaudo {
     this.municipio = imovel.municipio;
 
     /* ---------- Dimensões e capacidade ---------- */
-    this.areaRegistrada = imovel.areaHa;
-    this.areaMedidaAvaliada = imovel.areaHa;
-    this.capacidadeFamilias = obtencao.capacidadeAssentamento ?? 0;
+    this.areaRegistrada = imovel.areaHa ?? 0;
+    this.areaMedidaAvaliada = imovel.areaHa ?? 0;
+    this.capacidadeFamilias = obtencao?.capacidadeAssentamento ?? 0;
+    this.familiasCadastradas = obtencao?.familiasCadastradas ?? 0;
 
     /* ---------- Valores ---------- */
-    this.valorPassivoAmbiental = avaliacao.valorPassivoAmbiental ?? 0;
-    this.valorBenfeitorias = avaliacao.valorBenfeitorias ?? 0;
-    this.valorTerraNua = avaliacao.valorTerraNuaMedio ?? 0;
-    this.valorTotalImovel = avaliacao.valorTotalImovelMedio ?? 0;
+    this.valorPassivoAmbiental = avaliacao?.valorPassivoAmbiental ?? 0;
+    this.valorAtivoAmbiental = avaliacao?.valorAtivoAmbiental ?? 0;
+    this.valorBenfeitorias = avaliacao?.valorBenfeitorias ?? 0;
+
+    this.vtnInferior =
+      avaliacao?.valorTerraNuaInferior ?? avaliacao?.valorTerraNuaMedio ?? 0;
+    this.vtnMedio = avaliacao?.valorTerraNuaMedio ?? 0;
+    this.vtnSuperior =
+      avaliacao?.valorTerraNuaSuperior ?? avaliacao?.valorTerraNuaMedio ?? 0;
+
+    this.vtiInferior =
+      avaliacao?.valorTotalImovelInferior ??
+      avaliacao?.valorTotalImovelMedio ??
+      0;
+    this.valorPrevisto =
+      avaliacao?.valorPrevisto ?? avaliacao?.valorTotalImovelMedio ?? 0;
+    this.vtiSuperior = avaliacao?.valorTotalImovelMedio ?? 0;
 
     /* ---------- Uso do imóvel ---------- */
-    const totalUso = USO_IMOVEL_MOCK.reduce((t, u) => t + u.areaHa, 0);
+    this.usoImovel = USO_IMOVEL_MOCK.map((u) => ({ ...u }));
+  }
 
-    this.usoImovel = USO_IMOVEL_MOCK.map((u) => ({
-      ...u,
-      percentual: totalUso > 0 ? (u.areaHa / totalUso) * 100 : 0,
-    }));
+  /* =======================================================
+     HELPERS
+  ======================================================= */
+  private parseDate(value?: string | null): Date | null {
+    if (!value) return null;
+
+    // Evita o shift de fuso em strings "YYYY-MM-DD"
+    const iso = /^(\d{4})-(\d{2})-(\d{2})/.exec(value);
+    if (iso) {
+      return new Date(+iso[1], +iso[2] - 1, +iso[3]);
+    }
+
+    const d = new Date(value);
+    return isNaN(d.getTime()) ? null : d;
   }
 
   /* =======================================================
      CONTADOR — ÁREA MEDIDA / AVALIADA
   ======================================================= */
   incrementarArea(): void {
-    this.areaMedidaAvaliada = +(this.areaMedidaAvaliada + 1).toFixed(4);
+    this.areaMedidaAvaliada = +(Number(this.areaMedidaAvaliada) + 1).toFixed(4);
   }
 
   decrementarArea(): void {
     this.areaMedidaAvaliada = Math.max(
       0,
-      +(this.areaMedidaAvaliada - 1).toFixed(4),
+      +(Number(this.areaMedidaAvaliada) - 1).toFixed(4),
     );
   }
 
@@ -188,32 +216,33 @@ export class EmitirLaudo {
   ======================================================= */
   get custoPorFamilia(): number {
     return this.capacidadeFamilias > 0
-      ? this.valorTotalImovel / this.capacidadeFamilias
+      ? this.vtiSuperior / this.capacidadeFamilias
       : 0;
   }
 
   get areaTotalUso(): number {
-    return this.usoImovel.reduce((total, item) => total + item.areaHa, 0);
+    return this.usoImovel.reduce((t, u) => t + (Number(u.areaHa) || 0), 0);
   }
 
   get percentualTotalUso(): number {
-    return this.usoImovel.reduce((total, item) => total + item.percentual, 0);
+    return this.usoImovel.reduce((t, u) => t + this.percentualDe(u), 0);
+  }
+
+  percentualDe(item: UsoImovel): number {
+    const total = this.areaTotalUso;
+    return total > 0 ? ((Number(item.areaHa) || 0) / total) * 100 : 0;
   }
 
   /* =======================================================
      FORMATAÇÕES
   ======================================================= */
   get dataLvaFormatada(): string {
-    if (!this.dataLva) {
-      return '';
-    }
+    if (!this.dataLva) return '';
 
     const d = new Date(this.dataLva);
-    const dia = String(d.getUTCDate()).padStart(2, '0');
-    const mes = String(d.getUTCMonth() + 1).padStart(2, '0');
-    const ano = d.getUTCFullYear();
-
-    return `${dia}/${mes}/${ano}`;
+    const dia = String(d.getDate()).padStart(2, '0');
+    const mes = String(d.getMonth() + 1).padStart(2, '0');
+    return `${dia}/${mes}/${d.getFullYear()}`;
   }
 
   get areaRegistradaFormatada(): string {
@@ -224,22 +253,6 @@ export class EmitirLaudo {
     return `${this.capacidadeFamilias} ${
       this.capacidadeFamilias === 1 ? 'família' : 'famílias'
     }`;
-  }
-
-  get valorPassivoAmbientalFormatado(): string {
-    return this.formatarMoeda(this.valorPassivoAmbiental);
-  }
-
-  get valorBenfeitoriasFormatado(): string {
-    return this.formatarMoeda(this.valorBenfeitorias);
-  }
-
-  get valorTerraNuaFormatado(): string {
-    return this.formatarMoeda(this.valorTerraNua);
-  }
-
-  get valorTotalImovelFormatado(): string {
-    return this.formatarMoeda(this.valorTotalImovel);
   }
 
   get custoPorFamiliaFormatado(): string {
@@ -260,7 +273,7 @@ export class EmitirLaudo {
     }).format(valor ?? 0)}%`;
   }
 
-  private formatarMoeda(valor: number): string {
+  formatarMoeda(valor: number): string {
     return new Intl.NumberFormat('pt-BR', {
       style: 'currency',
       currency: 'BRL',
@@ -276,19 +289,34 @@ export class EmitirLaudo {
       processo: this.processo,
       dataLva: this.dataLvaFormatada,
       servidores: this.servidoresSelecionados,
+
       sr: this.sr,
       estado: this.estado,
       imovel: this.imovel,
       municipio: this.municipio,
+
       areaRegistrada: this.areaRegistrada,
       areaMedidaAvaliada: this.areaMedidaAvaliada,
       capacidadeFamilias: this.capacidadeFamilias,
-      usoImovel: this.usoImovel,
+      familiasCadastradas: this.familiasCadastradas,
+
+      usoImovel: this.usoImovel.map((u) => ({
+        ...u,
+        percentual: this.percentualDe(u),
+      })),
+
       valorPassivoAmbiental: this.valorPassivoAmbiental,
+      valorAtivoAmbiental: this.valorAtivoAmbiental,
       valorBenfeitorias: this.valorBenfeitorias,
       custoPorFamilia: this.custoPorFamilia,
-      valorTerraNua: this.valorTerraNua,
-      valorTotalImovel: this.valorTotalImovel,
+
+      vtnInferior: this.vtnInferior,
+      vtnMedio: this.vtnMedio,
+      vtnSuperior: this.vtnSuperior,
+
+      vtiInferior: this.vtiInferior,
+      valorPrevisto: this.valorPrevisto,
+      vtiSuperior: this.vtiSuperior,
     };
   }
 
@@ -296,20 +324,14 @@ export class EmitirLaudo {
      AÇÕES
   ======================================================= */
   salvar(): void {
-    const dados = this.montarDadosLaudo();
-
-    console.log('Laudo salvo:', dados);
-
-    // Aqui você pode persistir os dados via service
+    console.log('Laudo salvo:', this.montarDadosLaudo());
   }
 
   emitir(): void {
     this.salvar();
 
-    const dados = this.montarDadosLaudo();
-
     this.dialog.open(ImprimirLaudo, {
-      data: dados,
+      data: this.montarDadosLaudo(),
       width: '100%',
       maxWidth: '56.25rem',
       panelClass: 'print-dialog',

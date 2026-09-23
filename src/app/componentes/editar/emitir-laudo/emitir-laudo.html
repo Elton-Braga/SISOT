@@ -5,7 +5,6 @@
 
   <div class="pagina-cabecalho">
     <h1>Emitir Laudo</h1>
-
     <p>
       Confira as informações carregadas automaticamente a partir do processo
       selecionado antes de emitir o laudo.
@@ -20,7 +19,6 @@
     <div class="section-header">
       <div>
         <h2>Dados Gerais</h2>
-
         <p class="section-description">
           Identificação da ata, do processo e da equipe responsável.
         </p>
@@ -34,35 +32,32 @@
 
     <div class="form-grid">
       <!-- ATA (CÓDIGO) -->
-
       <mat-form-field appearance="outline" class="campo-auto">
         <mat-label>Ata (Código)</mat-label>
-
         <input matInput [value]="ata" disabled />
       </mat-form-field>
 
       <!-- PROCESSO -->
-
       <mat-form-field appearance="outline" class="campo-auto">
         <mat-label>Processo</mat-label>
-
         <input matInput [value]="processo" disabled />
       </mat-form-field>
 
-      <!-- DATA DO LVA -->
-
-      <mat-form-field appearance="outline" class="campo-auto">
+      <!-- DATA DO LVA (editável) -->
+      <mat-form-field appearance="outline">
         <mat-label>Data do LVA</mat-label>
-
-        <input matInput [value]="dataLvaFormatada" disabled />
+        <input matInput type="date" [(ngModel)]="dataLva" name="dataLva" />
+        <mat-hint *ngIf="dataLvaFormatada">{{ dataLvaFormatada }}</mat-hint>
       </mat-form-field>
 
       <!-- SERVIDORES -->
-
       <mat-form-field appearance="outline">
         <mat-label>Servidores</mat-label>
-
-        <mat-select [(ngModel)]="servidoresSelecionados" multiple>
+        <mat-select
+          [(ngModel)]="servidoresSelecionados"
+          name="servidores"
+          multiple
+        >
           <mat-option *ngFor="let servidor of servidores" [value]="servidor">
             {{ servidor.nome }} – {{ servidor.cargo }} (SIAPE:
             {{ servidor.siape }})
@@ -80,7 +75,6 @@
     <div class="section-header">
       <div>
         <h2>Imóvel e Localização</h2>
-
         <p class="section-description">
           Dados do imóvel vinculado ao processo.
         </p>
@@ -93,39 +87,27 @@
     </div>
 
     <div class="form-grid">
-      <!-- SR -->
-
       <mat-form-field appearance="outline" class="campo-auto">
         <mat-label>SR</mat-label>
-
         <mat-select [value]="sr" disabled>
           <mat-option [value]="sr">{{ sr }}</mat-option>
         </mat-select>
       </mat-form-field>
 
-      <!-- ESTADO -->
-
       <mat-form-field appearance="outline" class="campo-auto">
         <mat-label>Estado</mat-label>
-
         <mat-select [value]="estado" disabled>
           <mat-option [value]="estado">{{ estado }}</mat-option>
         </mat-select>
       </mat-form-field>
 
-      <!-- IMÓVEL -->
-
       <mat-form-field appearance="outline" class="campo-auto">
         <mat-label>Imóvel</mat-label>
-
         <input matInput [value]="imovel" disabled />
       </mat-form-field>
 
-      <!-- MUNICÍPIO -->
-
       <mat-form-field appearance="outline" class="campo-auto">
         <mat-label>Município</mat-label>
-
         <mat-select [value]="municipio" disabled>
           <mat-option [value]="municipio">{{ municipio }}</mat-option>
         </mat-select>
@@ -141,7 +123,6 @@
     <div class="section-header">
       <div>
         <h2>Dimensões e Capacidade</h2>
-
         <p class="section-description">
           Áreas do imóvel e capacidade de assentamento.
         </p>
@@ -155,15 +136,12 @@
 
     <div class="form-grid">
       <!-- ÁREA REGISTRADA -->
-
       <mat-form-field appearance="outline" class="campo-auto">
         <mat-label>Área registrada</mat-label>
-
         <input matInput [value]="areaRegistradaFormatada" disabled />
       </mat-form-field>
 
-      <!-- ÁREA MEDIDA / AVALIADA (CONTADOR) -->
-
+      <!-- ÁREA MEDIDA / AVALIADA (editável + contador) -->
       <div class="campo-bloco">
         <label class="campo-label">Área medida / avaliada</label>
 
@@ -183,6 +161,7 @@
             step="0.0001"
             min="0"
             [(ngModel)]="areaMedidaAvaliada"
+            name="areaMedidaAvaliada"
           />
 
           <button
@@ -198,33 +177,43 @@
         </div>
       </div>
 
-      <!-- CAPACIDADE DE FAMÍLIAS -->
-
-      <mat-form-field appearance="outline" class="campo-auto">
-        <mat-label>Capacidade de famílias</mat-label>
-
-        <input matInput [value]="capacidadeFamiliasFormatada" disabled />
+      <!-- CAPACIDADE DE FAMÍLIAS (editável) -->
+      <mat-form-field appearance="outline">
+        <mat-label>Capacidade de Famílias</mat-label>
+        <input
+          matInput
+          type="number"
+          min="0"
+          step="1"
+          [(ngModel)]="capacidadeFamilias"
+          name="capacidadeFamilias"
+        />
+        <mat-hint>{{ capacidadeFamiliasFormatada }}</mat-hint>
       </mat-form-field>
 
-      <!-- CUSTO POR FAMÍLIA -->
-
-      <mat-form-field appearance="outline" class="campo-auto">
-        <mat-label>Custo por família</mat-label>
-
-        <input matInput [value]="custoPorFamiliaFormatado" disabled />
+      <!-- FAMÍLIAS CADASTRADAS (editável) -->
+      <mat-form-field appearance="outline">
+        <mat-label>Famílias Cadastradas</mat-label>
+        <input
+          matInput
+          type="number"
+          min="0"
+          step="1"
+          [(ngModel)]="familiasCadastradas"
+          name="familiasCadastradas"
+        />
       </mat-form-field>
     </div>
   </section>
 
   <!-- ================================================= -->
-  <!-- USO DO IMÓVEL -->
+  <!-- USO DO IMÓVEL (tabela editável) -->
   <!-- ================================================= -->
 
   <section class="form-section">
     <div class="section-header">
       <div>
         <h2>Uso do Imóvel</h2>
-
         <p class="section-description">
           Distribuição das áreas por tipo de uso.
         </p>
@@ -241,29 +230,34 @@
         <thead>
           <tr>
             <th>Uso do imóvel</th>
-
             <th class="num">Área (ha)</th>
-
             <th class="num">%</th>
           </tr>
         </thead>
 
         <tbody>
-          <tr *ngFor="let uso of usoImovel">
+          <tr *ngFor="let uso of usoImovel; let i = index">
             <td>{{ uso.descricao }}</td>
 
-            <td class="num">{{ formatarArea(uso.areaHa) }}</td>
+            <td class="num">
+              <input
+                class="tabela-input"
+                type="number"
+                min="0"
+                step="0.0001"
+                [(ngModel)]="uso.areaHa"
+                [name]="'usoArea' + i"
+              />
+            </td>
 
-            <td class="num">{{ formatarPercentual(uso.percentual) }}</td>
+            <td class="num">{{ formatarPercentual(percentualDe(uso)) }}</td>
           </tr>
         </tbody>
 
         <tfoot>
           <tr>
             <td>Total</td>
-
             <td class="num">{{ formatarArea(areaTotalUso) }}</td>
-
             <td class="num">{{ formatarPercentual(percentualTotalUso) }}</td>
           </tr>
         </tfoot>
@@ -279,7 +273,6 @@
     <div class="section-header">
       <div>
         <h2>Valores</h2>
-
         <p class="section-description">
           Valores apurados na avaliação do imóvel.
         </p>
@@ -293,37 +286,158 @@
 
     <div class="form-grid">
       <!-- VALOR PASSIVO AMBIENTAL -->
-
-      <mat-form-field appearance="outline" class="campo-auto">
+      <mat-form-field appearance="outline">
         <mat-label>Valor passivo ambiental</mat-label>
+        <span matPrefix>R$&nbsp;</span>
+        <input
+          matInput
+          type="number"
+          step="0.01"
+          [(ngModel)]="valorPassivoAmbiental"
+          name="valorPassivoAmbiental"
+        />
+      </mat-form-field>
 
-        <input matInput [value]="valorPassivoAmbientalFormatado" disabled />
+      <!-- VALOR ATIVO AMBIENTAL -->
+      <mat-form-field appearance="outline">
+        <mat-label>Valor ativo ambiental</mat-label>
+        <span matPrefix>R$&nbsp;</span>
+        <input
+          matInput
+          type="number"
+          step="0.01"
+          [(ngModel)]="valorAtivoAmbiental"
+          name="valorAtivoAmbiental"
+        />
       </mat-form-field>
 
       <!-- VALOR DAS BENFEITORIAS -->
-
-      <mat-form-field appearance="outline" class="campo-auto">
+      <mat-form-field appearance="outline">
         <mat-label>Valor das benfeitorias</mat-label>
-
-        <input matInput [value]="valorBenfeitoriasFormatado" disabled />
+        <span matPrefix>R$&nbsp;</span>
+        <input
+          matInput
+          type="number"
+          step="0.01"
+          [(ngModel)]="valorBenfeitorias"
+          name="valorBenfeitorias"
+        />
       </mat-form-field>
 
-      <!-- VALOR DA TERRA NUA -->
-
+      <!-- CUSTO POR FAMÍLIA (calculado) -->
       <mat-form-field appearance="outline" class="campo-auto">
-        <mat-label>Valor da Terra Nua</mat-label>
-
-        <input matInput [value]="valorTerraNuaFormatado" disabled />
+        <mat-label>Custo por família</mat-label>
+        <input matInput [value]="custoPorFamiliaFormatado" disabled />
       </mat-form-field>
 
-      <!-- VALOR TOTAL DO IMÓVEL -->
+      <!-- VTN INFERIOR -->
+      <mat-form-field appearance="outline">
+        <mat-label>VTN Inferior</mat-label>
+        <span matPrefix>R$&nbsp;</span>
+        <input
+          matInput
+          type="number"
+          step="0.01"
+          [(ngModel)]="vtnInferior"
+          name="vtnInferior"
+        />
+      </mat-form-field>
 
-      <mat-form-field appearance="outline" class="campo-auto destaque">
-        <mat-label>Valor total do imóvel</mat-label>
+      <!-- VTN MÉDIO -->
+      <mat-form-field appearance="outline">
+        <mat-label>VTN Médio</mat-label>
+        <span matPrefix>R$&nbsp;</span>
+        <input
+          matInput
+          type="number"
+          step="0.01"
+          [(ngModel)]="vtnMedio"
+          name="vtnMedio"
+        />
+      </mat-form-field>
 
-        <input matInput [value]="valorTotalImovelFormatado" disabled />
+      <!-- VTN SUPERIOR -->
+      <mat-form-field appearance="outline">
+        <mat-label>VTN Superior</mat-label>
+        <span matPrefix>R$&nbsp;</span>
+        <input
+          matInput
+          type="number"
+          step="0.01"
+          [(ngModel)]="vtnSuperior"
+          name="vtnSuperior"
+        />
+      </mat-form-field>
+
+      <!-- VTI INFERIOR -->
+      <mat-form-field appearance="outline">
+        <mat-label>VTI Inferior</mat-label>
+        <span matPrefix>R$&nbsp;</span>
+        <input
+          matInput
+          type="number"
+          step="0.01"
+          [(ngModel)]="vtiInferior"
+          name="vtiInferior"
+        />
+      </mat-form-field>
+
+      <!-- VALOR PREVISTO -->
+      <mat-form-field appearance="outline">
+        <mat-label>Valor Previsto</mat-label>
+        <span matPrefix>R$&nbsp;</span>
+        <input
+          matInput
+          type="number"
+          step="0.01"
+          [(ngModel)]="valorPrevisto"
+          name="valorPrevisto"
+        />
+      </mat-form-field>
+
+      <!-- VTI SUPERIOR -->
+      <mat-form-field appearance="outline" class="destaque">
+        <mat-label>VTI Superior</mat-label>
+        <span matPrefix>R$&nbsp;</span>
+        <input
+          matInput
+          type="number"
+          step="0.01"
+          [(ngModel)]="vtiSuperior"
+          name="vtiSuperior"
+        />
       </mat-form-field>
     </div>
+  </section>
+
+  <!-- ================================================= -->
+  <!-- ASSINATURAS -->
+  <!-- ================================================= -->
+
+  <section class="form-section">
+    <div class="section-header">
+      <div>
+        <h2>Assinaturas</h2>
+        <p class="section-description">
+          Equipe responsável pela emissão do laudo.
+        </p>
+      </div>
+    </div>
+
+    <div
+      class="assinaturas-grid"
+      *ngIf="servidoresSelecionados.length; else semServidores"
+    >
+      <div class="assinatura" *ngFor="let servidor of servidoresSelecionados">
+        <div class="assinatura-linha"></div>
+        <strong>{{ servidor.nome }}</strong>
+        <span>{{ servidor.cargo }} — SIAPE {{ servidor.siape }}</span>
+      </div>
+    </div>
+
+    <ng-template #semServidores>
+      <p class="assinatura-vazia">Nenhum servidor selecionado.</p>
+    </ng-template>
   </section>
 
   <!-- ================================================= -->
@@ -333,13 +447,11 @@
   <div class="form-actions">
     <button mat-stroked-button type="button" (click)="salvar()">
       <mat-icon>save</mat-icon>
-
       Salvar
     </button>
 
     <button mat-flat-button color="primary" type="button" (click)="emitir()">
       <mat-icon>description</mat-icon>
-
       Emitir laudo
     </button>
   </div>
