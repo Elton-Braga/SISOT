@@ -229,10 +229,10 @@ export class Editar implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((enviadoParaAssinatura: boolean) => {
-      if (enviadoParaAssinatura) {
-        this.scdpHabilitado = true;
-      }
-    });
+    if (enviadoParaAssinatura) {
+      this.scdpHabilitado = true;
+    }
+  });
   }
 
   abrirLaudo(): void {

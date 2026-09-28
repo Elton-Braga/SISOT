@@ -136,21 +136,18 @@ export class PrintOS implements AfterViewInit {
   }
 
  enviarParaAssinatura(): void {
-  // 👇 Pergunta ao usuário antes de prosseguir
   const desejaContinuar = window.confirm(
     'Hospedagem, passagens, aluguel de veículo e/ou viatura?'
   );
 
   if (!desejaContinuar) {
-    // Usuário clicou em "Cancelar" → não envia, não fecha o dialog
     return;
   }
 
-  // Aqui você deve implementar a lógica para enviar o documento para assinatura.
-  // Exemplo: chamar um serviço, abrir um modal, etc.
-  alert('Encaminhado para o Superintendente Regional.');
-
-  // 👇 Fecha o dialog devolvendo `true` para o componente que o abriu
+  // 👇 Fecha o dialog PRIMEIRO, devolvendo `true`
   this.dialogRef.close(true);
+
+  // 👇 Depois mostra o alerta (não bloqueia mais o fechamento)
+  alert('Encaminhado para o Superintendente Regional.');
 }
 }

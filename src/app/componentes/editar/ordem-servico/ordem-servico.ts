@@ -91,25 +91,24 @@ export class OrdemServico {
 
   // 👇 ALTERADO — escuta o retorno do PrintOS e repassa para cima
   salvar() {
-    this.dadosOrdem.imoveis = this.imoveisSelecionados.filter((i) => i.imovel);
-    this.dadosOrdem.servicos = this.servicosSelecionados;
-    this.dadosOrdem.servidores = this.servidoresSelecionados;
+  this.dadosOrdem.imoveis = this.imoveisSelecionados.filter((i) => i.imovel);
+  this.dadosOrdem.servicos = this.servicosSelecionados;
+  this.dadosOrdem.servidores = this.servidoresSelecionados;
 
-    console.log('Dados salvos:', this.dadosOrdem);
+  console.log('Dados salvos:', this.dadosOrdem);
 
-    const printRef = this.dialog.open(PrintOS, {
-      data: this.dadosOrdem,
-      width: '100%',
-      maxWidth: '56.25rem',
-      panelClass: 'print-dialog',
-    });
+  const printRef = this.dialog.open(PrintOS, {
+    data: this.dadosOrdem,
+    width: '100%',
+    maxWidth: '56.25rem',
+    panelClass: 'print-dialog',
+  });
 
-    // 🔑 Quando o PrintOS fechar, verifica se "Enviar para assinatura" foi clicado
-    printRef.afterClosed().subscribe((enviadoParaAssinatura: boolean) => {
-      if (enviadoParaAssinatura) {
-        // Fecha o OrdemServico devolvendo `true` para o Editar
-        this.dialogRef.close(true);
-      }
-    });
-  }
+  printRef.afterClosed().subscribe((enviadoParaAssinatura: boolean) => {
+    if (enviadoParaAssinatura) {
+      // 👇 garante que o PrintOS terminou de fechar antes de fechar o OrdemServico
+      setTimeout(() => this.dialogRef.close(true), 0);
+    }
+  });
+}
 }
