@@ -8,10 +8,9 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatDialog, MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { PrintOS } from './print-os/print-os';
 import { IMOVEIS_MOCK } from '../../../mock/imovel.mock';
-//import { IMOVEIS_MOCK } from './mock-imoveis'; // Importação do mock
 
 @Component({
   selector: 'app-ordem-servico',
@@ -33,7 +32,6 @@ import { IMOVEIS_MOCK } from '../../../mock/imovel.mock';
   styleUrl: './ordem-servico.css',
 })
 export class OrdemServico {
-  // Dados para impressão (serão atualizados ao salvar)
   dadosOrdem = {
     id: '2026/0001',
     sr: 'SR-01',
@@ -51,31 +49,27 @@ export class OrdemServico {
   };
   servidoresSelecionados: any[] = [];
 
-  // Lista de opções de imóveis extraída do mock
   listaImoveis = IMOVEIS_MOCK.map((item) => ({
     imovel: item.imovel.imovel,
     municipio: item.imovel.municipio,
   }));
 
-  // Linhas dinâmicas de imóveis (cada uma com imóvel e município)
   imoveisSelecionados: { imovel: string; municipio: string }[] = [];
-
-  // Serviços selecionados (múltipla escolha)
   servicosSelecionados: string[] = [];
 
-  constructor(private dialog: MatDialog) {}
+  constructor(
+    private dialog: MatDialog,
+    private dialogRef: MatDialogRef<OrdemServico>, // 👈 NOVO
+  ) {}
 
-  // Adiciona uma nova linha vazia
   adicionarImovel() {
     this.imoveisSelecionados.push({ imovel: '', municipio: '' });
   }
 
-  // Remove uma linha
   removerImovel(index: number) {
     this.imoveisSelecionados.splice(index, 1);
   }
 
-  // Quando o imóvel é selecionado, preenche o município automaticamente
   onImovelChange(index: number) {
     const item = this.imoveisSelecionados[index];
     const found = this.listaImoveis.find((op) => op.imovel === item.imovel);
@@ -88,26 +82,34 @@ export class OrdemServico {
 
   get podeAdicionar(): boolean {
     if (this.imoveisSelecionados.length === 0) {
-      return true; // permite adicionar o primeiro imóvel
+      return true;
     }
     const ultimo =
       this.imoveisSelecionados[this.imoveisSelecionados.length - 1];
-    return ultimo.imovel.trim() !== ''; // habilitado se o último tiver imóvel preenchido
+    return ultimo.imovel.trim() !== '';
   }
 
+  // 👇 ALTERADO — escuta o retorno do PrintOS e repassa para cima
   salvar() {
-    // Atualiza dadosOrdem com os imóveis, serviços e servidores selecionados
     this.dadosOrdem.imoveis = this.imoveisSelecionados.filter((i) => i.imovel);
     this.dadosOrdem.servicos = this.servicosSelecionados;
-    this.dadosOrdem.servidores = this.servidoresSelecionados; // ← repassa os servidores escolhidos
+    this.dadosOrdem.servidores = this.servidoresSelecionados;
 
     console.log('Dados salvos:', this.dadosOrdem);
 
-    this.dialog.open(PrintOS, {
+    const printRef = this.dialog.open(PrintOS, {
       data: this.dadosOrdem,
       width: '100%',
       maxWidth: '56.25rem',
       panelClass: 'print-dialog',
+    });
+
+    // 🔑 Quando o PrintOS fechar, verifica se "Enviar para assinatura" foi clicado
+    printRef.afterClosed().subscribe((enviadoParaAssinatura: boolean) => {
+      if (enviadoParaAssinatura) {
+        // Fecha o OrdemServico devolvendo `true` para o Editar
+        this.dialogRef.close(true);
+      }
     });
   }
 }

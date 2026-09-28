@@ -138,6 +138,9 @@ export class Editar implements OnInit {
   registrosMatricula: RegistroMatricula[] = [];
   registrosSpunet: RegistroSpunet[] = [];
 
+  // 👇 NOVO — controla o estado do botão "Solicitar SCDP"
+  public scdpHabilitado = false;
+
   constructor(
     private router: Router,
     private dialog: MatDialog,
@@ -215,13 +218,20 @@ export class Editar implements OnInit {
     ];
   }
 
+  // 👇 ALTERADO — captura o retorno do dialog para habilitar o botão SCDP
   abrirOrdemServico(): void {
-    this.dialog.open(OrdemServico, {
+    const dialogRef = this.dialog.open(OrdemServico, {
       maxWidth: '1100px',
       width: '800px',
       maxHeight: '1100px',
       height: '90%',
       panelClass: 'dialog-com-rolagem',
+    });
+
+    dialogRef.afterClosed().subscribe((enviadoParaAssinatura: boolean) => {
+      if (enviadoParaAssinatura) {
+        this.scdpHabilitado = true;
+      }
     });
   }
 
@@ -283,6 +293,10 @@ export class Editar implements OnInit {
       panelClass: 'dialog-com-rolagem',
     });
   }
+
+  solicitarScdp(): void {
+  window.open('https://www2.scdp.gov.br/novoscdp/home.xhtml', '_blank');
+}
 
   abrirPortariaCd(): void {
     this.dialog.open(PortariaCd, {

@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 
 import { CommonModule } from '@angular/common';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 
 @Component({
@@ -25,11 +25,15 @@ export class PrintOS implements AfterViewInit {
   @ViewChild('conteudoImpressao', { static: false })
   conteudoImpressao!: ElementRef<HTMLElement>;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public dialogData: any) {}
+  constructor(
+    @Inject(MAT_DIALOG_DATA) public dialogData: any,
+    private dialogRef: MatDialogRef<PrintOS>, // 👈 NOVO
+  ) {}
 
   get dadosExibicao() {
     return this.dados || this.dialogData;
   }
+
   ngAfterViewInit(): void {
     //this.imprimir();
   }
@@ -130,9 +134,23 @@ export class PrintOS implements AfterViewInit {
       }, 300);
     };
   }
-  enviarParaAssinatura(): void {
-    // Aqui você deve implementar a lógica para enviar o documento para assinatura.
-    // Exemplo: chamar um serviço, abrir um modal, etc.
-    alert('Encaminhado para o Superintendente Regional.');
+
+ enviarParaAssinatura(): void {
+  // 👇 Pergunta ao usuário antes de prosseguir
+  const desejaContinuar = window.confirm(
+    'Hospedagem, passagens, aluguel de veículo e/ou viatura?'
+  );
+
+  if (!desejaContinuar) {
+    // Usuário clicou em "Cancelar" → não envia, não fecha o dialog
+    return;
   }
+
+  // Aqui você deve implementar a lógica para enviar o documento para assinatura.
+  // Exemplo: chamar um serviço, abrir um modal, etc.
+  alert('Encaminhado para o Superintendente Regional.');
+
+  // 👇 Fecha o dialog devolvendo `true` para o componente que o abriu
+  this.dialogRef.close(true);
+}
 }
