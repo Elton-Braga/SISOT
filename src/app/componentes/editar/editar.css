@@ -595,6 +595,29 @@ mat-form-field {
   color: #888888;
 }
 
+.form-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  align-items: center;
+}
+
+.form-grid-3 .anexo-link {
+  align-self: center;
+}
+
+@media (max-width: 960px) {
+  .form-grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .form-grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* =========================================================
    ESTADO VAZIO
 ========================================================= */
