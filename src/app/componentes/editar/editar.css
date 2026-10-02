@@ -99,11 +99,14 @@
 .section-title {
   display: flex;
   align-items: flex-start;
+  justify-content: flex-start; /* alinha à esquerda */
 
   gap: 12px;
 
-  margin-bottom: 24px;
-  padding-bottom: 16px;
+  width: 100%;
+
+  margin-bottom: 8px;
+  padding-bottom: 12px;
 
   border-bottom: 1px solid #e5e5e5;
 }
@@ -118,13 +121,16 @@
   height: 24px;
 }
 
-.section-title h2 {
+.section-title h2,
+.section-title h3 {
   margin: 0 0 4px;
 
   font-size: 1.125rem;
   font-weight: 600;
 
   color: #333333;
+
+  text-align: left;
 }
 
 .section-title p {
@@ -136,24 +142,42 @@
 }
 
 /* =========================================================
-   GRID
+   GRID (agora Flexbox)
    ========================================================= */
 
 .form-grid {
-  display: grid;
-
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  display: flex;
+  flex-wrap: wrap;
 
   gap: 8px 20px;
 }
 
-/* Campos em largura total */
+/* Cada campo ocupa ~50% da largura, com quebra automática */
+.form-grid > mat-form-field {
+  flex: 1 1 calc(50% - 20px);
+  min-width: 240px;
+  max-width: calc(50% - 10px);
+}
 
-.campo-full,
-.campo-imovel,
-.campo-proprietario,
-.campo-modalidade {
-  grid-column: span 2;
+/* Campos em largura total */
+.form-grid > .campo-full,
+.form-grid > .campo-imovel,
+.form-grid > .campo-proprietario,
+.form-grid > .campo-modalidade {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+/* Títulos de seção dentro do form-grid ocupam a linha inteira */
+.form-grid > .section-title {
+  flex: 0 0 100%;
+  justify-content: flex-start;
+  margin-top: 16px;
+  margin-bottom: 0;
+}
+
+.form-grid > .section-title:first-child {
+  margin-top: 0;
 }
 
 /* =========================================================
@@ -167,20 +191,6 @@ mat-form-field {
 /* =========================================================
    RODAPÉ / AÇÕES
    ========================================================= */
-/*
-.page-actions {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-
-  gap: 12px;
-
-  padding: 20px 5%;
-
-  background-color: #ffffff;
-
-  border-top: 1px solid #e5e5e5;
-}*/
 .page-actions {
   position: fixed;
   bottom: 0px;
@@ -234,15 +244,19 @@ mat-form-field {
     padding: 20px;
   }
 
-  .form-grid {
-    grid-template-columns: 1fr;
+  /* Em telas pequenas, cada campo ocupa 100% */
+  .form-grid > mat-form-field {
+    flex: 0 0 100%;
+    max-width: 100%;
+    min-width: 0;
   }
 
-  .campo-full,
-  .campo-imovel,
-  .campo-proprietario,
-  .campo-modalidade {
-    grid-column: span 1;
+  .form-grid > .campo-full,
+  .form-grid > .campo-imovel,
+  .form-grid > .campo-proprietario,
+  .form-grid > .campo-modalidade {
+    flex: 0 0 100%;
+    max-width: 100%;
   }
 
   .page-actions {
@@ -418,6 +432,7 @@ mat-form-field {
 .sections-accordion .mat-expansion-panel-body {
   padding: 24px;
 }
+
 .nenhuma-informacao {
   min-height: 180px;
   display: flex;
@@ -444,7 +459,8 @@ mat-form-field {
 .campo-duplo {
   display: flex;
   gap: 20px;
-  grid-column: span 2;
+  flex: 0 0 100%;
+  max-width: 100%;
 }
 
 .campo-duplo mat-form-field {
@@ -456,7 +472,7 @@ mat-form-field {
   .campo-duplo {
     flex-direction: column;
     gap: 8px;
-    grid-column: span 1;
+    flex: 0 0 100%;
   }
 
   .campo-duplo mat-form-field {
@@ -466,9 +482,9 @@ mat-form-field {
 }
 
 .dialog-com-rolagem .mat-dialog-container {
-  max-height: 80vh; /* limita a altura a 80% da viewport */
-  overflow-y: auto; /* adiciona rolagem vertical quando necessário */
-  padding: 0; /* opcional, ajuste conforme layout */
+  max-height: 80vh;
+  overflow-y: auto;
+  padding: 0;
 }
 
 /****************************************/
@@ -596,10 +612,15 @@ mat-form-field {
 }
 
 .form-grid-3 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: 16px;
   align-items: center;
+}
+
+.form-grid-3 > * {
+  flex: 1 1 calc(33.333% - 16px);
+  min-width: 220px;
 }
 
 .form-grid-3 .anexo-link {
@@ -607,14 +628,14 @@ mat-form-field {
 }
 
 @media (max-width: 960px) {
-  .form-grid-3 {
-    grid-template-columns: repeat(2, 1fr);
+  .form-grid-3 > * {
+    flex: 1 1 calc(50% - 16px);
   }
 }
 
 @media (max-width: 600px) {
-  .form-grid-3 {
-    grid-template-columns: 1fr;
+  .form-grid-3 > * {
+    flex: 1 1 100%;
   }
 }
 
