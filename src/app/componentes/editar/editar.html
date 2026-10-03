@@ -36,32 +36,31 @@
         <!-- =====================================================
          SEÇÃO 1
          ===================================================== -->
-<mat-expansion-panel>
-  <mat-expansion-panel-header>
-    <mat-panel-title>
-      <mat-icon>landscape</mat-icon>
-      Dados do imóvel
-    </mat-panel-title>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-icon>landscape</mat-icon>
+              Dados do imóvel
+            </mat-panel-title>
 
-    <mat-panel-description>
-      Informações básicas e cadastrais do imóvel.
-    </mat-panel-description>
-  </mat-expansion-panel-header>
+            <mat-panel-description>
+              Informações básicas e cadastrais do imóvel.
+            </mat-panel-description>
+          </mat-expansion-panel-header>
 
-  <div class="section-title">
-    <!-- <mat-icon>landscape</mat-icon>
+          <div class="section-title">
+            <!-- <mat-icon>landscape</mat-icon>
 
     <div>
       <h2>Dados do imóvel</h2>
       <p>Informações básicas e cadastrais do imóvel.</p>
     </div>-->
-  </div>
+          </div>
 
-  <div class="form-grid">
-
-    <!-- ============================================================ -->
-    <!-- BLOCO: Modalidade de Obtenção                                -->
-    <!-- ============================================================ 
+          <div class="form-grid">
+            <!-- ============================================================ -->
+            <!-- BLOCO: Modalidade de Obtenção                                -->
+            <!-- ============================================================ 
     <div class="section-title">
       <h3>Modalidade de Obtenção</h3>
     </div>
@@ -71,155 +70,155 @@
       <input matInput readonly />
     </mat-form-field>-->
 
-    <!-- ============================================================ -->
-    <!-- BLOCO: Dados do Imóvel                                       -->
-    <!-- ============================================================ 
+            <!-- ============================================================ -->
+            <!-- BLOCO: Dados do Imóvel                                       -->
+            <!-- ============================================================ 
     <div class="section-title">
       <h3>Dados do Imóvel</h3>
     </div>-->
 
-    <mat-form-field appearance="outline" class="campo-imovel">
-      <mat-label>Nome Imóvel</mat-label>
-      <input matInput readonly />
-    </mat-form-field>
+            <mat-form-field appearance="outline" class="campo-imovel">
+              <mat-label>Nome Imóvel</mat-label>
+              <input matInput readonly />
+            </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>UF</mat-label>
-      <input matInput readonly maxlength="2" />
-    </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>UF</mat-label>
+              <input matInput readonly maxlength="2" />
+            </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Município</mat-label>
-      <input matInput readonly />
-    </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Município</mat-label>
+              <input matInput readonly />
+            </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Código SNCR</mat-label>
-      <input matInput readonly />
-    </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Código SNCR</mat-label>
+              <input matInput readonly />
+            </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Matrícula(s)</mat-label>
-      <input matInput readonly />
-    </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Matrícula(s)</mat-label>
+              <input matInput readonly />
+            </mat-form-field>
 
-    <mat-form-field appearance="outline" class="campo-proprietario">
-      <mat-label>Nome Proprietário</mat-label>
-      <input matInput readonly />
-    </mat-form-field>
+            <mat-form-field appearance="outline" class="campo-proprietario">
+              <mat-label>Nome Proprietário</mat-label>
+              <input matInput readonly />
+            </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>CPF/CNPJ Proprietário</mat-label>
-      <input matInput readonly />
-    </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>CPF/CNPJ Proprietário</mat-label>
+              <input matInput readonly />
+            </mat-form-field>
 
-    <!-- ============================================================ -->
-    <!-- BLOCO: Áreas (ha)                                            -->
-    <!-- ============================================================--> 
-    <div class="section-title">
-      <h3>Áreas (ha)</h3>
-    </div>
+            <!-- ============================================================ -->
+            <!-- BLOCO: Áreas (ha)                                            -->
+            <!-- ============================================================-->
+            <div class="section-title">
+              <h3>Áreas (ha)</h3>
+            </div>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Registrada (matrícula)</mat-label>
-      <input matInput readonly type="number" step="0.0001" />
-      <span matTextSuffix>ha</span>
-    </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Registrada (matrícula)</mat-label>
+              <input matInput readonly type="number" step="0.0001" />
+              <span matTextSuffix>ha</span>
+            </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Medida</mat-label>
-      <input matInput readonly type="number" step="0.0001" />
-      <span matTextSuffix>ha</span>
-    </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Medida</mat-label>
+              <input matInput readonly type="number" step="0.0001" />
+              <span matTextSuffix>ha</span>
+            </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Avaliada</mat-label>
-      <input matInput readonly type="number" step="0.0001" />
-      <span matTextSuffix>ha</span>
-    </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Avaliada</mat-label>
+              <input matInput readonly type="number" step="0.0001" />
+              <span matTextSuffix>ha</span>
+            </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Visada</mat-label>
-      <input matInput readonly type="number" step="0.0001" />
-      <span matTextSuffix>ha</span>
-    </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Visada</mat-label>
+              <input matInput readonly type="number" step="0.0001" />
+              <span matTextSuffix>ha</span>
+            </mat-form-field>
 
-    <!-- ============================================================ -->
-    <!-- BLOCO: Valores (R$)                                          -->
-    <!-- ============================================================--> 
-    <div class="section-title">
-      <h3>Valores (R$)</h3>
-    </div>
+            <!-- ============================================================ -->
+            <!-- BLOCO: Valores (R$)                                          -->
+            <!-- ============================================================-->
+            <div class="section-title">
+              <h3>Valores (R$)</h3>
+            </div>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Total do Imóvel Inferior</mat-label>
-      <input matInput readonly type="number" step="0.01" />
-      <span matTextPrefix>R$&nbsp;</span>
-    </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Total do Imóvel Inferior</mat-label>
+              <input matInput readonly type="number" step="0.01" />
+              <span matTextPrefix>R$&nbsp;</span>
+            </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Total do Imóvel Médio</mat-label>
-      <input matInput readonly type="number" step="0.01" />
-      <span matTextPrefix>R$&nbsp;</span>
-    </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Total do Imóvel Médio</mat-label>
+              <input matInput readonly type="number" step="0.01" />
+              <span matTextPrefix>R$&nbsp;</span>
+            </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Total do Imóvel Superior</mat-label>
-      <input matInput readonly type="number" step="0.01" />
-      <span matTextPrefix>R$&nbsp;</span>
-    </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Total do Imóvel Superior</mat-label>
+              <input matInput readonly type="number" step="0.01" />
+              <span matTextPrefix>R$&nbsp;</span>
+            </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>VTI estimado</mat-label>
-      <input matInput readonly type="number" step="0.01" />
-      <span matTextPrefix>R$&nbsp;</span>
-    </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>VTI estimado</mat-label>
+              <input matInput readonly type="number" step="0.01" />
+              <span matTextPrefix>R$&nbsp;</span>
+            </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Terra Nua Inferior</mat-label>
-      <input matInput readonly type="number" step="0.01" />
-      <span matTextPrefix>R$&nbsp;</span>
-    </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Terra Nua Inferior</mat-label>
+              <input matInput readonly type="number" step="0.01" />
+              <span matTextPrefix>R$&nbsp;</span>
+            </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Terra Nua Médio</mat-label>
-      <input matInput readonly type="number" step="0.01" />
-      <span matTextPrefix>R$&nbsp;</span>
-    </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Terra Nua Médio</mat-label>
+              <input matInput readonly type="number" step="0.01" />
+              <span matTextPrefix>R$&nbsp;</span>
+            </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Terra Nua Superior</mat-label>
-      <input matInput readonly type="number" step="0.01" />
-      <span matTextPrefix>R$&nbsp;</span>
-    </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Terra Nua Superior</mat-label>
+              <input matInput readonly type="number" step="0.01" />
+              <span matTextPrefix>R$&nbsp;</span>
+            </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>VTN estimado</mat-label>
-      <input matInput readonly type="number" step="0.01" />
-      <span matTextPrefix>R$&nbsp;</span>
-    </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>VTN estimado</mat-label>
+              <input matInput readonly type="number" step="0.01" />
+              <span matTextPrefix>R$&nbsp;</span>
+            </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Benfeitorias</mat-label>
-      <input matInput readonly type="number" step="0.01" />
-      <span matTextPrefix>R$&nbsp;</span>
-    </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Benfeitorias</mat-label>
+              <input matInput readonly type="number" step="0.01" />
+              <span matTextPrefix>R$&nbsp;</span>
+            </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Passivo Ambiental</mat-label>
-      <input matInput readonly type="number" step="0.01" />
-      <span matTextPrefix>R$&nbsp;</span>
-    </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Passivo Ambiental</mat-label>
+              <input matInput readonly type="number" step="0.01" />
+              <span matTextPrefix>R$&nbsp;</span>
+            </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Ativo Ambiental</mat-label>
-      <input matInput readonly type="number" step="0.01" />
-      <span matTextPrefix>R$&nbsp;</span>
-    </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Ativo Ambiental</mat-label>
+              <input matInput readonly type="number" step="0.01" />
+              <span matTextPrefix>R$&nbsp;</span>
+            </mat-form-field>
 
-    <!-- ============================================================ -->
-    <!-- BLOCO: Natureza ocupacional                                  -->
-    <!-- ============================================================ 
+            <!-- ============================================================ -->
+            <!-- BLOCO: Natureza ocupacional                                  -->
+            <!-- ============================================================ 
     <div class="section-title">
       <h3>Natureza ocupacional</h3>
     </div>
@@ -259,9 +258,9 @@
       <input matInput readonly type="number" step="1" />
     </mat-form-field>-->
 
-    <!-- ============================================================ -->
-    <!-- BLOCO: Dados do processo de obtenção                         -->
-    <!-- ============================================================ 
+            <!-- ============================================================ -->
+            <!-- BLOCO: Dados do processo de obtenção                         -->
+            <!-- ============================================================ 
     <div class="section-title">
       <h3>Dados do processo de obtenção</h3>
     </div>
@@ -280,9 +279,8 @@
       <mat-label>Fase atual do processo</mat-label>
       <input matInput readonly />
     </mat-form-field>-->
-
-  </div>
-</mat-expansion-panel>
+          </div>
+        </mat-expansion-panel>
 
         <!-- =====================================================
          SEÇÃO 2
@@ -316,40 +314,40 @@
             <h3>Natureza ocupacional</h3>
           </div>-->
 
-    <mat-form-field appearance="outline">
-      <mat-label>Entidade Demandante</mat-label>
-      <input matInput readonly />
-    </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Entidade Demandante</mat-label>
+              <input matInput readonly />
+            </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Acampamento Vinculado</mat-label>
-      <input matInput readonly />
-    </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Acampamento Vinculado</mat-label>
+              <input matInput readonly />
+            </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Imóvel atualmente ocupado?</mat-label>
-      <input matInput readonly />
-    </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Imóvel atualmente ocupado?</mat-label>
+              <input matInput readonly />
+            </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Ações de Reintegração de Posse</mat-label>
-      <input matInput readonly />
-    </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Ações de Reintegração de Posse</mat-label>
+              <input matInput readonly />
+            </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Órgão Concorrente</mat-label>
-      <input matInput readonly />
-    </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Órgão Concorrente</mat-label>
+              <input matInput readonly />
+            </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Capacidade de Assentamento</mat-label>
-      <input matInput readonly type="number" step="1" />
-    </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Capacidade de Assentamento</mat-label>
+              <input matInput readonly type="number" step="1" />
+            </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Famílias Cadastradas</mat-label>
-      <input matInput readonly type="number" step="1" />
-    </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Famílias Cadastradas</mat-label>
+              <input matInput readonly type="number" step="1" />
+            </mat-form-field>
           </div>
         </mat-expansion-panel>
 
@@ -370,24 +368,25 @@
 
           <div class="section-title"></div>
 
-          <div class="form-grid"><div class="section-title">
-      <!--<h3>Dados do processo de obtenção</h3>-->
-    </div>
+          <div class="form-grid">
+            <div class="section-title">
+              <!--<h3>Dados do processo de obtenção</h3>-->
+            </div>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Processo SEI</mat-label>
-      <input matInput readonly />
-    </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Processo SEI</mat-label>
+              <input matInput readonly />
+            </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Processo Cadeia Dominial</mat-label>
-      <input matInput readonly />
-    </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Processo Cadeia Dominial</mat-label>
+              <input matInput readonly />
+            </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Fase atual do processo</mat-label>
-      <input matInput readonly />
-    </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Fase atual do processo</mat-label>
+              <input matInput readonly />
+            </mat-form-field>
           </div>
         </mat-expansion-panel>
 
@@ -3689,10 +3688,6 @@
                 </div>
               </div>
 
-              
-
-              
-
               <!-- ========================================================= -->
               <!-- FASE 1 - ABERTURA DE PROCESSO -->
               <!-- ========================================================= -->
@@ -6040,580 +6035,525 @@
               <!-- FASE 0 - ANÁLISE INICIAL -->
               <!-- ========================================================= -->
 
-<mat-step>
-  <ng-template matStepLabel>
-    Fase 0 - Análise Inicial
-  </ng-template>
+              <!-- fase-0-analise-inicial.component.html -->
+              <mat-step>
+                <ng-template matStepLabel>
+                  Fase 0 - Análise Inicial
+                </ng-template>
 
-  <div class="step-content">
-    <table class="documentos-table">
-      <thead>
-        <tr>
-          <th>Documento / Informação</th>
-          <th>Data</th>
-          <th>Anexo</th>
-        </tr>
-      </thead>
+                <div class="step-content">
+                  <!-- Modalidade de Obtenção -->
+                  <section class="form-section">
+                    <h3>Modalidade de Obtenção</h3>
 
-      <tbody>
-        <!-- Estudo prévio de viabilidade -->
-        <tr>
-          <td>
-            <mat-form-field appearance="outline">
-              <mat-label>Estudo prévio de viabilidade</mat-label>
-              <input matInput />
-            </mat-form-field>
-          </td>
+                    <div class="form-row">
+                      <mat-form-field appearance="outline" class="field">
+                        <mat-label>Modalidade de Obtenção</mat-label>
+                        <mat-select>
+                          <mat-option value="compra">Compra</mat-option>
+                          <mat-option value="doacao">Doação</mat-option>
+                          <mat-option value="desapropriacao"
+                            >Desapropriação</mat-option
+                          >
+                          <mat-option value="outra">Outra</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </div>
+                  </section>
 
-          <td>
-            <mat-form-field appearance="outline">
-              <mat-label>Data</mat-label>
-              <input matInput [matDatepicker]="pickerF0A" />
-              <mat-datepicker-toggle
-                matIconSuffix
-                [for]="pickerF0A"
-              ></mat-datepicker-toggle>
-              <mat-datepicker #pickerF0A></mat-datepicker>
-            </mat-form-field>
-          </td>
+                  <!-- Dados do Imóvel -->
+                  <section class="form-section">
+                    <h3>Dados do Imóvel</h3>
 
-          <td>
-            <a
-              href="javascript:void(0)"
-              class="anexo-link"
-              aria-disabled="true"
-              title="Anexo indisponível"
-            >
-              <mat-icon>attach_file</mat-icon>
-              Anexo
-            </a>
-          </td>
-        </tr>
+                    <div class="form-row">
+                      <mat-form-field appearance="outline" class="field">
+                        <mat-label>Código SNCR</mat-label>
+                        <input matInput />
+                      </mat-form-field>
 
-        <!-- Modelo no sistema ou manual? -->
-        <tr>
-          <td>
-            <mat-form-field appearance="outline">
-              <mat-label>Modelo no sistema ou manual?</mat-label>
-              <input matInput />
-            </mat-form-field>
-          </td>
+                      <mat-form-field appearance="outline" class="field">
+                        <mat-label>Nome Imóvel</mat-label>
+                        <input matInput required />
+                      </mat-form-field>
 
-          <td>
-            <mat-form-field appearance="outline">
-              <mat-label>Data</mat-label>
-              <input matInput [matDatepicker]="pickerF0B" />
-              <mat-datepicker-toggle
-                matIconSuffix
-                [for]="pickerF0B"
-              ></mat-datepicker-toggle>
-              <mat-datepicker #pickerF0B></mat-datepicker>
-            </mat-form-field>
-          </td>
+                      <mat-form-field appearance="outline" class="field">
+                        <mat-label>UF</mat-label>
+                        <mat-select required>
+                          <mat-option *ngFor="let uf of ufs" [value]="uf">{{
+                            uf
+                          }}</mat-option>
+                        </mat-select>
+                      </mat-form-field>
 
-          <td>
-            <a
-              href="javascript:void(0)"
-              class="anexo-link"
-              aria-disabled="true"
-              title="Anexo indisponível"
-            >
-              <mat-icon>attach_file</mat-icon>
-              Anexo
-            </a>
-          </td>
-        </tr>
+                      <mat-form-field appearance="outline" class="field">
+                        <mat-label>Município</mat-label>
+                        <mat-select required>
+                          <mat-option
+                            *ngFor="let municipio of municipios"
+                            [value]="municipio"
+                          >
+                            {{ municipio }}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
 
-        <!-- Anexos PDF -->
-        <tr>
-          <td>
-            <mat-form-field appearance="outline">
-              <mat-label>Anexos PDF</mat-label>
-              <input matInput />
-            </mat-form-field>
-          </td>
+                      <div class="anexo-wrapper field">
+                        <mat-form-field
+                          appearance="outline"
+                          class="field-inner"
+                        >
+                          <mat-label>Matrícula(s)</mat-label>
+                          <input matInput />
+                        </mat-form-field>
 
-          <td>
-            <mat-form-field appearance="outline">
-              <mat-label>Data</mat-label>
-              <input matInput [matDatepicker]="pickerF0C" />
-              <mat-datepicker-toggle
-                matIconSuffix
-                [for]="pickerF0C"
-              ></mat-datepicker-toggle>
-              <mat-datepicker #pickerF0C></mat-datepicker>
-            </mat-form-field>
-          </td>
+                        <a
+                          href="javascript:void(0)"
+                          class="anexo-link"
+                          aria-disabled="true"
+                          title="Anexo indisponível"
+                        >
+                          <mat-icon>attach_file</mat-icon>
+                          Anexo
+                        </a>
+                      </div>
 
-          <td>
-            <a
-              href="javascript:void(0)"
-              class="anexo-link"
-              aria-disabled="true"
-              title="Anexo indisponível"
-            >
-              <mat-icon>attach_file</mat-icon>
-              Anexo
-            </a>
-          </td>
-        </tr>
+                      <mat-form-field appearance="outline" class="field">
+                        <mat-label>Nome Proprietário</mat-label>
+                        <input matInput />
+                      </mat-form-field>
 
-        <tr>
-          <td colspan="3">
-            <mat-form-field
-              appearance="outline"
-              class="campo-observacao"
-            >
-              <mat-label>Observação</mat-label>
-              <textarea
-                matInput
-                rows="5"
-                placeholder="Digite uma observação"
-              ></textarea>
-            </mat-form-field>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+                      <mat-form-field appearance="outline" class="field">
+                        <mat-label>CPF/CNPJ Proprietário</mat-label>
+                        <input matInput />
+                      </mat-form-field>
 
-    <div class="step-actions">
-      <button mat-flat-button matStepperNext>Próximo</button>
-    </div>
-  </div>
-</mat-step>
+                      <mat-form-field appearance="outline" class="field">
+                        <mat-label>Nome outra parte envolvida</mat-label>
+                        <input matInput />
+                      </mat-form-field>
+
+                      <mat-form-field appearance="outline" class="field">
+                        <mat-label>CPF/CNPJ outra parte envolvida</mat-label>
+                        <input matInput />
+                      </mat-form-field>
+                    </div>
+                  </section>
+
+                  <!-- Áreas (ha) -->
+                  <section class="form-section">
+                    <h3>Áreas (ha)</h3>
+
+                    <div class="form-row">
+                      <mat-form-field appearance="outline" class="field">
+                        <mat-label>Registrada (matrícula)</mat-label>
+                        <input matInput type="number" />
+                      </mat-form-field>
+
+                      <mat-form-field appearance="outline" class="field">
+                        <mat-label>Certificada (SNCR)</mat-label>
+                        <input matInput type="number" />
+                      </mat-form-field>
+
+                      <mat-form-field appearance="outline" class="field">
+                        <mat-label>VIsada</mat-label>
+                        <input matInput type="number" />
+                      </mat-form-field>
+                    </div>
+                  </section>
+
+                  <!-- Valor estimado -->
+                  <section class="form-section">
+                    <h3>Valor estimado</h3>
+
+                    <div class="form-row">
+                      <mat-form-field appearance="outline" class="field">
+                        <mat-label>VTI médio</mat-label>
+                        <input matInput type="number" />
+                      </mat-form-field>
+
+                      <mat-form-field appearance="outline" class="field">
+                        <mat-label>VTN médio</mat-label>
+                        <input matInput type="number" />
+                      </mat-form-field>
+                    </div>
+                  </section>
+
+                  <!-- Documentação analisada -->
+                  <section class="form-section">
+                    <h3>Documentação analisada</h3>
+
+                    <div class="form-row">
+                      <mat-form-field appearance="outline" class="field">
+                        <mat-label>Espelho do Imóvel no SNCR</mat-label>
+                        <input matInput placeholder="Buscar no SNCR" />
+                        <button
+                          mat-icon-button
+                          matSuffix
+                          type="button"
+                          aria-label="Buscar no SNCR"
+                        >
+                          <mat-icon>search</mat-icon>
+                        </button>
+                      </mat-form-field>
+
+                      <mat-form-field appearance="outline" class="field">
+                        <mat-label>Arquivo vetorial (shp)</mat-label>
+                        <input
+                          matInput
+                          placeholder="https://sigef.incra.gov.br/"
+                        />
+                      </mat-form-field>
+
+                      <div class="anexo-wrapper field">
+                        <mat-form-field
+                          appearance="outline"
+                          class="field-inner"
+                        >
+                          <mat-label>Outros</mat-label>
+                          <input matInput />
+                        </mat-form-field>
+
+                        <a
+                          href="javascript:void(0)"
+                          class="anexo-link"
+                          aria-disabled="true"
+                          title="Anexo indisponível"
+                        >
+                          <mat-icon>attach_file</mat-icon>
+                          Anexo
+                        </a>
+                      </div>
+                    </div>
+                  </section>
+
+                  <!-- Natureza ocupacional -->
+                  <section class="form-section">
+                    <h3>Natureza ocupacional</h3>
+
+                    <div class="form-row">
+                      <mat-form-field appearance="outline" class="field">
+                        <mat-label>Entidade Demandante</mat-label>
+                        <mat-select>
+                          <mat-option
+                            *ngFor="let orgao of orgaos"
+                            [value]="orgao"
+                          >
+                            {{ orgao }}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+
+                      <mat-form-field appearance="outline" class="field">
+                        <mat-label>Acampamento Vinculado</mat-label>
+                        <input matInput />
+                      </mat-form-field>
+                    </div>
+
+                    <div class="form-row">
+                      <mat-radio-group
+                        class="radio-group"
+                        [(ngModel)]="imovelOcupado"
+                        name="imovelOcupado"
+                      >
+                        <label class="radio-label"
+                          >Imóvel atualmente ocupado?</label
+                        >
+                        <mat-radio-button value="sim">Sim</mat-radio-button>
+                        <mat-radio-button value="nao">Não</mat-radio-button>
+                      </mat-radio-group>
+                    </div>
+
+                    <ng-container *ngIf="imovelOcupado === 'sim'">
+                      <div class="form-row">
+                        <mat-form-field appearance="outline" class="field">
+                          <mat-label>Ações de Reintegração de Posse</mat-label>
+                          <input matInput />
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="field">
+                          <mat-label>Órgão Concorrente</mat-label>
+                          <mat-select>
+                            <mat-option
+                              *ngFor="let orgao of orgaos"
+                              [value]="orgao"
+                            >
+                              {{ orgao }}
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+
+                        <mat-form-field appearance="outline" class="field">
+                          <mat-label>Famílias Cadastradas</mat-label>
+                          <input matInput type="number" />
+                        </mat-form-field>
+                      </div>
+                    </ng-container>
+                  </section>
+
+                  <!-- Premissas iniciais para viabilidade -->
+                  <section class="form-section">
+                    <h3>Premissas iniciais para viabilidade</h3>
+
+                    <div class="form-row">
+                      <mat-form-field appearance="outline" class="field-full">
+                        <mat-label>Justificativa / Observações</mat-label>
+                        <textarea
+                          matInput
+                          rows="6"
+                          placeholder="Digite a justificativa ou observações"
+                        ></textarea>
+                      </mat-form-field>
+                    </div>
+
+                    <div class="form-row">
+                      <div class="anexo-wrapper field">
+                        <span class="anexo-label">Anexo:</span>
+
+                        <a
+                          href="javascript:void(0)"
+                          class="anexo-link"
+                          aria-disabled="true"
+                          title="Anexo indisponível"
+                        >
+                          <mat-icon>attach_file</mat-icon>
+                          Anexo
+                        </a>
+                      </div>
+                    </div>
+                  </section>
+
+                  <div class="step-actions">
+                    <button mat-flat-button matStepperNext>Próximo</button>
+                  </div>
+                </div>
+              </mat-step>
 
               <!-- ========================================================= -->
               <!-- FASE 1 -->
               <!-- ========================================================= -->
 
               <mat-step>
-  <ng-template matStepLabel>
-    Fase 1 - Abertura de Processo
-  </ng-template>
-  <br>
+                <ng-template matStepLabel>
+                  Fase 1 - Abertura de Processo
+                </ng-template>
 
-  <!-- ============================================================ -->
-  <!-- ÁREA EXPANSÍVEL: CADASTRO GERAL DO IMÓVEL                    -->
-  <!-- ============================================================ -->
-  <mat-expansion-panel class="cadastro-imovel-panel">
-  <mat-expansion-panel-header>
-    <mat-panel-title>
-      Cadastro geral do imóvel
-    </mat-panel-title>
-  </mat-expansion-panel-header>
+                <div class="step-content">
+                  <!-- ============================================================ -->
+                  <!-- NOVA SEÇÃO — DOCUMENTOS DA ABERTURA DE PROCESSO (3 por linha) -->
+                  <!-- ============================================================ -->
+                  <section class="form-section">
+                    <h3>Documentos da Abertura de Processo</h3>
 
-  <!-- BLOCO 1: DADOS DO IMÓVEL -->
-  <h3 class="bloco-titulo">Dados do Imóvel</h3>
-  <div class="info-grid">
-    <mat-form-field appearance="outline">
-      <mat-label>Imóvel</mat-label>
-      <input matInput value="Fazenda Surubim" />
-    </mat-form-field>
+                    <div class="form-row">
+                      <!-- 1. Processo SEI -->
+                      <mat-form-field appearance="outline" class="field">
+                        <mat-label>Processo SEI</mat-label>
+                        <input matInput />
+                      </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Superintendência Regional (SR)</mat-label>
-      <input matInput value="SR(27)MBA" />
-    </mat-form-field>
+                      <!-- 2. Oferta de venda pelo proprietário ou representante (valor) -->
+                      <mat-form-field appearance="outline" class="field">
+                        <mat-label
+                          >Oferta de venda pelo proprietário ou
+                          representante</mat-label
+                        >
+                        <input matInput type="number" />
+                      </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>SNCR</mat-label>
-      <input matInput value="1478523697412" />
-    </mat-form-field>
+                      <!-- 3. Edital de chamamento (anexo) — último campo da linha 1 -->
+                      <div class="anexo-wrapper field">
+                        <span class="anexo-label">Edital de chamamento:</span>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Área (ha)</mat-label>
-      <input matInput value="10.978,8258" />
-    </mat-form-field>
+                        <a
+                          href="javascript:void(0)"
+                          class="anexo-link"
+                          aria-disabled="true"
+                          title="Anexo indisponível"
+                        >
+                          <mat-icon>attach_file</mat-icon>
+                          Anexo
+                        </a>
+                      </div>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Município/UF</mat-label>
-      <input matInput value="Xinguara/PA" />
-    </mat-form-field>
+                      <!-- 4. Cadastro outras partes envolvidas (opcional) -->
+                      <mat-form-field appearance="outline" class="field">
+                        <mat-label
+                          >Cadastro outras partes envolvidas
+                          (opcional)</mat-label
+                        >
+                        <input matInput />
+                      </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Situação</mat-label>
-      <input matInput value="Em Trâmite" />
-    </mat-form-field>
+                      <!-- 5. Anexos da proposta de venda (anexo) — último campo da linha 2
+                      👇 modificador --end: alinha o conteúdo à direita -->
+                      <div class="anexo-wrapper anexo-wrapper--end field">
+                        <span class="anexo-label"
+                          >Anexos da proposta de venda:</span
+                        >
 
-    <mat-form-field appearance="outline">
-      <mat-label>Processo</mat-label>
-      <input matInput value="54000.160184/2025-42" />
-    </mat-form-field>
+                        <a
+                          href="javascript:void(0)"
+                          class="anexo-link"
+                          aria-disabled="true"
+                          title="Anexo indisponível"
+                        >
+                          <mat-icon>attach_file</mat-icon>
+                          Anexo
+                        </a>
+                      </div>
+                    </div>
+                  </section>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Modalidade</mat-label>
-      <input matInput value="Compra e Venda Decreto 433/92" />
-    </mat-form-field>
+                  <section class="form-section">
+                    <hr />
+                    <!-- Observação em largura total -->
+                    <mat-form-field appearance="outline" class="full-width">
+                      <mat-label>Observação</mat-label>
+                      <textarea matInput rows="4"></textarea>
+                    </mat-form-field>
+                  </section>
 
-    <mat-form-field appearance="outline" class="full-width">
-      <mat-label>Proprietário</mat-label>
-      <input
-        matInput
-        value="Amilcar Farid Yamin, Adriane Rocha Yamin e Christiane Rocha Yamin"
-      />
-    </mat-form-field>
-  </div>
-
-  <!-- BLOCO 2: DADOS DE OBTENÇÃO -->
-  <h3 class="bloco-titulo">Dados de Obtenção</h3>
-  <div class="info-grid">
-    <mat-form-field appearance="outline">
-      <mat-label>Processo SEI</mat-label>
-      <input matInput value="54000.160184/2025-42" />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Situação de Obtenção</mat-label>
-      <input matInput value="Em Trâmite" />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Entidade Demandante</mat-label>
-      <input
-        matInput
-        value="INCRA - Instituto Nacional de Colonização e Reforma Agrária"
-      />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Grupo</mat-label>
-      <input matInput value="Nome do grupo" />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Forma de Obtenção</mat-label>
-      <input matInput value="Compra e Venda Decreto 433/92" />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Órgão Concorrente</mat-label>
-      <input matInput value="Nenhum" />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Processo Cadeia Dominial</mat-label>
-      <input matInput value="Não informado" />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Acampamento Vinculado</mat-label>
-      <input matInput value="Não informado" />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Imóvel Ocupado?</mat-label>
-      <input matInput value="Não" />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Capacidade de Assentamento</mat-label>
-      <input matInput value="201 famílias" />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Ações de Reintegração</mat-label>
-      <input matInput value="Nenhuma" />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Famílias Cadastradas</mat-label>
-      <input matInput value="Não informado" />
-    </mat-form-field>
-  </div>
-
-  <!-- BLOCO 3: DADOS DE AVALIAÇÃO E VALORES -->
-  <h3 class="bloco-titulo">Dados de Avaliação e Valores</h3>
-  <div class="info-grid">
-    <mat-form-field appearance="outline">
-      <mat-label>Valor Total do Imóvel - Inferior (R$)</mat-label>
-      <input matInput value="R$ 192.387.136,53" />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Valor Total do Imóvel - Médio (R$)</mat-label>
-      <input matInput value="R$ 181.997.328,31" />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Valor Total do Imóvel - Superior (R$)</mat-label>
-      <input matInput value="R$ 206.036.936,15" />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Valor da Terra Nua (VTN) - Inferior (R$)</mat-label>
-      <input matInput value="R$ 175.172.428,50" />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Valor da Terra Nua (VTN) - Médio (R$)</mat-label>
-      <input matInput value="R$ 181.997.328,31" />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Valor da Terra Nua (VTN) - Superior (R$)</mat-label>
-      <input matInput value="R$ 188.822.228,12" />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Valor das Benfeitorias</mat-label>
-      <input matInput value="R$ 17.214.708,03" />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Valor Negociado</mat-label>
-      <input matInput value="Não negociado" />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Passivo Ambiental</mat-label>
-      <input matInput value="R$ 242.641,88" />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Ativo Ambiental</mat-label>
-      <input matInput value="R$ 0,00" />
-    </mat-form-field>
-  </div>
-</mat-expansion-panel>
-
-  <br>
-  <!-- ============================================================ -->
-  <!-- FIM DA ÁREA EXPANSÍVEL                                       -->
-  <!-- ============================================================ -->
-
-  <div class="form-grid">
-    <mat-form-field appearance="outline">
-      <mat-label>Edital de chamamento</mat-label>
-      <input matInput [matDatepicker]="pickerF1A" />
-      <mat-datepicker-toggle
-        matIconSuffix
-        [for]="pickerF1A"
-      ></mat-datepicker-toggle>
-      <mat-datepicker #pickerF1A></mat-datepicker>
-    </mat-form-field>
-
-    <a
-      href="javascript:void(0)"
-      class="anexo-link"
-      aria-disabled="true"
-    >
-      <mat-icon>description</mat-icon>
-      Anexo
-    </a>
-
-    <mat-form-field appearance="outline">
-      <mat-label>
-        Oferta de venda pelo proprietário ou representante
-      </mat-label>
-      <input matInput [matDatepicker]="pickerF1B" />
-      <mat-datepicker-toggle
-        matIconSuffix
-        [for]="pickerF1B"
-      ></mat-datepicker-toggle>
-      <mat-datepicker #pickerF1B></mat-datepicker>
-    </mat-form-field>
-
-    <a
-      href="javascript:void(0)"
-      class="anexo-link"
-      aria-disabled="true"
-    >
-      <mat-icon>description</mat-icon>
-      Anexo
-    </a>
-
-    <mat-form-field appearance="outline">
-      <mat-label>
-        Anexos da proposta de venda (art. 6°, IN n° 147/2024)
-      </mat-label>
-      <input matInput [matDatepicker]="pickerF1C" />
-      <mat-datepicker-toggle
-        matIconSuffix
-        [for]="pickerF1C"
-      ></mat-datepicker-toggle>
-      <mat-datepicker #pickerF1C></mat-datepicker>
-    </mat-form-field>
-
-    <a
-      href="javascript:void(0)"
-      class="anexo-link"
-      aria-disabled="true"
-    >
-      <mat-icon>description</mat-icon>
-      Anexo
-    </a>
-  </div>
-
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Observação</mat-label>
-    <textarea matInput rows="4"></textarea>
-  </mat-form-field>
-
-  <div class="step-actions">
-    <button mat-flat-button matStepperNext>Próximo</button>
-  </div>
-</mat-step>
+                  <div class="step-actions">
+                    <button mat-flat-button matStepperNext>Próximo</button>
+                  </div>
+                </div>
+              </mat-step>
 
               <!-- ========================================================= -->
               <!-- FASE 2 -->
               <!-- ========================================================= -->
 
-             <mat-step>
-  <ng-template matStepLabel>
-    Fase 2 - Instrução básica
-  </ng-template><br>
+              <mat-step>
+                <ng-template matStepLabel>
+                  Fase 2 - Instrução básica
+                </ng-template>
+                <br />
 
-  <div class="form-grid form-grid-3">
-    <!-- Linha 1: Espelho do Imóvel no SNCR -->
-    <mat-form-field appearance="outline">
-      <mat-label>Espelho do Imóvel no SNCR</mat-label>
-      <input matInput />
-    </mat-form-field>
+                <div class="form-grid-3">
+                  <!-- Linha 1: Espelho do Imóvel no SNCR -->
+                  <div class="campo-com-anexo">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Espelho do Imóvel no SNCR</mat-label>
+                      <input matInput />
+                    </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Data</mat-label>
-      <input matInput [matDatepicker]="pickerF2A" />
-      <mat-datepicker-toggle matIconSuffix [for]="pickerF2A">
-      </mat-datepicker-toggle>
-      <mat-datepicker #pickerF2A></mat-datepicker>
-    </mat-form-field>
+                    <a
+                      href="javascript:void(0)"
+                      class="anexo-link"
+                      aria-disabled="true"
+                      title="Anexo indisponível"
+                    >
+                      <mat-icon>description</mat-icon>
+                      Anexos PDF
+                    </a>
+                  </div>
 
-    <a
-      href="javascript:void(0)"
-      class="anexo-link"
-      aria-disabled="true"
-    >
-      <mat-icon>description</mat-icon>
-      Anexos PDF
-    </a>
+                  <!-- Linha 2: Demonstrativo do Imóvel no SICAR -->
+                  <div class="campo-com-anexo">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Demonstrativo do Imóvel no SICAR</mat-label>
+                      <input matInput />
+                    </mat-form-field>
 
-    <!-- Linha 2: Demonstrativo do Imóvel no SICAR -->
-    <mat-form-field appearance="outline">
-      <mat-label>Demonstrativo do Imóvel no SICAR</mat-label>
-      <input matInput />
-    </mat-form-field>
+                    <a
+                      href="javascript:void(0)"
+                      class="anexo-link"
+                      aria-disabled="true"
+                      title="Anexo indisponível"
+                    >
+                      <mat-icon>description</mat-icon>
+                      Anexos PDF
+                    </a>
+                  </div>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Data</mat-label>
-      <input matInput [matDatepicker]="pickerF2B" />
-      <mat-datepicker-toggle matIconSuffix [for]="pickerF2B">
-      </mat-datepicker-toggle>
-      <mat-datepicker #pickerF2B></mat-datepicker>
-    </mat-form-field>
+                  <!-- Linha 3: Matrícula(s) -->
+                  <div class="campo-com-anexo">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Matrícula(s)</mat-label>
+                      <input matInput />
+                    </mat-form-field>
 
-    <a
-      href="javascript:void(0)"
-      class="anexo-link"
-      aria-disabled="true"
-    >
-      <mat-icon>description</mat-icon>
-      Anexos PDF
-    </a>
+                    <a
+                      href="javascript:void(0)"
+                      class="anexo-link"
+                      aria-disabled="true"
+                      title="Anexo indisponível"
+                    >
+                      <mat-icon>description</mat-icon>
+                      Anexos PDF
+                    </a>
+                  </div>
+                </div>
+                <hr />
 
-    <!-- Linha 3: Matrícula(s) -->
-    <mat-form-field appearance="outline">
-      <mat-label>Matrícula(s)</mat-label>
-      <input matInput />
-    </mat-form-field>
+                <div class="form-grid-3">
+                  <!-- Linha 4: Arquivo vetorial (shp) -->
+                  <div class="campo-com-anexo">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Arquivo vetorial (shp)</mat-label>
+                      <input matInput />
+                    </mat-form-field>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Data</mat-label>
-      <input matInput [matDatepicker]="pickerF2C" />
-      <mat-datepicker-toggle matIconSuffix [for]="pickerF2C">
-      </mat-datepicker-toggle>
-      <mat-datepicker #pickerF2C></mat-datepicker>
-    </mat-form-field>
+                    <a
+                      href="javascript:void(0)"
+                      class="anexo-link"
+                      aria-disabled="true"
+                      title="Anexo indisponível"
+                    >
+                      <mat-icon>description</mat-icon>
+                      Anexos PDF
+                    </a>
+                  </div>
 
-    <a
-      href="javascript:void(0)"
-      class="anexo-link"
-      aria-disabled="true"
-    >
-      <mat-icon>description</mat-icon>
-      Anexos PDF
-    </a>
+                  <!-- Linha 5: Mapa (impresso/pdf) -->
+                  <div class="campo-com-anexo">
+                    <mat-form-field appearance="outline">
+                      <mat-label>Mapa (impresso/pdf)</mat-label>
+                      <input matInput />
+                    </mat-form-field>
 
-    <!-- Linha 4: Arquivo vetorial (shp) -->
-    <mat-form-field appearance="outline">
-      <mat-label>Arquivo vetorial (shp)</mat-label>
-      <input matInput />
-    </mat-form-field>
+                    <a
+                      href="javascript:void(0)"
+                      class="anexo-link"
+                      aria-disabled="true"
+                      title="Anexo indisponível"
+                    >
+                      <mat-icon>description</mat-icon>
+                      Anexos PDF
+                    </a>
+                  </div>
 
-    <mat-form-field appearance="outline">
-      <mat-label>Data</mat-label>
-      <input matInput [matDatepicker]="pickerF2D" />
-      <mat-datepicker-toggle matIconSuffix [for]="pickerF2D">
-      </mat-datepicker-toggle>
-      <mat-datepicker #pickerF2D></mat-datepicker>
-    </mat-form-field>
+                  <!-- Linha 6: Memorial descritivo (impresso/pdf editável) -->
+                  <div class="campo-com-anexo">
+                    <mat-form-field appearance="outline">
+                      <mat-label
+                        >Memorial descritivo (impresso/pdf editável)</mat-label
+                      >
+                      <input matInput />
+                    </mat-form-field>
 
-    <a
-      href="javascript:void(0)"
-      class="anexo-link"
-      aria-disabled="true"
-    >
-      <mat-icon>description</mat-icon>
-      Anexos PDF
-    </a>
+                    <a
+                      href="javascript:void(0)"
+                      class="anexo-link"
+                      aria-disabled="true"
+                      title="Anexo indisponível"
+                    >
+                      <mat-icon>description</mat-icon>
+                      Anexos PDF
+                    </a>
+                  </div>
+                </div>
+                <hr />
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>Observação</mat-label>
+                  <textarea matInput rows="4"></textarea>
+                </mat-form-field>
 
-    <!-- Linha 5: Mapa (impresso/pdf) -->
-    <mat-form-field appearance="outline">
-      <mat-label>Mapa (impresso/pdf)</mat-label>
-      <input matInput />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Data</mat-label>
-      <input matInput [matDatepicker]="pickerF2E" />
-      <mat-datepicker-toggle matIconSuffix [for]="pickerF2E">
-      </mat-datepicker-toggle>
-      <mat-datepicker #pickerF2E></mat-datepicker>
-    </mat-form-field>
-
-    <a
-      href="javascript:void(0)"
-      class="anexo-link"
-      aria-disabled="true"
-    >
-      <mat-icon>description</mat-icon>
-      Anexos PDF
-    </a>
-
-    <!-- Linha 6: Memorial descritivo (impresso/pdf editável) -->
-    <mat-form-field appearance="outline">
-      <mat-label>Memorial descritivo (impresso/pdf editável)</mat-label>
-      <input matInput />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Data</mat-label>
-      <input matInput [matDatepicker]="pickerF2F" />
-      <mat-datepicker-toggle matIconSuffix [for]="pickerF2F">
-      </mat-datepicker-toggle>
-      <mat-datepicker #pickerF2F></mat-datepicker>
-    </mat-form-field>
-
-    <a
-      href="javascript:void(0)"
-      class="anexo-link"
-      aria-disabled="true"
-    >
-      <mat-icon>description</mat-icon>
-      Anexos PDF
-    </a>
-  </div>
-
-  <mat-form-field appearance="outline" class="full-width">
-    <mat-label>Observação</mat-label>
-    <textarea matInput rows="4"></textarea>
-  </mat-form-field>
-
-  <div class="step-actions">
-    <button mat-stroked-button matStepperPrevious>Voltar</button>
-
-    <button mat-flat-button matStepperNext>Próximo</button>
-  </div>
-</mat-step>
+                <div class="step-actions">
+                  <button mat-stroked-button matStepperPrevious>Voltar</button>
+                  <button mat-flat-button matStepperNext>Próximo</button>
+                </div>
+              </mat-step>
 
               <!-- ========================================================= -->
               <!-- FASE 3 -->
@@ -6633,11 +6573,12 @@
                   >
                     Ordem de serviço
                   </button>
-                 <button
+                  <button
                     mat-flat-button
                     color="primary"
                     class="step-actions"
-                    (click)="solicitarScdp()">
+                    (click)="solicitarScdp()"
+                  >
                     Solicitar SCDP
                   </button>
                   <button

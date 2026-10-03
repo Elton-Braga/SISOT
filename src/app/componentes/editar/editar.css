@@ -142,7 +142,7 @@
 }
 
 /* =========================================================
-   GRID (agora Flexbox)
+   GRID (agora Flexbox) — 3 CAMPOS POR LINHA
    ========================================================= */
 
 .form-grid {
@@ -152,11 +152,11 @@
   gap: 8px 20px;
 }
 
-/* Cada campo ocupa ~50% da largura, com quebra automática */
+/* Cada campo ocupa ~1/3 da largura, com quebra automática */
 .form-grid > mat-form-field {
-  flex: 1 1 calc(50% - 20px);
+  flex: 1 1 calc(33.333% - 20px);
   min-width: 240px;
-  max-width: calc(50% - 10px);
+  max-width: calc(33.333% - 14px);
 }
 
 /* Campos em largura total */
@@ -185,6 +185,11 @@
    ========================================================= */
 
 mat-form-field {
+  width: 100%;
+}
+
+/* Campo em largura total (fora de form-row/form-grid) */
+.full-width {
   width: 100%;
 }
 
@@ -611,6 +616,10 @@ mat-form-field {
   color: #888888;
 }
 
+/* =========================================================
+   FORM-GRID-3 — 3 COLUNAS POR LINHA
+========================================================= */
+
 .form-grid-3 {
   display: flex;
   flex-wrap: wrap;
@@ -621,6 +630,7 @@ mat-form-field {
 .form-grid-3 > * {
   flex: 1 1 calc(33.333% - 16px);
   min-width: 220px;
+  max-width: calc(33.333% - 11px);
 }
 
 .form-grid-3 .anexo-link {
@@ -630,12 +640,14 @@ mat-form-field {
 @media (max-width: 960px) {
   .form-grid-3 > * {
     flex: 1 1 calc(50% - 16px);
+    max-width: calc(50% - 8px);
   }
 }
 
 @media (max-width: 600px) {
   .form-grid-3 > * {
     flex: 1 1 100%;
+    max-width: 100%;
   }
 }
 
@@ -666,4 +678,235 @@ mat-form-field {
   .dados-table {
     min-width: 700px;
   }
+}
+
+/* =========================================================
+   FORMULÁRIO DO STEPPER (FASE 0 / FASE 1)
+   Layout baseado em Flexbox — 3 CAMPOS POR LINHA
+========================================================= */
+
+/* O conteúdo do step empilha as seções verticalmente */
+.step-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px 0;
+  width: 100%;
+}
+
+/* Cada seção vira um bloco flex */
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 28px;
+  background-color: #ffffff;
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.form-section h3 {
+  margin: 0 0 4px;
+  padding-bottom: 12px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #333333;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+/* -----------------------------------------------------------------
+   Linha de campos — 3 campos por linha (com quebra automática)
+----------------------------------------------------------------- */
+.form-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+/* Campo padrão: ~1/3 da linha, com largura mínima confortável */
+.form-row > .field {
+  flex: 1 1 calc(33.333% - 16px);
+  min-width: 220px;
+  max-width: calc(33.333% - 11px);
+}
+
+/* Campo que ocupa a linha inteira */
+.form-row > .field-full {
+  flex: 1 1 100%;
+  min-width: 100%;
+  max-width: 100%;
+}
+
+/* Wrapper que agrupa um mat-form-field + link de anexo */
+.anexo-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1 1 calc(33.333% - 16px);
+  min-width: 220px;
+  max-width: calc(33.333% - 11px);
+}
+
+.anexo-wrapper .field-inner {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
+}
+
+/* -----------------------------------------------------------------
+   MODIFICADOR: alinha o conteúdo do anexo à direita
+   (usado em "Anexos da proposta de venda")
+----------------------------------------------------------------- */
+.anexo-wrapper--end {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+/* Rótulo textual "Anexo:" */
+.anexo-label {
+  font-size: 14px;
+  color: #666666;
+  white-space: nowrap;
+}
+
+/* Estado desabilitado do link de anexo */
+.anexo-link[aria-disabled="true"] {
+  color: #9e9e9e;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.anexo-link[aria-disabled="true"]:hover {
+  text-decoration: none;
+}
+
+/* Grupo de radios (Imóvel atualmente ocupado?) */
+.radio-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 8px 0;
+  flex: 1 1 100%;
+}
+
+.radio-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333333;
+}
+
+/* Ações do stepper */
+.step-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 20px;
+  padding-top: 8px;
+}
+
+/* -----------------------------------------------------------------
+   Responsividade — 3 → 2 → 1 coluna
+----------------------------------------------------------------- */
+@media (max-width: 960px) {
+  .form-row > .field,
+  .anexo-wrapper {
+    flex: 1 1 calc(50% - 16px);
+    max-width: calc(50% - 8px);
+  }
+}
+
+@media (max-width: 768px) {
+  .form-section {
+    padding: 20px;
+  }
+
+  .form-row > .field,
+  .form-row > .field-full,
+  .anexo-wrapper {
+    flex: 1 1 100%;
+    min-width: 100%;
+    max-width: 100%;
+  }
+
+  .radio-group {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .step-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .step-actions button {
+    width: 100%;
+  }
+}
+
+/* =========================================================
+   GRID DE INFORMAÇÕES (usado no expansion panel do cadastro)
+   Mantido em 3 colunas por linha
+========================================================= */
+.info-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin-bottom: 8px;
+}
+
+.info-grid > mat-form-field {
+  flex: 1 1 calc(33.333% - 20px);
+  min-width: 240px;
+  max-width: calc(33.333% - 14px);
+}
+
+.info-grid > mat-form-field.full-width {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+@media (max-width: 960px) {
+  .info-grid > mat-form-field {
+    flex: 1 1 calc(50% - 20px);
+    max-width: calc(50% - 10px);
+  }
+}
+
+@media (max-width: 768px) {
+  .info-grid > mat-form-field,
+  .info-grid > mat-form-field.full-width {
+    flex: 0 0 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+}
+
+/* Garante que qualquer anexo vá para o fim da linha,
+   independentemente da ordem no HTML */
+.form-row > .anexo-wrapper {
+  order: 1;
+}
+
+.form-row > mat-form-field {
+  order: 0;
+}
+
+/* Título dos blocos dentro do expansion panel */
+.bloco-titulo {
+  margin: 16px 0 8px;
+  padding-bottom: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1351b4;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.bloco-titulo:first-of-type {
+  margin-top: 0;
 }

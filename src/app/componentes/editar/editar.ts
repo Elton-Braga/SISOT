@@ -15,6 +15,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
+import { MatRadioModule } from '@angular/material/radio'; // 👈 NOVO
 import { OrdemServico } from './ordem-servico/ordem-servico';
 import { ResolucaoCdr } from './resolucao-cdr/resolucao-cdr';
 import { PortariaCdr } from './portaria-cdr/portaria-cdr';
@@ -119,6 +120,7 @@ const SPUNET_FIXO: RegistroSpunet[] = [
     MatStepperModule,
     MatExpansionModule,
     MatDialogModule,
+    MatRadioModule, // 👈 NOVO — corrige NG8001 do mat-radio-button
     MatTableModule,
   ],
   templateUrl: './editar.html',
@@ -140,6 +142,75 @@ export class Editar implements OnInit {
 
   // 👇 NOVO — controla o estado do botão "Solicitar SCDP"
   public scdpHabilitado = false;
+
+  /* -------------------------------------------------------
+     👇 NOVAS PROPRIEDADES — Fase 0 (Análise Inicial)
+     Resolvem os erros TS2339 do template.
+  ------------------------------------------------------- */
+
+  /** Modalidade de obtenção do imóvel */
+  public modalidadeObtencao = '';
+
+  /** UF selecionada */
+  public ufSelecionada = '';
+
+  /** Município selecionado */
+  public municipioSelecionado = '';
+
+  /** Resposta do radio "Imóvel atualmente ocupado?" */
+  public imovelOcupado: 'sim' | 'nao' | '' = '';
+
+  /** Lista de UFs (mock — substituir futuramente por API do IBGE) */
+  public ufs: string[] = [
+    'AC',
+    'AL',
+    'AP',
+    'AM',
+    'BA',
+    'CE',
+    'DF',
+    'ES',
+    'GO',
+    'MA',
+    'MT',
+    'MS',
+    'MG',
+    'PA',
+    'PB',
+    'PR',
+    'PE',
+    'PI',
+    'RJ',
+    'RN',
+    'RS',
+    'RO',
+    'RR',
+    'SC',
+    'SP',
+    'SE',
+    'TO',
+  ];
+
+  /** Lista de municípios (mock — carregar conforme UF selecionada) */
+  public municipios: string[] = [
+    'Xinguara',
+    'Marabá',
+    'Altamira',
+    'Santarém',
+    'Belém',
+    'Coelho Neto',
+  ];
+
+  /** Lista de órgãos (mock — substituir futuramente por API) */
+  public orgaos: string[] = [
+    'INCRA',
+    'SPU',
+    'Ministério Público Federal',
+    'Defensoria Pública da União',
+    'Prefeitura Municipal',
+    'Governo do Estado',
+    'Outro',
+  ];
 
   constructor(
     private router: Router,
@@ -229,10 +300,10 @@ export class Editar implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((enviadoParaAssinatura: boolean) => {
-    if (enviadoParaAssinatura) {
-      this.scdpHabilitado = true;
-    }
-  });
+      if (enviadoParaAssinatura) {
+        this.scdpHabilitado = true;
+      }
+    });
   }
 
   abrirLaudo(): void {
@@ -248,6 +319,12 @@ export class Editar implements OnInit {
   salvar(): void {
     const payload = {
       ...this.dados,
+      fase0: {
+        modalidadeObtencao: this.modalidadeObtencao,
+        ufSelecionada: this.ufSelecionada,
+        municipioSelecionado: this.municipioSelecionado,
+        imovelOcupado: this.imovelOcupado,
+      },
       fase13: {
         projetosAssentamento: this.projetosAssentamento,
         registrosMatricula: this.registrosMatricula,
@@ -295,8 +372,8 @@ export class Editar implements OnInit {
   }
 
   solicitarScdp(): void {
-  window.open('https://www2.scdp.gov.br/novoscdp/home.xhtml', '_blank');
-}
+    window.open('https://www2.scdp.gov.br/novoscdp/home.xhtml', '_blank');
+  }
 
   abrirPortariaCd(): void {
     this.dialog.open(PortariaCd, {
