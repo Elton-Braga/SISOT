@@ -2,7 +2,6 @@
   <!-- =====================================================
        CABEÇALHO
        ===================================================== -->
-
   <header class="page-header">
     <div class="header-icon">
       <mat-icon>edit</mat-icon>
@@ -21,7 +20,6 @@
        CONTEÚDO
        ===================================================== -->
   <div
-    class="editar-page"
     class="editar-page"
     *ngIf="
       dados &&
@@ -48,86 +46,71 @@
             </mat-panel-description>
           </mat-expansion-panel-header>
 
-          <div class="section-title">
-            <!-- <mat-icon>landscape</mat-icon>
-
-    <div>
-      <h2>Dados do imóvel</h2>
-      <p>Informações básicas e cadastrais do imóvel.</p>
-    </div>-->
-          </div>
+          <div class="section-title"></div>
 
           <div class="form-grid">
-            <!-- ============================================================ -->
-            <!-- BLOCO: Modalidade de Obtenção                                -->
-            <!-- ============================================================ 
-    <div class="section-title">
-      <h3>Modalidade de Obtenção</h3>
-    </div>
-
-    <mat-form-field appearance="outline" class="campo-modalidade">
-      <mat-label>Modalidade de Obtenção</mat-label>
-      <input matInput readonly />
-    </mat-form-field>-->
-
-            <!-- ============================================================ -->
-            <!-- BLOCO: Dados do Imóvel                                       -->
-            <!-- ============================================================ 
-    <div class="section-title">
-      <h3>Dados do Imóvel</h3>
-    </div>-->
-
             <mat-form-field appearance="outline" class="campo-imovel">
               <mat-label>Nome Imóvel</mat-label>
-              <input matInput readonly />
+              <input matInput readonly [value]="nomeImovel" />
             </mat-form-field>
 
             <mat-form-field appearance="outline">
               <mat-label>UF</mat-label>
-              <input matInput readonly maxlength="2" />
+              <input matInput readonly maxlength="2" [value]="ufSelecionada" />
             </mat-form-field>
 
             <mat-form-field appearance="outline">
               <mat-label>Município</mat-label>
-              <input matInput readonly />
+              <input matInput readonly [value]="municipioSelecionado" />
             </mat-form-field>
 
             <mat-form-field appearance="outline">
               <mat-label>Código SNCR</mat-label>
-              <input matInput readonly />
+              <input matInput readonly [value]="codigoSncr" />
             </mat-form-field>
 
             <mat-form-field appearance="outline">
               <mat-label>Matrícula(s)</mat-label>
-              <input matInput readonly />
+              <input matInput readonly [value]="matricula" />
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="campo-proprietario">
               <mat-label>Nome Proprietário</mat-label>
-              <input matInput readonly />
+              <input matInput readonly [value]="nomeProprietario" />
             </mat-form-field>
 
             <mat-form-field appearance="outline">
               <mat-label>CPF/CNPJ Proprietário</mat-label>
-              <input matInput readonly />
+              <input matInput readonly [value]="cpfCnpjProprietario" />
             </mat-form-field>
 
-            <!-- ============================================================ -->
-            <!-- BLOCO: Áreas (ha)                                            -->
-            <!-- ============================================================-->
+            <!-- BLOCO: Áreas (ha) -->
             <div class="section-title">
               <h3>Áreas (ha)</h3>
             </div>
 
             <mat-form-field appearance="outline">
               <mat-label>Registrada (matrícula)</mat-label>
-              <input matInput readonly type="number" step="0.0001" />
+              <input
+                matInput
+                readonly
+                type="number"
+                step="0.0001"
+                [value]="areaRegistrada"
+              />
               <span matTextSuffix>ha</span>
             </mat-form-field>
 
             <mat-form-field appearance="outline">
               <mat-label>Medida</mat-label>
-              <input matInput readonly type="number" step="0.0001" />
+              <!-- "Medida" recebe o valor de "Certificada (SNCR)" da Fase 0 -->
+              <input
+                matInput
+                readonly
+                type="number"
+                step="0.0001"
+                [value]="areaCertificada"
+              />
               <span matTextSuffix>ha</span>
             </mat-form-field>
 
@@ -139,13 +122,17 @@
 
             <mat-form-field appearance="outline">
               <mat-label>Visada</mat-label>
-              <input matInput readonly type="number" step="0.0001" />
+              <input
+                matInput
+                readonly
+                type="number"
+                step="0.0001"
+                [value]="areaVisada"
+              />
               <span matTextSuffix>ha</span>
             </mat-form-field>
 
-            <!-- ============================================================ -->
-            <!-- BLOCO: Valores (R$)                                          -->
-            <!-- ============================================================-->
+            <!-- BLOCO: Valores (R$) -->
             <div class="section-title">
               <h3>Valores (R$)</h3>
             </div>
@@ -170,7 +157,13 @@
 
             <mat-form-field appearance="outline">
               <mat-label>VTI estimado</mat-label>
-              <input matInput readonly type="number" step="0.01" />
+              <input
+                matInput
+                readonly
+                type="number"
+                step="0.01"
+                [value]="vtiMedio"
+              />
               <span matTextPrefix>R$&nbsp;</span>
             </mat-form-field>
 
@@ -194,7 +187,13 @@
 
             <mat-form-field appearance="outline">
               <mat-label>VTN estimado</mat-label>
-              <input matInput readonly type="number" step="0.01" />
+              <input
+                matInput
+                readonly
+                type="number"
+                step="0.01"
+                [value]="vtnMedio"
+              />
               <span matTextPrefix>R$&nbsp;</span>
             </mat-form-field>
 
@@ -215,70 +214,6 @@
               <input matInput readonly type="number" step="0.01" />
               <span matTextPrefix>R$&nbsp;</span>
             </mat-form-field>
-
-            <!-- ============================================================ -->
-            <!-- BLOCO: Natureza ocupacional                                  -->
-            <!-- ============================================================ 
-    <div class="section-title">
-      <h3>Natureza ocupacional</h3>
-    </div>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Entidade Demandante</mat-label>
-      <input matInput readonly />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Acampamento Vinculado</mat-label>
-      <input matInput readonly />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Imóvel atualmente ocupado?</mat-label>
-      <input matInput readonly />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Ações de Reintegração de Posse</mat-label>
-      <input matInput readonly />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Órgão Concorrente</mat-label>
-      <input matInput readonly />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Capacidade de Assentamento</mat-label>
-      <input matInput readonly type="number" step="1" />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Famílias Cadastradas</mat-label>
-      <input matInput readonly type="number" step="1" />
-    </mat-form-field>-->
-
-            <!-- ============================================================ -->
-            <!-- BLOCO: Dados do processo de obtenção                         -->
-            <!-- ============================================================ 
-    <div class="section-title">
-      <h3>Dados do processo de obtenção</h3>
-    </div>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Processo SEI</mat-label>
-      <input matInput readonly />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Processo Cadeia Dominial</mat-label>
-      <input matInput readonly />
-    </mat-form-field>
-
-    <mat-form-field appearance="outline">
-      <mat-label>Fase atual do processo</mat-label>
-      <input matInput readonly />
-    </mat-form-field>-->
           </div>
         </mat-expansion-panel>
 
@@ -297,46 +232,42 @@
             </mat-panel-description>
           </mat-expansion-panel-header>
 
-          <div class="section-title">
-            <!--<mat-icon>assignment</mat-icon>
-
-          <div>
-            <h2>Dados de obtenção</h2>
-            <p>
-              Informações relacionadas ao processo de obtenção e destinação do
-              imóvel.
-            </p>
-          </div>-->
-          </div>
+          <div class="section-title"></div>
 
           <div class="form-grid">
-            <!--<div class="section-title">
-            <h3>Natureza ocupacional</h3>
-          </div>-->
-
             <mat-form-field appearance="outline">
               <mat-label>Entidade Demandante</mat-label>
-              <input matInput readonly />
+              <input matInput readonly [value]="entidadeDemandante" />
             </mat-form-field>
 
             <mat-form-field appearance="outline">
               <mat-label>Acampamento Vinculado</mat-label>
-              <input matInput readonly />
+              <input matInput readonly [value]="acampamentoVinculado" />
             </mat-form-field>
 
             <mat-form-field appearance="outline">
               <mat-label>Imóvel atualmente ocupado?</mat-label>
-              <input matInput readonly />
+              <input
+                matInput
+                readonly
+                [value]="
+                  imovelOcupado === 'sim'
+                    ? 'Sim'
+                    : imovelOcupado === 'nao'
+                      ? 'Não'
+                      : ''
+                "
+              />
             </mat-form-field>
 
             <mat-form-field appearance="outline">
               <mat-label>Ações de Reintegração de Posse</mat-label>
-              <input matInput readonly />
+              <input matInput readonly [value]="acoesReintegracao" />
             </mat-form-field>
 
             <mat-form-field appearance="outline">
               <mat-label>Órgão Concorrente</mat-label>
-              <input matInput readonly />
+              <input matInput readonly [value]="orgaoConcorrente" />
             </mat-form-field>
 
             <mat-form-field appearance="outline">
@@ -346,7 +277,13 @@
 
             <mat-form-field appearance="outline">
               <mat-label>Famílias Cadastradas</mat-label>
-              <input matInput readonly type="number" step="1" />
+              <input
+                matInput
+                readonly
+                type="number"
+                step="1"
+                [value]="familiasCadastradas"
+              />
             </mat-form-field>
           </div>
         </mat-expansion-panel>
@@ -375,7 +312,7 @@
 
             <mat-form-field appearance="outline">
               <mat-label>Processo SEI</mat-label>
-              <input matInput readonly />
+              <input matInput readonly [value]="processoSei" />
             </mat-form-field>
 
             <mat-form-field appearance="outline">
@@ -385,7 +322,7 @@
 
             <mat-form-field appearance="outline">
               <mat-label>Fase atual do processo</mat-label>
-              <input matInput readonly />
+              <input matInput readonly [value]="faseAtualProcesso" />
             </mat-form-field>
           </div>
         </mat-expansion-panel>
@@ -404,7 +341,8 @@
               Acompanhamento das fases e documentos processuais
             </mat-panel-description>
           </mat-expansion-panel-header>
-          <!--*********************************************************Desapropriação Lei 8.629/93***************************************************-->
+
+          <!--********************* Desapropriação Lei 8.629/93 *********************-->
           <ng-container
             *ngIf="dados.imovel.modalidade === 'Desapropriação Lei 8.629/93'"
           >
@@ -435,7 +373,6 @@
                     </thead>
 
                     <tbody>
-                      <!-- a) Expediente de abertura -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -474,7 +411,6 @@
                         </td>
                       </tr>
 
-                      <!-- b) Espelho do Imóvel -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -504,7 +440,6 @@
                         </td>
                       </tr>
 
-                      <!-- c) Planta mapa imóvel PDF -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -534,7 +469,6 @@
                         </td>
                       </tr>
 
-                      <!-- d) Planta mapa vetorial -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -564,7 +498,6 @@
                         </td>
                       </tr>
 
-                      <!-- e) Certidão atualizada -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -597,7 +530,6 @@
                         </td>
                       </tr>
 
-                      <!-- f) Memorial descritivo -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -627,7 +559,6 @@
                         </td>
                       </tr>
 
-                      <!-- g) Observação -->
                       <tr>
                         <td colspan="3">
                           <mat-form-field
@@ -652,10 +583,6 @@
                 </div>
               </mat-step>
 
-              <!-- ===================================================== -->
-              <!-- FASE 2 - ANÁLISE PRELIMINAR DE VIABILIDADE -->
-              <!-- ===================================================== -->
-
               <mat-step>
                 <ng-template matStepLabel>
                   Análise preliminar de viabilidade
@@ -672,7 +599,6 @@
                     </thead>
 
                     <tbody>
-                      <!-- a) Estudo Preliminar -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -705,7 +631,6 @@
                         </td>
                       </tr>
 
-                      <!-- Observação -->
                       <tr>
                         <td colspan="3">
                           <mat-form-field
@@ -734,10 +659,6 @@
                 </div>
               </mat-step>
 
-              <!-- ===================================================== -->
-              <!-- FASE 3 - VISTORIA DE CAMPO -->
-              <!-- ===================================================== -->
-
               <mat-step>
                 <ng-template matStepLabel>Vistoria de Campo</ng-template>
 
@@ -752,7 +673,6 @@
                     </thead>
 
                     <tbody>
-                      <!-- a) Solicitar SNCR Inibido -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -789,7 +709,6 @@
                         </td>
                       </tr>
 
-                      <!-- b) Notificação ao Proprietário -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -824,7 +743,6 @@
                         </td>
                       </tr>
 
-                      <!-- c) Notificação ao Cartório -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -862,7 +780,6 @@
                         </td>
                       </tr>
 
-                      <!-- d) Ordem de Serviço -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -899,7 +816,6 @@
                         </td>
                       </tr>
 
-                      <!-- e) Relatório de Viagem -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -936,7 +852,6 @@
                         </td>
                       </tr>
 
-                      <!-- Observação -->
                       <tr>
                         <td colspan="3">
                           <mat-form-field
@@ -965,10 +880,6 @@
                 </div>
               </mat-step>
 
-              <!-- ===================================================== -->
-              <!-- FASE 4 - ELABORAÇÃO DE LAUDOS -->
-              <!-- ===================================================== -->
-
               <mat-step>
                 <ng-template matStepLabel> Elaboração de Laudos </ng-template>
 
@@ -983,7 +894,6 @@
                     </thead>
 
                     <tbody>
-                      <!-- a) LAF -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -1013,7 +923,6 @@
                         </td>
                       </tr>
 
-                      <!-- b) Espelho SNCR atualizado -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -1051,7 +960,6 @@
                         </td>
                       </tr>
 
-                      <!-- c) LVA -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -1081,7 +989,6 @@
                         </td>
                       </tr>
 
-                      <!-- d) Validação do LVA -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -1118,7 +1025,6 @@
                         </td>
                       </tr>
 
-                      <!-- Observação -->
                       <tr>
                         <td colspan="3">
                           <mat-form-field
@@ -1146,10 +1052,6 @@
                 </div>
               </mat-step>
 
-              <!-- ===================================================== -->
-              <!-- FASE 5 - IMPUGNAÇÃO E RECURSO ADMINISTRATIVO -->
-              <!-- ===================================================== -->
-
               <mat-step>
                 <ng-template matStepLabel>
                   Impugnação e recurso administrativo
@@ -1166,7 +1068,6 @@
                     </thead>
 
                     <tbody>
-                      <!-- a) Notificação da Atualização Cadastral e Classificação Fundiária -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -1208,7 +1109,6 @@
                         </td>
                       </tr>
 
-                      <!-- b) Proposta de Acordo em audiência extrajudicial -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -1246,7 +1146,6 @@
                         </td>
                       </tr>
 
-                      <!-- c) Assinatura de Protocolo de Intenções -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -1284,7 +1183,6 @@
                         </td>
                       </tr>
 
-                      <!-- d) Impugnação LAF -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -1319,7 +1217,6 @@
                         </td>
                       </tr>
 
-                      <!-- e) Análise Técnica da Impugnação do Laudo -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -1356,7 +1253,6 @@
                         </td>
                       </tr>
 
-                      <!-- f) Análise Jurídica da Impugnação do Laudo -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -1393,7 +1289,6 @@
                         </td>
                       </tr>
 
-                      <!-- g) Atualização cadastral - possível reclassificação -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -1430,7 +1325,6 @@
                         </td>
                       </tr>
 
-                      <!-- h) Ofício ao proprietário -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -1468,7 +1362,6 @@
                         </td>
                       </tr>
 
-                      <!-- i) Recurso Administrativo -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -1503,7 +1396,6 @@
                         </td>
                       </tr>
 
-                      <!-- j) Análise do Recurso Administrativo -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -1540,7 +1432,6 @@
                         </td>
                       </tr>
 
-                      <!-- k) Atualização cadastral - possível reclassificação -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -1577,7 +1468,6 @@
                         </td>
                       </tr>
 
-                      <!-- l) Comunicação da Decisão do CDR -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -1615,7 +1505,6 @@
                         </td>
                       </tr>
 
-                      <!-- m) Resolução (ata) do CDR -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -1648,7 +1537,6 @@
                         </td>
                       </tr>
 
-                      <!-- n) Comprovação de Intervenção Judicial -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -1687,7 +1575,6 @@
                         </td>
                       </tr>
 
-                      <!-- Observação -->
                       <tr>
                         <td colspan="3">
                           <mat-form-field
@@ -1716,10 +1603,7 @@
                 </div>
               </mat-step>
 
-              <!-- ===================================================== -->
-              <!-- FASE 6 - CONSULTA SOBREPOSIÇÃO DE INTERESSES PÚBLICOS -->
-              <!-- ===================================================== -->
-
+              <!-- FASE 6 - Consulta sobreposição -->
               <mat-step>
                 <ng-template matStepLabel>
                   Consulta sobreposição de interesses públicos
@@ -1737,14 +1621,12 @@
                     </thead>
 
                     <tbody>
-                      <!-- Órgão estadual de terras -->
                       <tr>
                         <td>
                           <span class="nome-orgao">
                             Órgão estadual de terras
                           </span>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Data de consulta</mat-label>
@@ -1752,19 +1634,16 @@
                               matInput
                               [matDatepicker]="pickerOrgaoTerrasConsulta"
                             />
-
                             <mat-datepicker-toggle
                               matIconSuffix
                               [for]="pickerOrgaoTerrasConsulta"
                             >
                             </mat-datepicker-toggle>
-
                             <mat-datepicker
                               #pickerOrgaoTerrasConsulta
                             ></mat-datepicker>
                           </mat-form-field>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Data de resposta</mat-label>
@@ -1772,23 +1651,19 @@
                               matInput
                               [matDatepicker]="pickerOrgaoTerrasResposta"
                             />
-
                             <mat-datepicker-toggle
                               matIconSuffix
                               [for]="pickerOrgaoTerrasResposta"
                             >
                             </mat-datepicker-toggle>
-
                             <mat-datepicker
                               #pickerOrgaoTerrasResposta
                             ></mat-datepicker>
                           </mat-form-field>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Resposta</mat-label>
-
                             <mat-select>
                               <mat-option value="sim">Sim</mat-option>
                               <mat-option value="nao">Não</mat-option>
@@ -1800,14 +1675,12 @@
                         </td>
                       </tr>
 
-                      <!-- Órgão estadual de meio ambiente -->
                       <tr>
                         <td>
                           <span class="nome-orgao">
                             Órgão estadual de meio ambiente
                           </span>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Data de consulta</mat-label>
@@ -1815,19 +1688,16 @@
                               matInput
                               [matDatepicker]="pickerMeioAmbienteConsulta"
                             />
-
                             <mat-datepicker-toggle
                               matIconSuffix
                               [for]="pickerMeioAmbienteConsulta"
                             >
                             </mat-datepicker-toggle>
-
                             <mat-datepicker
                               #pickerMeioAmbienteConsulta
                             ></mat-datepicker>
                           </mat-form-field>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Data de resposta</mat-label>
@@ -1835,23 +1705,19 @@
                               matInput
                               [matDatepicker]="pickerMeioAmbienteResposta"
                             />
-
                             <mat-datepicker-toggle
                               matIconSuffix
                               [for]="pickerMeioAmbienteResposta"
                             >
                             </mat-datepicker-toggle>
-
                             <mat-datepicker
                               #pickerMeioAmbienteResposta
                             ></mat-datepicker>
                           </mat-form-field>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Resposta</mat-label>
-
                             <mat-select>
                               <mat-option value="sim">Sim</mat-option>
                               <mat-option value="nao">Não</mat-option>
@@ -1863,14 +1729,12 @@
                         </td>
                       </tr>
 
-                      <!-- Município -->
                       <tr>
                         <td>
                           <span class="nome-orgao">
                             Município onde se localiza o imóvel
                           </span>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Data de consulta</mat-label>
@@ -1878,19 +1742,16 @@
                               matInput
                               [matDatepicker]="pickerMunicipioConsulta"
                             />
-
                             <mat-datepicker-toggle
                               matIconSuffix
                               [for]="pickerMunicipioConsulta"
                             >
                             </mat-datepicker-toggle>
-
                             <mat-datepicker
                               #pickerMunicipioConsulta
                             ></mat-datepicker>
                           </mat-form-field>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Data de resposta</mat-label>
@@ -1898,23 +1759,19 @@
                               matInput
                               [matDatepicker]="pickerMunicipioResposta"
                             />
-
                             <mat-datepicker-toggle
                               matIconSuffix
                               [for]="pickerMunicipioResposta"
                             >
                             </mat-datepicker-toggle>
-
                             <mat-datepicker
                               #pickerMunicipioResposta
                             ></mat-datepicker>
                           </mat-form-field>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Resposta</mat-label>
-
                             <mat-select>
                               <mat-option value="sim">Sim</mat-option>
                               <mat-option value="nao">Não</mat-option>
@@ -1926,14 +1783,12 @@
                         </td>
                       </tr>
 
-                      <!-- FUNAI -->
                       <tr>
                         <td>
                           <span class="nome-orgao">
                             Fundação Nacional dos Povos Indígenas - Funai
                           </span>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Data de consulta</mat-label>
@@ -1941,19 +1796,16 @@
                               matInput
                               [matDatepicker]="pickerFunaiConsulta"
                             />
-
                             <mat-datepicker-toggle
                               matIconSuffix
                               [for]="pickerFunaiConsulta"
                             >
                             </mat-datepicker-toggle>
-
                             <mat-datepicker
                               #pickerFunaiConsulta
                             ></mat-datepicker>
                           </mat-form-field>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Data de resposta</mat-label>
@@ -1961,23 +1813,19 @@
                               matInput
                               [matDatepicker]="pickerFunaiResposta"
                             />
-
                             <mat-datepicker-toggle
                               matIconSuffix
                               [for]="pickerFunaiResposta"
                             >
                             </mat-datepicker-toggle>
-
                             <mat-datepicker
                               #pickerFunaiResposta
                             ></mat-datepicker>
                           </mat-form-field>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Resposta</mat-label>
-
                             <mat-select>
                               <mat-option value="sim">Sim</mat-option>
                               <mat-option value="nao">Não</mat-option>
@@ -1989,14 +1837,12 @@
                         </td>
                       </tr>
 
-                      <!-- ANM -->
                       <tr>
                         <td>
                           <span class="nome-orgao">
                             Agência Nacional de Mineração - ANM
                           </span>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Data de consulta</mat-label>
@@ -2004,17 +1850,14 @@
                               matInput
                               [matDatepicker]="pickerAnmConsulta"
                             />
-
                             <mat-datepicker-toggle
                               matIconSuffix
                               [for]="pickerAnmConsulta"
                             >
                             </mat-datepicker-toggle>
-
                             <mat-datepicker #pickerAnmConsulta></mat-datepicker>
                           </mat-form-field>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Data de resposta</mat-label>
@@ -2022,21 +1865,17 @@
                               matInput
                               [matDatepicker]="pickerAnmResposta"
                             />
-
                             <mat-datepicker-toggle
                               matIconSuffix
                               [for]="pickerAnmResposta"
                             >
                             </mat-datepicker-toggle>
-
                             <mat-datepicker #pickerAnmResposta></mat-datepicker>
                           </mat-form-field>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Resposta</mat-label>
-
                             <mat-select>
                               <mat-option value="sim">Sim</mat-option>
                               <mat-option value="nao">Não</mat-option>
@@ -2048,7 +1887,6 @@
                         </td>
                       </tr>
 
-                      <!-- IPHAN -->
                       <tr>
                         <td>
                           <span class="nome-orgao">
@@ -2056,7 +1894,6 @@
                             Nacional - IPHAN
                           </span>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Data de consulta</mat-label>
@@ -2064,19 +1901,16 @@
                               matInput
                               [matDatepicker]="pickerIphanConsulta"
                             />
-
                             <mat-datepicker-toggle
                               matIconSuffix
                               [for]="pickerIphanConsulta"
                             >
                             </mat-datepicker-toggle>
-
                             <mat-datepicker
                               #pickerIphanConsulta
                             ></mat-datepicker>
                           </mat-form-field>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Data de resposta</mat-label>
@@ -2084,23 +1918,19 @@
                               matInput
                               [matDatepicker]="pickerIphanResposta"
                             />
-
                             <mat-datepicker-toggle
                               matIconSuffix
                               [for]="pickerIphanResposta"
                             >
                             </mat-datepicker-toggle>
-
                             <mat-datepicker
                               #pickerIphanResposta
                             ></mat-datepicker>
                           </mat-form-field>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Resposta</mat-label>
-
                             <mat-select>
                               <mat-option value="sim">Sim</mat-option>
                               <mat-option value="nao">Não</mat-option>
@@ -2112,7 +1942,6 @@
                         </td>
                       </tr>
 
-                      <!-- ICMBio -->
                       <tr>
                         <td>
                           <span class="nome-orgao">
@@ -2120,7 +1949,6 @@
                             Biodiversidade - ICMBio
                           </span>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Data de consulta</mat-label>
@@ -2128,19 +1956,16 @@
                               matInput
                               [matDatepicker]="pickerIcmbioConsulta"
                             />
-
                             <mat-datepicker-toggle
                               matIconSuffix
                               [for]="pickerIcmbioConsulta"
                             >
                             </mat-datepicker-toggle>
-
                             <mat-datepicker
                               #pickerIcmbioConsulta
                             ></mat-datepicker>
                           </mat-form-field>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Data de resposta</mat-label>
@@ -2148,23 +1973,19 @@
                               matInput
                               [matDatepicker]="pickerIcmbioResposta"
                             />
-
                             <mat-datepicker-toggle
                               matIconSuffix
                               [for]="pickerIcmbioResposta"
                             >
                             </mat-datepicker-toggle>
-
                             <mat-datepicker
                               #pickerIcmbioResposta
                             ></mat-datepicker>
                           </mat-form-field>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Resposta</mat-label>
-
                             <mat-select>
                               <mat-option value="sim">Sim</mat-option>
                               <mat-option value="nao">Não</mat-option>
@@ -2176,14 +1997,12 @@
                         </td>
                       </tr>
 
-                      <!-- SPU -->
                       <tr>
                         <td>
                           <span class="nome-orgao">
                             Secretaria do Patrimônio da União
                           </span>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Data de consulta</mat-label>
@@ -2191,17 +2010,14 @@
                               matInput
                               [matDatepicker]="pickerSpuConsulta"
                             />
-
                             <mat-datepicker-toggle
                               matIconSuffix
                               [for]="pickerSpuConsulta"
                             >
                             </mat-datepicker-toggle>
-
                             <mat-datepicker #pickerSpuConsulta></mat-datepicker>
                           </mat-form-field>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Data de resposta</mat-label>
@@ -2209,21 +2025,17 @@
                               matInput
                               [matDatepicker]="pickerSpuResposta"
                             />
-
                             <mat-datepicker-toggle
                               matIconSuffix
                               [for]="pickerSpuResposta"
                             >
                             </mat-datepicker-toggle>
-
                             <mat-datepicker #pickerSpuResposta></mat-datepicker>
                           </mat-form-field>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Resposta</mat-label>
-
                             <mat-select>
                               <mat-option value="sim">Sim</mat-option>
                               <mat-option value="nao">Não</mat-option>
@@ -2235,73 +2047,10 @@
                         </td>
                       </tr>
 
-                      <!-- Fundação Palmares 
-                      <tr>
-                        <td>
-                          <span class="nome-orgao"> Fundação Palmares </span>
-                        </td>
-
-                        <td>
-                          <mat-form-field appearance="outline">
-                            <mat-label>Data de consulta</mat-label>
-                            <input
-                              matInput
-                              [matDatepicker]="pickerPalmaresConsulta"
-                            />
-
-                            <mat-datepicker-toggle
-                              matIconSuffix
-                              [for]="pickerPalmaresConsulta"
-                            >
-                            </mat-datepicker-toggle>
-
-                            <mat-datepicker
-                              #pickerPalmaresConsulta
-                            ></mat-datepicker>
-                          </mat-form-field>
-                        </td>
-
-                        <td>
-                          <mat-form-field appearance="outline">
-                            <mat-label>Data de resposta</mat-label>
-                            <input
-                              matInput
-                              [matDatepicker]="pickerPalmaresResposta"
-                            />
-
-                            <mat-datepicker-toggle
-                              matIconSuffix
-                              [for]="pickerPalmaresResposta"
-                            >
-                            </mat-datepicker-toggle>
-
-                            <mat-datepicker
-                              #pickerPalmaresResposta
-                            ></mat-datepicker>
-                          </mat-form-field>
-                        </td>
-
-                        <td>
-                          <mat-form-field appearance="outline">
-                            <mat-label>Resposta</mat-label>
-
-                            <mat-select>
-                              <mat-option value="sim">Sim</mat-option>
-                              <mat-option value="nao">Não</mat-option>
-                              <mat-option value="sem-resposta"
-                                >Sem resposta</mat-option
-                              >
-                            </mat-select>
-                          </mat-form-field>
-                        </td>
-                      </tr>-->
-
-                      <!-- Divisão Quilombola -->
                       <tr>
                         <td>
                           <span class="nome-orgao"> Divisão Quilombola </span>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Data de consulta</mat-label>
@@ -2309,19 +2058,16 @@
                               matInput
                               [matDatepicker]="pickerQuilombolaConsulta"
                             />
-
                             <mat-datepicker-toggle
                               matIconSuffix
                               [for]="pickerQuilombolaConsulta"
                             >
                             </mat-datepicker-toggle>
-
                             <mat-datepicker
                               #pickerQuilombolaConsulta
                             ></mat-datepicker>
                           </mat-form-field>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Data de resposta</mat-label>
@@ -2329,23 +2075,19 @@
                               matInput
                               [matDatepicker]="pickerQuilombolaResposta"
                             />
-
                             <mat-datepicker-toggle
                               matIconSuffix
                               [for]="pickerQuilombolaResposta"
                             >
                             </mat-datepicker-toggle>
-
                             <mat-datepicker
                               #pickerQuilombolaResposta
                             ></mat-datepicker>
                           </mat-form-field>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Resposta</mat-label>
-
                             <mat-select>
                               <mat-option value="sim">Sim</mat-option>
                               <mat-option value="nao">Não</mat-option>
@@ -2369,10 +2111,6 @@
                 </div>
               </mat-step>
 
-              <!-- ===================================================== -->
-              <!-- FASE 7 - ANÁLISE DA CADEIA DOMINIAL -->
-              <!-- ===================================================== -->
-
               <mat-step>
                 <ng-template matStepLabel>
                   Análise da Cadeia Dominial
@@ -2389,7 +2127,6 @@
                     </thead>
 
                     <tbody>
-                      <!-- a) Certidões de cadeia dominial -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -2397,7 +2134,6 @@
                             <input matInput />
                           </mat-form-field>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Data</mat-label>
@@ -2415,7 +2151,6 @@
                             ></mat-datepicker>
                           </mat-form-field>
                         </td>
-
                         <td>
                           <a href="javascript:void(0)" class="anexo-link">
                             <mat-icon>attach_file</mat-icon>
@@ -2424,7 +2159,6 @@
                         </td>
                       </tr>
 
-                      <!-- b) Extrato da cadeia dominial -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -2432,7 +2166,6 @@
                             <input matInput />
                           </mat-form-field>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Data</mat-label>
@@ -2450,7 +2183,6 @@
                             ></mat-datepicker>
                           </mat-form-field>
                         </td>
-
                         <td>
                           <a href="javascript:void(0)" class="anexo-link">
                             <mat-icon>attach_file</mat-icon>
@@ -2459,7 +2191,6 @@
                         </td>
                       </tr>
 
-                      <!-- c) Parecer sobre a cadeia dominial -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -2469,7 +2200,6 @@
                             <input matInput />
                           </mat-form-field>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Data</mat-label>
@@ -2487,7 +2217,6 @@
                             ></mat-datepicker>
                           </mat-form-field>
                         </td>
-
                         <td>
                           <a href="javascript:void(0)" class="anexo-link">
                             <mat-icon>attach_file</mat-icon>
@@ -2496,7 +2225,6 @@
                         </td>
                       </tr>
 
-                      <!-- d) Parecer jurídico conclusivo -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -2504,7 +2232,6 @@
                             <input matInput />
                           </mat-form-field>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Data</mat-label>
@@ -2522,7 +2249,6 @@
                             ></mat-datepicker>
                           </mat-form-field>
                         </td>
-
                         <td>
                           <a href="javascript:void(0)" class="anexo-link">
                             <mat-icon>attach_file</mat-icon>
@@ -2531,7 +2257,6 @@
                         </td>
                       </tr>
 
-                      <!-- Observação -->
                       <tr>
                         <td colspan="3">
                           <mat-form-field
@@ -2559,10 +2284,6 @@
                   </div>
                 </div>
               </mat-step>
-
-              <!-- ===================================================== -->
-              <!-- FASE 8 - REVISÃO PROCESSUAL E DELIBERAÇÃO DO CDR -->
-              <!-- ===================================================== -->
 
               <mat-step>
                 <ng-template matStepLabel>
@@ -2580,7 +2301,6 @@
                     </thead>
 
                     <tbody>
-                      <!-- a) Parecer Técnico Revisor -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -2590,7 +2310,6 @@
                             <input matInput />
                           </mat-form-field>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Data</mat-label>
@@ -2608,7 +2327,6 @@
                             ></mat-datepicker>
                           </mat-form-field>
                         </td>
-
                         <td>
                           <a href="javascript:void(0)" class="anexo-link">
                             <mat-icon>attach_file</mat-icon>
@@ -2617,7 +2335,6 @@
                         </td>
                       </tr>
 
-                      <!-- b) Parecer Jurídico PFE -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -2628,7 +2345,6 @@
                             <input matInput />
                           </mat-form-field>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Data</mat-label>
@@ -2646,7 +2362,6 @@
                             ></mat-datepicker>
                           </mat-form-field>
                         </td>
-
                         <td>
                           <a href="javascript:void(0)" class="anexo-link">
                             <mat-icon>attach_file</mat-icon>
@@ -2655,7 +2370,6 @@
                         </td>
                       </tr>
 
-                      <!-- c) Resolução do CDR -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -2666,7 +2380,6 @@
                             <input matInput />
                           </mat-form-field>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Data</mat-label>
@@ -2684,7 +2397,6 @@
                             ></mat-datepicker>
                           </mat-form-field>
                         </td>
-
                         <td>
                           <a href="javascript:void(0)" class="anexo-link">
                             <mat-icon>attach_file</mat-icon>
@@ -2693,7 +2405,6 @@
                         </td>
                       </tr>
 
-                      <!-- d) Resolução do Conselho Diretor - CD -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -2704,7 +2415,6 @@
                             <input matInput />
                           </mat-form-field>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Data</mat-label>
@@ -2720,7 +2430,6 @@
                             <mat-datepicker #pickerResolucaoCd></mat-datepicker>
                           </mat-form-field>
                         </td>
-
                         <td>
                           <a href="javascript:void(0)" class="anexo-link">
                             <mat-icon>attach_file</mat-icon>
@@ -2729,7 +2438,6 @@
                         </td>
                       </tr>
 
-                      <!-- e) Expediente do Superintendente -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -2740,7 +2448,6 @@
                             <input matInput />
                           </mat-form-field>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Data</mat-label>
@@ -2758,7 +2465,6 @@
                             ></mat-datepicker>
                           </mat-form-field>
                         </td>
-
                         <td>
                           <a href="javascript:void(0)" class="anexo-link">
                             <mat-icon>attach_file</mat-icon>
@@ -2767,7 +2473,6 @@
                         </td>
                       </tr>
 
-                      <!-- Observação -->
                       <tr>
                         <td colspan="3">
                           <mat-form-field
@@ -2795,10 +2500,6 @@
                   </div>
                 </div>
               </mat-step>
-
-              <!-- ===================================================== -->
-              <!-- FASE 9 - ANÁLISE DE CUMPRIMENTO DA INSTRUÇÃO PROCESSUAL -->
-              <!-- ===================================================== -->
 
               <mat-step>
                 <ng-template matStepLabel>
@@ -2816,7 +2517,6 @@
                     </thead>
 
                     <tbody>
-                      <!-- a) Análise de Conformidade -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -2826,7 +2526,6 @@
                             <input matInput />
                           </mat-form-field>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Data</mat-label>
@@ -2844,7 +2543,6 @@
                             ></mat-datepicker>
                           </mat-form-field>
                         </td>
-
                         <td>
                           <a href="javascript:void(0)" class="anexo-link">
                             <mat-icon>attach_file</mat-icon>
@@ -2853,7 +2551,6 @@
                         </td>
                       </tr>
 
-                      <!-- b) Despacho Decisório de aprovação -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -2863,7 +2560,6 @@
                             <input matInput />
                           </mat-form-field>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Data</mat-label>
@@ -2881,7 +2577,6 @@
                             ></mat-datepicker>
                           </mat-form-field>
                         </td>
-
                         <td>
                           <a href="javascript:void(0)" class="anexo-link">
                             <mat-icon>attach_file</mat-icon>
@@ -2890,7 +2585,6 @@
                         </td>
                       </tr>
 
-                      <!-- c) Resolução do CD -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -2900,7 +2594,6 @@
                             <input matInput />
                           </mat-form-field>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Data</mat-label>
@@ -2916,7 +2609,6 @@
                             <mat-datepicker #pickerResolucaoC></mat-datepicker>
                           </mat-form-field>
                         </td>
-
                         <td>
                           <a href="javascript:void(0)" class="anexo-link">
                             <mat-icon>attach_file</mat-icon>
@@ -2925,7 +2617,6 @@
                         </td>
                       </tr>
 
-                      <!-- Observação -->
                       <tr>
                         <td colspan="3">
                           <mat-form-field
@@ -2953,10 +2644,6 @@
                   </div>
                 </div>
               </mat-step>
-
-              <!-- ===================================================== -->
-              <!-- FASE 10 - ATOS PARA PUBLICAÇÃO DO DECRETO -->
-              <!-- ===================================================== -->
 
               <mat-step>
                 <ng-template matStepLabel>
@@ -2974,7 +2661,6 @@
                     </thead>
 
                     <tbody>
-                      <!-- a) Minutas de Exposição de Motivos e Conjunto Decreto -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -2985,7 +2671,6 @@
                             <input matInput />
                           </mat-form-field>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Data</mat-label>
@@ -3003,7 +2688,6 @@
                             ></mat-datepicker>
                           </mat-form-field>
                         </td>
-
                         <td>
                           <a href="javascript:void(0)" class="anexo-link">
                             <mat-icon>attach_file</mat-icon>
@@ -3012,7 +2696,6 @@
                         </td>
                       </tr>
 
-                      <!-- b) Ofício de encaminhamento para o MDA -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -3023,7 +2706,6 @@
                             <input matInput />
                           </mat-form-field>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Data</mat-label>
@@ -3039,7 +2721,6 @@
                             <mat-datepicker #pickerOficioMda2></mat-datepicker>
                           </mat-form-field>
                         </td>
-
                         <td>
                           <a href="javascript:void(0)" class="anexo-link">
                             <mat-icon>attach_file</mat-icon>
@@ -3048,7 +2729,6 @@
                         </td>
                       </tr>
 
-                      <!-- c) Decreto publicado no D.O.U. -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -3058,7 +2738,6 @@
                             <input matInput />
                           </mat-form-field>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Data</mat-label>
@@ -3074,7 +2753,6 @@
                             <mat-datepicker #pickerDecretoDou1></mat-datepicker>
                           </mat-form-field>
                         </td>
-
                         <td>
                           <a href="javascript:void(0)" class="anexo-link">
                             <mat-icon>attach_file</mat-icon>
@@ -3083,7 +2761,6 @@
                         </td>
                       </tr>
 
-                      <!-- Observação -->
                       <tr>
                         <td colspan="3">
                           <mat-form-field
@@ -3112,10 +2789,6 @@
                 </div>
               </mat-step>
 
-              <!-- ===================================================== -->
-              <!-- FASE 11 - ATOS PARA PAGAMENTO -->
-              <!-- ===================================================== -->
-
               <mat-step>
                 <ng-template matStepLabel> Atos para Pagamento </ng-template>
 
@@ -3130,7 +2803,6 @@
                     </thead>
 
                     <tbody>
-                      <!-- a) Despacho Decisório para Emissão de TDAs -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -3141,7 +2813,6 @@
                             <input matInput />
                           </mat-form-field>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Data</mat-label>
@@ -3159,7 +2830,6 @@
                             ></mat-datepicker>
                           </mat-form-field>
                         </td>
-
                         <td>
                           <a href="javascript:void(0)" class="anexo-link">
                             <mat-icon>attach_file</mat-icon>
@@ -3168,7 +2838,6 @@
                         </td>
                       </tr>
 
-                      <!-- b) Empenho dos Recursos -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -3176,7 +2845,6 @@
                             <input matInput />
                           </mat-form-field>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Data</mat-label>
@@ -3189,7 +2857,6 @@
                             <mat-datepicker #pickerEmpenho></mat-datepicker>
                           </mat-form-field>
                         </td>
-
                         <td>
                           <a href="javascript:void(0)" class="anexo-link">
                             <mat-icon>attach_file</mat-icon>
@@ -3198,7 +2865,6 @@
                         </td>
                       </tr>
 
-                      <!-- c) Ofício para solicitação de emissão de TDAs -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -3208,7 +2874,6 @@
                             <input matInput />
                           </mat-form-field>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Data</mat-label>
@@ -3224,7 +2889,6 @@
                             <mat-datepicker #pickerOficioTdas></mat-datepicker>
                           </mat-form-field>
                         </td>
-
                         <td>
                           <a href="javascript:void(0)" class="anexo-link">
                             <mat-icon>attach_file</mat-icon>
@@ -3233,7 +2897,6 @@
                         </td>
                       </tr>
 
-                      <!-- d) Demonstrativo de Lançamento de TDAs -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -3243,7 +2906,6 @@
                             <input matInput />
                           </mat-form-field>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Data</mat-label>
@@ -3261,7 +2923,6 @@
                             ></mat-datepicker>
                           </mat-form-field>
                         </td>
-
                         <td>
                           <a href="javascript:void(0)" class="anexo-link">
                             <mat-icon>attach_file</mat-icon>
@@ -3270,7 +2931,6 @@
                         </td>
                       </tr>
 
-                      <!-- Observação -->
                       <tr>
                         <td colspan="3">
                           <mat-form-field
@@ -3299,10 +2959,6 @@
                 </div>
               </mat-step>
 
-              <!-- ===================================================== -->
-              <!-- FASE 12 - AJUIZAMENTO -->
-              <!-- ===================================================== -->
-
               <mat-step>
                 <ng-template matStepLabel>Ajuizamento</ng-template>
 
@@ -3317,7 +2973,6 @@
                     </thead>
 
                     <tbody>
-                      <!-- a) Ajuizamento da ação desapropriatória -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -3327,7 +2982,6 @@
                             <input matInput />
                           </mat-form-field>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Data</mat-label>
@@ -3342,7 +2996,6 @@
                             <mat-datepicker #pickerAjuizamento></mat-datepicker>
                           </mat-form-field>
                         </td>
-
                         <td>
                           <a
                             href="javascript:void(0)"
@@ -3355,7 +3008,6 @@
                         </td>
                       </tr>
 
-                      <!-- b) Depósito Judicial -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -3363,7 +3015,6 @@
                             <input matInput />
                           </mat-form-field>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Data</mat-label>
@@ -3380,7 +3031,6 @@
                             ></mat-datepicker>
                           </mat-form-field>
                         </td>
-
                         <td>
                           <a
                             href="javascript:void(0)"
@@ -3393,7 +3043,6 @@
                         </td>
                       </tr>
 
-                      <!-- Observação -->
                       <tr>
                         <td colspan="3">
                           <mat-form-field
@@ -3421,10 +3070,6 @@
                 </div>
               </mat-step>
 
-              <!-- ===================================================== -->
-              <!-- FASE 13 - IMISSÃO DA POSSE -->
-              <!-- ===================================================== -->
-
               <mat-step>
                 <ng-template matStepLabel>Imissão da Posse</ng-template>
 
@@ -3439,7 +3084,6 @@
                     </thead>
 
                     <tbody>
-                      <!-- a) Auto de Imissão na Posse -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -3447,7 +3091,6 @@
                             <input matInput />
                           </mat-form-field>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Data</mat-label>
@@ -3464,7 +3107,6 @@
                             ></mat-datepicker>
                           </mat-form-field>
                         </td>
-
                         <td>
                           <a
                             href="javascript:void(0)"
@@ -3477,7 +3119,6 @@
                         </td>
                       </tr>
 
-                      <!-- Observação -->
                       <tr>
                         <td colspan="3">
                           <mat-form-field
@@ -3505,10 +3146,6 @@
                 </div>
               </mat-step>
 
-              <!-- ===================================================== -->
-              <!-- FASE 14 - DESTINAÇÃO DO IMÓVEL -->
-              <!-- ===================================================== -->
-
               <mat-step>
                 <ng-template matStepLabel>Destinação do Imóvel</ng-template>
 
@@ -3523,7 +3160,6 @@
                     </thead>
 
                     <tbody>
-                      <!-- a) Portaria de Criação de assentamento publicada no D.O.U. -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -3534,7 +3170,6 @@
                             <input matInput />
                           </mat-form-field>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Data</mat-label>
@@ -3551,7 +3186,6 @@
                             ></mat-datepicker>
                           </mat-form-field>
                         </td>
-
                         <td>
                           <a
                             href="javascript:void(0)"
@@ -3564,7 +3198,6 @@
                         </td>
                       </tr>
 
-                      <!-- b) Registro na Matrícula -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -3572,7 +3205,6 @@
                             <input matInput />
                           </mat-form-field>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Data</mat-label>
@@ -3589,7 +3221,6 @@
                             ></mat-datepicker>
                           </mat-form-field>
                         </td>
-
                         <td>
                           <a
                             href="javascript:void(0)"
@@ -3602,7 +3233,6 @@
                         </td>
                       </tr>
 
-                      <!-- c) Registro SPUNet -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -3610,7 +3240,6 @@
                             <input matInput />
                           </mat-form-field>
                         </td>
-
                         <td>
                           <mat-form-field appearance="outline">
                             <mat-label>Data</mat-label>
@@ -3627,7 +3256,6 @@
                             ></mat-datepicker>
                           </mat-form-field>
                         </td>
-
                         <td>
                           <a
                             href="javascript:void(0)"
@@ -3640,7 +3268,6 @@
                         </td>
                       </tr>
 
-                      <!-- Observação -->
                       <tr>
                         <td colspan="3">
                           <mat-form-field
@@ -3670,8 +3297,7 @@
             </mat-stepper>
           </ng-container>
 
-          <!--*********************************************************Desapropriação Desapropriação Lei 4132/62***************************************************-->
-
+          <!--***************** Desapropriação Lei 4132/62 *****************-->
           <ng-container
             *ngIf="dados.imovel.modalidade === 'Desapropriação Lei 4132/62'"
           >
@@ -3687,10 +3313,6 @@
                   </p>
                 </div>
               </div>
-
-              <!-- ========================================================= -->
-              <!-- FASE 1 - ABERTURA DE PROCESSO -->
-              <!-- ========================================================= -->
 
               <mat-step>
                 <ng-template matStepLabel>
@@ -3708,7 +3330,6 @@
                     </thead>
 
                     <tbody>
-                      <!-- a) -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -3744,7 +3365,6 @@
                         </td>
                       </tr>
 
-                      <!-- b) -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -3804,10 +3424,6 @@
                 </div>
               </mat-step>
 
-              <!-- ========================================================= -->
-              <!-- FASE 2 - ANÁLISE PRELIMINAR DE VIABILIDADE -->
-              <!-- ========================================================= -->
-
               <mat-step>
                 <ng-template matStepLabel>
                   Fase 2 - Análise Preliminar de Viabilidade
@@ -3824,7 +3440,6 @@
                     </thead>
 
                     <tbody>
-                      <!-- a) -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -3858,7 +3473,6 @@
                         </td>
                       </tr>
 
-                      <!-- b) -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -3892,7 +3506,6 @@
                         </td>
                       </tr>
 
-                      <!-- c) -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -3923,7 +3536,6 @@
                         </td>
                       </tr>
 
-                      <!-- d) -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -3957,7 +3569,6 @@
                         </td>
                       </tr>
 
-                      <!-- e) -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -3992,7 +3603,6 @@
                         </td>
                       </tr>
 
-                      <!-- f) -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -4026,7 +3636,6 @@
                         </td>
                       </tr>
 
-                      <!-- g) -->
                       <tr>
                         <td>
                           <mat-form-field appearance="outline">
@@ -4082,10 +3691,6 @@
                   </div>
                 </div>
               </mat-step>
-
-              <!-- ========================================================= -->
-              <!-- FASE 3 - CONSULTAS SOBREPOSIÇÃO DE INTERESSES PÚBLICOS -->
-              <!-- ========================================================= -->
 
               <mat-step>
                 <ng-template matStepLabel>
@@ -4463,10 +4068,6 @@
                 </div>
               </mat-step>
 
-              <!-- ========================================================= -->
-              <!-- FASE 4 - DELIBERAÇÃO DO CDR -->
-              <!-- ========================================================= -->
-
               <mat-step>
                 <ng-template matStepLabel>
                   Fase 4 - Deliberação do CDR sobre prosseguimento de obtenção
@@ -4702,10 +4303,6 @@
                 </div>
               </mat-step>
 
-              <!-- ========================================================= -->
-              <!-- FASE 5 - ANÁLISE DE CONFORMIDADE PROCESSUAL -->
-              <!-- ========================================================= -->
-
               <mat-step>
                 <ng-template matStepLabel>
                   Fase 5 - Análise de Conformidade Processual na DT e
@@ -4844,10 +4441,6 @@
                 </div>
               </mat-step>
 
-              <!-- ========================================================= -->
-              <!-- FASE 6 - ATOS PARA PUBLICAÇÃO DO DECRETO -->
-              <!-- ========================================================= -->
-
               <mat-step>
                 <ng-template matStepLabel>
                   Fase 6 - Atos para Publicação do Decreto
@@ -4952,10 +4545,6 @@
                   </div>
                 </div>
               </mat-step>
-
-              <!-- ========================================================= -->
-              <!-- FASE 7 - VISTORIA DE CAMPO -->
-              <!-- ========================================================= -->
 
               <mat-step>
                 <ng-template matStepLabel
@@ -5089,10 +4678,6 @@
                 </div>
               </mat-step>
 
-              <!-- ========================================================= -->
-              <!-- FASE 8 - ELABORAÇÃO DE LAUDOS -->
-              <!-- ========================================================= -->
-
               <mat-step>
                 <ng-template matStepLabel
                   >Fase 8 - Elaboração de Laudos</ng-template
@@ -5197,10 +4782,6 @@
                   </div>
                 </div>
               </mat-step>
-
-              <!-- ========================================================= -->
-              <!-- FASE 9 - ACORDO EXTRAJUDICIAL -->
-              <!-- ========================================================= -->
 
               <mat-step>
                 <ng-template matStepLabel
@@ -5340,10 +4921,6 @@
                 </div>
               </mat-step>
 
-              <!-- ========================================================= -->
-              <!-- FASE 10 - ATOS PARA PAGAMENTO -->
-              <!-- ========================================================= -->
-
               <mat-step>
                 <ng-template matStepLabel
                   >Fase 10 - Atos para Pagamento</ng-template
@@ -5442,10 +5019,6 @@
                   </div>
                 </div>
               </mat-step>
-
-              <!-- ========================================================= -->
-              <!-- FASE 11 - ANÁLISE DA CADEIA DOMINIAL -->
-              <!-- ========================================================= -->
 
               <mat-step>
                 <ng-template matStepLabel>
@@ -5607,10 +5180,6 @@
                   </div>
                 </div>
               </mat-step>
-
-              <!-- ========================================================= -->
-              <!-- FASE 12 - AJUIZAMENTO -->
-              <!-- ========================================================= -->
 
               <mat-step>
                 <ng-template matStepLabel>Fase 12 - Ajuizamento</ng-template>
@@ -5799,10 +5368,6 @@
                 </div>
               </mat-step>
 
-              <!-- ========================================================= -->
-              <!-- FASE 13 - IMISSÃO NA POSSE -->
-              <!-- ========================================================= -->
-
               <mat-step>
                 <ng-template matStepLabel
                   >Fase 13 - Imissão na Posse</ng-template
@@ -5871,10 +5436,6 @@
                   </div>
                 </div>
               </mat-step>
-
-              <!-- ========================================================= -->
-              <!-- FASE 14 - DESTINAÇÃO DO IMÓVEL -->
-              <!-- ========================================================= -->
 
               <mat-step>
                 <ng-template matStepLabel
@@ -6012,13 +5573,15 @@
             </mat-stepper>
           </ng-container>
 
-          <!--
-
-          *********************************************************Comrpa e venda***************************************************-->
+          <!--*************** Compra e Venda Decreto 433/92 ***************-->
           <ng-container
             *ngIf="dados.imovel.modalidade === 'Compra e Venda Decreto 433/92'"
           >
-            <mat-stepper orientation="vertical">
+            <!-- 👇 AQUI — escuta a mudança de passo -->
+            <mat-stepper
+              orientation="vertical"
+              (selectionChange)="onStepChange($event)"
+            >
               <div class="section-title">
                 <mat-icon>description</mat-icon>
 
@@ -6034,8 +5597,6 @@
               <!-- ========================================================= -->
               <!-- FASE 0 - ANÁLISE INICIAL -->
               <!-- ========================================================= -->
-
-              <!-- fase-0-analise-inicial.component.html -->
               <mat-step>
                 <ng-template matStepLabel>
                   Fase 0 - Análise Inicial
@@ -6049,7 +5610,10 @@
                     <div class="form-row">
                       <mat-form-field appearance="outline" class="field">
                         <mat-label>Modalidade de Obtenção</mat-label>
-                        <mat-select>
+                        <mat-select
+                          [(ngModel)]="modalidadeObtencao"
+                          name="modalidadeObtencao"
+                        >
                           <mat-option value="compra">Compra</mat-option>
                           <mat-option value="doacao">Doação</mat-option>
                           <mat-option value="desapropriacao"
@@ -6068,17 +5632,30 @@
                     <div class="form-row">
                       <mat-form-field appearance="outline" class="field">
                         <mat-label>Código SNCR</mat-label>
-                        <input matInput />
+                        <input
+                          matInput
+                          [(ngModel)]="codigoSncr"
+                          name="codigoSncr"
+                        />
                       </mat-form-field>
 
                       <mat-form-field appearance="outline" class="field">
                         <mat-label>Nome Imóvel</mat-label>
-                        <input matInput required />
+                        <input
+                          matInput
+                          required
+                          [(ngModel)]="nomeImovel"
+                          name="nomeImovel"
+                        />
                       </mat-form-field>
 
                       <mat-form-field appearance="outline" class="field">
                         <mat-label>UF</mat-label>
-                        <mat-select required>
+                        <mat-select
+                          required
+                          [(ngModel)]="ufSelecionada"
+                          name="ufSelecionada"
+                        >
                           <mat-option *ngFor="let uf of ufs" [value]="uf">{{
                             uf
                           }}</mat-option>
@@ -6087,7 +5664,11 @@
 
                       <mat-form-field appearance="outline" class="field">
                         <mat-label>Município</mat-label>
-                        <mat-select required>
+                        <mat-select
+                          required
+                          [(ngModel)]="municipioSelecionado"
+                          name="municipioSelecionado"
+                        >
                           <mat-option
                             *ngFor="let municipio of municipios"
                             [value]="municipio"
@@ -6103,7 +5684,11 @@
                           class="field-inner"
                         >
                           <mat-label>Matrícula(s)</mat-label>
-                          <input matInput />
+                          <input
+                            matInput
+                            [(ngModel)]="matricula"
+                            name="matricula"
+                          />
                         </mat-form-field>
 
                         <a
@@ -6119,12 +5704,20 @@
 
                       <mat-form-field appearance="outline" class="field">
                         <mat-label>Nome Proprietário</mat-label>
-                        <input matInput />
+                        <input
+                          matInput
+                          [(ngModel)]="nomeProprietario"
+                          name="nomeProprietario"
+                        />
                       </mat-form-field>
 
                       <mat-form-field appearance="outline" class="field">
                         <mat-label>CPF/CNPJ Proprietário</mat-label>
-                        <input matInput />
+                        <input
+                          matInput
+                          [(ngModel)]="cpfCnpjProprietario"
+                          name="cpfCnpjProprietario"
+                        />
                       </mat-form-field>
 
                       <mat-form-field appearance="outline" class="field">
@@ -6146,17 +5739,32 @@
                     <div class="form-row">
                       <mat-form-field appearance="outline" class="field">
                         <mat-label>Registrada (matrícula)</mat-label>
-                        <input matInput type="number" />
+                        <input
+                          matInput
+                          type="number"
+                          [(ngModel)]="areaRegistrada"
+                          name="areaRegistrada"
+                        />
                       </mat-form-field>
 
                       <mat-form-field appearance="outline" class="field">
                         <mat-label>Certificada (SNCR)</mat-label>
-                        <input matInput type="number" />
+                        <input
+                          matInput
+                          type="number"
+                          [(ngModel)]="areaCertificada"
+                          name="areaCertificada"
+                        />
                       </mat-form-field>
 
                       <mat-form-field appearance="outline" class="field">
                         <mat-label>VIsada</mat-label>
-                        <input matInput type="number" />
+                        <input
+                          matInput
+                          type="number"
+                          [(ngModel)]="areaVisada"
+                          name="areaVisada"
+                        />
                       </mat-form-field>
                     </div>
                   </section>
@@ -6168,12 +5776,22 @@
                     <div class="form-row">
                       <mat-form-field appearance="outline" class="field">
                         <mat-label>VTI médio</mat-label>
-                        <input matInput type="number" />
+                        <input
+                          matInput
+                          type="number"
+                          [(ngModel)]="vtiMedio"
+                          name="vtiMedio"
+                        />
                       </mat-form-field>
 
                       <mat-form-field appearance="outline" class="field">
                         <mat-label>VTN médio</mat-label>
-                        <input matInput type="number" />
+                        <input
+                          matInput
+                          type="number"
+                          [(ngModel)]="vtnMedio"
+                          name="vtnMedio"
+                        />
                       </mat-form-field>
                     </div>
                   </section>
@@ -6233,7 +5851,10 @@
                     <div class="form-row">
                       <mat-form-field appearance="outline" class="field">
                         <mat-label>Entidade Demandante</mat-label>
-                        <mat-select>
+                        <mat-select
+                          [(ngModel)]="entidadeDemandante"
+                          name="entidadeDemandante"
+                        >
                           <mat-option
                             *ngFor="let orgao of orgaos"
                             [value]="orgao"
@@ -6245,7 +5866,11 @@
 
                       <mat-form-field appearance="outline" class="field">
                         <mat-label>Acampamento Vinculado</mat-label>
-                        <input matInput />
+                        <input
+                          matInput
+                          [(ngModel)]="acampamentoVinculado"
+                          name="acampamentoVinculado"
+                        />
                       </mat-form-field>
                     </div>
 
@@ -6267,12 +5892,19 @@
                       <div class="form-row">
                         <mat-form-field appearance="outline" class="field">
                           <mat-label>Ações de Reintegração de Posse</mat-label>
-                          <input matInput />
+                          <input
+                            matInput
+                            [(ngModel)]="acoesReintegracao"
+                            name="acoesReintegracao"
+                          />
                         </mat-form-field>
 
                         <mat-form-field appearance="outline" class="field">
                           <mat-label>Órgão Concorrente</mat-label>
-                          <mat-select>
+                          <mat-select
+                            [(ngModel)]="orgaoConcorrente"
+                            name="orgaoConcorrente"
+                          >
                             <mat-option
                               *ngFor="let orgao of orgaos"
                               [value]="orgao"
@@ -6284,7 +5916,12 @@
 
                         <mat-form-field appearance="outline" class="field">
                           <mat-label>Famílias Cadastradas</mat-label>
-                          <input matInput type="number" />
+                          <input
+                            matInput
+                            type="number"
+                            [(ngModel)]="familiasCadastradas"
+                            name="familiasCadastradas"
+                          />
                         </mat-form-field>
                       </div>
                     </ng-container>
@@ -6328,30 +5965,26 @@
                 </div>
               </mat-step>
 
-              <!-- ========================================================= -->
               <!-- FASE 1 -->
-              <!-- ========================================================= -->
-
               <mat-step>
                 <ng-template matStepLabel>
                   Fase 1 - Abertura de Processo
                 </ng-template>
 
                 <div class="step-content">
-                  <!-- ============================================================ -->
-                  <!-- NOVA SEÇÃO — DOCUMENTOS DA ABERTURA DE PROCESSO (3 por linha) -->
-                  <!-- ============================================================ -->
                   <section class="form-section">
                     <h3>Documentos da Abertura de Processo</h3>
 
                     <div class="form-row">
-                      <!-- 1. Processo SEI -->
                       <mat-form-field appearance="outline" class="field">
                         <mat-label>Processo SEI</mat-label>
-                        <input matInput />
+                        <input
+                          matInput
+                          [(ngModel)]="processoSei"
+                          name="processoSei"
+                        />
                       </mat-form-field>
 
-                      <!-- 2. Oferta de venda pelo proprietário ou representante (valor) -->
                       <mat-form-field appearance="outline" class="field">
                         <mat-label
                           >Oferta de venda pelo proprietário ou
@@ -6360,7 +5993,6 @@
                         <input matInput type="number" />
                       </mat-form-field>
 
-                      <!-- 3. Edital de chamamento (anexo) — último campo da linha 1 -->
                       <div class="anexo-wrapper field">
                         <span class="anexo-label">Edital de chamamento:</span>
 
@@ -6375,7 +6007,6 @@
                         </a>
                       </div>
 
-                      <!-- 4. Cadastro outras partes envolvidas (opcional) -->
                       <mat-form-field appearance="outline" class="field">
                         <mat-label
                           >Cadastro outras partes envolvidas
@@ -6384,8 +6015,6 @@
                         <input matInput />
                       </mat-form-field>
 
-                      <!-- 5. Anexos da proposta de venda (anexo) — último campo da linha 2
-                      👇 modificador --end: alinha o conteúdo à direita -->
                       <div class="anexo-wrapper anexo-wrapper--end field">
                         <span class="anexo-label"
                           >Anexos da proposta de venda:</span
@@ -6406,7 +6035,6 @@
 
                   <section class="form-section">
                     <hr />
-                    <!-- Observação em largura total -->
                     <mat-form-field appearance="outline" class="full-width">
                       <mat-label>Observação</mat-label>
                       <textarea matInput rows="4"></textarea>
@@ -6414,15 +6042,15 @@
                   </section>
 
                   <div class="step-actions">
+                    <button mat-stroked-button matStepperPrevious>
+                      Voltar
+                    </button>
                     <button mat-flat-button matStepperNext>Próximo</button>
                   </div>
                 </div>
               </mat-step>
 
-              <!-- ========================================================= -->
               <!-- FASE 2 -->
-              <!-- ========================================================= -->
-
               <mat-step>
                 <ng-template matStepLabel>
                   Fase 2 - Instrução básica
@@ -6430,7 +6058,6 @@
                 <br />
 
                 <div class="form-grid-3">
-                  <!-- Linha 1: Espelho do Imóvel no SNCR -->
                   <div class="campo-com-anexo">
                     <mat-form-field appearance="outline">
                       <mat-label>Espelho do Imóvel no SNCR</mat-label>
@@ -6448,7 +6075,6 @@
                     </a>
                   </div>
 
-                  <!-- Linha 2: Demonstrativo do Imóvel no SICAR -->
                   <div class="campo-com-anexo">
                     <mat-form-field appearance="outline">
                       <mat-label>Demonstrativo do Imóvel no SICAR</mat-label>
@@ -6466,7 +6092,6 @@
                     </a>
                   </div>
 
-                  <!-- Linha 3: Matrícula(s) -->
                   <div class="campo-com-anexo">
                     <mat-form-field appearance="outline">
                       <mat-label>Matrícula(s)</mat-label>
@@ -6487,7 +6112,6 @@
                 <hr />
 
                 <div class="form-grid-3">
-                  <!-- Linha 4: Arquivo vetorial (shp) -->
                   <div class="campo-com-anexo">
                     <mat-form-field appearance="outline">
                       <mat-label>Arquivo vetorial (shp)</mat-label>
@@ -6505,7 +6129,6 @@
                     </a>
                   </div>
 
-                  <!-- Linha 5: Mapa (impresso/pdf) -->
                   <div class="campo-com-anexo">
                     <mat-form-field appearance="outline">
                       <mat-label>Mapa (impresso/pdf)</mat-label>
@@ -6523,7 +6146,6 @@
                     </a>
                   </div>
 
-                  <!-- Linha 6: Memorial descritivo (impresso/pdf editável) -->
                   <div class="campo-com-anexo">
                     <mat-form-field appearance="outline">
                       <mat-label
@@ -6555,10 +6177,7 @@
                 </div>
               </mat-step>
 
-              <!-- ========================================================= -->
               <!-- FASE 3 -->
-              <!-- ========================================================= -->
-
               <mat-step>
                 <ng-template matStepLabel>
                   Fase 3 - Elaboração de Laudos
@@ -6667,12 +6286,14 @@
                   <mat-label>Observação</mat-label>
                   <textarea matInput rows="4"></textarea>
                 </mat-form-field>
+
+                <div class="step-actions">
+                  <button mat-stroked-button matStepperPrevious>Voltar</button>
+                  <button mat-flat-button matStepperNext>Próximo</button>
+                </div>
               </mat-step>
 
-              <!-- ========================================================= -->
               <!-- FASE 4 -->
-              <!-- ========================================================= -->
-
               <mat-step>
                 <ng-template matStepLabel>
                   Fase 4 - Negociação de Compra e Venda
@@ -6747,16 +6368,7 @@
                 </div>
               </mat-step>
 
-              <!-- ========================================================= -->
-              <!-- FASE Ordem de Serviço -->
-              <!-- ========================================================= -->
-
-              <!---->
-
-              <!-- ========================================================= -->
-              <!-- FASE 6 -->
-              <!-- ========================================================= -->
-
+              <!-- FASE 5 -->
               <mat-step>
                 <ng-template matStepLabel>
                   Fase 5 - Publicidade da Proposta
@@ -6815,10 +6427,7 @@
                 </div>
               </mat-step>
 
-              <!-- ========================================================= -->
-              <!-- FASE 7 -->
-              <!-- ========================================================= -->
-
+              <!-- FASE 6 -->
               <mat-step>
                 <ng-template matStepLabel>
                   Fase 6 - Consulta sobreposição de interesses públicos
@@ -7229,10 +6838,7 @@
                 </div>
               </mat-step>
 
-              <!-- ========================================================= -->
-              <!-- FASE 8 -->
-              <!-- ========================================================= -->
-
+              <!-- FASE 7 -->
               <mat-step>
                 <ng-template matStepLabel>
                   Fase 7 - Análise da Cadeia Dominial
@@ -7320,10 +6926,7 @@
                 </div>
               </mat-step>
 
-              <!-- ========================================================= -->
-              <!-- FASE 89 -->
-              <!-- ========================================================= -->
-
+              <!-- FASE 8 -->
               <mat-step>
                 <ng-template matStepLabel>
                   Fase 8 - Emissão de Parecer Técnico Revisor
@@ -7394,10 +6997,7 @@
                 </div>
               </mat-step>
 
-              <!-- ========================================================= -->
-              <!-- FASE 10 -->
-              <!-- ========================================================= -->
-
+              <!-- FASE 9 -->
               <mat-step>
                 <ng-template matStepLabel>
                   Fase 9 - Deliberação do CDR
@@ -7463,10 +7063,7 @@
                 </div>
               </mat-step>
 
-              <!-- ========================================================= -->
-              <!-- FASE 11 -->
-              <!-- ========================================================= -->
-
+              <!-- FASE 10 -->
               <mat-step>
                 <ng-template matStepLabel>
                   Fase 10 - Deliberação do CD
@@ -7567,10 +7164,7 @@
                 </div>
               </mat-step>
 
-              <!-- ========================================================= -->
-              <!-- FASE 12 -->
-              <!-- ========================================================= -->
-
+              <!-- FASE 11 -->
               <mat-step>
                 <ng-template matStepLabel>
                   Fase 11 - Atos para Pagamento
@@ -7595,22 +7189,6 @@
                     <mat-icon>description</mat-icon>
                     Anexo
                   </a>
-                  <!--<mat-form-field appearance="outline" hidden>
-                    <mat-label>Empenho dos recursos</mat-label>
-                    <input matInput [matDatepicker]="pickerF11B" />
-                    <mat-datepicker-toggle matIconSuffix [for]="pickerF11B">
-                    </mat-datepicker-toggle>
-                    <mat-datepicker #pickerF11B></mat-datepicker>
-                  </mat-form-field>
-
-                  <a
-                    href="javascript:void(0)"
-                    class="anexo-link"
-                    aria-disabled="true"
-                  >
-                    <mat-icon>description</mat-icon>
-                    Anexo
-                  </a>-->
 
                   <mat-form-field appearance="outline">
                     <mat-label> Ofício solicitação de emissão TDAs </mat-label>
@@ -7652,7 +7230,7 @@
                   <textarea matInput rows="4"></textarea>
                 </mat-form-field>
 
-                <!-- ================= TABELA NOTA DE EMPENHO ================= -->
+                <!-- TABELA NOTA DE EMPENHO -->
                 <div class="nota-empenho-section">
                   <div class="nota-empenho-header">
                     <h3>Nota de Empenho</h3>
@@ -7673,13 +7251,11 @@
                     [dataSource]="notasEmpenho"
                     class="nota-empenho-table full-width"
                   >
-                    <!-- Número -->
                     <ng-container matColumnDef="numero">
                       <th mat-header-cell *matHeaderCellDef>Número</th>
                       <td mat-cell *matCellDef="let nota">{{ nota.numero }}</td>
                     </ng-container>
 
-                    <!-- Valor -->
                     <ng-container matColumnDef="valor">
                       <th mat-header-cell *matHeaderCellDef>Valor</th>
                       <td mat-cell *matCellDef="let nota">
@@ -7690,7 +7266,6 @@
                       </td>
                     </ng-container>
 
-                    <!-- Data de emissão -->
                     <ng-container matColumnDef="dataEmissao">
                       <th mat-header-cell *matHeaderCellDef>Data de emissão</th>
                       <td mat-cell *matCellDef="let nota">
@@ -7698,7 +7273,6 @@
                       </td>
                     </ng-container>
 
-                    <!-- Anexo de arquivo -->
                     <ng-container matColumnDef="anexo">
                       <th mat-header-cell *matHeaderCellDef>
                         Anexo de arquivo
@@ -7732,7 +7306,6 @@
                     Nenhuma nota de empenho cadastrada.
                   </div>
                 </div>
-                <!-- ================ FIM TABELA NOTA DE EMPENHO ================ -->
 
                 <div class="step-actions">
                   <button mat-stroked-button matStepperPrevious>Voltar</button>
@@ -7741,10 +7314,7 @@
                 </div>
               </mat-step>
 
-              <!-- ========================================================= -->
-              <!-- FASE 13 -->
-              <!-- ========================================================= -->
-
+              <!-- FASE 12 -->
               <mat-step>
                 <ng-template matStepLabel>
                   Fase 12 - Escrituração e Registro
@@ -7836,10 +7406,7 @@
                 </div>
               </mat-step>
 
-              <!-- ========================================================= -->
-              <!-- FASE 14 -->
-              <!-- ========================================================= -->
-
+              <!-- FASE 13 -->
               <mat-step>
                 <ng-template matStepLabel>
                   Fase 13 - Destinação do Imóvel
@@ -7853,10 +7420,7 @@
                   <textarea matInput rows="4"></textarea>
                 </mat-form-field>
 
-                <!-- ================================================= -->
                 <!-- PROJETO DE ASSENTAMENTO -->
-                <!-- ================================================= -->
-
                 <section class="form-section tabela-section">
                   <div class="section-header">
                     <div>
@@ -7944,10 +7508,7 @@
                   </ng-template>
                 </section>
 
-                <!-- ================================================= -->
                 <!-- REGISTRO DE MATRÍCULA -->
-                <!-- ================================================= -->
-
                 <section class="form-section tabela-section">
                   <div class="section-header">
                     <div>
@@ -8034,10 +7595,7 @@
                   </ng-template>
                 </section>
 
-                <!-- ================================================= -->
                 <!-- REGISTRO SPUNET -->
-                <!-- ================================================= -->
-
                 <section class="form-section tabela-section">
                   <div class="section-header">
                     <div>
@@ -8169,16 +7727,6 @@
             </mat-stepper>
           </ng-container>
 
-          <!-- ============================================================= -->
-          <!-- NENHUMA INFORMAÇÃO -->
-          <!-- ============================================================= -->
-
-          <!--<ng-template #nenhumaInformacao>
-            <div class="nenhuma-informacao">
-              <mat-icon>info</mat-icon>
-              <span>Nenhuma informação à ser exibida.</span>
-            </div>
-          </ng-template>-->
           <br /><br /><br />
         </mat-expansion-panel>
       </mat-accordion>
@@ -8189,7 +7737,6 @@
   <!-- =====================================================
        RODAPÉ
        ===================================================== -->
-
   <footer class="page-actions">
     <button mat-stroked-button type="button" (click)="cancelar()">
       <mat-icon>arrow_back</mat-icon>

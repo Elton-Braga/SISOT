@@ -15,7 +15,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
-import { MatRadioModule } from '@angular/material/radio'; // 👈 NOVO
+import { MatRadioModule } from '@angular/material/radio';
 import { OrdemServico } from './ordem-servico/ordem-servico';
 import { ResolucaoCdr } from './resolucao-cdr/resolucao-cdr';
 import { PortariaCdr } from './portaria-cdr/portaria-cdr';
@@ -55,7 +55,6 @@ export interface RegistroSpunet {
 
 /* ---------------------------------------------------------
    MOCK FIXO — Fase 13
-   (substituir futuramente pela API do módulo projeto)
 --------------------------------------------------------- */
 const PA_FIXO: ProjetoAssentamento[] = [
   {
@@ -120,7 +119,7 @@ const SPUNET_FIXO: RegistroSpunet[] = [
     MatStepperModule,
     MatExpansionModule,
     MatDialogModule,
-    MatRadioModule, // 👈 NOVO — corrige NG8001 do mat-radio-button
+    MatRadioModule,
     MatTableModule,
   ],
   templateUrl: './editar.html',
@@ -140,27 +139,49 @@ export class Editar implements OnInit {
   registrosMatricula: RegistroMatricula[] = [];
   registrosSpunet: RegistroSpunet[] = [];
 
-  // 👇 NOVO — controla o estado do botão "Solicitar SCDP"
   public scdpHabilitado = false;
 
   /* -------------------------------------------------------
-     👇 NOVAS PROPRIEDADES — Fase 0 (Análise Inicial)
-     Resolvem os erros TS2339 do template.
+     Fase 0 — propriedades originais
   ------------------------------------------------------- */
-
-  /** Modalidade de obtenção do imóvel */
   public modalidadeObtencao = '';
-
-  /** UF selecionada */
   public ufSelecionada = '';
-
-  /** Município selecionado */
   public municipioSelecionado = '';
-
-  /** Resposta do radio "Imóvel atualmente ocupado?" */
   public imovelOcupado: 'sim' | 'nao' | '' = '';
 
-  /** Lista de UFs (mock — substituir futuramente por API do IBGE) */
+  /* -------------------------------------------------------
+     FASE 0 → refletem nas Seções 1 e 2 (NOVAS)
+  ------------------------------------------------------- */
+  public nomeImovel = '';
+  public codigoSncr = '';
+  public matricula = '';
+  public nomeProprietario = '';
+  public cpfCnpjProprietario = '';
+
+  public areaRegistrada: number | null = null;
+  public areaCertificada: number | null = null; // vira "Medida" na Seção 1
+  public areaVisada: number | null = null;
+
+  public vtiMedio: number | null = null;
+  public vtnMedio: number | null = null;
+
+  public entidadeDemandante = '';
+  public acampamentoVinculado = '';
+  public acoesReintegracao = '';
+  public orgaoConcorrente = '';
+  public familiasCadastradas: number | null = null;
+
+  /* -------------------------------------------------------
+     FASE 1 → reflete na Seção 4 (NOVO)
+  ------------------------------------------------------- */
+  public processoSei = '';
+
+  /* -------------------------------------------------------
+     Fase atual do stepper → Seção 4 (NOVO)
+  ------------------------------------------------------- */
+  public faseAtualProcesso = 'Fase 0 - Análise Inicial';
+
+  /** Lista de UFs (mock) */
   public ufs: string[] = [
     'AC',
     'AL',
@@ -191,7 +212,7 @@ export class Editar implements OnInit {
     'TO',
   ];
 
-  /** Lista de municípios (mock — carregar conforme UF selecionada) */
+  /** Lista de municípios (mock) */
   public municipios: string[] = [
     'Xinguara',
     'Marabá',
@@ -201,7 +222,7 @@ export class Editar implements OnInit {
     'Coelho Neto',
   ];
 
-  /** Lista de órgãos (mock — substituir futuramente por API) */
+  /** Lista de órgãos (mock) */
   public orgaos: string[] = [
     'INCRA',
     'SPU',
@@ -240,6 +261,30 @@ export class Editar implements OnInit {
   }
 
   /* -------------------------------------------------------
+     Stepper — sincroniza "Fase atual do processo"
+  ------------------------------------------------------- */
+  onStepChange(event: any): void {
+    const idx: number = event?.selectedIndex ?? 0;
+    const labels = [
+      'Fase 0 - Análise Inicial',
+      'Fase 1 - Abertura de Processo',
+      'Fase 2 - Instrução básica',
+      'Fase 3 - Elaboração de Laudos',
+      'Fase 4 - Negociação de Compra e Venda',
+      'Fase 5 - Publicidade da Proposta',
+      'Fase 6 - Consulta sobreposição de interesses públicos',
+      'Fase 7 - Análise da Cadeia Dominial',
+      'Fase 8 - Emissão de Parecer Técnico Revisor',
+      'Fase 9 - Deliberação do CDR',
+      'Fase 10 - Deliberação do CD',
+      'Fase 11 - Atos para Pagamento',
+      'Fase 12 - Escrituração e Registro',
+      'Fase 13 - Destinação do Imóvel',
+    ];
+    this.faseAtualProcesso = labels[idx] ?? '';
+  }
+
+  /* -------------------------------------------------------
      FASE 13 — dados fixos (mock)
   ------------------------------------------------------- */
   private carregarFase13(_dados: any): void {
@@ -249,7 +294,7 @@ export class Editar implements OnInit {
   }
 
   /* -------------------------------------------------------
-     ANEXOS (mantidos — apenas upload, sem add/remover)
+     ANEXOS
   ------------------------------------------------------- */
   selecionarAnexoMatricula(index: number): void {
     const nome = prompt('Nome do arquivo (simulação):', 'matricula.pdf');
@@ -289,7 +334,6 @@ export class Editar implements OnInit {
     ];
   }
 
-  // 👇 ALTERADO — captura o retorno do dialog para habilitar o botão SCDP
   abrirOrdemServico(): void {
     const dialogRef = this.dialog.open(OrdemServico, {
       maxWidth: '1100px',
@@ -324,7 +368,28 @@ export class Editar implements OnInit {
         ufSelecionada: this.ufSelecionada,
         municipioSelecionado: this.municipioSelecionado,
         imovelOcupado: this.imovelOcupado,
+
+        // NOVOS — refletem no topo
+        nomeImovel: this.nomeImovel,
+        codigoSncr: this.codigoSncr,
+        matricula: this.matricula,
+        nomeProprietario: this.nomeProprietario,
+        cpfCnpjProprietario: this.cpfCnpjProprietario,
+        areaRegistrada: this.areaRegistrada,
+        areaCertificada: this.areaCertificada,
+        areaVisada: this.areaVisada,
+        vtiMedio: this.vtiMedio,
+        vtnMedio: this.vtnMedio,
+        entidadeDemandante: this.entidadeDemandante,
+        acampamentoVinculado: this.acampamentoVinculado,
+        acoesReintegracao: this.acoesReintegracao,
+        orgaoConcorrente: this.orgaoConcorrente,
+        familiasCadastradas: this.familiasCadastradas,
       },
+      fase1: {
+        processoSei: this.processoSei,
+      },
+      faseAtualProcesso: this.faseAtualProcesso,
       fase13: {
         projetosAssentamento: this.projetosAssentamento,
         registrosMatricula: this.registrosMatricula,
@@ -332,7 +397,7 @@ export class Editar implements OnInit {
       },
     };
 
-    console.log('Dados salvos (Fase 13):', payload);
+    console.log('Dados salvos:', payload);
 
     this.router.navigate(['/lista']);
   }
