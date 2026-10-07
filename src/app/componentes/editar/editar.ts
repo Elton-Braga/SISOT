@@ -189,6 +189,29 @@ export class Editar implements OnInit {
   public processoSei = '';
 
   /* -------------------------------------------------------
+     FASE 2 — Instrução básica (NOVO)
+  ------------------------------------------------------- */
+  public fase2EspelhoImovelSncr = '';
+  public fase2EspelhoImovelSncrAnexo = '';
+
+  public fase2DemonstrativoImovelSicar = '';
+  public fase2DemonstrativoImovelSicarAnexo = '';
+
+  public fase2Matriculas = '';
+  public fase2MatriculasAnexo = '';
+
+  public fase2ArquivoVetorialShp = '';
+  public fase2ArquivoVetorialShpAnexo = '';
+
+  public fase2MapaImpresso = '';
+  public fase2MapaImpressoAnexo = '';
+
+  public fase2MemorialDescritivo = '';
+  public fase2MemorialDescritivoAnexo = '';
+
+  public fase2Observacao = '';
+
+  /* -------------------------------------------------------
      Fase atual do stepper → Seção 4 (NOVO)
   ------------------------------------------------------- */
   public faseAtualProcesso = 'Fase 0 - Análise Inicial';
@@ -269,8 +292,11 @@ export class Editar implements OnInit {
 
     this.dados = dadosRecebidos;
 
-    // ⬇️ NOVO — pré-preenche os campos marcados como "busca no SNCR"
+    // ⬇️ pré-preenche os campos marcados como "busca no SNCR"
     this.preencherDadosSncr();
+
+    // ⬇️ NOVO — pré-preenche os campos da Fase 2 (Instrução básica)
+    this.preencherDadosInstrucaoBasica();
 
     this.carregarFase13(this.dados);
     this.carregarNotasEmpenho(this.dados);
@@ -365,6 +391,123 @@ export class Editar implements OnInit {
 
     /* ---------- Fase 1 — processo SEI ---------- */
     this.processoSei = obtencao.processoSei ?? imovel.processo ?? '';
+  }
+
+  /* -------------------------------------------------------
+     NOVO — Pré-preenchimento automático dos campos da
+     Fase 2 (Instrução básica) a partir do mock/JSON
+  ------------------------------------------------------- */
+  /* -------------------------------------------------------
+     NOVO — Pré-preenchimento automático dos campos da
+     Fase 2 (Instrução básica) a partir do mock/JSON.
+
+     Estratégia:
+       1) Se `instrucaoBasica` vier no `dados`, usa direto.
+       2) Senão, cai para `imovel.*`.
+       3) Senão, GERA o texto dinamicamente a partir de
+          `imovel.imovel`, `imovel.sncr`, `imovel.uf`, etc.
+  ------------------------------------------------------- */
+  private preencherDadosInstrucaoBasica(): void {
+    const ib: any = this.dados?.instrucaoBasica ?? {};
+    const imovel: any = this.dados?.imovel ?? {};
+
+    const nomeImovel: string = imovel.imovel ?? imovel.nomeImovel ?? '';
+    const sncr: string = imovel.sncr ?? imovel.codigoSncr ?? '';
+    const uf: string = imovel.uf ?? '';
+    const municipio: string = imovel.municipio ?? '';
+    const matricula: string = imovel.matriculas ?? imovel.matricula ?? '';
+
+    const slug = this.slug(nomeImovel);
+
+    /* ---------- Espelho do Imóvel no SNCR ---------- */
+    this.fase2EspelhoImovelSncr =
+      ib.espelhoImovelSncr ??
+      imovel.espelhoSncr ??
+      (nomeImovel
+        ? `Espelho SNCR - ${nomeImovel}${sncr ? ` (cód. ${sncr})` : ''}`
+        : '');
+
+    this.fase2EspelhoImovelSncrAnexo =
+      ib.espelhoImovelSncrAnexo ?? (slug ? `espelho-sncr-${slug}.pdf` : '');
+
+    /* ---------- Demonstrativo do Imóvel no SICAR ---------- */
+    this.fase2DemonstrativoImovelSicar =
+      ib.demonstrativoImovelSicar ??
+      imovel.demonstrativoSicar ??
+      (nomeImovel && uf
+        ? `Demonstrativo SICAR - CAR/${uf}-${slug.toUpperCase()}`
+        : '');
+
+    this.fase2DemonstrativoImovelSicarAnexo =
+      ib.demonstrativoImovelSicarAnexo ??
+      (slug ? `demonstrativo-sicar-${slug}.pdf` : '');
+
+    /* ---------- Matrícula(s) ---------- */
+    this.fase2Matriculas = ib.matriculas ?? matricula;
+    this.fase2MatriculasAnexo =
+      ib.matriculasAnexo ?? (slug ? `matricula-${slug}.pdf` : '');
+
+    /* ---------- Arquivo vetorial (shp) ---------- */
+    this.fase2ArquivoVetorialShp =
+      ib.arquivoVetorialShp ??
+      imovel.arquivoVetorialShp ??
+      (slug ? `${slug}_vetorial.zip` : '');
+
+    this.fase2ArquivoVetorialShpAnexo =
+      ib.arquivoVetorialShpAnexo ?? (slug ? `${slug}_vetorial.zip` : '');
+
+    /* ---------- Mapa (impresso/pdf) ---------- */
+    this.fase2MapaImpresso =
+      ib.mapaImpresso ??
+      imovel.mapaImpresso ??
+      (nomeImovel ? `Mapa - ${nomeImovel} (impresso/pdf)` : '');
+
+    this.fase2MapaImpressoAnexo =
+      ib.mapaImpressoAnexo ?? (slug ? `mapa-${slug}.pdf` : '');
+
+    /* ---------- Memorial descritivo ---------- */
+    this.fase2MemorialDescritivo =
+      ib.memorialDescritivo ??
+      imovel.memorialDescritivo ??
+      (nomeImovel ? `Memorial Descritivo - ${nomeImovel}` : '');
+
+    this.fase2MemorialDescritivoAnexo =
+      ib.memorialDescritivoAnexo ??
+      (slug ? `memorial-descritivo-${slug}.pdf` : '');
+
+    /* ---------- Observação ---------- */
+    this.fase2Observacao =
+      ib.observacao ??
+      (nomeImovel
+        ? `Documentação de ${nomeImovel} em conformidade com SIGEF/SNCR/SICAR.` +
+          (municipio ? ` Município: ${municipio}/${uf}.` : '')
+        : '');
+
+    /* ---------- DEBUG TEMPORÁRIO ---------- */
+    // Remova depois de confirmar que está funcionando:
+    console.log('[Fase 2] dados.instrucaoBasica =', ib);
+    console.log('[Fase 2] valores preenchidos =', {
+      espelho: this.fase2EspelhoImovelSncr,
+      sicar: this.fase2DemonstrativoImovelSicar,
+      matriculas: this.fase2Matriculas,
+      shp: this.fase2ArquivoVetorialShp,
+      mapa: this.fase2MapaImpresso,
+      memorial: this.fase2MemorialDescritivo,
+    });
+  }
+
+  /* -------------------------------------------------------
+     Helper — gera slug a partir do nome do imóvel
+     Ex.: "Fazenda Surubim" → "fazenda-surubim"
+  ------------------------------------------------------- */
+  private slug(value: string): string {
+    return String(value ?? '')
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase()
+      .replace(/[^a-z0-9]+/g, '-')
+      .replace(/^-+|-+$/g, '')
+      .slice(0, 60);
   }
 
   /* -------------------------------------------------------
@@ -507,6 +650,30 @@ export class Editar implements OnInit {
       fase1: {
         processoSei: this.processoSei,
       },
+
+      /* ---------- NOVO — Fase 2 ---------- */
+      instrucaoBasica: {
+        espelhoImovelSncr: this.fase2EspelhoImovelSncr,
+        espelhoImovelSncrAnexo: this.fase2EspelhoImovelSncrAnexo,
+
+        demonstrativoImovelSicar: this.fase2DemonstrativoImovelSicar,
+        demonstrativoImovelSicarAnexo: this.fase2DemonstrativoImovelSicarAnexo,
+
+        matriculas: this.fase2Matriculas,
+        matriculasAnexo: this.fase2MatriculasAnexo,
+
+        arquivoVetorialShp: this.fase2ArquivoVetorialShp,
+        arquivoVetorialShpAnexo: this.fase2ArquivoVetorialShpAnexo,
+
+        mapaImpresso: this.fase2MapaImpresso,
+        mapaImpressoAnexo: this.fase2MapaImpressoAnexo,
+
+        memorialDescritivo: this.fase2MemorialDescritivo,
+        memorialDescritivoAnexo: this.fase2MemorialDescritivoAnexo,
+
+        observacao: this.fase2Observacao,
+      },
+
       faseAtualProcesso: this.faseAtualProcesso,
       fase13: {
         projetosAssentamento: this.projetosAssentamento,

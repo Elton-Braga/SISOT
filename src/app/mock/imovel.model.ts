@@ -10,7 +10,9 @@ export interface Dados {
   obtencao: DadosObtencao;
   avaliacao: DadosAvaliacao;
   resolucaoCdr: ResolucaoCdr;
-  // nomeGrupo: Grupo;
+
+  /* ---------- Fase 2 — Instrução básica ---------- */
+  instrucaoBasica?: InstrucaoBasica;
 }
 
 export interface Grupo {
@@ -45,21 +47,53 @@ export interface Imovel {
   acoes: Acao[];
 
   /* ---------- NOVOS (busca no SNCR) ---------- */
-  matriculas?: string; // Matrícula(s)
-  cpfCnpjProprietario?: string; // CPF/CNPJ Proprietário
+  matriculas?: string;
+  cpfCnpjProprietario?: string;
 
   /* ---------- NOVOS (outra parte envolvida) ---------- */
   nomeOutraParte?: string;
   cpfCnpjOutraParte?: string;
 
   /* ---------- NOVOS (Áreas ha) ---------- */
-  areaRegistrada?: number | null; // Registrada (matrícula)
-  areaCertificada?: number | null; // Certificada (SNCR)
-  areaVisada?: number | null; // VIsada
+  areaRegistrada?: number | null;
+  areaCertificada?: number | null;
+  areaVisada?: number | null;
 
-  /* ---------- NOVOS (Valor estimado — espelho de avaliacao) ---------- */
+  /* ---------- NOVOS (Valor estimado) ---------- */
   vtiMedio?: number | null;
   vtnMedio?: number | null;
+
+  /* ---------- Fase 2 — fallbacks opcionais (busca SNCR/SICAR) ---------- */
+  espelhoSncr?: string;
+  demonstrativoSicar?: string;
+  arquivoVetorialShp?: string;
+  mapaImpresso?: string;
+  memorialDescritivo?: string;
+}
+
+/* =========================================================
+   Fase 2 — Instrução básica
+   ========================================================= */
+export interface InstrucaoBasica {
+  espelhoImovelSncr: string;
+  espelhoImovelSncrAnexo?: string;
+
+  demonstrativoImovelSicar: string;
+  demonstrativoImovelSicarAnexo?: string;
+
+  matriculas: string;
+  matriculasAnexo?: string;
+
+  arquivoVetorialShp: string;
+  arquivoVetorialShpAnexo?: string;
+
+  mapaImpresso: string;
+  mapaImpressoAnexo?: string;
+
+  memorialDescritivo: string;
+  memorialDescritivoAnexo?: string;
+
+  observacao: string;
 }
 
 export interface DadosObtencao {
