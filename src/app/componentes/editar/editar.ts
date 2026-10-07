@@ -122,12 +122,21 @@ const SPUNET_FIXO: RegistroSpunet[] = [
     MatDialogModule,
     MatRadioModule,
     MatTableModule,
+    MatIconModule,
   ],
   templateUrl: './editar.html',
   styleUrl: './editar.css',
 })
 export class Editar implements OnInit {
   public dados!: Dados;
+
+  public processoCadeiaDominial = '';
+
+  public dataAnalise = 'Não realizada';
+
+  public statusAnalise = 'Aguardando análise';
+
+  public linkParecer = '';
 
   public colunasNotaEmpenho: string[] = [
     'numero',
@@ -394,6 +403,12 @@ export class Editar implements OnInit {
     this.processoSei = obtencao.processoSei ?? imovel.processo ?? '';
   }
 
+  realizarCadeiaDominial(): void {
+    console.log('Realizar Cadeia Dominial:', {
+      processoCadeiaDominial: this.processoCadeiaDominial,
+    });
+  }
+
   /* -------------------------------------------------------
      NOVO — Pré-preenchimento automático dos campos da
      Fase 2 (Instrução básica) a partir do mock/JSON
@@ -650,6 +665,13 @@ export class Editar implements OnInit {
       },
       fase1: {
         processoSei: this.processoSei,
+      },
+
+      fase7: {
+        processoCadeiaDominial: this.processoCadeiaDominial,
+        dataAnalise: this.dataAnalise,
+        statusAnalise: this.statusAnalise,
+        linkParecer: this.linkParecer,
       },
 
       /* ---------- NOVO — Fase 2 ---------- */

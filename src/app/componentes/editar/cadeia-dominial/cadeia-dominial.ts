@@ -227,10 +227,7 @@ export class CadeiaDominial {
   }
 
   enviarParaAssinatura(): void {
-    console.log(
-      'Documento enviado para assinatura:',
-      this.montarDadosDocumento(),
-    );
+    alert('Documento enviado para assinatura:');
   }
 
   realizarCadeiaDominial(): void {

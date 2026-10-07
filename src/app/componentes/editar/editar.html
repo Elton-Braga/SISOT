@@ -6033,11 +6033,7 @@
                     <div class="form-row">
                       <mat-form-field appearance="outline" class="field">
                         <mat-label>Processo SEI</mat-label>
-                        <input
-                          matInput
-                          [(ngModel)]="processoSei"
-                          name="processoSei"
-                        />
+                        <input matInput />
                       </mat-form-field>
 
                       <mat-form-field appearance="outline" class="field">
@@ -6938,88 +6934,114 @@
                   Fase 7 - Análise da Cadeia Dominial
                 </ng-template>
 
+                <br />
+
                 <div class="step-actions">
-                  <button mat-flat-button (click)="abrirCadeiaDominial()">
+                  <!--<button mat-flat-button (click)="abrirCadeiaDominial()">
                     Cadeia dominial
+                  </button>-->
+
+                  <button
+                    mat-flat-button
+                    type="button"
+                    (click)="abrirCadeiaDominial()"
+                  >
+                    <mat-icon>description</mat-icon>
+                    Solicitação de Processo de Cadeia Dominial
+                  </button>
+
+                  <button
+                    mat-flat-button
+                    color="primary"
+                    type="button"
+                    (click)="realizarCadeiaDominial()"
+                  >
+                    <mat-icon>open_in_new</mat-icon>
+                    Realizar Cadeia Dominial
                   </button>
                   <br />
                   <br />
                 </div>
 
-                <div class="form-grid">
-                  <mat-form-field appearance="outline">
-                    <mat-label>Certidões de cadeia dominial</mat-label>
-                    <input matInput [matDatepicker]="pickerF7A" />
-                    <mat-datepicker-toggle matIconSuffix [for]="pickerF7A">
-                    </mat-datepicker-toggle>
-                    <mat-datepicker #pickerF7A></mat-datepicker>
-                  </mat-form-field>
+                <section class="form-section">
+                  <div class="section-header"></div>
 
-                  <a
-                    href="javascript:void(0)"
-                    class="anexo-link"
-                    aria-disabled="true"
-                  >
-                    <mat-icon>description</mat-icon>
-                    Anexo
-                  </a>
+                  <div class="step-actionss"></div>
+                  <br />
 
-                  <mat-form-field appearance="outline">
-                    <mat-label>Extrato e parecer</mat-label>
-                    <input matInput [matDatepicker]="pickerF7B" />
-                    <mat-datepicker-toggle matIconSuffix [for]="pickerF7B">
-                    </mat-datepicker-toggle>
-                    <mat-datepicker #pickerF7B></mat-datepicker>
-                  </mat-form-field>
+                  <div class="form-row">
+                    <!-- PROCESSO CADEIA DOMINIAL -->
+                    <mat-form-field appearance="outline" class="field">
+                      <mat-label>Processo Cadeia Dominial</mat-label>
 
-                  <a
-                    href="javascript:void(0)"
-                    class="anexo-link"
-                    aria-disabled="true"
-                  >
-                    <mat-icon>description</mat-icon>
-                    Anexo
-                  </a>
+                      <input
+                        matInput
+                        type="text"
+                        [(ngModel)]="processoCadeiaDominial"
+                        name="processoCadeiaDominial"
+                        placeholder="Informe o nº do processo"
+                      />
 
-                  <mat-form-field appearance="outline">
-                    <mat-label>Parecer sobre a cadeia dominial</mat-label>
-                    <input matInput [matDatepicker]="pickerF7C" />
-                    <mat-datepicker-toggle matIconSuffix [for]="pickerF7C">
-                    </mat-datepicker-toggle>
-                    <mat-datepicker #pickerF7C></mat-datepicker>
-                  </mat-form-field>
+                      <mat-hint>Campo digitado</mat-hint>
+                    </mat-form-field>
 
-                  <a
-                    href="javascript:void(0)"
-                    class="anexo-link"
-                    aria-disabled="true"
-                  >
-                    <mat-icon>description</mat-icon>
-                    Anexo
-                  </a>
+                    <!-- DATA DA ANÁLISE -->
+                    <mat-form-field appearance="outline" class="field">
+                      <mat-label>Data da análise</mat-label>
 
-                  <mat-form-field appearance="outline">
-                    <mat-label>Parecer jurídico conclusivo</mat-label>
-                    <input matInput [matDatepicker]="pickerF7D" />
-                    <mat-datepicker-toggle matIconSuffix [for]="pickerF7D">
-                    </mat-datepicker-toggle>
-                    <mat-datepicker #pickerF7D></mat-datepicker>
-                  </mat-form-field>
+                      <input matInput [value]="dataAnalise" readonly />
 
-                  <a
-                    href="javascript:void(0)"
-                    class="anexo-link"
-                    aria-disabled="true"
-                  >
-                    <mat-icon>description</mat-icon>
-                    Anexo
-                  </a>
-                </div>
+                      <mat-hint>Recuperada do sistema MDA</mat-hint>
+                    </mat-form-field>
 
-                <mat-form-field appearance="outline" class="full-width">
-                  <mat-label>Observação</mat-label>
-                  <textarea matInput rows="4"></textarea>
-                </mat-form-field>
+                    <!-- STATUS DA ANÁLISE -->
+                    <mat-form-field appearance="outline" class="field">
+                      <mat-label>Status da análise</mat-label>
+
+                      <mat-select
+                        [(ngModel)]="statusAnalise"
+                        name="statusAnalise"
+                      >
+                        <mat-option value="Aguardando análise">
+                          Aguardando análise
+                        </mat-option>
+
+                        <mat-option value="Em análise"> Em análise </mat-option>
+
+                        <mat-option value="Análise concluída">
+                          Análise concluída
+                        </mat-option>
+
+                        <mat-option value="Com pendência">
+                          Com pendência
+                        </mat-option>
+
+                        <mat-option value="Indeferida"> Indeferida </mat-option>
+                      </mat-select>
+
+                      <mat-hint>Status da análise</mat-hint>
+                    </mat-form-field>
+
+                    <!-- PARECER -->
+                    <mat-form-field appearance="outline" class="field-full">
+                      <mat-label>Link do Parecer</mat-label>
+
+                      <input
+                        matInput
+                        type="url"
+                        [(ngModel)]="linkParecer"
+                        name="linkParecer"
+                        placeholder="Insira o link do parecer no sistema MDA"
+                      />
+
+                      <mat-icon matSuffix>link</mat-icon>
+
+                      <mat-hint>
+                        Link para acesso ao parecer no sistema MDA
+                      </mat-hint>
+                    </mat-form-field>
+                  </div>
+                </section>
 
                 <div class="step-actions">
                   <button mat-stroked-button matStepperPrevious>Voltar</button>
