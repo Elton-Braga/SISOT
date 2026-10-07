@@ -22,6 +22,7 @@ import { PortariaCdr } from './portaria-cdr/portaria-cdr';
 import { PortariaCd } from './portaria-cd/portaria-cd';
 import { ResolucaoCd } from './resolucao-cd/resolucao-cd';
 import { EmitirLaudo } from './emitir-laudo/emitir-laudo';
+import { CadeiaDominial } from './cadeia-dominial/cadeia-dominial';
 import { MatTableModule } from '@angular/material/table';
 
 export interface NotaEmpenho {
@@ -693,6 +694,16 @@ export class Editar implements OnInit {
 
   abrirResolucaoCdr(): void {
     this.dialog.open(ResolucaoCdr, {
+      maxWidth: '1100px',
+      width: '800px',
+      maxHeight: '1100px',
+      height: '90%',
+      panelClass: 'dialog-com-rolagem',
+    });
+  }
+
+  abrirCadeiaDominial(): void {
+    this.dialog.open(CadeiaDominial, {
       maxWidth: '1100px',
       width: '800px',
       maxHeight: '1100px',

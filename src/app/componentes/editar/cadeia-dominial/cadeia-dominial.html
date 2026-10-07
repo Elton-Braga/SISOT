@@ -1,0 +1,207 @@
+<div class="form-page">
+  <!-- ================================================= -->
+  <!-- CABEÇALHO -->
+  <!-- ================================================= -->
+
+  <div class="pagina-cabecalho">
+    <h1>Cadeia Dominial</h1>
+  </div>
+
+  <!-- ================================================= -->
+  <!-- DOCUMENTO (MEMORANDO) -->
+  <!-- ================================================= -->
+
+  <section class="form-section">
+    <div class="section-header">
+      <div>
+        <h2>Documento de Solicitação</h2>
+        <p class="section-description">
+          Memorando gerado para formalização do processo de cadeia dominial.
+        </p>
+      </div>
+
+      <span class="badge-auto">
+        <mat-icon>bolt</mat-icon>
+        Preenchimento automático
+      </span>
+    </div>
+
+    <article class="documento">
+      <!-- CABEÇALHO DO MEMORANDO -->
+      <header class="documento-cabecalho">
+        <span>Mem./INCRA/SR {{ sr }}/{{ tipo }}/Nº {{ id }}</span>
+        <span>{{ dataPorExtenso }}</span>
+      </header>
+
+      <!-- DESTINATÁRIO -->
+      <p class="documento-destinatario">A(o) Sr(a). Chefe do Protocolo</p>
+
+      <!-- ASSUNTO -->
+      <p class="documento-assunto">
+        <strong>Assunto:</strong> Formalização de Processo Administrativo de
+        Cadeia Dominial
+      </p>
+
+      <!-- CORPO -->
+      <p class="documento-paragrafo">
+        1. Solicitamos a formalização de Processo Administrativo contendo a
+        seguinte súmula:
+      </p>
+
+      <!-- SÚMULA -->
+      <div class="sumula">
+        <p>
+          <strong>ASSUNTO:</strong> Abertura de processo administrativo para
+          levantamento e análise da cadeia dominial do imóvel rural
+          {{ nomeImovel }} cadastrado no Sistema Nacional de Cadastro Rural –
+          SNCR sob o código {{ codigoSncr }}, e registrado sob a matrícula nº
+          {{ matricula }}.
+        </p>
+
+        <p>
+          <strong>INTERESSADO:</strong> Instituto Nacional de Colonização e
+          Reforma Agrária – INCRA
+        </p>
+
+        <p><strong>MUNICÍPIO:</strong> {{ municipios }}</p>
+
+        <p><strong>CÓDIGO:</strong> Processo SEI {{ processoSei }}</p>
+      </div>
+
+      <!-- DESPEDIDA -->
+      <p class="documento-despedida">Atenciosamente,</p>
+
+      <!-- ASSINATURA -->
+      <div class="assinatura-bloco">
+        <div class="assinatura-linha"></div>
+        <strong>{{ responsavel.nome }}</strong>
+        <span>{{ responsavel.cargo }}</span>
+      </div>
+
+      <!-- AÇÃO DO DOCUMENTO -->
+      <div class="documento-acoes">
+        <button
+          mat-flat-button
+          color="primary"
+          type="button"
+          (click)="enviarParaAssinatura()"
+        >
+          <mat-icon>draw</mat-icon>
+          Enviar para assinatura
+        </button>
+      </div>
+    </article>
+  </section>
+
+  <!-- ================================================= -->
+  <!-- AÇÕES DE CADEIA DOMINIAL -->
+  <!-- ================================================= -->
+
+  <section class="form-section">
+    <div class="section-header">
+      <!--<div>
+        <h2>Cadeia Dominial</h2>
+        <p class="section-description">
+          Gere o documento acima e realize a análise no sistema do MDA.
+        </p>
+      </div>-->
+    </div>
+
+    <div class="section-actions">
+      <button mat-stroked-button type="button" (click)="gerarSolicitacao()">
+        <mat-icon>description</mat-icon>
+        Solicitação de Processo de Cadeia Dominial
+      </button>
+
+      <button
+        mat-flat-button
+        color="primary"
+        type="button"
+        (click)="realizarCadeiaDominial()"
+      >
+        <mat-icon>open_in_new</mat-icon>
+        Realizar Cadeia Dominial
+      </button>
+    </div>
+  </section>
+
+  <!-- ================================================= -->
+  <!-- PROCESSO CADEIA DOMINIAL -->
+  <!-- ================================================= -->
+
+  <section class="form-section">
+    <div class="section-header">
+      <div>
+        <h2>Processo Cadeia Dominial</h2>
+        <p class="section-description">
+          Informações da análise realizada no sistema do MDA.
+        </p>
+      </div>
+
+      <span class="badge-auto">
+        <mat-icon>bolt</mat-icon>
+        Preenchimento automático
+      </span>
+    </div>
+
+    <div class="table-container">
+      <table class="uso-table">
+        <thead>
+          <tr>
+            <th>Campo</th>
+            <th>Forma de obtenção</th>
+            <th>Valor</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <!-- PROCESSO -->
+          <tr>
+            <td>Processo Cadeia Dominial</td>
+            <td>Digitado</td>
+            <td>
+              <input
+                class="tabela-input"
+                type="text"
+                [(ngModel)]="processoCadeiaDominial"
+                name="processoCadeiaDominial"
+                placeholder="Informe o nº do processo"
+              />
+            </td>
+          </tr>
+
+          <!-- DATA DA ANÁLISE -->
+          <tr>
+            <td>Data da análise</td>
+            <td>Via integração do sistema MDA</td>
+            <td>{{ dataAnalise }}</td>
+          </tr>
+
+          <!-- STATUS DA ANÁLISE -->
+          <tr>
+            <td>Status da análise</td>
+            <td>Via integração do sistema MDA</td>
+            <td>{{ statusAnalise }}</td>
+          </tr>
+
+          <!-- PARECER -->
+          <tr>
+            <td>Parecer</td>
+            <td>Via link do sistema MDA</td>
+            <td>
+              <a
+                class="link-parecer"
+                [href]="linkParecer"
+                target="_blank"
+                rel="noopener"
+              >
+                <mat-icon>open_in_new</mat-icon>
+                Abrir parecer
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>
