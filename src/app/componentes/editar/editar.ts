@@ -159,7 +159,7 @@ export class Editar implements OnInit {
   public cpfCnpjProprietario = '';
 
   public areaRegistrada: number | null = null;
-  public areaCertificada: number | null = null; // vira "Medida" na Seção 1
+  public areaCertificada: number | null = null;
   public areaVisada: number | null = null;
 
   public vtiMedio: number | null = null;
@@ -170,6 +170,18 @@ export class Editar implements OnInit {
   public acoesReintegracao = '';
   public orgaoConcorrente = '';
   public familiasCadastradas: number | null = null;
+
+  /* -------------------------------------------------------
+     FASE 0 → propriedades complementares (NOVAS)
+  ------------------------------------------------------- */
+  public nomeOutraParte = '';
+  public cpfCnpjOutraParte = '';
+
+  public espelhoImovelSncr = '';
+  public arquivoVetorialShp = '';
+  public outrosDocumentos = '';
+
+  public justificativaViabilidade = '';
 
   /* -------------------------------------------------------
      FASE 1 → reflete na Seção 4 (NOVO)
@@ -230,6 +242,7 @@ export class Editar implements OnInit {
     'Defensoria Pública da União',
     'Prefeitura Municipal',
     'Governo do Estado',
+    'Nenhum',
     'Outro',
   ];
 
@@ -256,8 +269,102 @@ export class Editar implements OnInit {
 
     this.dados = dadosRecebidos;
 
+    // ⬇️ NOVO — pré-preenche os campos marcados como "busca no SNCR"
+    this.preencherDadosSncr();
+
     this.carregarFase13(this.dados);
     this.carregarNotasEmpenho(this.dados);
+  }
+
+  /* -------------------------------------------------------
+     Pré-preenchimento automático de TODOS os campos
+     da Fase 0 a partir do JSON recebido via router
+  ------------------------------------------------------- */
+  private preencherDadosSncr(): void {
+    const imovel: any = this.dados?.imovel ?? {};
+    const obtencao: any = this.dados?.obtencao ?? {};
+    const avaliacao: any = this.dados?.avaliacao ?? {};
+
+    /* ---------- Modalidade de Obtenção (select) ---------- */
+    const formaObtencao = String(
+      obtencao.formaObtencao ?? imovel.modalidade ?? '',
+    ).toLowerCase();
+
+    if (formaObtencao.includes('compra')) {
+      this.modalidadeObtencao = 'compra';
+    } else if (formaObtencao.includes('doa')) {
+      this.modalidadeObtencao = 'doacao';
+    } else if (formaObtencao.includes('desapropria')) {
+      this.modalidadeObtencao = 'desapropriacao';
+    } else if (formaObtencao) {
+      this.modalidadeObtencao = 'outra';
+    }
+
+    /* ---------- Dados do Imóvel (SNCR) ---------- */
+    this.codigoSncr = imovel.sncr ?? imovel.codigoSncr ?? '';
+    this.nomeImovel = imovel.imovel ?? imovel.nomeImovel ?? '';
+    this.ufSelecionada = imovel.uf ?? '';
+    this.municipioSelecionado = imovel.municipio ?? '';
+    this.matricula = imovel.matriculas ?? imovel.matricula ?? '';
+    this.nomeProprietario =
+      imovel.proprietario ?? imovel.nomeProprietario ?? '';
+    this.cpfCnpjProprietario =
+      imovel.cpfCnpjProprietario ?? imovel.cpfCnpj ?? '';
+
+    /* ---------- Outra parte envolvida ---------- */
+    this.nomeOutraParte = imovel.nomeOutraParte ?? '';
+    this.cpfCnpjOutraParte = imovel.cpfCnpjOutraParte ?? '';
+
+    /* ---------- Áreas (ha) ---------- */
+    this.areaRegistrada = imovel.areaRegistrada ?? null;
+    this.areaCertificada = imovel.areaCertificada ?? null;
+    this.areaVisada = imovel.areaVisada ?? null;
+
+    /* ---------- Valor estimado ---------- */
+    this.vtiMedio = imovel.vtiMedio ?? avaliacao.valorTotalImovelMedio ?? null;
+    this.vtnMedio = imovel.vtnMedio ?? avaliacao.valorTerraNuaMedio ?? null;
+
+    /* ---------- Documentação analisada ---------- */
+    this.espelhoImovelSncr =
+      imovel.espelhoSncr ?? imovel.espelhoImovelSncr ?? '';
+    this.arquivoVetorialShp = imovel.arquivoVetorialShp ?? imovel.shp ?? '';
+    this.outrosDocumentos = imovel.outrosDocumentos ?? '';
+
+    /* ---------- Natureza ocupacional ---------- */
+    const entidadeJson = String(obtencao.entidadeDemandante ?? '');
+    this.entidadeDemandante =
+      this.orgaos.find(
+        (o) => entidadeJson.startsWith(o) || entidadeJson.includes(o),
+      ) ?? entidadeJson;
+
+    this.acampamentoVinculado = obtencao.acampamentoVinculado ?? '';
+
+    this.imovelOcupado =
+      obtencao.imovelOcupado === true
+        ? 'sim'
+        : obtencao.imovelOcupado === false
+          ? 'nao'
+          : '';
+
+    this.acoesReintegracao = obtencao.acoesReintegracao ?? '';
+
+    const orgaoConcJson = String(obtencao.orgaoConcorrente ?? '');
+    this.orgaoConcorrente =
+      this.orgaos.find(
+        (o) => orgaoConcJson.startsWith(o) || orgaoConcJson.includes(o),
+      ) ?? orgaoConcJson;
+
+    this.familiasCadastradas = obtencao.familiasCadastradas ?? null;
+
+    /* ---------- Premissas iniciais ---------- */
+    this.justificativaViabilidade =
+      obtencao.justificativa ??
+      obtencao.observacoes ??
+      imovel.justificativa ??
+      '';
+
+    /* ---------- Fase 1 — processo SEI ---------- */
+    this.processoSei = obtencao.processoSei ?? imovel.processo ?? '';
   }
 
   /* -------------------------------------------------------
@@ -369,22 +476,33 @@ export class Editar implements OnInit {
         municipioSelecionado: this.municipioSelecionado,
         imovelOcupado: this.imovelOcupado,
 
-        // NOVOS — refletem no topo
         nomeImovel: this.nomeImovel,
         codigoSncr: this.codigoSncr,
         matricula: this.matricula,
         nomeProprietario: this.nomeProprietario,
         cpfCnpjProprietario: this.cpfCnpjProprietario,
+
+        // NOVOS
+        nomeOutraParte: this.nomeOutraParte,
+        cpfCnpjOutraParte: this.cpfCnpjOutraParte,
+
         areaRegistrada: this.areaRegistrada,
         areaCertificada: this.areaCertificada,
         areaVisada: this.areaVisada,
         vtiMedio: this.vtiMedio,
         vtnMedio: this.vtnMedio,
+
+        espelhoImovelSncr: this.espelhoImovelSncr,
+        arquivoVetorialShp: this.arquivoVetorialShp,
+        outrosDocumentos: this.outrosDocumentos,
+
         entidadeDemandante: this.entidadeDemandante,
         acampamentoVinculado: this.acampamentoVinculado,
         acoesReintegracao: this.acoesReintegracao,
         orgaoConcorrente: this.orgaoConcorrente,
         familiasCadastradas: this.familiasCadastradas,
+
+        justificativaViabilidade: this.justificativaViabilidade,
       },
       fase1: {
         processoSei: this.processoSei,

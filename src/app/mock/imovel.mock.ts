@@ -15,6 +15,17 @@ export const IMOVEIS_MOCK: Dados[] = [
       municipio: 'Xinguara',
       uf: 'PA',
       acoes: ['Espelho', 'Histórico', 'Editar', 'Log'],
+
+      /* ---------- NOVOS ---------- */
+      matriculas: 'Matrícula nº 12.345 – CRI de Xinguara/PA',
+      cpfCnpjProprietario: '111.222.333-44',
+      nomeOutraParte: '',
+      cpfCnpjOutraParte: '',
+      areaRegistrada: 10978.8258,
+      areaCertificada: 10978.8258,
+      areaVisada: 10978.8258,
+      vtiMedio: 181997328.31,
+      vtnMedio: 181997328.31,
     },
 
     obtencao: {
@@ -45,6 +56,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       valorPassivoAmbiental: 242641.88,
       valorAtivoAmbiental: 0,
     },
+
     processo: {
       fase: '',
       processualPecaDocumento: '',
@@ -56,13 +68,14 @@ export const IMOVEIS_MOCK: Dados[] = [
       temPrazo: '',
       observacoes: '',
     },
+
     resolucaoCdr: {
       idResolucaoCdr: '001',
       dataResolucaoCdr: new Date('2026-08-27'),
       dataReuniaoCdr: new Date('2026-08-20'),
       consideracoes: [],
       consideracaoFinal: '',
-      area: 10978.8258, // Valor espelhado do areaHa, mas como é um campo separado, fica aqui.
+      area: 10978.8258,
       valorTotal: 192387136.53,
       valorTotalPorExtenso:
         'Cento e noventa e dois milhões, trezentos e oitenta e sete mil, cento e trinta e seis reais e cinquenta e três centavos',

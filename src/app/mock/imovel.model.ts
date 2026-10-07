@@ -1,3 +1,7 @@
+/* =========================================================
+   INTERFACES / MODELOS
+   ========================================================= */
+
 export type Acao = 'Espelho' | 'Histórico' | 'Editar' | 'Log';
 
 export interface Dados {
@@ -5,13 +9,14 @@ export interface Dados {
   imovel: Imovel;
   obtencao: DadosObtencao;
   avaliacao: DadosAvaliacao;
-  resolucaoCdr: ResolucaoCdr
-  //nomeGrupo: Grupo;
+  resolucaoCdr: ResolucaoCdr;
+  // nomeGrupo: Grupo;
 }
+
 export interface Grupo {
   nome: string;
   imoveis: Dados[];
-  source?: 'saved' | 'mock'; // indica a origem
+  source?: 'saved' | 'mock';
 }
 
 export interface DadosProcesso {
@@ -38,6 +43,23 @@ export interface Imovel {
   municipio: string;
   uf: string;
   acoes: Acao[];
+
+  /* ---------- NOVOS (busca no SNCR) ---------- */
+  matriculas?: string; // Matrícula(s)
+  cpfCnpjProprietario?: string; // CPF/CNPJ Proprietário
+
+  /* ---------- NOVOS (outra parte envolvida) ---------- */
+  nomeOutraParte?: string;
+  cpfCnpjOutraParte?: string;
+
+  /* ---------- NOVOS (Áreas ha) ---------- */
+  areaRegistrada?: number | null; // Registrada (matrícula)
+  areaCertificada?: number | null; // Certificada (SNCR)
+  areaVisada?: number | null; // VIsada
+
+  /* ---------- NOVOS (Valor estimado — espelho de avaliacao) ---------- */
+  vtiMedio?: number | null;
+  vtnMedio?: number | null;
 }
 
 export interface DadosObtencao {

@@ -5630,29 +5630,39 @@
                     <h3>Dados do Imóvel</h3>
 
                     <div class="form-row">
+                      <!-- ▼ ALTERADO: Código SNCR (busca no SNCR) -->
                       <mat-form-field appearance="outline" class="field">
                         <mat-label>Código SNCR</mat-label>
                         <input
                           matInput
+                          readonly
                           [(ngModel)]="codigoSncr"
                           name="codigoSncr"
                         />
+                        <mat-icon matSuffix>cloud_download</mat-icon>
+                        <mat-hint>Preenchido via SNCR</mat-hint>
                       </mat-form-field>
 
+                      <!-- ▼ ALTERADO: Nome Imóvel (busca no SNCR) -->
                       <mat-form-field appearance="outline" class="field">
                         <mat-label>Nome Imóvel</mat-label>
                         <input
                           matInput
+                          readonly
                           required
                           [(ngModel)]="nomeImovel"
                           name="nomeImovel"
                         />
+                        <mat-icon matSuffix>cloud_download</mat-icon>
+                        <mat-hint>Preenchido via SNCR</mat-hint>
                       </mat-form-field>
 
+                      <!-- ▼ ALTERADO: UF (busca no SNCR) -->
                       <mat-form-field appearance="outline" class="field">
                         <mat-label>UF</mat-label>
                         <mat-select
                           required
+                          disabled
                           [(ngModel)]="ufSelecionada"
                           name="ufSelecionada"
                         >
@@ -5660,12 +5670,16 @@
                             uf
                           }}</mat-option>
                         </mat-select>
+                        <mat-icon matSuffix>cloud_download</mat-icon>
+                        <mat-hint>Preenchido via SNCR</mat-hint>
                       </mat-form-field>
 
+                      <!-- ▼ ALTERADO: Município (busca no SNCR) -->
                       <mat-form-field appearance="outline" class="field">
                         <mat-label>Município</mat-label>
                         <mat-select
                           required
+                          disabled
                           [(ngModel)]="municipioSelecionado"
                           name="municipioSelecionado"
                         >
@@ -5676,8 +5690,11 @@
                             {{ municipio }}
                           </mat-option>
                         </mat-select>
+                        <mat-icon matSuffix>cloud_download</mat-icon>
+                        <mat-hint>Preenchido via SNCR</mat-hint>
                       </mat-form-field>
 
+                      <!-- ▼ ALTERADO: Matrícula(s) (busca no SNCR) -->
                       <div class="anexo-wrapper field">
                         <mat-form-field
                           appearance="outline"
@@ -5686,9 +5703,12 @@
                           <mat-label>Matrícula(s)</mat-label>
                           <input
                             matInput
+                            readonly
                             [(ngModel)]="matricula"
                             name="matricula"
                           />
+                          <mat-icon matSuffix>cloud_download</mat-icon>
+                          <mat-hint>Preenchido via SNCR</mat-hint>
                         </mat-form-field>
 
                         <a
@@ -5702,32 +5722,50 @@
                         </a>
                       </div>
 
+                      <!-- ▼ ALTERADO: Nome Proprietário (busca no SNCR) -->
                       <mat-form-field appearance="outline" class="field">
                         <mat-label>Nome Proprietário</mat-label>
                         <input
                           matInput
+                          readonly
                           [(ngModel)]="nomeProprietario"
                           name="nomeProprietario"
                         />
+                        <mat-icon matSuffix>cloud_download</mat-icon>
+                        <mat-hint>Preenchido via SNCR</mat-hint>
                       </mat-form-field>
 
+                      <!-- ▼ ALTERADO: CPF/CNPJ Proprietário (busca no SNCR) -->
                       <mat-form-field appearance="outline" class="field">
                         <mat-label>CPF/CNPJ Proprietário</mat-label>
                         <input
                           matInput
+                          readonly
                           [(ngModel)]="cpfCnpjProprietario"
                           name="cpfCnpjProprietario"
                         />
+                        <mat-icon matSuffix>cloud_download</mat-icon>
+                        <mat-hint>Preenchido via SNCR</mat-hint>
                       </mat-form-field>
 
+                      <!-- ▼ ALTERADO: bind do ngModel -->
                       <mat-form-field appearance="outline" class="field">
                         <mat-label>Nome outra parte envolvida</mat-label>
-                        <input matInput />
+                        <input
+                          matInput
+                          [(ngModel)]="nomeOutraParte"
+                          name="nomeOutraParte"
+                        />
                       </mat-form-field>
 
+                      <!-- ▼ ALTERADO: bind do ngModel -->
                       <mat-form-field appearance="outline" class="field">
                         <mat-label>CPF/CNPJ outra parte envolvida</mat-label>
-                        <input matInput />
+                        <input
+                          matInput
+                          [(ngModel)]="cpfCnpjOutraParte"
+                          name="cpfCnpjOutraParte"
+                        />
                       </mat-form-field>
                     </div>
                   </section>
@@ -5801,9 +5839,15 @@
                     <h3>Documentação analisada</h3>
 
                     <div class="form-row">
+                      <!-- ▼ ALTERADO: bind do ngModel -->
                       <mat-form-field appearance="outline" class="field">
                         <mat-label>Espelho do Imóvel no SNCR</mat-label>
-                        <input matInput placeholder="Buscar no SNCR" />
+                        <input
+                          matInput
+                          placeholder="Buscar no SNCR"
+                          [(ngModel)]="espelhoImovelSncr"
+                          name="espelhoImovelSncr"
+                        />
                         <button
                           mat-icon-button
                           matSuffix
@@ -5814,21 +5858,29 @@
                         </button>
                       </mat-form-field>
 
+                      <!-- ▼ ALTERADO: bind do ngModel -->
                       <mat-form-field appearance="outline" class="field">
                         <mat-label>Arquivo vetorial (shp)</mat-label>
                         <input
                           matInput
                           placeholder="https://sigef.incra.gov.br/"
+                          [(ngModel)]="arquivoVetorialShp"
+                          name="arquivoVetorialShp"
                         />
                       </mat-form-field>
 
+                      <!-- ▼ ALTERADO: bind do ngModel -->
                       <div class="anexo-wrapper field">
                         <mat-form-field
                           appearance="outline"
                           class="field-inner"
                         >
                           <mat-label>Outros</mat-label>
-                          <input matInput />
+                          <input
+                            matInput
+                            [(ngModel)]="outrosDocumentos"
+                            name="outrosDocumentos"
+                          />
                         </mat-form-field>
 
                         <a
@@ -5932,12 +5984,15 @@
                     <h3>Premissas iniciais para viabilidade</h3>
 
                     <div class="form-row">
+                      <!-- ▼ ALTERADO: bind do ngModel -->
                       <mat-form-field appearance="outline" class="field-full">
                         <mat-label>Justificativa / Observações</mat-label>
                         <textarea
                           matInput
                           rows="6"
                           placeholder="Digite a justificativa ou observações"
+                          [(ngModel)]="justificativaViabilidade"
+                          name="justificativaViabilidade"
                         ></textarea>
                       </mat-form-field>
                     </div>
