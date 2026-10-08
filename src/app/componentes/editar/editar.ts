@@ -129,6 +129,11 @@ const SPUNET_FIXO: RegistroSpunet[] = [
 })
 export class Editar implements OnInit {
   public dados!: Dados;
+  anexos: File[] = [];
+  editalAnexos: File[] = [];
+  tipoDocumentoOutraParte: 'CPF' | 'CNPJ' | '' = '';
+  cpfOutraParte = '';
+  cnpjOutraParte = '';
 
   public processoCadeiaDominial = '';
 
@@ -310,6 +315,74 @@ export class Editar implements OnInit {
 
     this.carregarFase13(this.dados);
     this.carregarNotasEmpenho(this.dados);
+  }
+
+  onEditalSelecionado(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (!input.files?.length) return;
+
+    this.editalAnexos = [...this.editalAnexos, ...Array.from(input.files)];
+
+    // Limpa o value para permitir selecionar o mesmo arquivo novamente
+    input.value = '';
+  }
+
+  /** Remove um anexo do edital pelo índice */
+  removerEdital(index: number): void {
+    this.editalAnexos.splice(index, 1);
+  }
+
+  onTipoDocumentoChange(tipo: 'CPF' | 'CNPJ'): void {
+    if (tipo === 'CPF') {
+      this.cnpjOutraParte = '';
+    } else if (tipo === 'CNPJ') {
+      this.cpfOutraParte = '';
+    }
+  }
+
+  /** Máscara simples de CPF: 000.000.000-00 */
+  formatarCpf(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    let v = input.value.replace(/\D/g, '').slice(0, 11);
+    v = v.replace(/(\d{3})(\d)/, '$1.$2');
+    v = v.replace(/(\d{3})(\d)/, '$1.$2');
+    v = v.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
+    input.value = v;
+    this.cpfOutraParte = v;
+  }
+
+  /** Máscara simples de CNPJ: 00.000.000/0000-00 */
+  formatarCnpj(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    let v = input.value.replace(/\D/g, '').slice(0, 14);
+    v = v.replace(/^(\d{2})(\d)/, '$1.$2');
+    v = v.replace(/^(\d{2})\.(\d{3})(\d)/, '$1.$2.$3');
+    v = v.replace(/\.(\d{3})(\d)/, '.$1/$2');
+    v = v.replace(/(\d{4})(\d)/, '$1-$2');
+    input.value = v;
+    this.cnpjOutraParte = v;
+  }
+
+  onAnexosSelecionados(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (!input.files?.length) return;
+
+    this.anexos = [...this.anexos, ...Array.from(input.files)];
+
+    // Limpa o value para permitir selecionar o mesmo arquivo novamente
+    input.value = '';
+  }
+
+  /** Remove um anexo pelo índice */
+  removerAnexo(index: number): void {
+    this.anexos.splice(index, 1);
+  }
+
+  /** Formata bytes em B / KB / MB para exibição na lista */
+  formatarTamanho(bytes: number): string {
+    if (bytes < 1024) return `${bytes} B`;
+    if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(0)} KB`;
+    return `${(bytes / (1024 * 1024)).toFixed(1)} MB`;
   }
 
   /* -------------------------------------------------------

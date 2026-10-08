@@ -5839,7 +5839,7 @@
                     <h3>Documentação analisada</h3>
 
                     <div class="form-row">
-                      <!-- ▼ ALTERADO: bind do ngModel -->
+                      <!-- 1) Espelho do Imóvel no SNCR -->
                       <mat-form-field appearance="outline" class="field">
                         <mat-label>Espelho do Imóvel no SNCR</mat-label>
                         <input
@@ -5858,40 +5858,71 @@
                         </button>
                       </mat-form-field>
 
-                      <!-- ▼ ALTERADO: bind do ngModel -->
+                      <!-- 3) Outros (agora isolado, sem o link de anexo ao lado) 
                       <mat-form-field appearance="outline" class="field">
-                        <mat-label>Arquivo vetorial (shp)</mat-label>
+                        <mat-label>Outros</mat-label>
                         <input
                           matInput
-                          placeholder="https://sigef.incra.gov.br/"
-                          [(ngModel)]="arquivoVetorialShp"
-                          name="arquivoVetorialShp"
+                          [(ngModel)]="outrosDocumentos"
+                          name="outrosDocumentos"
+                        /> </mat-form-field
+                      >--><!-- 2) Arquivo vetorial -->
+                      <a class="field">Arquivo vetorial (shp).shp</a>
+
+                      <!-- 4) Explorer de anexos — ocupa a linha inteira -->
+                      <div class="anexo-upload field-full">
+                        <!-- input nativo escondido, disparado pelo botão abaixo -->
+                        <input
+                          #anexoInput
+                          type="file"
+                          multiple
+                          hidden
+                          (change)="onAnexosSelecionados($event)"
                         />
-                      </mat-form-field>
 
-                      <!-- ▼ ALTERADO: bind do ngModel -->
-                      <div class="anexo-wrapper field">
-                        <mat-form-field
-                          appearance="outline"
-                          class="field-inner"
-                        >
-                          <mat-label>Outros</mat-label>
-                          <input
-                            matInput
-                            [(ngModel)]="outrosDocumentos"
-                            name="outrosDocumentos"
-                          />
-                        </mat-form-field>
+                        <div class="anexo-upload-header">
+                          <button
+                            mat-stroked-button
+                            type="button"
+                            color="primary"
+                            (click)="anexoInput.click()"
+                          >
+                            <mat-icon>attach_file</mat-icon>
+                            Anexar arquivos
+                          </button>
 
-                        <a
-                          href="javascript:void(0)"
-                          class="anexo-link"
-                          aria-disabled="true"
-                          title="Anexo indisponível"
-                        >
-                          <mat-icon>attach_file</mat-icon>
-                          Anexo
-                        </a>
+                          <span
+                            class="anexo-contador"
+                            *ngIf="anexos?.length; else semAnexos"
+                          >
+                            {{ anexos.length }} arquivo(s) selecionado(s)
+                          </span>
+                          <ng-template #semAnexos>
+                            <span class="anexo-vazio"
+                              >Nenhum arquivo selecionado</span
+                            >
+                          </ng-template>
+                        </div>
+
+                        <ul class="anexo-lista" *ngIf="anexos?.length">
+                          <li *ngFor="let arquivo of anexos; let i = index">
+                            <mat-icon>description</mat-icon>
+                            <span class="anexo-nome" [title]="arquivo.name">
+                              {{ arquivo.name }}
+                            </span>
+                            <span class="anexo-tamanho">{{
+                              formatarTamanho(arquivo.size)
+                            }}</span>
+                            <button
+                              mat-icon-button
+                              type="button"
+                              aria-label="Remover anexo"
+                              (click)="removerAnexo(i)"
+                            >
+                              <mat-icon>close</mat-icon>
+                            </button>
+                          </li>
+                        </ul>
                       </div>
                     </div>
                   </section>
@@ -6041,29 +6072,124 @@
                           >Oferta de venda pelo proprietário ou
                           representante</mat-label
                         >
-                        <input matInput type="number" />
+
+                        <span matPrefix class="moeda-prefixo"
+                          >&nbsp; R$&nbsp;</span
+                        >
+
+                        <input matInput type="number" inputmode="decimal" />
                       </mat-form-field>
 
-                      <div class="anexo-wrapper field">
-                        <span class="anexo-label">Edital de chamamento:</span>
+                      <div class="anexo-wrapper anexo-wrapper--upload field">
+                        <!-- input nativo escondido -->
+                        <input
+                          #editalInput
+                          type="file"
+                          multiple
+                          hidden
+                          (change)="onEditalSelecionado($event)"
+                        />
 
-                        <a
-                          href="javascript:void(0)"
-                          class="anexo-link"
-                          aria-disabled="true"
-                          title="Anexo indisponível"
+                        <!-- botão que dispara o explorer -->
+                        <button
+                          mat-stroked-button
+                          type="button"
+                          color="primary"
+                          (click)="editalInput.click()"
                         >
                           <mat-icon>attach_file</mat-icon>
-                          Anexo
-                        </a>
+                          Anexar Edital(s)
+                        </button>
+
+                        <!-- contador / estado vazio -->
+                        <span
+                          class="anexo-contador"
+                          *ngIf="editalAnexos?.length; else semEdital"
+                        >
+                          {{ editalAnexos.length }} arquivo(s)
+                        </span>
+                        <ng-template #semEdital>
+                          <span class="anexo-vazio"
+                            >Nenhum arquivo selecionado</span
+                          >
+                        </ng-template>
                       </div>
 
+                      <!-- Lista de arquivos do edital — ocupa a linha inteira -->
+                      <ul
+                        class="anexo-lista field-full"
+                        *ngIf="editalAnexos?.length"
+                      >
+                        <li *ngFor="let arquivo of editalAnexos; let i = index">
+                          <mat-icon>description</mat-icon>
+                          <span class="anexo-nome" [title]="arquivo.name">
+                            {{ arquivo.name }}
+                          </span>
+                          <span class="anexo-tamanho">{{
+                            formatarTamanho(arquivo.size)
+                          }}</span>
+                          <button
+                            mat-icon-button
+                            type="button"
+                            aria-label="Remover anexo"
+                            (click)="removerEdital(i)"
+                          >
+                            <mat-icon>close</mat-icon>
+                          </button>
+                        </li>
+                      </ul>
+
+                      <!-- Combobox: escolha do tipo de documento -->
                       <mat-form-field appearance="outline" class="field">
                         <mat-label
                           >Cadastro outras partes envolvidas
                           (opcional)</mat-label
                         >
-                        <input matInput />
+                        <mat-select
+                          [(ngModel)]="tipoDocumentoOutraParte"
+                          name="tipoDocumentoOutraParte"
+                          (selectionChange)="
+                            onTipoDocumentoChange($event.value)
+                          "
+                        >
+                          <mat-option value="CPF">CPF</mat-option>
+                          <mat-option value="CNPJ">CNPJ</mat-option>
+                        </mat-select>
+                      </mat-form-field>
+
+                      <!-- Campo condicional: CPF ou CNPJ, em linha própria -->
+                      <mat-form-field
+                        appearance="outline"
+                        class="field-full"
+                        *ngIf="tipoDocumentoOutraParte === 'CPF'"
+                      >
+                        <mat-label>CPF</mat-label>
+                        <input
+                          matInput
+                          [(ngModel)]="cpfOutraParte"
+                          name="cpfOutraParte"
+                          placeholder="000.000.000-00"
+                          maxlength="14"
+                          inputmode="numeric"
+                          (input)="formatarCpf($event)"
+                        />
+                      </mat-form-field>
+
+                      <mat-form-field
+                        appearance="outline"
+                        class="field-full"
+                        *ngIf="tipoDocumentoOutraParte === 'CNPJ'"
+                      >
+                        <mat-label>CNPJ</mat-label>
+                        <input
+                          matInput
+                          [(ngModel)]="cnpjOutraParte"
+                          name="cnpjOutraParte"
+                          placeholder="00.000.000/0000-00"
+                          maxlength="18"
+                          inputmode="numeric"
+                          (input)="formatarCnpj($event)"
+                        />
                       </mat-form-field>
 
                       <div class="anexo-wrapper anexo-wrapper--end field">
@@ -6074,7 +6200,6 @@
                         <a
                           href="javascript:void(0)"
                           class="anexo-link"
-                          aria-disabled="true"
                           title="Anexo indisponível"
                         >
                           <mat-icon>attach_file</mat-icon>
@@ -6161,34 +6286,25 @@
                       <mat-label>Matrícula(s)</mat-label>
                       <input
                         matInput
+                        type="number"
                         [(ngModel)]="fase2Matriculas"
                         name="fase2Matriculas"
                       />
                     </mat-form-field>
-
-                    <a
-                      href="javascript:void(0)"
-                      class="anexo-link"
-                      [attr.aria-disabled]="!fase2MatriculasAnexo"
-                      [title]="fase2MatriculasAnexo || 'Anexo indisponível'"
-                    >
-                      <mat-icon>description</mat-icon>
-                      {{ fase2MatriculasAnexo || "Anexos PDF" }}
-                    </a>
                   </div>
                 </div>
                 <hr />
 
                 <div class="form-grid-3">
                   <div class="campo-com-anexo">
-                    <mat-form-field appearance="outline">
+                    <!--<mat-form-field appearance="outline">
                       <mat-label>Arquivo vetorial (shp)</mat-label>
                       <input
                         matInput
                         [(ngModel)]="fase2ArquivoVetorialShp"
                         name="fase2ArquivoVetorialShp"
                       />
-                    </mat-form-field>
+                    </mat-form-field>-->
 
                     <a
                       href="javascript:void(0)"
@@ -6204,14 +6320,14 @@
                   </div>
 
                   <div class="campo-com-anexo">
-                    <mat-form-field appearance="outline">
+                    <!--<mat-form-field appearance="outline">
                       <mat-label>Mapa (impresso/pdf)</mat-label>
                       <input
                         matInput
                         [(ngModel)]="fase2MapaImpresso"
                         name="fase2MapaImpresso"
                       />
-                    </mat-form-field>
+                    </mat-form-field>-->
 
                     <a
                       href="javascript:void(0)"
@@ -6225,7 +6341,7 @@
                   </div>
 
                   <div class="campo-com-anexo">
-                    <mat-form-field appearance="outline">
+                    <!--<mat-form-field appearance="outline">
                       <mat-label
                         >Memorial descritivo (impresso/pdf editável)</mat-label
                       >
@@ -6234,7 +6350,7 @@
                         [(ngModel)]="fase2MemorialDescritivo"
                         name="fase2MemorialDescritivo"
                       />
-                    </mat-form-field>
+                    </mat-form-field>-->
 
                     <a
                       href="javascript:void(0)"

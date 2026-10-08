@@ -1094,3 +1094,145 @@ mat-form-field {
 .bloco-titulo:first-of-type {
   margin-top: 0;
 }
+
+/* =========================================================
+   EXPLORER DE ANEXOS — MÚLTIPLOS ARQUIVOS
+========================================================= */
+.anexo-upload {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.anexo-upload-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.anexo-contador {
+  font-size: 13px;
+  font-weight: 500;
+  color: #1351b4;
+}
+
+.anexo-vazio {
+  font-size: 13px;
+  font-style: italic;
+  color: #888;
+}
+
+.anexo-lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+}
+
+.anexo-lista li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 6px 10px;
+
+  background: #fafafa;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+
+  font-size: 13px;
+  color: #333;
+}
+
+.anexo-lista li > mat-icon {
+  color: #1351b4;
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.anexo-lista .anexo-nome {
+  flex: 1 1 auto;
+  min-width: 0;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.anexo-lista .anexo-tamanho {
+  font-size: 12px;
+  color: #777;
+  white-space: nowrap;
+}
+
+/* Em telas pequenas, empilha botão e contador */
+@media (max-width: 480px) {
+  .anexo-upload-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .anexo-upload-header button {
+    width: 100%;
+  }
+}
+
+/* Faz o campo condicional "surgir" com leve fade + slide */
+.field-full {
+  animation: fadeSlideIn 180ms ease-out;
+}
+
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.anexo-wrapper--upload {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+
+  /* mantém o mesmo dimensionamento dos outros campos */
+  flex: 1 1 calc(33.333% - 16px);
+  min-width: 220px;
+  max-width: calc(33.333% - 11px);
+}
+
+.anexo-wrapper--upload button {
+  flex-shrink: 0;
+}
+
+.form-row > .anexo-lista {
+  flex: 1 1 100%;
+  min-width: 100%;
+  max-width: 100%;
+  margin-top: 4px;
+}
+
+/* O wrapper alinha ao topo da linha, independente de ter link ou não */
+.campo-com-anexo {
+  align-self: flex-start;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* O mat-form-field ocupa toda a largura do wrapper sem margens extras */
+.campo-com-anexo > mat-form-field {
+  width: 100%;
+  margin: 0;
+}
