@@ -195,3 +195,69 @@ mat-dialog-actions {
     border-top: none;
   }
 }
+
+/* Grid de campos — 3 por linha, colapsando em telas pequenas */
+.dados-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px 20px;
+  margin-bottom: 16px;
+}
+
+/* Cada campo: rótulo em cima, input embaixo */
+.dados-grid .campo {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dados-grid .campo > span {
+  font-size: 12px;
+  font-weight: 500;
+  color: #555;
+}
+
+.dados-grid .campo > input,
+.dados-grid .campo > select {
+  width: 100%;
+  padding: 7px 10px;
+  font-size: 14px;
+  color: #333;
+  background-color: #fafafa;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  box-sizing: border-box;
+  cursor: not-allowed;
+}
+
+.dados-grid .campo > small {
+  font-size: 11px;
+  color: #888;
+  align-self: flex-end;
+  margin-top: -22px;
+  margin-right: 8px;
+  pointer-events: none;
+}
+
+/* Título dos blocos */
+.bloco-titulo {
+  margin: 16px 0 8px;
+  padding-bottom: 6px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1351b4;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+/* Responsividade */
+@media (max-width: 960px) {
+  .dados-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .dados-grid {
+    grid-template-columns: 1fr;
+  }
+}

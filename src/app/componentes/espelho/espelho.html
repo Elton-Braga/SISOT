@@ -8,189 +8,351 @@
   </div>
 
   <mat-dialog-content class="dialog-content-custom">
-    <h3 class="section-title">Dados do Imóvel</h3>
-    <table class="tabela-dados">
-      <tbody>
-        <tr>
-          <th>Imóvel:</th>
-          <td>{{ imovel.imovel.imovel }}</td>
-          <th>Superintendência Regional (SR):</th>
-          <td>{{ imovel.imovel.sr }}</td>
-        </tr>
-        <tr>
-          <th>SNCR:</th>
-          <td>{{ imovel.imovel.sncr || "Não informado" }}</td>
-          <th>Área (ha):</th>
-          <td>
-            {{
-              imovel.imovel.areaHa
-                ? (imovel.imovel.areaHa | number: "1.4-4" : "pt-BR")
-                : "Não informada"
-            }}
-          </td>
-        </tr>
-        <tr>
-          <th>Município/UF:</th>
-          <td>{{ imovel.imovel.municipio }}/{{ imovel.imovel.uf }}</td>
-          <th>Fase:</th>
-          <td>{{ imovel.imovel.situacao }}</td>
-        </tr>
-        <tr>
-          <th>Processo:</th>
-          <td>{{ imovel.imovel.processo }}</td>
-          <th>Modalidade:</th>
-          <td>{{ imovel.imovel.modalidade }}</td>
-        </tr>
-        <tr>
-          <th>Proprietário:</th>
-          <td colspan="3">{{ imovel.imovel.proprietario }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <h2 class="section-title">Dados do Imóvel</h2>
 
-    <hr class="divisor" />
+    <!-- ===================== DADOS GERAIS ===================== -->
+    <div class="dados-grid">
+      <label class="campo">
+        <span>Nome Imóvel</span>
+        <input type="text" readonly [value]="imovel.imovel.imovel || ''" />
+      </label>
 
-    <h3 class="section-title">Natureza ocupacional</h3>
-    <table class="tabela-dados">
-      <tbody>
-        <tr>
-          <th>Processo SEI:</th>
-          <td>{{ imovel.obtencao.processoSei }}</td>
-          <th>Situação de Obtenção:</th>
-          <td>{{ imovel.obtencao.situacao }}</td>
-        </tr>
-        <tr>
-          <th>Entidade Demandante:</th>
-          <td>{{ imovel.obtencao.entidadeDemandante }}</td>
-          <th>Grupo</th>
-          <td>Nome do grupo</td>
-        </tr>
-        <tr>
-          <th>Forma de Obtenção:</th>
-          <td>{{ imovel.obtencao.formaObtencao }}</td>
-          <th>Órgão Concorrente:</th>
-          <td>{{ imovel.obtencao.orgaoConcorrente || "Nenhum" }}</td>
-        </tr>
-        <tr>
-          <th>Processo Cadeia Dominial:</th>
-          <td>
-            {{ imovel.obtencao.processoCadeiaDominial || "Não informado" }}
-          </td>
-          <th>Acampamento Vinculado:</th>
-          <td>{{ imovel.obtencao.acampamentoVinculado || "Não informado" }}</td>
-        </tr>
-        <tr>
-          <th>Imóvel Ocupado?</th>
-          <td>{{ imovel.obtencao.imovelOcupado ? "Sim" : "Não" }}</td>
-          <th>Capacidade de Assentamento:</th>
-          <td>{{ imovel.obtencao.capacidadeAssentamento }} famílias</td>
-        </tr>
-        <tr>
-          <th>Ações de Reintegração:</th>
-          <td>{{ imovel.obtencao.acoesReintegracao || "Nenhuma" }}</td>
-          <th>Famílias Cadastradas:</th>
-          <td>{{ imovel.obtencao.familiasCadastradas ?? "Não informado" }}</td>
-        </tr>
-      </tbody>
-    </table>
+      <label class="campo">
+        <span>UF</span>
+        <input
+          type="text"
+          readonly
+          maxlength="2"
+          [value]="imovel.imovel.uf || ''"
+        />
+      </label>
 
-    <hr class="divisor" />
+      <label class="campo">
+        <span>Município</span>
+        <input type="text" readonly [value]="imovel.imovel.municipio || ''" />
+      </label>
 
-    <h3 class="section-title">Dados do processo de obtenção</h3>
-    <table class="tabela-dados">
-      <thead>
-        <tr>
-          <th>Referência</th>
-          <th>Valor Inferior (R$)</th>
-          <th>Valor Médio (R$)</th>
-          <th>Valor Superior (R$)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th>Valor Total do Imóvel</th>
-          <td>
-            {{
-              imovel.avaliacao.valorTotalImovelInferior
-                | currency: "BRL" : "symbol" : "1.2-2" : "pt-BR"
-            }}
-          </td>
-          <td>
-            {{
-              imovel.avaliacao.valorTotalImovelMedio
-                | currency: "BRL" : "symbol" : "1.2-2" : "pt-BR"
-            }}
-          </td>
-          <td>
-            {{
-              imovel.avaliacao.valorTotalImovelSuperior
-                | currency: "BRL" : "symbol" : "1.2-2" : "pt-BR"
-            }}
-          </td>
-        </tr>
-        <tr>
-          <th>Valor da Terra Nua (VTN)</th>
-          <td>
-            {{
-              imovel.avaliacao.valorTerraNuaInferior
-                | currency: "BRL" : "symbol" : "1.2-2" : "pt-BR"
-            }}
-          </td>
-          <td>
-            {{
-              imovel.avaliacao.valorTerraNuaMedio
-                | currency: "BRL" : "symbol" : "1.2-2" : "pt-BR"
-            }}
-          </td>
-          <td>
-            {{
-              imovel.avaliacao.valorTerraNuaSuperior
-                | currency: "BRL" : "symbol" : "1.2-2" : "pt-BR"
-            }}
-          </td>
-        </tr>
-      </tbody>
-    </table>
+      <label class="campo">
+        <span>Código SNCR</span>
+        <input type="text" readonly [value]="imovel.imovel.sncr || ''" />
+      </label>
 
-    <table class="tabela-dados" style="margin-top: 10px">
-      <tbody>
-        <tr>
-          <th>Valor das Benfeitorias:</th>
-          <td>
-            {{
-              imovel.avaliacao.valorBenfeitorias
-                | currency: "BRL" : "symbol" : "1.2-2" : "pt-BR"
-            }}
-          </td>
-          <th>Valor Negociado:</th>
-          <td>
-            {{
-              imovel.avaliacao.valorTotalNegociado
-                ? (imovel.avaliacao.valorTotalNegociado
-                  | currency: "BRL" : "symbol" : "1.2-2" : "pt-BR")
-                : "Não negociado"
-            }}
-          </td>
-        </tr>
-        <tr>
-          <th>Passivo Ambiental:</th>
-          <td class="text-danger">
-            {{
-              imovel.avaliacao.valorPassivoAmbiental
-                | currency: "BRL" : "symbol" : "1.2-2" : "pt-BR"
-            }}
-          </td>
-          <th>Ativo Ambiental:</th>
-          <td class="text-success">
-            {{
-              imovel.avaliacao.valorAtivoAmbiental
-                | currency: "BRL" : "symbol" : "1.2-2" : "pt-BR"
-            }}
-          </td>
-        </tr>
-      </tbody>
-    </table>
+      <label class="campo">
+        <span>Matrícula(s)</span>
+        <input
+          type="text"
+          readonly
+          [value]="imovel.imovel.matriculas || imovel.imovel.matricula || ''"
+        />
+      </label>
+
+      <label class="campo">
+        <span>Nome Proprietário</span>
+        <input
+          type="text"
+          readonly
+          [value]="imovel.imovel.proprietario || ''"
+        />
+      </label>
+
+      <label class="campo">
+        <span>Partes envolvidas</span>
+        <select disabled>
+          <option [selected]="true">
+            {{ imovel.imovel.parteEnvolvida || "Selecione a parte envolvida" }}
+          </option>
+        </select>
+      </label>
+
+      <label class="campo">
+        <span>CPF/CNPJ Proprietário</span>
+        <input
+          type="text"
+          readonly
+          [value]="
+            imovel.imovel.cpfCnpjProprietario || imovel.imovel.cpfCnpj || ''
+          "
+        />
+      </label>
+    </div>
+
+    <!-- ===================== ÁREAS (ha) ===================== -->
+    <h4 class="bloco-titulo">Áreas (ha)</h4>
+    <div class="dados-grid">
+      <label class="campo">
+        <span>Registrada (matrícula)</span>
+        <input
+          type="number"
+          step="0.0001"
+          readonly
+          [value]="imovel.imovel.areaRegistrada ?? ''"
+        />
+        <small>ha</small>
+      </label>
+
+      <label class="campo">
+        <span>Medida</span>
+        <input
+          type="number"
+          step="0.0001"
+          readonly
+          [value]="imovel.imovel.areaCertificada ?? imovel.imovel.areaHa ?? ''"
+        />
+        <small>ha</small>
+      </label>
+
+      <label class="campo">
+        <span>Avaliada</span>
+        <input
+          type="number"
+          step="0.0001"
+          readonly
+          [value]="imovel.imovel.areaAvaliada ?? ''"
+        />
+        <small>ha</small>
+      </label>
+
+      <label class="campo">
+        <span>Visada</span>
+        <input
+          type="number"
+          step="0.0001"
+          readonly
+          [value]="imovel.imovel.areaVisada ?? ''"
+        />
+        <small>ha</small>
+      </label>
+    </div>
+
+    <!-- ===================== VALORES (R$) ===================== -->
+    <h4 class="bloco-titulo">Valores (R$)</h4>
+    <div class="dados-grid">
+      <label class="campo">
+        <span>Total do Imóvel Inferior</span>
+        <input
+          type="number"
+          step="0.01"
+          readonly
+          [value]="imovel.avaliacao.valorTotalImovelInferior ?? ''"
+        />
+      </label>
+
+      <label class="campo">
+        <span>Total do Imóvel Médio</span>
+        <input
+          type="number"
+          step="0.01"
+          readonly
+          [value]="imovel.avaliacao.valorTotalImovelMedio ?? ''"
+        />
+      </label>
+
+      <label class="campo">
+        <span>Total do Imóvel Superior</span>
+        <input
+          type="number"
+          step="0.01"
+          readonly
+          [value]="imovel.avaliacao.valorTotalImovelSuperior ?? ''"
+        />
+      </label>
+
+      <label class="campo">
+        <span>VTI estimado</span>
+        <input
+          type="number"
+          step="0.01"
+          readonly
+          [value]="
+            imovel.avaliacao.valorTotalImovelMedio ??
+            imovel.imovel.vtiMedio ??
+            ''
+          "
+        />
+      </label>
+
+      <label class="campo">
+        <span>Terra Nua Inferior</span>
+        <input
+          type="number"
+          step="0.01"
+          readonly
+          [value]="imovel.avaliacao.valorTerraNuaInferior ?? ''"
+        />
+      </label>
+
+      <label class="campo">
+        <span>Terra Nua Médio</span>
+        <input
+          type="number"
+          step="0.01"
+          readonly
+          [value]="imovel.avaliacao.valorTerraNuaMedio ?? ''"
+        />
+      </label>
+
+      <label class="campo">
+        <span>Terra Nua Superior</span>
+        <input
+          type="number"
+          step="0.01"
+          readonly
+          [value]="imovel.avaliacao.valorTerraNuaSuperior ?? ''"
+        />
+      </label>
+
+      <label class="campo">
+        <span>VTN estimado</span>
+        <input
+          type="number"
+          step="0.01"
+          readonly
+          [value]="
+            imovel.avaliacao.valorTerraNuaMedio ?? imovel.imovel.vtnMedio ?? ''
+          "
+        />
+      </label>
+
+      <label class="campo">
+        <span>Benfeitorias</span>
+        <input
+          type="number"
+          step="0.01"
+          readonly
+          [value]="imovel.avaliacao.valorBenfeitorias ?? ''"
+        />
+      </label>
+
+      <label class="campo">
+        <span>Passivo Ambiental</span>
+        <input
+          type="number"
+          step="0.01"
+          readonly
+          [value]="imovel.avaliacao.valorPassivoAmbiental ?? ''"
+        />
+      </label>
+
+      <label class="campo">
+        <span>Ativo Ambiental</span>
+        <input
+          type="number"
+          step="0.01"
+          readonly
+          [value]="imovel.avaliacao.valorAtivoAmbiental ?? ''"
+        />
+      </label>
+    </div>
   </mat-dialog-content>
+  <hr />
+
+  <!-- ===================== NATUREZA OCUPACIONAL ===================== -->
+  <h2 class="section-title">Natureza ocupacional</h2>
+
+  <div class="dados-grid">
+    <label class="campo">
+      <span>Entidade Demandante</span>
+      <input
+        type="text"
+        readonly
+        [value]="imovel.obtencao.entidadeDemandante || ''"
+      />
+    </label>
+
+    <label class="campo">
+      <span>Acampamento Vinculado</span>
+      <input
+        type="text"
+        readonly
+        [value]="imovel.obtencao.acampamentoVinculado || ''"
+      />
+    </label>
+
+    <label class="campo">
+      <span>Imóvel atualmente ocupado?</span>
+      <input
+        type="text"
+        readonly
+        [value]="
+          imovel.obtencao.imovelOcupado === true
+            ? 'Sim'
+            : imovel.obtencao.imovelOcupado === false
+              ? 'Não'
+              : ''
+        "
+      />
+    </label>
+
+    <label class="campo">
+      <span>Ações de Reintegração de Posse</span>
+      <input
+        type="text"
+        readonly
+        [value]="imovel.obtencao.acoesReintegracao || ''"
+      />
+    </label>
+
+    <label class="campo">
+      <span>Órgão Concorrente</span>
+      <input
+        type="text"
+        readonly
+        [value]="imovel.obtencao.orgaoConcorrente || ''"
+      />
+    </label>
+
+    <label class="campo">
+      <span>Capacidade de Assentamento</span>
+      <input
+        type="number"
+        step="1"
+        readonly
+        [value]="imovel.obtencao.capacidadeAssentamento ?? ''"
+      />
+    </label>
+
+    <label class="campo">
+      <span>Famílias Cadastradas</span>
+      <input
+        type="number"
+        step="1"
+        readonly
+        [value]="imovel.obtencao.familiasCadastradas ?? ''"
+      />
+    </label>
+  </div>
+
+  <hr />
+
+  <!-- ============= DADOS DO PROCESSO DE OBTENÇÃO ============= -->
+  <h2 class="section-title">Dados do processo de obtenção</h2>
+
+  <div class="dados-grid">
+    <label class="campo">
+      <span>Processo SEI</span>
+      <input type="text" readonly [value]="imovel.obtencao.processoSei || ''" />
+    </label>
+
+    <label class="campo">
+      <span>Processo Cadeia Dominial</span>
+      <input
+        type="text"
+        readonly
+        [value]="imovel.obtencao.processoCadeiaDominial || ''"
+      />
+    </label>
+
+    <label class="campo">
+      <span>Fase atual do processo</span>
+      <input
+        type="text"
+        readonly
+        [value]="
+          imovel.obtencao.faseAtualProcesso || imovel.imovel.situacao || ''
+        "
+      />
+    </label>
+  </div>
 
   <mat-dialog-actions align="end">
     <button mat-flat-button color="primary" (click)="window.print()">

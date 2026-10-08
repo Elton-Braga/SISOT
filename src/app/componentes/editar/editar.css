@@ -1236,3 +1236,47 @@ mat-form-field {
   width: 100%;
   margin: 0;
 }
+
+/* =========================================================
+   LISTA DE PARECERES — um link embaixo do outro
+   ========================================================= */
+.lista-pareceres {
+  /* garante que ocupa a linha inteira, ignorando o grid de 3 colunas */
+  flex: 1 1 100%;
+  min-width: 100%;
+  max-width: 100%;
+
+  display: flex;
+  flex-direction: column; /* <- empilha verticalmente */
+  align-items: flex-start; /* <- alinha à esquerda */
+  gap: 6px;
+
+  margin-top: 4px;
+}
+
+.lista-pareceres .link-parecer {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  color: #1351b4;
+  text-decoration: none;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.lista-pareceres .link-parecer:hover {
+  text-decoration: underline;
+}
+
+.lista-pareceres .link-parecer mat-icon {
+  width: 18px;
+  height: 18px;
+  font-size: 18px;
+  flex-shrink: 0;
+}

@@ -79,6 +79,27 @@
               <input matInput readonly [value]="nomeProprietario" />
             </mat-form-field>
 
+            <mat-form-field appearance="outline" class="campo-proprietario">
+              <mat-label>Partes envolvidas</mat-label>
+
+              <mat-select
+                [(ngModel)]="parteEnvolvidaSelecionada"
+                name="parteEnvolvidaSelecionada"
+                placeholder="Selecione a parte envolvida"
+                [disabled]="true"
+              >
+                <mat-option
+                  *ngFor="let parte of partesEnvolvidas"
+                  [value]="parte"
+                >
+                  {{ parte }}
+                </mat-option>
+              </mat-select>
+
+              <!-- ícone de cadeado no lugar da seta -->
+              <mat-icon matSuffix>lock</mat-icon>
+            </mat-form-field>
+
             <mat-form-field appearance="outline">
               <mat-label>CPF/CNPJ Proprietário</mat-label>
               <input matInput readonly [value]="cpfCnpjProprietario" />
@@ -5841,7 +5862,7 @@
                     <div class="form-row">
                       <!-- 1) Espelho do Imóvel no SNCR -->
                       <mat-form-field appearance="outline" class="field">
-                        <mat-label>Espelho do Imóvel no SNCR</mat-label>
+                        <mat-label>Incluir link do SNCR</mat-label>
                         <input
                           matInput
                           placeholder="Buscar no SNCR"
@@ -5858,20 +5879,22 @@
                         </button>
                       </mat-form-field>
 
-                      <!-- 3) Outros (agora isolado, sem o link de anexo ao lado) 
-                      <mat-form-field appearance="outline" class="field">
-                        <mat-label>Outros</mat-label>
-                        <input
-                          matInput
-                          [(ngModel)]="outrosDocumentos"
-                          name="outrosDocumentos"
-                        /> </mat-form-field
-                      >--><!-- 2) Arquivo vetorial -->
-                      <a class="field">Arquivo vetorial (shp).shp</a>
+                      <!-- 2) Lista de pareceres — um link embaixo do outro -->
+                      <div class="lista-pareceres field-full">
+                        <a
+                          class="link-parecer"
+                          *ngFor="let doc of pareceres"
+                          [href]="doc.url"
+                          target="_blank"
+                          rel="noopener"
+                        >
+                          <mat-icon>description</mat-icon>
+                          {{ doc.url }}
+                        </a>
+                      </div>
 
-                      <!-- 4) Explorer de anexos — ocupa a linha inteira -->
+                      <!-- 4) Explorer de anexos — linha inteira -->
                       <div class="anexo-upload field-full">
-                        <!-- input nativo escondido, disparado pelo botão abaixo -->
                         <input
                           #anexoInput
                           type="file"
@@ -5907,9 +5930,9 @@
                         <ul class="anexo-lista" *ngIf="anexos?.length">
                           <li *ngFor="let arquivo of anexos; let i = index">
                             <mat-icon>description</mat-icon>
-                            <span class="anexo-nome" [title]="arquivo.name">
-                              {{ arquivo.name }}
-                            </span>
+                            <span class="anexo-nome" [title]="arquivo.name">{{
+                              arquivo.name
+                            }}</span>
                             <span class="anexo-tamanho">{{
                               formatarTamanho(arquivo.size)
                             }}</span>
@@ -6233,139 +6256,111 @@
                 </ng-template>
                 <br />
 
-                <div class="form-grid-3">
-                  <div class="campo-com-anexo">
-                    <mat-form-field appearance="outline">
-                      <mat-label>Espelho do Imóvel no SNCR</mat-label>
+                <section class="form-section">
+                  <h3>Documentação analisada</h3>
+
+                  <div class="form-row">
+                    <!-- 1) Espelho do Imóvel no SNCR -->
+                    <mat-form-field appearance="outline" class="field">
+                      <mat-label>Incluir link do SNCR</mat-label>
                       <input
                         matInput
-                        [(ngModel)]="fase2EspelhoImovelSncr"
-                        name="fase2EspelhoImovelSncr"
+                        placeholder="Buscar no SNCR"
+                        [(ngModel)]="espelhoImovelSncr"
+                        name="espelhoImovelSncr"
                       />
-                    </mat-form-field>
-
-                    <a
-                      href="javascript:void(0)"
-                      class="anexo-link"
-                      [attr.aria-disabled]="!fase2EspelhoImovelSncrAnexo"
-                      [title]="
-                        fase2EspelhoImovelSncrAnexo || 'Anexo indisponível'
-                      "
-                    >
-                      <mat-icon>description</mat-icon>
-                      {{ fase2EspelhoImovelSncrAnexo || "Anexos PDF" }}
-                    </a>
-                  </div>
-
-                  <div class="campo-com-anexo">
-                    <mat-form-field appearance="outline">
-                      <mat-label>Demonstrativo do Imóvel no SICAR</mat-label>
-                      <input
-                        matInput
-                        [(ngModel)]="fase2DemonstrativoImovelSicar"
-                        name="fase2DemonstrativoImovelSicar"
-                      />
-                    </mat-form-field>
-
-                    <a
-                      href="javascript:void(0)"
-                      class="anexo-link"
-                      [attr.aria-disabled]="!fase2DemonstrativoImovelSicarAnexo"
-                      [title]="
-                        fase2DemonstrativoImovelSicarAnexo ||
-                        'Anexo indisponível'
-                      "
-                    >
-                      <mat-icon>description</mat-icon>
-                      {{ fase2DemonstrativoImovelSicarAnexo || "Anexos PDF" }}
-                    </a>
-                  </div>
-
-                  <div class="campo-com-anexo">
-                    <mat-form-field appearance="outline">
-                      <mat-label>Matrícula(s)</mat-label>
-                      <input
-                        matInput
-                        type="number"
-                        [(ngModel)]="fase2Matriculas"
-                        name="fase2Matriculas"
-                      />
-                    </mat-form-field>
-                  </div>
-                </div>
-                <hr />
-
-                <div class="form-grid-3">
-                  <div class="campo-com-anexo">
-                    <!--<mat-form-field appearance="outline">
-                      <mat-label>Arquivo vetorial (shp)</mat-label>
-                      <input
-                        matInput
-                        [(ngModel)]="fase2ArquivoVetorialShp"
-                        name="fase2ArquivoVetorialShp"
-                      />
-                    </mat-form-field>-->
-
-                    <a
-                      href="javascript:void(0)"
-                      class="anexo-link"
-                      [attr.aria-disabled]="!fase2ArquivoVetorialShpAnexo"
-                      [title]="
-                        fase2ArquivoVetorialShpAnexo || 'Anexo indisponível'
-                      "
-                    >
-                      <mat-icon>description</mat-icon>
-                      {{ fase2ArquivoVetorialShpAnexo || "Anexos PDF" }}
-                    </a>
-                  </div>
-
-                  <div class="campo-com-anexo">
-                    <!--<mat-form-field appearance="outline">
-                      <mat-label>Mapa (impresso/pdf)</mat-label>
-                      <input
-                        matInput
-                        [(ngModel)]="fase2MapaImpresso"
-                        name="fase2MapaImpresso"
-                      />
-                    </mat-form-field>-->
-
-                    <a
-                      href="javascript:void(0)"
-                      class="anexo-link"
-                      [attr.aria-disabled]="!fase2MapaImpressoAnexo"
-                      [title]="fase2MapaImpressoAnexo || 'Anexo indisponível'"
-                    >
-                      <mat-icon>description</mat-icon>
-                      {{ fase2MapaImpressoAnexo || "Anexos PDF" }}
-                    </a>
-                  </div>
-
-                  <div class="campo-com-anexo">
-                    <!--<mat-form-field appearance="outline">
-                      <mat-label
-                        >Memorial descritivo (impresso/pdf editável)</mat-label
+                      <button
+                        mat-icon-button
+                        matSuffix
+                        type="button"
+                        aria-label="Buscar no SNCR"
                       >
-                      <input
-                        matInput
-                        [(ngModel)]="fase2MemorialDescritivo"
-                        name="fase2MemorialDescritivo"
-                      />
-                    </mat-form-field>-->
+                        <mat-icon>search</mat-icon>
+                      </button>
+                    </mat-form-field>
 
-                    <a
-                      href="javascript:void(0)"
-                      class="anexo-link"
-                      [attr.aria-disabled]="!fase2MemorialDescritivoAnexo"
-                      [title]="
-                        fase2MemorialDescritivoAnexo || 'Anexo indisponível'
-                      "
-                    >
-                      <mat-icon>description</mat-icon>
-                      {{ fase2MemorialDescritivoAnexo || "Anexos PDF" }}
-                    </a>
+                    <!-- 2) Pareceres — agora vêm do array 'pareceres' e ficam empilhados -->
+                    <div class="campo-com-anexo field-full">
+                      <div
+                        class="lista-pareceres"
+                        *ngIf="pareceres?.length; else semPareceres"
+                      >
+                        <a
+                          *ngFor="let doc of pareceres; let i = index"
+                          class="link-parecer"
+                          [href]="doc.url"
+                          target="_blank"
+                          rel="noopener"
+                          [title]="doc.url"
+                        >
+                          <mat-icon>description</mat-icon>
+                          {{ doc.url }}
+                        </a>
+                      </div>
+                      <ng-template #semPareceres>
+                        <span class="anexo-vazio"
+                          >Nenhum parecer disponível</span
+                        >
+                      </ng-template>
+                    </div>
+
+                    <!-- 4) Explorer de anexos — ocupa a linha inteira -->
+                    <div class="anexo-upload field-full">
+                      <input
+                        #anexoInput
+                        type="file"
+                        multiple
+                        hidden
+                        (change)="onAnexosSelecionados($event)"
+                      />
+
+                      <div class="anexo-upload-header">
+                        <button
+                          mat-stroked-button
+                          type="button"
+                          color="primary"
+                          (click)="anexoInput.click()"
+                        >
+                          <mat-icon>attach_file</mat-icon>
+                          Anexar arquivos
+                        </button>
+
+                        <span
+                          class="anexo-contador"
+                          *ngIf="anexos?.length; else semAnexos"
+                        >
+                          {{ anexos.length }} arquivo(s) selecionado(s)
+                        </span>
+                        <ng-template #semAnexos>
+                          <span class="anexo-vazio"
+                            >Nenhum arquivo selecionado</span
+                          >
+                        </ng-template>
+                      </div>
+                      <br />
+                      <ul class="anexo-lista" *ngIf="anexos?.length">
+                        <li *ngFor="let arquivo of anexos; let i = index">
+                          <mat-icon>description</mat-icon>
+                          <span class="anexo-nome" [title]="arquivo.name">{{
+                            arquivo.name
+                          }}</span>
+                          <span class="anexo-tamanho">{{
+                            formatarTamanho(arquivo.size)
+                          }}</span>
+                          <button
+                            mat-icon-button
+                            type="button"
+                            aria-label="Remover anexo"
+                            (click)="removerAnexo(i)"
+                          >
+                            <mat-icon>close</mat-icon>
+                          </button>
+                        </li>
+                      </ul>
+                    </div>
                   </div>
-                </div>
-                <hr />
+                </section>
+                <br />
 
                 <mat-form-field appearance="outline" class="full-width">
                   <mat-label>Observação</mat-label>

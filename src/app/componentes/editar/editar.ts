@@ -226,6 +226,21 @@ export class Editar implements OnInit {
 
   public fase2Observacao = '';
 
+  // -----------------------------------------------------------------
+  // PARTES ENVOLVIDAS — opções da combobox
+  // -----------------------------------------------------------------
+  public partesEnvolvidas: string[] = ['Proprietário', 'Outros'];
+
+  public parteEnvolvidaSelecionada = '';
+
+  pareceres = [
+    { url: 'https://exemplo.com/documentos/parecer-processo-12345.pdf' },
+    { url: 'https://exemplo2.com/documentos/parecer2-processo-12346.pdf' },
+    { url: 'https://exemplo3.com/documentos/parecer-processo-13345.pdf' },
+    { url: 'https://exemplo4.com/documentos/parecer2-processo-12346.pdf' },
+    { url: 'https://exemplo4.com/documentos/parecer-processo-15428.pdf' },
+  ];
+
   /* -------------------------------------------------------
      Fase atual do stepper → Seção 4 (NOVO)
   ------------------------------------------------------- */
