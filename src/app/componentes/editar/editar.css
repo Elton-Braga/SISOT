@@ -1280,3 +1280,50 @@ mat-form-field {
   font-size: 18px;
   flex-shrink: 0;
 }
+
+/* Label azul ao lado da URL */
+.label-parecer {
+  color: #1976d2; /* azul Material */
+  font-weight: 600;
+  margin-right: 8px;
+  white-space: nowrap;
+}
+
+/* Opcional: separador visual entre label e URL */
+.url-parecer {
+  color: #555;
+  word-break: break-all;
+}
+
+/* Mantém o ícone alinhado */
+.link-parecer {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  padding: 4px 0;
+}
+
+.link-parecer:hover .url-parecer {
+  text-decoration: underline;
+}
+
+.outra-parte-encontrada {
+  margin-top: 4px;
+  margin-bottom: 8px;
+  padding: 8px 12px;
+  background: #f5f5f5;
+  border-left: 3px solid #1976d2;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.outra-parte-linha {
+  margin: 2px 0;
+  color: #333;
+}
+
+.outra-parte-linha strong {
+  color: #1976d2;
+  margin-right: 4px;
+}

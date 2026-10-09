@@ -134,6 +134,14 @@ export class Editar implements OnInit {
   tipoDocumentoOutraParte: 'CPF' | 'CNPJ' | '' = '';
   cpfOutraParte = '';
   cnpjOutraParte = '';
+  documentos: { tipo: 'CPF' | 'CNPJ'; documento: string; nome: string }[] = [
+    { tipo: 'CPF', documento: '00000000000', nome: 'Nome do Portador' },
+    {
+      tipo: 'CNPJ',
+      documento: '00000000000000',
+      nome: 'Razão Social da Empresa',
+    },
+  ];
 
   public processoCadeiaDominial = '';
 
@@ -234,11 +242,26 @@ export class Editar implements OnInit {
   public parteEnvolvidaSelecionada = '';
 
   pareceres = [
-    { url: 'https://exemplo.com/documentos/parecer-processo-12345.pdf' },
-    { url: 'https://exemplo2.com/documentos/parecer2-processo-12346.pdf' },
-    { url: 'https://exemplo3.com/documentos/parecer-processo-13345.pdf' },
-    { url: 'https://exemplo4.com/documentos/parecer2-processo-12346.pdf' },
-    { url: 'https://exemplo4.com/documentos/parecer-processo-15428.pdf' },
+    {
+      url: 'https://Espelhor-SNCR.com/documentos/parecer-processo-12345.pdf',
+      label: 'Espelho do SNCR',
+    },
+    {
+      url: 'https://arquivo-shp.com/documentos/parecer2-processo-12346.pdf',
+      label: 'Arquivo Shp',
+    },
+    {
+      url: 'https://demonstrativo-imovel-SICAR.com/documentos/parecer-processo-13345.pdf',
+      label: 'Demonstrativo do imovel no SNCR',
+    },
+    {
+      url: 'https://mapa-descritivo.com/documentos/parecer2-processo-12346.pdf',
+      label: 'Mapa descritivo',
+    },
+    {
+      url: 'https://mapa.com/documentos/parecer-processo-15428.pdf',
+      label: 'Mapa',
+    },
   ];
 
   /* -------------------------------------------------------
@@ -353,6 +376,8 @@ export class Editar implements OnInit {
     } else if (tipo === 'CNPJ') {
       this.cpfOutraParte = '';
     }
+
+    this.atualizarParteEnvolvida(); // ⬅️ NOVO
   }
 
   /** Máscara simples de CPF: 000.000.000-00 */
@@ -364,6 +389,8 @@ export class Editar implements OnInit {
     v = v.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
     input.value = v;
     this.cpfOutraParte = v;
+
+    this.atualizarParteEnvolvida(); // ⬅️ NOVO
   }
 
   /** Máscara simples de CNPJ: 00.000.000/0000-00 */
@@ -376,6 +403,8 @@ export class Editar implements OnInit {
     v = v.replace(/(\d{4})(\d)/, '$1-$2');
     input.value = v;
     this.cnpjOutraParte = v;
+
+    this.atualizarParteEnvolvida(); // ⬅️ NOVO
   }
 
   onAnexosSelecionados(event: Event): void {
@@ -386,6 +415,71 @@ export class Editar implements OnInit {
 
     // Limpa o value para permitir selecionar o mesmo arquivo novamente
     input.value = '';
+  }
+
+  /* ---------------------------------------------------------
+   Localiza a parte envolvida no array `documentos`
+   comparando apenas os DÍGITOS (ignora a máscara).
+--------------------------------------------------------- */
+  get outraParteEncontrada(): {
+    tipo: 'CPF' | 'CNPJ';
+    documento: string;
+    nome: string;
+  } | null {
+    if (this.tipoDocumentoOutraParte === 'CPF' && this.cpfOutraParte) {
+      const digitos = this.cpfOutraParte.replace(/\D/g, '');
+      return (
+        this.documentos.find(
+          (d) => d.tipo === 'CPF' && d.documento === digitos,
+        ) ?? null
+      );
+    }
+
+    if (this.tipoDocumentoOutraParte === 'CNPJ' && this.cnpjOutraParte) {
+      const digitos = this.cnpjOutraParte.replace(/\D/g, '');
+      return (
+        this.documentos.find(
+          (d) => d.tipo === 'CNPJ' && d.documento === digitos,
+        ) ?? null
+      );
+    }
+
+    return null;
+  }
+
+  /* ---------------------------------------------------------
+   Reflete o CPF/CNPJ digitado na seção "Documentos da
+   Abertura de Processo" dentro do mat-select
+   "Partes envolvidas".
+--------------------------------------------------------- */
+  private atualizarParteEnvolvida(): void {
+    const tipo = this.tipoDocumentoOutraParte;
+    const valorDigitado =
+      tipo === 'CPF'
+        ? this.cpfOutraParte
+        : tipo === 'CNPJ'
+          ? this.cnpjOutraParte
+          : '';
+
+    // Sempre começa com as opções fixas
+    const opcoesFixas = ['Proprietário', 'Outros'];
+
+    // Se nada foi digitado → limpa tudo
+    if (!valorDigitado) {
+      this.partesEnvolvidas = [...opcoesFixas];
+      this.parteEnvolvidaSelecionada = '';
+      return;
+    }
+
+    // Se o documento existe no array, exibe "Nome (TIPO: número)"
+    // Senão, exibe apenas o valor digitado.
+    const doc = this.outraParteEncontrada;
+    const rotulo = doc
+      ? `${doc.nome} (${doc.tipo}: ${valorDigitado})`
+      : valorDigitado;
+
+    this.partesEnvolvidas = [...opcoesFixas, rotulo];
+    this.parteEnvolvidaSelecionada = rotulo;
   }
 
   /** Remove um anexo pelo índice */

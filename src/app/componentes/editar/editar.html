@@ -5654,13 +5654,8 @@
                       <!-- ▼ ALTERADO: Código SNCR (busca no SNCR) -->
                       <mat-form-field appearance="outline" class="field">
                         <mat-label>Código SNCR</mat-label>
-                        <input
-                          matInput
-                          readonly
-                          [(ngModel)]="codigoSncr"
-                          name="codigoSncr"
-                        />
-                        <mat-icon matSuffix>cloud_download</mat-icon>
+                        <input matInput name="codigoSncr" />
+                        <mat-icon matSuffix>create</mat-icon>
                         <mat-hint>Preenchido via SNCR</mat-hint>
                       </mat-form-field>
 
@@ -5669,7 +5664,6 @@
                         <mat-label>Nome Imóvel</mat-label>
                         <input
                           matInput
-                          readonly
                           required
                           [(ngModel)]="nomeImovel"
                           name="nomeImovel"
@@ -5683,7 +5677,6 @@
                         <mat-label>UF</mat-label>
                         <mat-select
                           required
-                          disabled
                           [(ngModel)]="ufSelecionada"
                           name="ufSelecionada"
                         >
@@ -5700,7 +5693,6 @@
                         <mat-label>Município</mat-label>
                         <mat-select
                           required
-                          disabled
                           [(ngModel)]="municipioSelecionado"
                           name="municipioSelecionado"
                         >
@@ -5724,7 +5716,6 @@
                           <mat-label>Matrícula(s)</mat-label>
                           <input
                             matInput
-                            readonly
                             [(ngModel)]="matricula"
                             name="matricula"
                           />
@@ -5748,7 +5739,6 @@
                         <mat-label>Nome Proprietário</mat-label>
                         <input
                           matInput
-                          readonly
                           [(ngModel)]="nomeProprietario"
                           name="nomeProprietario"
                         />
@@ -5761,7 +5751,6 @@
                         <mat-label>CPF/CNPJ Proprietário</mat-label>
                         <input
                           matInput
-                          readonly
                           [(ngModel)]="cpfCnpjProprietario"
                           name="cpfCnpjProprietario"
                         />
@@ -5861,36 +5850,45 @@
 
                     <div class="form-row">
                       <!-- 1) Espelho do Imóvel no SNCR -->
-                      <mat-form-field appearance="outline" class="field">
-                        <mat-label>Incluir link do SNCR</mat-label>
-                        <input
-                          matInput
-                          placeholder="Buscar no SNCR"
-                          [(ngModel)]="espelhoImovelSncr"
-                          name="espelhoImovelSncr"
-                        />
-                        <button
-                          mat-icon-button
-                          matSuffix
-                          type="button"
-                          aria-label="Buscar no SNCR"
-                        >
-                          <mat-icon>search</mat-icon>
-                        </button>
-                      </mat-form-field>
 
                       <!-- 2) Lista de pareceres — um link embaixo do outro -->
                       <div class="lista-pareceres field-full">
                         <a
                           class="link-parecer"
-                          *ngFor="let doc of pareceres"
+                          *ngFor="let doc of pareceres | slice: 0 : 2"
                           [href]="doc.url"
                           target="_blank"
                           rel="noopener"
+                          [title]="doc.url"
                         >
                           <mat-icon>description</mat-icon>
-                          {{ doc.url }}
+
+                          <span class="url-parecer">{{ doc.url }}</span
+                          ><span class="label-parecer"
+                            >&nbsp;&nbsp;<mat-icon class="icone-download"
+                              >download</mat-icon
+                            >&nbsp;{{ doc.label }}</span
+                          >
                         </a>
+                      </div>
+                      <div class="anexo-upload field-full">
+                        <mat-form-field appearance="outline" class="field">
+                          <mat-label>Incluir link do SNCR</mat-label>
+                          <input
+                            matInput
+                            placeholder="Buscar no SNCR"
+                            [(ngModel)]="espelhoImovelSncr"
+                            name="espelhoImovelSncr"
+                          />
+                          <button
+                            mat-icon-button
+                            matSuffix
+                            type="button"
+                            aria-label="Buscar no SNCR"
+                          >
+                            <mat-icon>search</mat-icon>
+                          </button>
+                        </mat-form-field>
                       </div>
 
                       <!-- 4) Explorer de anexos — linha inteira -->
@@ -6198,6 +6196,7 @@
                         />
                       </mat-form-field>
 
+                      <!-- Campo condicional: CNPJ -->
                       <mat-form-field
                         appearance="outline"
                         class="field-full"
@@ -6214,6 +6213,19 @@
                           (input)="formatarCnpj($event)"
                         />
                       </mat-form-field>
+
+                      <!-- ⬇️ NOVO — Exibição em texto plano abaixo do campo -->
+                      <div
+                        class="outra-parte-encontrada field-full"
+                        *ngIf="outraParteEncontrada as doc"
+                      >
+                        <p class="outra-parte-linha">
+                          <strong>Nome / Razão Social:</strong> {{ doc.nome }}
+                        </p>
+                        <p class="outra-parte-linha">
+                          <strong>{{ doc.tipo }}:</strong> {{ doc.documento }}
+                        </p>
+                      </div>
 
                       <div class="anexo-wrapper anexo-wrapper--end field">
                         <span class="anexo-label"
@@ -6260,48 +6272,43 @@
                   <h3>Documentação analisada</h3>
 
                   <div class="form-row">
-                    <!-- 1) Espelho do Imóvel no SNCR -->
-                    <mat-form-field appearance="outline" class="field">
-                      <mat-label>Incluir link do SNCR</mat-label>
-                      <input
-                        matInput
-                        placeholder="Buscar no SNCR"
-                        [(ngModel)]="espelhoImovelSncr"
-                        name="espelhoImovelSncr"
-                      />
-                      <button
-                        mat-icon-button
-                        matSuffix
-                        type="button"
-                        aria-label="Buscar no SNCR"
-                      >
-                        <mat-icon>search</mat-icon>
-                      </button>
-                    </mat-form-field>
-
                     <!-- 2) Pareceres — agora vêm do array 'pareceres' e ficam empilhados -->
-                    <div class="campo-com-anexo field-full">
-                      <div
-                        class="lista-pareceres"
-                        *ngIf="pareceres?.length; else semPareceres"
-                      >
-                        <a
-                          *ngFor="let doc of pareceres; let i = index"
-                          class="link-parecer"
-                          [href]="doc.url"
-                          target="_blank"
-                          rel="noopener"
-                          [title]="doc.url"
+                    <a
+                      *ngFor="let doc of pareceres; let i = index"
+                      class="link-parecer"
+                      [href]="doc.url"
+                      target="_blank"
+                      rel="noopener"
+                      [title]="doc.url"
+                    >
+                      <mat-icon>description</mat-icon>
+
+                      <span>{{ doc.url }}</span
+                      >&nbsp;<span [style.font-weight]="600"
+                        ><mat-icon class="icone-download">download</mat-icon>
+                        {{ doc.label }}
+                      </span>
+                    </a>
+                    <br />
+
+                    <div class="anexo-upload field-full">
+                      <mat-form-field appearance="outline" class="field">
+                        <mat-label>Incluir link </mat-label>
+                        <input
+                          matInput
+                          placeholder="Buscar no SNCR"
+                          [(ngModel)]="espelhoImovelSncr"
+                          name="espelhoImovelSncr"
+                        />
+                        <button
+                          mat-icon-button
+                          matSuffix
+                          type="button"
+                          aria-label="Buscar no SNCR"
                         >
-                          <mat-icon>description</mat-icon>
-                          {{ doc.url }}
-                        </a>
-                      </div>
-                      <ng-template #semPareceres>
-                        <span class="anexo-vazio"
-                          >Nenhum parecer disponível</span
-                        >
-                      </ng-template>
+                          <mat-icon>search</mat-icon>
+                        </button>
+                      </mat-form-field>
                     </div>
 
                     <!-- 4) Explorer de anexos — ocupa a linha inteira -->
