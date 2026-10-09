@@ -55,13 +55,13 @@
         />
       </label>
 
-      <label class="campo">
-        <span>Partes envolvidas</span>
-        <select disabled>
-          <option [selected]="true">
-            {{ imovel.imovel.parteEnvolvida || "Selecione a parte envolvida" }}
-          </option>
-        </select>
+      <label class="campo" *ngFor="let doc of cpfsFormatados; let i = index">
+        <span>
+          {{ doc.label }} Partes envolvidas
+          {{ cpfsFormatados.length > 1 ? " " + (i + 1) : "" }}
+          <!-- {{ doc.nome }} -->
+        </span>
+        <input type="text" readonly [value]="doc.valor" />
       </label>
 
       <label class="campo">

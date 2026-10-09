@@ -2,6 +2,7 @@ import {
   CurrencyPipe,
   DatePipe,
   DecimalPipe,
+  NgFor,
   PercentPipe,
 } from '@angular/common';
 import { Component, Inject } from '@angular/core';
@@ -18,6 +19,7 @@ import { MatIconModule } from '@angular/material/icon';
   selector: 'app-espelho',
   standalone: true,
   imports: [
+    NgFor,
     MatDialogActions,
     MatDialogContent,
     MatIconModule,
@@ -30,6 +32,14 @@ import { MatIconModule } from '@angular/material/icon';
   styleUrl: './espelho.css',
 })
 export class Espelho {
+  documentos: { tipo: 'CPF' | 'CNPJ'; documento: string; nome: string }[] = [
+    { tipo: 'CPF', documento: '00000000000', nome: 'Nome do Portador' },
+    {
+      tipo: 'CNPJ',
+      documento: '00000000000000',
+      nome: 'Razão Social da Empresa',
+    },
+  ];
   dataEmissao = new Date();
   window = window;
   constructor(
@@ -42,5 +52,18 @@ export class Espelho {
   }
   imprimir(): void {
     window.print();
+  }
+
+  get cpfsFormatados(): { label: string; valor: string; nome: string }[] {
+    return this.documentos
+      .filter((doc) => doc.tipo === 'CPF')
+      .map((doc) => ({
+        label: doc.tipo,
+        valor: doc.documento.replace(
+          /(\d{3})(\d{3})(\d{3})(\d{2})/,
+          '$1.$2.$3-$4',
+        ),
+        nome: doc.nome,
+      }));
   }
 }

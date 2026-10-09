@@ -11,7 +11,7 @@ export const IMOVEIS_MOCK: Dados[] = [
         'Amilcar Farid Yamin, Adriane Rocha Yamin e Christiane Rocha Yamin',
       processo: '54000.160184/2025-42',
       modalidade: 'Compra e Venda Decreto 433/92',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase 0',
       municipio: 'Xinguara',
       uf: 'PA',
       acoes: ['Espelho', 'Histórico', 'Editar', 'Log'],
@@ -30,7 +30,7 @@ export const IMOVEIS_MOCK: Dados[] = [
 
     obtencao: {
       processoSei: '54000.160184/2025-42',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       entidadeDemandante:
         'INCRA - Instituto Nacional de Colonização e Reforma Agrária',
       processoCadeiaDominial: '',
@@ -126,7 +126,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       proprietario: 'Itaguatins S/A. Agropecuária',
       processo: '54000.079109/2025-65',
       modalidade: 'Adjudicação',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase 0',
       municipio: 'Coelho Neto',
       uf: 'MA',
       acoes: ['Espelho', 'Histórico', 'Editar', 'Log'],
@@ -144,7 +144,7 @@ export const IMOVEIS_MOCK: Dados[] = [
 
     obtencao: {
       processoSei: '54000.079109/2025-65',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase 1',
       entidadeDemandante:
         'INCRA - Instituto Nacional de Colonização e Reforma Agrária',
       processoCadeiaDominial: '',
@@ -238,7 +238,7 @@ export const IMOVEIS_MOCK: Dados[] = [
         'Amilcar Farid Yamin, Adriane Rocha Yamin e Christiane Rocha Yamin',
       processo: '54000.160184/2025-42',
       modalidade: 'Compra e Venda Decreto 433/92',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase 2',
       municipio: 'Xinguara',
       uf: 'PA',
       acoes: ['Espelho', 'Histórico', 'Editar', 'Log'],
@@ -256,7 +256,7 @@ export const IMOVEIS_MOCK: Dados[] = [
 
     obtencao: {
       processoSei: '54000.160184/2025-42',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase 3',
       entidadeDemandante:
         'INCRA - Instituto Nacional de Colonização e Reforma Agrária',
       processoCadeiaDominial: '',
@@ -345,7 +345,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       proprietario: 'Itaguatins S/A. Agropecuária',
       processo: '54000.079109/2025-65',
       modalidade: 'Adjudicação',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase 5',
       municipio: 'Coelho Neto',
       uf: 'MA',
       acoes: ['Espelho', 'Histórico', 'Editar', 'Log'],
@@ -363,7 +363,7 @@ export const IMOVEIS_MOCK: Dados[] = [
 
     obtencao: {
       processoSei: '54000.079109/2025-65',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       entidadeDemandante:
         'INCRA - Instituto Nacional de Colonização e Reforma Agrária',
       processoCadeiaDominial: '',
@@ -453,7 +453,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       proprietario: 'Claralba Comercial S.A (Suzano)',
       processo: '54000.037326/2024-14',
       modalidade: 'Compra e Venda Decreto 433/92',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase 0',
       municipio: 'Aracruz',
       uf: 'ES',
       acoes: ['Espelho', 'Histórico', 'Editar', 'Log'],
@@ -471,7 +471,7 @@ export const IMOVEIS_MOCK: Dados[] = [
 
     obtencao: {
       processoSei: '54000.037326/2024-14',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase 0',
       entidadeDemandante:
         'INCRA - Instituto Nacional de Colonização e Reforma Agrária',
       processoCadeiaDominial: '',
@@ -562,7 +562,7 @@ export const IMOVEIS_MOCK: Dados[] = [
         'Grupo João Santos (Itapajé SA Celulose Papéis e Artefatos)',
       processo: '54000.095506/2025-84',
       modalidade: 'Adjudicação',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase 2',
       municipio: 'Coelho Neto',
       uf: 'MA',
       acoes: ['Espelho', 'Histórico', 'Editar', 'Log'],
@@ -580,7 +580,7 @@ export const IMOVEIS_MOCK: Dados[] = [
 
     obtencao: {
       processoSei: '54000.095506/2025-84',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase 2',
       entidadeDemandante:
         'INCRA - Instituto Nacional de Colonização e Reforma Agrária',
       processoCadeiaDominial: '',
@@ -670,7 +670,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       proprietario: 'Itaguatins S/A. Agropecuária',
       processo: '54000.079133/2025-02',
       modalidade: 'Adjudicação',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       municipio: 'Coelho Neto',
       uf: 'MA',
       acoes: ['Espelho', 'Histórico', 'Editar', 'Log'],
@@ -688,7 +688,7 @@ export const IMOVEIS_MOCK: Dados[] = [
 
     obtencao: {
       processoSei: '54000.079133/2025-02',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       entidadeDemandante:
         'INCRA - Instituto Nacional de Colonização e Reforma Agrária',
       processoCadeiaDominial: '',
@@ -777,7 +777,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       proprietario: 'Anélia Stipp Amador e outros',
       processo: '54000.076811/2025-13',
       modalidade: 'Compra e Venda Decreto 433/92',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       municipio: 'Santa Maria do Oeste',
       uf: 'PR',
       acoes: ['Espelho', 'Histórico', 'Editar', 'Log'],
@@ -795,7 +795,7 @@ export const IMOVEIS_MOCK: Dados[] = [
 
     obtencao: {
       processoSei: '54000.076811/2025-13',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       entidadeDemandante:
         'INCRA - Instituto Nacional de Colonização e Reforma Agrária',
       processoCadeiaDominial: '',
@@ -888,7 +888,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       proprietario: '3R Empreendimentos Imobiliários LTDA',
       processo: '54000.183516/2023-41',
       modalidade: 'Compra e Venda Decreto 433/92',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       municipio: 'Itambé',
       uf: 'PE',
       acoes: ['Espelho', 'Histórico', 'Editar', 'Log'],
@@ -906,7 +906,7 @@ export const IMOVEIS_MOCK: Dados[] = [
 
     obtencao: {
       processoSei: '54000.183516/2023-41',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       entidadeDemandante:
         'INCRA - Instituto Nacional de Colonização e Reforma Agrária',
       processoCadeiaDominial: '',
@@ -999,7 +999,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       proprietario: 'Espólio de Aziz Mutran Neto',
       processo: '54000.062562/2025-32',
       modalidade: 'Desapropriação Lei 4132/62',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       municipio: 'Marabá',
       uf: 'PA',
       acoes: ['Espelho', 'Histórico', 'Editar', 'Log'],
@@ -1017,7 +1017,7 @@ export const IMOVEIS_MOCK: Dados[] = [
 
     obtencao: {
       processoSei: '54000.062562/2025-32',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       entidadeDemandante:
         'INCRA - Instituto Nacional de Colonização e Reforma Agrária',
       processoCadeiaDominial: '',
@@ -1110,7 +1110,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       proprietario: 'União Federal',
       processo: '54000.035933/2023-41',
       modalidade: 'Arrecadação de Terras Públicas da União',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       municipio: 'Cáceres',
       uf: 'MT',
       acoes: ['Espelho', 'Histórico', 'Editar', 'Log'],
@@ -1128,7 +1128,7 @@ export const IMOVEIS_MOCK: Dados[] = [
 
     obtencao: {
       processoSei: '54000.035933/2023-41',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       entidadeDemandante:
         'INCRA - Instituto Nacional de Colonização e Reforma Agrária',
       processoCadeiaDominial: '',
@@ -1221,7 +1221,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       proprietario: 'UNIÃO FEDERAL',
       processo: '54000.011137/2018-56',
       modalidade: 'Arrecadação de Terras Públicas da União',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       municipio: 'União do Sul',
       uf: 'MT',
       acoes: ['Espelho', 'Histórico', 'Editar', 'Log'],
@@ -1239,7 +1239,7 @@ export const IMOVEIS_MOCK: Dados[] = [
 
     obtencao: {
       processoSei: '54000.011137/2018-56',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       entidadeDemandante:
         'INCRA - Instituto Nacional de Colonização e Reforma Agrária',
       processoCadeiaDominial: '',
@@ -1329,7 +1329,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       proprietario: 'UNIÃO FEDERAL',
       processo: '54000.136209/2018-77',
       modalidade: 'Arrecadação de Terras Públicas da União',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       municipio: 'Nova Mutum',
       uf: 'MT',
       acoes: ['Espelho', 'Histórico', 'Editar', 'Log'],
@@ -1347,7 +1347,7 @@ export const IMOVEIS_MOCK: Dados[] = [
 
     obtencao: {
       processoSei: '54000.136209/2018-77',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       entidadeDemandante:
         'INCRA - Instituto Nacional de Colonização e Reforma Agrária',
       processoCadeiaDominial: '',
@@ -1441,7 +1441,7 @@ export const IMOVEIS_MOCK: Dados[] = [
         'UNIÃO FEDERAL (A área visada é menor devido ao acordo N° 05/2025 Câmara de Destinação de Terras Públicas, SEI 24921057)',
       processo: '54000.125706/2024-98',
       modalidade: 'Arrecadação de Terras Públicas da União',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       municipio: 'Sena Madureira',
       uf: 'AC',
       acoes: ['Espelho', 'Histórico', 'Editar', 'Log'],
@@ -1459,7 +1459,7 @@ export const IMOVEIS_MOCK: Dados[] = [
 
     obtencao: {
       processoSei: '54000.125706/2024-98',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       entidadeDemandante:
         'INCRA - Instituto Nacional de Colonização e Reforma Agrária',
       processoCadeiaDominial: '',
@@ -1550,7 +1550,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       proprietario: 'UNIÃO FEDERAL',
       processo: '54000.058789/2025-83',
       modalidade: 'Arrecadação de Terras Públicas da União',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       municipio: 'Tarauacá',
       uf: 'AC',
       acoes: ['Espelho', 'Histórico', 'Editar', 'Log'],
@@ -1568,7 +1568,7 @@ export const IMOVEIS_MOCK: Dados[] = [
 
     obtencao: {
       processoSei: '54000.058789/2025-83',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       entidadeDemandante:
         'INCRA - Instituto Nacional de Colonização e Reforma Agrária',
       processoCadeiaDominial: '',
@@ -1659,7 +1659,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       proprietario: 'União',
       processo: '54000.113404/2025-58',
       modalidade: 'Arrecadação de Terras Públicas da União',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       municipio: 'Palmeirante',
       uf: 'TO',
       acoes: ['Espelho', 'Histórico', 'Editar', 'Log'],
@@ -1677,7 +1677,7 @@ export const IMOVEIS_MOCK: Dados[] = [
 
     obtencao: {
       processoSei: '54000.113404/2025-58',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       entidadeDemandante:
         'INCRA - Instituto Nacional de Colonização e Reforma Agrária',
       processoCadeiaDominial: '',
@@ -1770,7 +1770,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       proprietario: 'União',
       processo: '54000.064376/2025-38',
       modalidade: 'Arrecadação de Terras Públicas da União',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       municipio: 'Marianópolis do Tocantins',
       uf: 'TO',
       acoes: ['Espelho', 'Histórico', 'Editar', 'Log'],
@@ -1788,7 +1788,7 @@ export const IMOVEIS_MOCK: Dados[] = [
 
     obtencao: {
       processoSei: '54000.064376/2025-38',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       entidadeDemandante:
         'INCRA - Instituto Nacional de Colonização e Reforma Agrária',
       processoCadeiaDominial: '',
@@ -1881,7 +1881,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       proprietario: 'Jorge Ivan Cassaro',
       processo: '54000.018750/2025-23',
       modalidade: 'Desapropriação Lei 8.629/93',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       municipio: 'Gália',
       uf: 'SP',
       acoes: ['Espelho', 'Histórico', 'Editar', 'Log'],
@@ -1899,7 +1899,7 @@ export const IMOVEIS_MOCK: Dados[] = [
 
     obtencao: {
       processoSei: '54000.018750/2025-23',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       entidadeDemandante:
         'INCRA - Instituto Nacional de Colonização e Reforma Agrária',
       processoCadeiaDominial: '',
@@ -1990,7 +1990,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       proprietario: 'Olimpia Maria Ferreira Thiago',
       processo: '54190.003091/2007-59',
       modalidade: 'Desapropriação Lei 8.629/93',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       municipio: "Palmeira d'Oeste",
       uf: 'SP',
       acoes: ['Espelho', 'Histórico', 'Editar', 'Log'],
@@ -2008,7 +2008,7 @@ export const IMOVEIS_MOCK: Dados[] = [
 
     obtencao: {
       processoSei: '54190.003091/2007-59',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       entidadeDemandante:
         'INCRA - Instituto Nacional de Colonização e Reforma Agrária',
       processoCadeiaDominial: '',
@@ -2100,7 +2100,7 @@ export const IMOVEIS_MOCK: Dados[] = [
         'João Carlos de Almeida, Maria de Fátima Almeida e Pedro Henrique Almeida',
       processo: '54000.125478/2025-18',
       modalidade: 'Desapropriação Lei 4132/62',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       municipio: 'Marabá',
       uf: 'PA',
       acoes: ['Espelho', 'Histórico', 'Editar', 'Log'],
@@ -2118,7 +2118,7 @@ export const IMOVEIS_MOCK: Dados[] = [
 
     obtencao: {
       processoSei: '54000.125478/2025-18',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       entidadeDemandante:
         'INCRA - Instituto Nacional de Colonização e Reforma Agrária',
       processoCadeiaDominial: '',
@@ -2210,7 +2210,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       proprietario: 'Espólio de Antônio Pereira da Silva e sucessores',
       processo: '54000.298741/2025-63',
       modalidade: 'Desapropriação Lei 4132/62',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       municipio: 'Presidente Prudente',
       uf: 'SP',
       acoes: ['Espelho', 'Histórico', 'Editar', 'Log'],
@@ -2228,7 +2228,7 @@ export const IMOVEIS_MOCK: Dados[] = [
 
     obtencao: {
       processoSei: '54000.298741/2025-63',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       entidadeDemandante:
         'INCRA - Instituto Nacional de Colonização e Reforma Agrária',
       processoCadeiaDominial: '',
@@ -2320,7 +2320,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       proprietario: 'Banco do Brasil SA',
       processo: '54000.116968/2024-61',
       modalidade: 'Aquisição Onerosa de Entidades Públicas (Compensação)',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       municipio: 'Viamão',
       uf: 'RS',
       acoes: ['Espelho', 'Histórico', 'Editar', 'Log'],
@@ -2338,7 +2338,7 @@ export const IMOVEIS_MOCK: Dados[] = [
 
     obtencao: {
       processoSei: '54000.116968/2024-61',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       entidadeDemandante: '',
       processoCadeiaDominial: '',
       formaObtencao: 'Aquisição Onerosa de Entidades Públicas (Compensação)',
@@ -2431,7 +2431,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       proprietario: 'Banco do Brasil SA',
       processo: '54000.126269/2024-20',
       modalidade: 'Aquisição Onerosa de Entidades Públicas (Compensação)',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       municipio: 'Rio Branco',
       uf: 'AC',
       acoes: ['Espelho', 'Histórico', 'Editar', 'Log'],
@@ -2449,7 +2449,7 @@ export const IMOVEIS_MOCK: Dados[] = [
 
     obtencao: {
       processoSei: '54000.126269/2024-20',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       entidadeDemandante: '',
       processoCadeiaDominial: '',
       formaObtencao: 'Aquisição Onerosa de Entidades Públicas (Compensação)',
@@ -2540,7 +2540,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       proprietario: 'Banco do Brasil S/A',
       processo: '54000.078874/2024-87',
       modalidade: 'Aquisição Onerosa de Entidades Públicas (Compensação)',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       municipio: 'Maracaju',
       uf: 'MS',
       acoes: ['Espelho', 'Histórico', 'Editar', 'Log'],
@@ -2558,7 +2558,7 @@ export const IMOVEIS_MOCK: Dados[] = [
 
     obtencao: {
       processoSei: '54000.078874/2024-87',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       entidadeDemandante: '',
       processoCadeiaDominial: '',
       formaObtencao: 'Aquisição Onerosa de Entidades Públicas (Compensação)',
@@ -2649,7 +2649,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       proprietario: 'Vale SA',
       processo: '54000.000000/0000-00',
       modalidade: 'Doação',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       municipio: 'Curionópolis',
       uf: 'PA',
       acoes: ['Espelho', 'Histórico', 'Editar', 'Log'],
@@ -2667,7 +2667,7 @@ export const IMOVEIS_MOCK: Dados[] = [
 
     obtencao: {
       processoSei: '54000.000000/0000-00',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       entidadeDemandante: '',
       processoCadeiaDominial: '',
       formaObtencao: 'Doação',
@@ -2763,7 +2763,7 @@ export const IMOVEIS_MOCK: Dados[] = [
         'CODEVASF - Companhia de Desenvolvimento dos Vales do São Francisco e do Parnaíba',
       processo: '54000.111948/2023-13',
       modalidade: 'Doação',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       municipio: 'Brasilândia de Minas',
       uf: 'MG',
       acoes: ['Espelho', 'Histórico', 'Editar', 'Log'],
@@ -2781,7 +2781,7 @@ export const IMOVEIS_MOCK: Dados[] = [
 
     obtencao: {
       processoSei: '54000.111948/2023-13',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       entidadeDemandante: '',
       processoCadeiaDominial: '',
       formaObtencao: 'Doação',
@@ -2877,7 +2877,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       proprietario: 'Banco do Nordeste',
       processo: '54000.106964/2025-56',
       modalidade: 'Aquisição Onerosa de Entidades Públicas (Compensação)',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       municipio: 'Juazeiro',
       uf: 'BA',
       acoes: ['Espelho', 'Histórico', 'Editar', 'Log'],
@@ -2895,7 +2895,7 @@ export const IMOVEIS_MOCK: Dados[] = [
 
     obtencao: {
       processoSei: '54000.106964/2025-56',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       entidadeDemandante: '',
       processoCadeiaDominial: '',
       formaObtencao: 'Aquisição Onerosa de Entidades Públicas (Compensação)',
@@ -2990,7 +2990,7 @@ export const IMOVEIS_MOCK: Dados[] = [
       proprietario: 'Estado da Bahia',
       processo: '54000.018508/2025-50',
       modalidade: 'Doação',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       municipio: 'Juazeiro',
       uf: 'BA',
       acoes: ['Espelho', 'Histórico', 'Editar', 'Log'],
@@ -3008,7 +3008,7 @@ export const IMOVEIS_MOCK: Dados[] = [
 
     obtencao: {
       processoSei: '54000.018508/2025-50',
-      situacao: 'Em Trâmite',
+      situacao: 'Fase X',
       entidadeDemandante: '',
       processoCadeiaDominial: '',
       formaObtencao: 'Doação',
