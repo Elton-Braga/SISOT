@@ -46,15 +46,6 @@
         />
       </label>
 
-      <label class="campo">
-        <span>Nome Proprietário</span>
-        <input
-          type="text"
-          readonly
-          [value]="imovel.imovel.proprietario || ''"
-        />
-      </label>
-
       <label class="campo" *ngFor="let doc of cpfsFormatados; let i = index">
         <span>
           {{ doc.label }} Partes envolvidas
@@ -62,6 +53,14 @@
           <!-- {{ doc.nome }} -->
         </span>
         <input type="text" readonly [value]="doc.valor" />
+      </label>
+      <label class="campo">
+        <span>Nome Proprietário</span>
+        <input
+          type="text"
+          readonly
+          [value]="imovel.imovel.proprietario || ''"
+        />
       </label>
 
       <label class="campo">

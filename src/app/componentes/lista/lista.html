@@ -140,7 +140,7 @@
 
             <div class="filter-item item-sm">
               <mat-form-field appearance="outline" class="w-100">
-                <mat-label>Situação</mat-label>
+                <mat-label>Fase</mat-label>
                 <input
                   matInput
                   [(ngModel)]="filtros().situacao"
@@ -359,7 +359,7 @@
           </ng-container>
 
           <ng-container matColumnDef="situacao">
-            <th mat-header-cell *matHeaderCellDef>Situação</th>
+            <th mat-header-cell *matHeaderCellDef>Fase</th>
             <td mat-cell *matCellDef="let item">
               <span class="br-tag info">{{ item.imovel.situacao }}</span>
             </td>

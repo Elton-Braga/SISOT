@@ -187,7 +187,7 @@ export class Lista implements OnInit {
     { id: 'areaHa', titulo: 'Área (Ha)', visivel: true },
     { id: 'proprietario', titulo: 'Proprietário', visivel: true },
     { id: 'processo', titulo: 'Processo', visivel: true },
-    { id: 'modalidade', titulo: 'Fases do Processo', visivel: true },
+    { id: 'modalidade', titulo: 'Modalidade', visivel: true },
     { id: 'situacao', titulo: 'Situação', visivel: true },
     { id: 'municipioUf', titulo: 'Município / UF', visivel: true },
 

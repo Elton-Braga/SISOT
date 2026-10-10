@@ -75,11 +75,6 @@
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="campo-proprietario">
-              <mat-label>Nome Proprietário</mat-label>
-              <input matInput readonly [value]="nomeProprietario" />
-            </mat-form-field>
-
-            <mat-form-field appearance="outline" class="campo-proprietario">
               <mat-label>Partes envolvidas</mat-label>
 
               <mat-select
@@ -98,6 +93,10 @@
 
               <!-- ícone de cadeado no lugar da seta -->
               <mat-icon matSuffix>lock</mat-icon>
+            </mat-form-field>
+            <mat-form-field appearance="outline" class="campo-proprietario">
+              <mat-label>Nome Proprietário</mat-label>
+              <input matInput readonly [value]="nomeProprietario" />
             </mat-form-field>
 
             <mat-form-field appearance="outline">
