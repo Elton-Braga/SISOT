@@ -24,6 +24,8 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { mockPesquisasImoveis } from '../mock/mercadoTerrasMock/mercadoDeTerrasMock';
 import { PesquisaImovel } from '../mock/mercadoTerrasMock/interfaceMercadoDeTerras';
 import { ModalVisualizarMercado } from './modal-visualizar-mercado/modal-visualizar-mercado';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @Component({
   selector: 'app-mercado-terras',
@@ -47,6 +49,8 @@ import { ModalVisualizarMercado } from './modal-visualizar-mercado/modal-visuali
     MatCheckboxModule,
     MatDialogModule,
     RouterLink,
+    MatDatepickerModule,
+    MatNativeDateModule,
   ],
   templateUrl: './mercado-terras.html',
   styleUrl: './mercado-terras.css',

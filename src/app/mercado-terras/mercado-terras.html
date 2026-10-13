@@ -60,18 +60,10 @@
         </mat-card-header>
 
         <mat-card-content class="p-3">
-          <div class="filter-flex-container">
-            <div class="filter-item item-xs">
-              <mat-form-field appearance="outline" class="w-100">
-                <mat-label>ID</mat-label>
-                <input
-                  matInput
-                  [(ngModel)]="filtros().id"
-                  placeholder="Ex: SR(27)MBA"
-                />
-              </mat-form-field>
-            </div>
+          <div class="filtros-titulo">Filtros</div>
 
+          <div class="filter-flex-container">
+            <!-- Imóvel -->
             <div class="filter-item item-md">
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>Imóvel</mat-label>
@@ -83,17 +75,7 @@
               </mat-form-field>
             </div>
 
-            <div class="filter-item item-md">
-              <mat-form-field appearance="outline" class="w-100">
-                <mat-label>Município</mat-label>
-                <input
-                  matInput
-                  [(ngModel)]="filtros().municipio"
-                  placeholder="Cidade"
-                />
-              </mat-form-field>
-            </div>
-
+            <!-- UF -->
             <div class="filter-item item-xs">
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>UF</mat-label>
@@ -106,32 +88,69 @@
               </mat-form-field>
             </div>
 
-            <!-- NOVO CAMPO: GRUPO -->
-            <div class="filter-item item-sm">
+            <!-- Município -->
+            <div class="filter-item item-md">
               <mat-form-field appearance="outline" class="w-100">
-                <mat-label>Nota Agronomica</mat-label>
-                <input matInput placeholder="Nome do grupo" />
+                <mat-label>Município</mat-label>
+                <input
+                  matInput
+                  [(ngModel)]="filtros().municipio"
+                  placeholder="Cidade"
+                />
               </mat-form-field>
             </div>
 
+            <!-- Nota Agronômica -->
             <div class="filter-item item-sm">
               <mat-form-field appearance="outline" class="w-100">
-                <mat-label>Area</mat-label>
-                <input matInput placeholder="Nome do grupo" />
+                <mat-label>Notas Solo</mat-label>
+                <input
+                  matInput
+                  [(ngModel)]="filtros().notaAgronomica"
+                  placeholder="Notas Solo"
+                />
               </mat-form-field>
             </div>
 
+            <!-- Área -->
             <div class="filter-item item-sm">
               <mat-form-field appearance="outline" class="w-100">
-                <mat-label>VPN</mat-label>
-                <input matInput placeholder="Nome do grupo" />
+                <mat-label>Área</mat-label>
+                <input
+                  matInput
+                  [(ngModel)]="filtros().area"
+                  placeholder="Área (ha)"
+                />
               </mat-form-field>
             </div>
 
+            <!-- VTN -->
+            <div class="filter-item item-sm">
+              <mat-form-field appearance="outline" class="w-100">
+                <mat-label>VTN</mat-label>
+                <input
+                  matInput
+                  [(ngModel)]="filtros().vtn"
+                  placeholder="Valor da Terra Nua"
+                />
+              </mat-form-field>
+            </div>
+
+            <!-- Data da pesquisa -->
             <div class="filter-item item-sm">
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>Data da pesquisa</mat-label>
-                <input matInput placeholder="Nome do grupo" />
+                <input
+                  matInput
+                  [matDatepicker]="pickerDataPesquisa"
+                  [(ngModel)]="filtros().dataPesquisa"
+                  placeholder="dd/mm/aaaa"
+                />
+                <mat-datepicker-toggle
+                  matIconSuffix
+                  [for]="pickerDataPesquisa"
+                ></mat-datepicker-toggle>
+                <mat-datepicker #pickerDataPesquisa></mat-datepicker>
               </mat-form-field>
             </div>
           </div>
@@ -284,7 +303,7 @@
 
           <!-- Nota Agronômica -->
           <ng-container matColumnDef="notaAgronomica">
-            <th mat-header-cell *matHeaderCellDef>Nota Agronômica</th>
+            <th mat-header-cell *matHeaderCellDef>Notas Solo</th>
             <td mat-cell *matCellDef="let item">
               {{ item.avaliacao.notaAgronomica | number: "1.3-3" }}
             </td>
