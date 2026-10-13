@@ -261,3 +261,78 @@ mat-dialog-actions {
     grid-template-columns: 1fr;
   }
 }
+/* ---- Conteúdo do diálogo sem rolagem ---- */
+.dialog-content-custom {
+  padding: 12px 20px !important;
+  max-height: none !important; /* remove o limite padrão do Material */
+  overflow: visible !important; /* remove a barra de rolagem */
+}
+
+/* Cabeçalho e ações mais enxutos */
+.gov-header {
+  padding: 12px 20px;
+}
+.gov-header h2 {
+  font-size: 20px;
+}
+.gov-subtitle {
+  font-size: 13px;
+}
+
+mat-dialog-actions {
+  padding: 10px 20px;
+}
+
+/* ---- Grid mais denso: 4 colunas ---- */
+.dados-grid {
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px 12px;
+  margin-bottom: 8px;
+}
+
+.dados-grid .campo > span {
+  font-size: 11px;
+}
+
+.dados-grid .campo > input,
+.dados-grid .campo > select {
+  padding: 4px 8px;
+  font-size: 13px;
+}
+
+.dados-grid .campo > small {
+  font-size: 10px;
+  margin-top: -18px;
+  margin-right: 6px;
+}
+
+/* Títulos de bloco mais compactos */
+.bloco-titulo {
+  margin: 8px 0 4px;
+  padding-bottom: 4px;
+  font-size: 0.9rem;
+}
+
+.section-title {
+  margin: 0 0 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1351b4;
+}
+
+/* Responsividade: 3 / 2 / 1 colunas */
+@media (max-width: 1200px) {
+  .dados-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 900px) {
+  .dados-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .dados-grid {
+    grid-template-columns: 1fr;
+  }
+}
