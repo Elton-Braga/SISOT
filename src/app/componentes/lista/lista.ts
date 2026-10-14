@@ -178,8 +178,8 @@ export class Lista implements OnInit {
 
   public configuracaoColunas = [
     // Coluna de Seleção (sempre visível)
-    { id: 'favoritos', titulo: '', visivel: true },
-    { id: 'selecao', titulo: '', visivel: true },
+    { id: 'favoritos', titulo: 'Favoritos', visivel: true },
+    { id: 'selecao', titulo: 'Seleção', visivel: true },
     // Dados do Imóvel
     { id: 'sr', titulo: 'SR', visivel: true },
     { id: 'imovel', titulo: 'Imóvel', visivel: true },
@@ -190,110 +190,6 @@ export class Lista implements OnInit {
     { id: 'modalidade', titulo: 'Modalidade', visivel: true },
     { id: 'situacao', titulo: 'Situação', visivel: true },
     { id: 'municipioUf', titulo: 'Município / UF', visivel: true },
-
-    // Dados de Obtenção
-    { id: 'processoSei', titulo: 'Processo SEI', visivel: false },
-    { id: 'situacaoObtencao', titulo: 'Situação de Obtenção', visivel: false },
-    {
-      id: 'entidadeDemandante',
-      titulo: 'Entidade Demandante',
-      visivel: false,
-    },
-    { id: 'formaObtencao', titulo: 'Forma de Obtenção', visivel: false },
-    {
-      id: 'orgaoConcorrente',
-      titulo: 'Órgão Concorrente',
-      visivel: false,
-    },
-    {
-      id: 'processoCadeiaDominial',
-      titulo: 'Processo Cadeia Dominial',
-      visivel: false,
-    },
-    {
-      id: 'acampamentoVinculado',
-      titulo: 'Acampamento Vinculado',
-      visivel: false,
-    },
-    {
-      id: 'imovelOcupado',
-      titulo: 'Imóvel Ocupado?',
-      visivel: false,
-    },
-    {
-      id: 'capacidadeAssentamento',
-      titulo: 'Capacidade de Assentamento',
-      visivel: false,
-    },
-    {
-      id: 'acoesReintegracao',
-      titulo: 'Ações de Reintegração',
-      visivel: false,
-    },
-    {
-      id: 'familiasCadastradas',
-      titulo: 'Famílias Cadastradas',
-      visivel: false,
-    },
-    {
-      id: 'grupo', // Adicionado coluna de grupo
-      titulo: 'Grupo',
-      visivel: false,
-    },
-
-    // Dados de Avaliação e Valores
-    {
-      id: 'valorTotalImovelInferior',
-      titulo: 'Valor Total do Imóvel — Inferior (R$)',
-      visivel: false,
-    },
-    {
-      id: 'valorTotalImovelMedio',
-      titulo: 'Valor Total do Imóvel — Médio (R$)',
-      visivel: false,
-    },
-    {
-      id: 'valorTotalImovelSuperior',
-      titulo: 'Valor Total do Imóvel — Superior (R$)',
-      visivel: false,
-    },
-    {
-      id: 'valorTerraNuaInferior',
-      titulo: 'Valor da Terra Nua (VTN) — Inferior (R$)',
-      visivel: false,
-    },
-    {
-      id: 'valorTerraNuaMedio',
-      titulo: 'Valor da Terra Nua (VTN) — Médio (R$)',
-      visivel: false,
-    },
-    {
-      id: 'valorTerraNuaSuperior',
-      titulo: 'Valor da Terra Nua (VTN) — Superior (R$)',
-      visivel: false,
-    },
-
-    // Valores Complementares
-    {
-      id: 'valorBenfeitorias',
-      titulo: 'Valor das Benfeitorias (R$)',
-      visivel: false,
-    },
-    {
-      id: 'valorTotalNegociado',
-      titulo: 'Valor Negociado (R$)',
-      visivel: false,
-    },
-    {
-      id: 'valorPassivoAmbiental',
-      titulo: 'Passivo Ambiental (R$)',
-      visivel: false,
-    },
-    {
-      id: 'valorAtivoAmbiental',
-      titulo: 'Ativo Ambiental (R$)',
-      visivel: false,
-    },
 
     // Ações
     { id: 'acoes', titulo: 'Ações', visivel: true },
