@@ -7,6 +7,9 @@ import { Processos } from './componentes/processos/processos';
 import { CadastrarGrupo } from './componentes/cadastrar-grupo/cadastrar-grupo';
 import { MercadoTerras } from './mercado-terras/mercado-terras';
 import { EditarMerdadoDeTerras } from './mercado-terras/editar-merdado-de-terras/editar-merdado-de-terras';
+import { Oferta } from './mercado-terras/oferta/oferta';
+import { Opiniao } from './mercado-terras/opiniao/opiniao';
+import { Transacao } from './mercado-terras/transacao/transacao';
 
 export const routes: Routes = [
   {
@@ -43,5 +46,17 @@ export const routes: Routes = [
   {
     path: 'editarMercadoDeTerras',
     component: EditarMerdadoDeTerras,
+  },
+  {
+    path: 'transacao',
+    component: Transacao,
+  },
+  {
+    path: 'oferta',
+    component: Oferta,
+  },
+  {
+    path: 'opiniao',
+    component: Opiniao,
   },
 ];

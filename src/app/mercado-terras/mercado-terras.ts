@@ -26,6 +26,7 @@ import { PesquisaImovel } from '../mock/mercadoTerrasMock/interfaceMercadoDeTerr
 import { ModalVisualizarMercado } from './modal-visualizar-mercado/modal-visualizar-mercado';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-mercado-terras',
@@ -51,6 +52,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     RouterLink,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatSelectModule, // <-- ADICIONADO
   ],
   templateUrl: './mercado-terras.html',
   styleUrl: './mercado-terras.css',
@@ -60,6 +62,26 @@ export class MercadoTerras {
   // 1. DADOS E CONFIGURAÇÃO INICIAL
   // ============================================================
   public imoveis = signal<PesquisaImovel[]>(mockPesquisasImoveis);
+
+  public readonly opcoesTipoPesquisa: string[] = [
+    'Transação',
+    'Oferta',
+    'Opinião',
+  ];
+
+  private readonly rotasPorTipoPesquisa: Record<string, string> = {
+    Transação: '/transacao',
+    Oferta: '/oferta',
+    Opinião: '/opiniao',
+  };
+
+  /** Valor selecionado no combo ('' = nada selecionado) */
+  public tipoPesquisa = signal<string>('');
+
+  /** Habilita o botão "Nova pesquisa" somente com uma opção escolhida */
+  public podeNovaPesquisa = computed(
+    () => this.tipoPesquisa().trim().length > 0,
+  );
 
   // Paginação
   public itensPorPagina = signal<number>(5);
@@ -328,6 +350,24 @@ export class MercadoTerras {
     console.log(`Criando grupo "${this.nomeGrupo}" com:`, selecionados);
     this.nomeGrupo = '';
     this.limparSelecao();
+  }
+
+  // ============================================================
+  // 10. TIPO DE PESQUISA (combo) + NOVA PESQUISA
+  // ============================================================
+
+  public novaPesquisa(): void {
+    const tipo = this.tipoPesquisa();
+    if (!tipo) return;
+
+    const destino = this.rotasPorTipoPesquisa[tipo];
+    if (!destino) {
+      console.warn(`Nenhuma rota mapeada para o tipo: ${tipo}`);
+      return;
+    }
+
+    // Nova pesquisa: apenas o tipo vai no state
+    this.router.navigate([destino], { state: { tipo } });
   }
 
   public limparFiltros(): void {
