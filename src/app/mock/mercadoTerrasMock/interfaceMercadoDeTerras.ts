@@ -6,12 +6,27 @@ export interface PesquisaImovel {
   dataPesquisa: Date | null;
   dataImovel: Date | null;
 
+  // --- Cadastro / identificação (novos) ---
+  rintIbge: string;
+  rgiIbge: string;
+  fonteElemento: string;
+  origemInformacoes: string;
+  roteiroAcesso: string;
+
   localizacao: LocalizacaoImovel;
   valores: ValoresImovel;
   caracteristicas: CaracteristicasImovel;
   avaliacao: AvaliacaoImovel;
   identificacao: IdentificacaoImovel;
   envolvidos: EnvolvidosImovel;
+
+  // --- Contato / auditoria (novos) ---
+  telefoneInformante: string;
+  pesquisadores: string;
+  logUsuario: string;
+
+  // --- Fotografia (novo) ---
+  descricaoFotografia: string;
 
   observacoesGeral: string;
 }
@@ -27,6 +42,8 @@ export interface LocalizacaoImovel {
   acesso: string;
 
   coordenadas: Coordenadas;
+  situacao: string;
+  coordenadasTexto: string;
 }
 
 export interface Coordenadas {
@@ -59,8 +76,10 @@ export interface CaracteristicasImovel {
 
 export interface AvaliacaoImovel {
   notaCcu: number | null;
-  notaAgronomica: number | null;
   notaAcesso: number | null;
+  notaAgronomica: number | null; // mantido (será substituído por "nota solos" via classes)
+  fonteNotaCcu: string; // <-- novo
+  fonteNotaAcesso: string; // <-- novo
 }
 
 export interface EnvolvidosImovel {

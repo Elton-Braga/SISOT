@@ -20,6 +20,8 @@ export const mockPesquisasImoveis: PesquisaImovel[] = [
         longitude: -43.26727,
         latitude: -13.37347,
       },
+      situacao: '',
+      coordenadasTexto: '',
     },
     valores: {
       areaTotalHa: 1125.4804,
@@ -41,6 +43,8 @@ export const mockPesquisasImoveis: PesquisaImovel[] = [
       notaCcu: 0.422,
       notaAgronomica: 0.422,
       notaAcesso: 1.0,
+      fonteNotaCcu: '',
+      fonteNotaAcesso: '',
     },
     envolvidos: {
       vendedor: 'EDITH ALMEIDA MARQUES DE CARVALHO',
@@ -54,6 +58,15 @@ export const mockPesquisasImoveis: PesquisaImovel[] = [
     },
     observacoesGeral:
       'O imóvel possui cerca de 60% da sua área sujeita a alagamento, devido a lagoas naturais existentes na região.',
+    rintIbge: '',
+    rgiIbge: '',
+    fonteElemento: '',
+    origemInformacoes: '',
+    roteiroAcesso: '',
+    telefoneInformante: '',
+    pesquisadores: '',
+    logUsuario: '',
+    descricaoFotografia: '',
   },
   {
     id: 3,
@@ -72,6 +85,8 @@ export const mockPesquisasImoveis: PesquisaImovel[] = [
         longitude: -43.20844,
         latitude: -13.41073,
       },
+      situacao: '',
+      coordenadasTexto: '',
     },
     valores: {
       areaTotalHa: 275.6206,
@@ -93,6 +108,8 @@ export const mockPesquisasImoveis: PesquisaImovel[] = [
       notaCcu: 0.454,
       notaAgronomica: 0.454,
       notaAcesso: 1.0,
+      fonteNotaCcu: '',
+      fonteNotaAcesso: '',
     },
     envolvidos: {
       vendedor: 'ONOFRE DANTAS DA COSTA',
@@ -105,6 +122,15 @@ export const mockPesquisasImoveis: PesquisaImovel[] = [
       codigoCertificacao: 'Não disponível',
     },
     observacoesGeral: 'Imóvel com pouco área de pasto.',
+    rintIbge: '',
+    rgiIbge: '',
+    fonteElemento: '',
+    origemInformacoes: '',
+    roteiroAcesso: '',
+    telefoneInformante: '',
+    pesquisadores: '',
+    logUsuario: '',
+    descricaoFotografia: '',
   },
   {
     id: 4,
@@ -123,6 +149,8 @@ export const mockPesquisasImoveis: PesquisaImovel[] = [
         longitude: -43.25379,
         latitude: -13.45386,
       },
+      situacao: '',
+      coordenadasTexto: '',
     },
     valores: {
       areaTotalHa: 213.0448,
@@ -144,6 +172,8 @@ export const mockPesquisasImoveis: PesquisaImovel[] = [
       notaCcu: 0.46,
       notaAgronomica: 0.414,
       notaAcesso: 0.9,
+      fonteNotaCcu: '',
+      fonteNotaAcesso: '',
     },
     envolvidos: {
       vendedor: 'Informação não disponível',
@@ -157,6 +187,15 @@ export const mockPesquisasImoveis: PesquisaImovel[] = [
     },
     observacoesGeral:
       'Parte do imóvel já foi aberta mas encapoeirou novamente.',
+    rintIbge: '',
+    rgiIbge: '',
+    fonteElemento: '',
+    origemInformacoes: '',
+    roteiroAcesso: '',
+    telefoneInformante: '',
+    pesquisadores: '',
+    logUsuario: '',
+    descricaoFotografia: '',
   },
   {
     id: 5,
@@ -175,6 +214,8 @@ export const mockPesquisasImoveis: PesquisaImovel[] = [
         longitude: -43.24123,
         latitude: -13.40301,
       },
+      situacao: '',
+      coordenadasTexto: '',
     },
     valores: {
       areaTotalHa: 492.5533,
@@ -196,6 +237,8 @@ export const mockPesquisasImoveis: PesquisaImovel[] = [
       notaCcu: 0.468,
       notaAgronomica: 0.468,
       notaAcesso: 1.0,
+      fonteNotaCcu: '',
+      fonteNotaAcesso: '',
     },
     envolvidos: {
       vendedor: 'DALTRO APARECIDO DOS SANTOS',
@@ -209,6 +252,15 @@ export const mockPesquisasImoveis: PesquisaImovel[] = [
     },
     observacoesGeral:
       'Imóvel produtivo e beneficiado com água disponível, pastagem e recurso para o gado. Constituído por 2 matrículas, 2 CAR, certificado no SIGEF.',
+    rintIbge: '',
+    rgiIbge: '',
+    fonteElemento: '',
+    origemInformacoes: '',
+    roteiroAcesso: '',
+    telefoneInformante: '',
+    pesquisadores: '',
+    logUsuario: '',
+    descricaoFotografia: '',
   },
   {
     id: 6,
@@ -227,6 +279,8 @@ export const mockPesquisasImoveis: PesquisaImovel[] = [
         longitude: -43.15252,
         latitude: -13.22763,
       },
+      situacao: '',
+      coordenadasTexto: '',
     },
     valores: {
       areaTotalHa: 612.5099,
@@ -248,6 +302,8 @@ export const mockPesquisasImoveis: PesquisaImovel[] = [
       notaCcu: 0.46,
       notaAgronomica: 0.391,
       notaAcesso: 0.85,
+      fonteNotaCcu: '',
+      fonteNotaAcesso: '',
     },
     envolvidos: {
       vendedor: 'JOSE RIBEIRO BRITO',
@@ -260,6 +316,15 @@ export const mockPesquisasImoveis: PesquisaImovel[] = [
       codigoCertificacao: 'Não disponível',
     },
     observacoesGeral: 'O imóvel é certificado no SNCI e SIGEF.',
+    rintIbge: '',
+    rgiIbge: '',
+    fonteElemento: '',
+    origemInformacoes: '',
+    roteiroAcesso: '',
+    telefoneInformante: '',
+    pesquisadores: '',
+    logUsuario: '',
+    descricaoFotografia: '',
   },
   {
     id: 7,
@@ -278,6 +343,8 @@ export const mockPesquisasImoveis: PesquisaImovel[] = [
         longitude: -43.12147,
         latitude: -13.24438,
       },
+      situacao: '',
+      coordenadasTexto: '',
     },
     valores: {
       areaTotalHa: 767.5218,
@@ -299,6 +366,8 @@ export const mockPesquisasImoveis: PesquisaImovel[] = [
       notaCcu: 0.464,
       notaAgronomica: 0.394,
       notaAcesso: 0.85,
+      fonteNotaCcu: '',
+      fonteNotaAcesso: '',
     },
     envolvidos: {
       vendedor: 'JAIME LOUZADA',
@@ -312,6 +381,15 @@ export const mockPesquisasImoveis: PesquisaImovel[] = [
     },
     observacoesGeral:
       'Imóvel negociado em 30 parcelas mensais com taxa de juros de 1.00%.',
+    rintIbge: '',
+    rgiIbge: '',
+    fonteElemento: '',
+    origemInformacoes: '',
+    roteiroAcesso: '',
+    telefoneInformante: '',
+    pesquisadores: '',
+    logUsuario: '',
+    descricaoFotografia: '',
   },
   {
     id: 10,
@@ -330,6 +408,8 @@ export const mockPesquisasImoveis: PesquisaImovel[] = [
         longitude: -43.14507,
         latitude: -13.21062,
       },
+      situacao: '',
+      coordenadasTexto: '',
     },
     valores: {
       areaTotalHa: 401.2594,
@@ -351,6 +431,8 @@ export const mockPesquisasImoveis: PesquisaImovel[] = [
       notaCcu: 0.45,
       notaAgronomica: 0.383,
       notaAcesso: 0.85,
+      fonteNotaCcu: '',
+      fonteNotaAcesso: '',
     },
     envolvidos: {
       vendedor: 'Aparecida Pereira da Silva Oliveira',
@@ -363,6 +445,15 @@ export const mockPesquisasImoveis: PesquisaImovel[] = [
       codigoCertificacao: 'f55ef722-f07c-40a9-bef5-c65972d20b87',
     },
     observacoesGeral: 'O imóvel possui apenas cercas de divisa precárias.',
+    rintIbge: '',
+    rgiIbge: '',
+    fonteElemento: '',
+    origemInformacoes: '',
+    roteiroAcesso: '',
+    telefoneInformante: '',
+    pesquisadores: '',
+    logUsuario: '',
+    descricaoFotografia: '',
   },
   {
     id: 11,
@@ -381,6 +472,8 @@ export const mockPesquisasImoveis: PesquisaImovel[] = [
         longitude: -42.98889,
         latitude: -13.52499,
       },
+      situacao: '',
+      coordenadasTexto: '',
     },
     valores: {
       areaTotalHa: 22.5,
@@ -402,6 +495,8 @@ export const mockPesquisasImoveis: PesquisaImovel[] = [
       notaCcu: 0.47,
       notaAgronomica: 0.423,
       notaAcesso: 0.9,
+      fonteNotaCcu: '',
+      fonteNotaAcesso: '',
     },
     envolvidos: {
       vendedor: 'Informação não disponível',
@@ -415,6 +510,15 @@ export const mockPesquisasImoveis: PesquisaImovel[] = [
     },
     observacoesGeral:
       'O imóvel possuía apenas cercas de divisa, foi comprado para ser formado e explorado com pecuária.',
+    rintIbge: '',
+    rgiIbge: '',
+    fonteElemento: '',
+    origemInformacoes: '',
+    roteiroAcesso: '',
+    telefoneInformante: '',
+    pesquisadores: '',
+    logUsuario: '',
+    descricaoFotografia: '',
   },
   {
     id: 12,
@@ -433,6 +537,8 @@ export const mockPesquisasImoveis: PesquisaImovel[] = [
         longitude: -42.96417,
         latitude: -13.58757,
       },
+      situacao: '',
+      coordenadasTexto: '',
     },
     valores: {
       areaTotalHa: 36.6006,
@@ -454,6 +560,8 @@ export const mockPesquisasImoveis: PesquisaImovel[] = [
       notaCcu: 0.47,
       notaAgronomica: 0.47,
       notaAcesso: 1.0,
+      fonteNotaCcu: '',
+      fonteNotaAcesso: '',
     },
     envolvidos: {
       vendedor: 'Ezeneu Alves De Oliveira',
@@ -467,6 +575,15 @@ export const mockPesquisasImoveis: PesquisaImovel[] = [
     },
     observacoesGeral:
       'O imóvel estava todo formado com pastagem, e cercado nas divisas.',
+    rintIbge: '',
+    rgiIbge: '',
+    fonteElemento: '',
+    origemInformacoes: '',
+    roteiroAcesso: '',
+    telefoneInformante: '',
+    pesquisadores: '',
+    logUsuario: '',
+    descricaoFotografia: '',
   },
   {
     id: 13,
@@ -485,6 +602,8 @@ export const mockPesquisasImoveis: PesquisaImovel[] = [
         longitude: -43.30604,
         latitude: -13.28135,
       },
+      situacao: '',
+      coordenadasTexto: '',
     },
     valores: {
       areaTotalHa: 200,
@@ -506,6 +625,8 @@ export const mockPesquisasImoveis: PesquisaImovel[] = [
       notaCcu: 0.38,
       notaAgronomica: 0.323,
       notaAcesso: 0.85,
+      fonteNotaCcu: '',
+      fonteNotaAcesso: '',
     },
     envolvidos: {
       vendedor: 'Perolino Farias Oliveira Silva',
@@ -519,5 +640,14 @@ export const mockPesquisasImoveis: PesquisaImovel[] = [
     },
     observacoesGeral:
       'O imóvel possuía casa, curral, pastagens formadas, poço tubular, cercas de divisa e internas. Vizinho ao aeroporto e próximo de usinas solares.',
+    rintIbge: '',
+    rgiIbge: '',
+    fonteElemento: '',
+    origemInformacoes: '',
+    roteiroAcesso: '',
+    telefoneInformante: '',
+    pesquisadores: '',
+    logUsuario: '',
+    descricaoFotografia: '',
   },
 ];
