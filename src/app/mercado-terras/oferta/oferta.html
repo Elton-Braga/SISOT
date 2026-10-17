@@ -787,42 +787,135 @@
             </mat-panel-description>
           </mat-expansion-panel-header>
 
-          <div class="form-grid">
-            <mat-form-field appearance="outline">
-              <mat-label
-                >Benfeitorias (em relação à atividade principal)</mat-label
-              >
-              <mat-select [(ngModel)]="dados.benfeitoriasAtividade">
-                <mat-option
-                  *ngFor="let opt of opcoesBenfeitorias"
-                  [value]="opt"
-                  >{{ opt }}</mat-option
-                >
-              </mat-select>
-            </mat-form-field>
+          <!-- Linhas do inventário -->
+          <div
+            class="benfeitoria-item"
+            *ngFor="let item of dados.benfeitorias; let i = index"
+          >
+            <div class="form-grid">
+              <!-- Descrição -->
+              <mat-form-field appearance="outline">
+                <mat-label>Descrição</mat-label>
+                <input
+                  matInput
+                  [(ngModel)]="item.descricao"
+                  name="descricao{{ i }}"
+                />
+              </mat-form-field>
 
-            <mat-form-field appearance="outline">
-              <mat-label
-                >Estado de conservação geral das benfeitorias</mat-label
-              >
-              <mat-select [(ngModel)]="dados.estadoConservacaoBenfeitorias">
-                <mat-option
-                  *ngFor="let opt of opcoesConservacao"
-                  [value]="opt"
-                  >{{ opt }}</mat-option
+              <!-- Unidade de medida -->
+              <mat-form-field appearance="outline">
+                <mat-label>Unidade de medida</mat-label>
+                <mat-select
+                  [(ngModel)]="item.unidadeMedida"
+                  name="unidade{{ i }}"
                 >
-              </mat-select>
-            </mat-form-field>
+                  <mat-option *ngFor="let u of unidadesMedida" [value]="u">{{
+                    u
+                  }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <!-- Quantidade -->
+              <mat-form-field appearance="outline">
+                <mat-label>Quantidade</mat-label>
+                <input
+                  matInput
+                  type="text"
+                  min="0"
+                  step="0.01"
+                  [(ngModel)]="item.quantidade"
+                  name="quantidade{{ i }}"
+                />
+              </mat-form-field>
+
+              <!-- Valor unitário (necessário para o cálculo do valor total) -->
+              <mat-form-field appearance="outline">
+                <mat-label>Valor unitário</mat-label>
+                <input
+                  matInput
+                  type="text"
+                  min="0"
+                  step="0.01"
+                  [(ngModel)]="item.valorUnitario"
+                  name="valorUnitario{{ i }}"
+                />
+              </mat-form-field>
+
+              <!-- Valor total: quantidade * valor unitário (somente leitura) -->
+              <mat-form-field appearance="outline">
+                <mat-label>Valor total</mat-label>
+                <input
+                  matInput
+                  readonly
+                  [value]="calcularValorTotal(item) | number: '1.2-2'"
+                  placeholder="quantidade × valor unitário"
+                />
+              </mat-form-field>
+
+              <!-- Depreciação -->
+              <mat-form-field appearance="outline">
+                <mat-label>Depreciação</mat-label>
+                <mat-select
+                  [(ngModel)]="item.depreciacao"
+                  name="depreciacao{{ i }}"
+                >
+                  <mat-option *ngFor="let d of opcoesDepreciacao" [value]="d">{{
+                    d
+                  }}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <br />
+
+              <!-- Valor final: valor total * depreciação (somente leitura) -->
+              <mat-form-field appearance="outline">
+                <mat-label>Valor final</mat-label>
+                <input
+                  matInput
+                  readonly
+                  [value]="calcularValorFinal(item) | number: '1.2-2'"
+                  placeholder="valor total × depreciação"
+                />
+              </mat-form-field>
+            </div>
+
+            <div class="benfeitoria-acoes">
+              <button
+                mat-button
+                type="button"
+                color="warn"
+                (click)="removerBenfeitoria(i)"
+              >
+                <mat-icon>delete</mat-icon>
+                Remover
+              </button>
+            </div>
           </div>
 
-          <mat-form-field appearance="outline" class="full-width">
-            <mat-label>Descrição das benfeitorias</mat-label>
-            <textarea
-              matInput
-              rows="4"
-              [(ngModel)]="dados.descricaoBenfeitorias"
-            ></textarea>
-          </mat-form-field>
+          <div class="benfeitoria-acoes">
+            <button
+              mat-stroked-button
+              type="button"
+              color="primary"
+              (click)="adicionarBenfeitoria()"
+            >
+              <mat-icon>add</mat-icon>
+              Adicionar benfeitoria
+            </button>
+            <br />
+          </div>
+
+          <!-- Outra linha: valor total das benfeitorias (somente leitura) -->
+          <div class="form-grid">
+            <mat-form-field appearance="outline">
+              <mat-label>Valor total das benfeitorias</mat-label>
+              <input
+                matInput
+                readonly
+                [value]="totalBenfeitorias() | number: '1.2-2'"
+              />
+            </mat-form-field>
+          </div>
         </mat-expansion-panel>
 
         <!-- =====================================================
@@ -831,176 +924,129 @@
         <mat-expansion-panel>
           <mat-expansion-panel-header>
             <mat-panel-title>
-              <mat-icon>attach_money</mat-icon>
-              Valores do Imóvel*
+              <mat-icon>payments</mat-icon>
+              Valores do Imóvel
             </mat-panel-title>
             <mat-panel-description>
-              Valores financeiros e condições de pagamento
+              Composição dos valores do imóvel, benfeitorias e terra nua
             </mat-panel-description>
           </mat-expansion-panel-header>
 
           <div class="form-grid">
+            <!-- Valor do Imóvel -->
             <mat-form-field appearance="outline">
-              <mat-label>Valor do Imóvel (R$)</mat-label>
-              <input
-                matInput
-                type="number"
-                step="0.01"
-                [(ngModel)]="dados.valores.vti"
-              />
+              <mat-label>Valor do Imóvel</mat-label>
+              <span matTextPrefix>R$&nbsp;</span>
+              <input matInput type="number" [(ngModel)]="dados.valorImovel" />
             </mat-form-field>
 
+            <!-- Prazo de pagamento -->
             <mat-form-field appearance="outline">
-              <mat-label>Prazo pagamento</mat-label>
-              <input
-                matInput
-                type="number"
-                step="1"
-                [(ngModel)]="dados.prazoPagamento"
-              />
+              <mat-label>Prazo de pagamento</mat-label>
+              <mat-select [(ngModel)]="dados.prazoPagamento">
+                <mat-option
+                  *ngFor="let opt of opcoesPrazoPagamento"
+                  [value]="opt"
+                >
+                  {{ opt }}
+                </mat-option>
+              </mat-select>
             </mat-form-field>
 
+            <!-- Quantidade de parcelas -->
             <mat-form-field appearance="outline">
               <mat-label>Quantidade de parcelas</mat-label>
               <input
                 matInput
                 type="number"
+                min="1"
                 step="1"
-                [(ngModel)]="dados.qtdParcelas"
+                [(ngModel)]="dados.quantidadeParcelas"
               />
             </mat-form-field>
 
+            <!-- Taxa de juros aplicada -->
             <mat-form-field appearance="outline">
-              <mat-label>Taxa de juros aplicada (%)</mat-label>
+              <mat-label>Taxa de juros aplicada</mat-label>
               <input
                 matInput
                 type="number"
                 step="0.01"
                 [(ngModel)]="dados.taxaJuros"
               />
+              <span matTextSuffix>%</span>
             </mat-form-field>
 
+            <!-- Valor das Benfeitorias -->
             <mat-form-field appearance="outline">
-              <mat-label>Valor das Benfeitorias (R$)</mat-label>
+              <mat-label>Valor das Benfeitorias</mat-label>
+              <span matTextPrefix>R$&nbsp;</span>
               <input
                 matInput
                 type="number"
-                step="0.01"
-                [(ngModel)]="dados.valores.benfeitorias"
+                [(ngModel)]="dados.valorBenfeitorias"
               />
             </mat-form-field>
 
+            <!-- VTN = Valor do imóvel - benfeitorias  →  getter valorTerraNua -->
             <mat-form-field appearance="outline">
-              <mat-label>Valor da Terra Nua (VTN) (R$)</mat-label>
+              <mat-label>Valor da Terra Nua (VTN)</mat-label>
+              <span matTextPrefix>R$&nbsp;</span>
               <input
                 matInput
                 type="number"
-                step="0.01"
-                [(ngModel)]="dados.valores.vtn"
+                [ngModel]="valorTerraNua"
+                readonly
               />
             </mat-form-field>
 
+            <!-- VTI/ha = Valor do imóvel / área  →  getter vtiPorHa -->
             <mat-form-field appearance="outline">
-              <mat-label>VTI/ha (R$)</mat-label>
-              <input
-                matInput
-                type="number"
-                step="0.01"
-                [(ngModel)]="dados.valores.vtiPorHa"
-              />
+              <mat-label>VTI/ha</mat-label>
+              <span matTextPrefix>R$&nbsp;</span>
+              <input matInput type="number" [ngModel]="vtiPorHa" readonly />
             </mat-form-field>
 
+            <!-- % de benfeitorias no VTI  →  getter percentualBenfeitoriasVti -->
             <mat-form-field appearance="outline">
               <mat-label>% de benfeitorias no VTI</mat-label>
               <input
                 matInput
                 type="number"
-                step="0.01"
-                [(ngModel)]="dados.valores.percentualBenfeitoriasVti"
+                [ngModel]="percentualBenfeitoriasVti"
+                readonly
               />
+              <span matTextSuffix>%</span>
             </mat-form-field>
 
+            <!-- VTN/ha  →  getter vtnPorHa -->
             <mat-form-field appearance="outline">
-              <mat-label>VTN/ha (R$)</mat-label>
-              <input
-                matInput
-                type="number"
-                step="0.01"
-                [(ngModel)]="dados.valores.vtnPorHa"
-              />
+              <mat-label>VTN/ha</mat-label>
+              <span matTextPrefix>R$&nbsp;</span>
+              <input matInput type="number" [ngModel]="vtnPorHa" readonly />
             </mat-form-field>
 
+            <!-- Fator elasticidade: 1 se Transação, 0,9 se Oferta  →  getter fatorElasticidade -->
             <mat-form-field appearance="outline">
               <mat-label>Fator elasticidade</mat-label>
               <input
                 matInput
                 type="number"
-                step="0.001"
-                [(ngModel)]="dados.caracteristicas.fatorElasticidade"
+                [ngModel]="fatorElasticidade"
+                readonly
               />
             </mat-form-field>
           </div>
-
+          <!-- Observações gerais (sem binding) -->
           <mat-form-field appearance="outline" class="full-width">
             <mat-label>Observações gerais</mat-label>
-            <textarea
-              matInput
-              rows="4"
-              [(ngModel)]="dados.observacoesGeral"
-            ></textarea>
+            <textarea matInput rows="4"></textarea>
           </mat-form-field>
         </mat-expansion-panel>
 
         <!-- =====================================================
              SEÇÃO 7 - INFORMAÇÕES DOS ENVOLVIDOS
              ===================================================== -->
-        <mat-expansion-panel>
-          <mat-expansion-panel-header>
-            <mat-panel-title>
-              <mat-icon>people</mat-icon>
-              Informações dos envolvidos
-            </mat-panel-title>
-            <mat-panel-description>
-              Vendedor, comprador, informante e contatos
-            </mat-panel-description>
-          </mat-expansion-panel-header>
-
-          <div class="form-grid">
-            <mat-form-field appearance="outline">
-              <mat-label>Comprador</mat-label>
-              <input matInput [(ngModel)]="dados.envolvidos.comprador" />
-            </mat-form-field>
-
-            <mat-form-field appearance="outline">
-              <mat-label>Vendedor</mat-label>
-              <input matInput [(ngModel)]="dados.envolvidos.vendedor" />
-            </mat-form-field>
-
-            <mat-form-field appearance="outline">
-              <mat-label>Informante</mat-label>
-              <input matInput [(ngModel)]="dados.envolvidos.informante" />
-            </mat-form-field>
-
-            <mat-form-field appearance="outline">
-              <mat-label>Telefone</mat-label>
-              <input
-                matInput
-                type="tel"
-                [(ngModel)]="dados.telefoneInformante"
-              />
-            </mat-form-field>
-
-            <mat-form-field appearance="outline" class="campo-full">
-              <mat-label>Pesquisadores</mat-label>
-              <input matInput [(ngModel)]="dados.pesquisadores" />
-            </mat-form-field>
-
-            <mat-form-field appearance="outline" class="campo-full">
-              <mat-label>Log do usuário</mat-label>
-              <input matInput [(ngModel)]="dados.logUsuario" />
-            </mat-form-field>
-          </div>
-        </mat-expansion-panel>
 
         <br />
         <br /><br /><br />
