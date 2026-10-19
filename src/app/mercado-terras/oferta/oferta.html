@@ -261,7 +261,7 @@
                 matInput
                 [(ngModel)]="dados.pesquisadores"
                 disabled
-                Placeholder="Log do Usuário"
+                Placeholder="Nome do servidor"
               />
             </mat-form-field>
 
@@ -616,7 +616,7 @@
 
           <!-- ============================================================ -->
           <!-- NOTA SOLOS — substitui o campo "Nota agronômica"             -->
-          <!-- ============================================================ -->
+          <!-- ============================================================ 
           <div class="nota-solos">
             <h4 class="nota-solos-titulo">Nota solos</h4>
 
@@ -654,7 +654,7 @@
                 </tr>
               </tbody>
             </table>
-          </div>
+          </div>-->
         </mat-expansion-panel>
 
         <!-- =====================================================
@@ -787,109 +787,167 @@
             </mat-panel-description>
           </mat-expansion-panel-header>
 
-          <!-- Linhas do inventário -->
-          <div
-            class="benfeitoria-item"
-            *ngFor="let item of dados.benfeitorias; let i = index"
-          >
-            <div class="form-grid">
-              <!-- Descrição -->
-              <mat-form-field appearance="outline">
-                <mat-label>Descrição</mat-label>
-                <input
-                  matInput
-                  [(ngModel)]="item.descricao"
-                  name="descricao{{ i }}"
-                />
-              </mat-form-field>
-
-              <!-- Unidade de medida -->
-              <mat-form-field appearance="outline">
-                <mat-label>Unidade de medida</mat-label>
-                <mat-select
-                  [(ngModel)]="item.unidadeMedida"
-                  name="unidade{{ i }}"
+          <div class="benfeitorias-tabela-wrapper">
+            <table class="benfeitorias-tabela">
+              <tbody>
+                <ng-container
+                  *ngFor="let item of dados.benfeitorias; let i = index"
                 >
-                  <mat-option *ngFor="let u of unidadesMedida" [value]="u">{{
-                    u
-                  }}</mat-option>
-                </mat-select>
-              </mat-form-field>
+                  <!-- ===== Linha 1: Descrição | Unidade | Quantidade ===== -->
+                  <tr>
+                    <td>
+                      <mat-form-field
+                        appearance="outline"
+                        subscriptSizing="dynamic"
+                      >
+                        <mat-label>Descrição</mat-label>
+                        <input
+                          matInput
+                          [(ngModel)]="item.descricao"
+                          name="descricao{{ i }}"
+                        />
+                      </mat-form-field>
+                    </td>
+                    <td>
+                      <mat-form-field
+                        appearance="outline"
+                        subscriptSizing="dynamic"
+                      >
+                        <mat-label>Unidade de medida</mat-label>
+                        <mat-select
+                          [(ngModel)]="item.unidadeMedida"
+                          name="unidade{{ i }}"
+                        >
+                          <mat-option
+                            *ngFor="let u of unidadesMedida"
+                            [value]="u"
+                          >
+                            {{ u }}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </td>
+                    <td>
+                      <mat-form-field
+                        appearance="outline"
+                        subscriptSizing="dynamic"
+                      >
+                        <mat-label>Quantidade</mat-label>
+                        <input
+                          matInput
+                          type="text"
+                          min="0"
+                          step="0.01"
+                          [(ngModel)]="item.quantidade"
+                          name="quantidade{{ i }}"
+                        />
+                      </mat-form-field>
+                    </td>
+                  </tr>
 
-              <!-- Quantidade -->
-              <mat-form-field appearance="outline">
-                <mat-label>Quantidade</mat-label>
-                <input
-                  matInput
-                  type="text"
-                  min="0"
-                  step="0.01"
-                  [(ngModel)]="item.quantidade"
-                  name="quantidade{{ i }}"
-                />
-              </mat-form-field>
+                  <!-- ===== Linha 2: Valor unitário | Valor total | Depreciação ===== -->
+                  <tr>
+                    <td>
+                      <mat-form-field
+                        appearance="outline"
+                        subscriptSizing="dynamic"
+                      >
+                        <mat-label>Valor unitário</mat-label>
+                        <input
+                          matInput
+                          type="text"
+                          min="0"
+                          step="0.01"
+                          [(ngModel)]="item.valorUnitario"
+                          name="valorUnitario{{ i }}"
+                        />
+                      </mat-form-field>
+                    </td>
+                    <td>
+                      <mat-form-field
+                        appearance="outline"
+                        subscriptSizing="dynamic"
+                      >
+                        <mat-label>Valor total</mat-label>
+                        <input
+                          matInput
+                          readonly
+                          [value]="calcularValorTotal(item) | number: '1.2-2'"
+                        />
+                      </mat-form-field>
+                    </td>
+                    <td>
+                      <mat-form-field
+                        appearance="outline"
+                        subscriptSizing="dynamic"
+                      >
+                        <mat-label>Depreciação</mat-label>
+                        <mat-select
+                          [(ngModel)]="item.depreciacao"
+                          name="depreciacao{{ i }}"
+                        >
+                          <mat-option
+                            *ngFor="let d of opcoesDepreciacao"
+                            [value]="d"
+                          >
+                            {{ d }}
+                          </mat-option>
+                        </mat-select>
+                      </mat-form-field>
+                    </td>
+                  </tr>
 
-              <!-- Valor unitário (necessário para o cálculo do valor total) -->
-              <mat-form-field appearance="outline">
-                <mat-label>Valor unitário</mat-label>
-                <input
-                  matInput
-                  type="text"
-                  min="0"
-                  step="0.01"
-                  [(ngModel)]="item.valorUnitario"
-                  name="valorUnitario{{ i }}"
-                />
-              </mat-form-field>
+                  <!-- ===== Linha 3 (última): Valor final | (vazio) | Remover ===== -->
+                  <tr class="linha-ultima">
+                    <td>
+                      <mat-form-field
+                        appearance="outline"
+                        subscriptSizing="dynamic"
+                      >
+                        <mat-label>Valor final</mat-label>
+                        <input
+                          matInput
+                          readonly
+                          class="valor-final-input"
+                          [value]="calcularValorFinal(item) | number: '1.2-2'"
+                        />
+                      </mat-form-field>
+                    </td>
+                    <td></td>
+                    <td class="acoes-celula">
+                      <button
+                        mat-stroked-button
+                        type="button"
+                        color="warn"
+                        (click)="removerBenfeitoria(i)"
+                      >
+                        <mat-icon>delete</mat-icon>
+                        Remover
+                      </button>
+                    </td>
+                  </tr>
+                </ng-container>
 
-              <!-- Valor total: quantidade * valor unitário (somente leitura) -->
-              <mat-form-field appearance="outline">
-                <mat-label>Valor total</mat-label>
-                <input
-                  matInput
-                  readonly
-                  [value]="calcularValorTotal(item) | number: '1.2-2'"
-                  placeholder="quantidade × valor unitário"
-                />
-              </mat-form-field>
+                <!-- Estado vazio -->
+                <tr *ngIf="!dados.benfeitorias?.length">
+                  <td colspan="3" class="sem-registros">
+                    Nenhuma benfeitoria cadastrada. Utilize o botão
+                    <strong>Adicionar benfeitoria</strong> abaixo.
+                  </td>
+                </tr>
+              </tbody>
 
-              <!-- Depreciação -->
-              <mat-form-field appearance="outline">
-                <mat-label>Depreciação</mat-label>
-                <mat-select
-                  [(ngModel)]="item.depreciacao"
-                  name="depreciacao{{ i }}"
-                >
-                  <mat-option *ngFor="let d of opcoesDepreciacao" [value]="d">{{
-                    d
-                  }}</mat-option>
-                </mat-select>
-              </mat-form-field>
-              <br />
-
-              <!-- Valor final: valor total * depreciação (somente leitura) -->
-              <mat-form-field appearance="outline">
-                <mat-label>Valor final</mat-label>
-                <input
-                  matInput
-                  readonly
-                  [value]="calcularValorFinal(item) | number: '1.2-2'"
-                  placeholder="valor total × depreciação"
-                />
-              </mat-form-field>
-            </div>
-
-            <div class="benfeitoria-acoes">
-              <button
-                mat-button
-                type="button"
-                color="warn"
-                (click)="removerBenfeitoria(i)"
-              >
-                <mat-icon>delete</mat-icon>
-                Remover
-              </button>
-            </div>
+              <tfoot *ngIf="dados.benfeitorias?.length">
+                <tr>
+                  <td colspan="2" class="total-label">
+                    Valor total das benfeitorias
+                  </td>
+                  <td class="total-valor">
+                    {{ totalBenfeitorias() | number: "1.2-2" }}
+                  </td>
+                </tr>
+              </tfoot>
+            </table>
           </div>
 
           <div class="benfeitoria-acoes">
@@ -902,19 +960,6 @@
               <mat-icon>add</mat-icon>
               Adicionar benfeitoria
             </button>
-            <br />
-          </div>
-
-          <!-- Outra linha: valor total das benfeitorias (somente leitura) -->
-          <div class="form-grid">
-            <mat-form-field appearance="outline">
-              <mat-label>Valor total das benfeitorias</mat-label>
-              <input
-                matInput
-                readonly
-                [value]="totalBenfeitorias() | number: '1.2-2'"
-              />
-            </mat-form-field>
           </div>
         </mat-expansion-panel>
 

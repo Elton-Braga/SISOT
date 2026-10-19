@@ -195,37 +195,28 @@
         </mat-menu>
 
         <span class="toolbar-divider"></span>
+        <!-- Botão dropdown: Nova pesquisa -->
         <button
           mat-raised-button
           color="primary"
           class="btn-nova-pesquisa"
-          [disabled]="!podeNovaPesquisa()"
-          (click)="novaPesquisa()"
+          [matMenuTriggerFor]="menuNovaPesquisa"
         >
           <mat-icon>add</mat-icon>
           Nova pesquisa de Terras
+          <mat-icon>arrow_drop_down</mat-icon>
         </button>
-        <!-- Combo: Tipo de pesquisa -->
-        <mat-form-field
-          appearance="outline"
-          class="combo-tipo-pesquisa"
-          subscriptSizing="dynamic"
-        >
-          <mat-label>Tipo de pesquisa</mat-label>
-          <mat-select
-            name="tipoPesquisa"
-            placeholder="Selecione"
-            [ngModel]="tipoPesquisa()"
-            (ngModelChange)="tipoPesquisa.set($event)"
+
+        <mat-menu #menuNovaPesquisa="matMenu">
+          <button
+            mat-menu-item
+            *ngFor="let opcao of opcoesTipoPesquisa"
+            (click)="novaPesquisa(opcao)"
           >
-            <mat-option
-              *ngFor="let opcao of opcoesTipoPesquisa"
-              [value]="opcao"
-            >
-              {{ opcao }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+            <mat-icon>description</mat-icon>
+            {{ opcao }}
+          </button>
+        </mat-menu>
 
         <!-- Botão Nova pesquisa (inativo até escolher uma opção) -->
 

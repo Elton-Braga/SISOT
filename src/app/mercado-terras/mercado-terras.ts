@@ -26,7 +26,7 @@ import { PesquisaImovel } from '../mock/mercadoTerrasMock/interfaceMercadoDeTerr
 import { ModalVisualizarMercado } from './modal-visualizar-mercado/modal-visualizar-mercado';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatSelectModule } from '@angular/material/select';
+// { MatSelectModule } from '@angular/material/select';
 
 @Component({
   selector: 'app-mercado-terras',
@@ -52,7 +52,6 @@ import { MatSelectModule } from '@angular/material/select';
     RouterLink,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSelectModule, // <-- ADICIONADO
   ],
   templateUrl: './mercado-terras.html',
   styleUrl: './mercado-terras.css',
@@ -75,13 +74,11 @@ export class MercadoTerras {
     Opinião: '/opiniao',
   };
 
-  /** Valor selecionado no combo ('' = nada selecionado) */
+  /** Valor selecionado no combo ('' = nada selecionado) 
   public tipoPesquisa = signal<string>('');
-
-  /** Habilita o botão "Nova pesquisa" somente com uma opção escolhida */
   public podeNovaPesquisa = computed(
     () => this.tipoPesquisa().trim().length > 0,
-  );
+  );*/
 
   // Paginação
   public itensPorPagina = signal<number>(5);
@@ -356,17 +353,14 @@ export class MercadoTerras {
   // 10. TIPO DE PESQUISA (combo) + NOVA PESQUISA
   // ============================================================
 
-  public novaPesquisa(): void {
-    const tipo = this.tipoPesquisa();
-    if (!tipo) return;
-
+  public novaPesquisa(tipo: string): void {
     const destino = this.rotasPorTipoPesquisa[tipo];
     if (!destino) {
       console.warn(`Nenhuma rota mapeada para o tipo: ${tipo}`);
       return;
     }
 
-    // Nova pesquisa: apenas o tipo vai no state
+    // Mesma lógica de antes: só o tipo vai no state
     this.router.navigate([destino], { state: { tipo } });
   }
 
