@@ -1,1 +1,489 @@
-<p>opiniao works!</p>
+<div class="editar-page">
+  <!-- =====================================================
+       CABEÇALHO
+       ===================================================== -->
+  <header class="page-header">
+    <div class="header-icon">
+      <mat-icon>edit</mat-icon>
+    </div>
+    <div class="header-content">
+      <h1>Nova pesquisa de mercado</h1>
+      <p>Atualize os dados cadastrais e de avaliação do imóvel.</p>
+    </div>
+  </header>
+
+  <!-- =====================================================
+       CONTEÚDO
+       ===================================================== -->
+  <div class="editar-page" *ngIf="dados">
+    <main class="page-content">
+      <mat-accordion class="sections-accordion" multi>
+        <!-- =====================================================
+             SEÇÃO 1 - IDENTIFICAÇÃO / CADASTRO
+             ===================================================== -->
+        <mat-expansion-panel expanded>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-icon>badge</mat-icon>
+              Identificação / Cadastro
+            </mat-panel-title>
+            <mat-panel-description>
+              Códigos e dados básicos do imóvel
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <div class="form-grid">
+            <!-- 1. Tipo de dado* -->
+            <mat-form-field appearance="outline">
+              <mat-label>Tipo de dado*</mat-label>
+              <mat-select [(ngModel)]="dados.tipoDado" required>
+                <mat-option *ngFor="let opt of opcoesTipoDado" [value]="opt">
+                  {{ opt }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <!-- 2. Código do elemento* -->
+            <mat-form-field appearance="outline">
+              <mat-label>Código do elemento*</mat-label>
+              <input matInput [(ngModel)]="dados.id" disabled required />
+            </mat-form-field>
+
+            <!-- 3. Tipo (ADICIONADO) -->
+            <mat-form-field appearance="outline">
+              <mat-label>Tipo</mat-label>
+              <mat-select [(ngModel)]="dados.tipo">
+                <mat-option *ngFor="let opt of opcoesTipo" [value]="opt">
+                  {{ opt }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <!-- 4. Data da pesquisa* -->
+            <mat-form-field appearance="outline">
+              <mat-label>Data da pesquisa*</mat-label>
+              <input
+                matInput
+                [matDatepicker]="pickerPesquisa"
+                [(ngModel)]="dados.dataPesquisa"
+                required
+              />
+              <mat-datepicker-toggle
+                matIconSuffix
+                [for]="pickerPesquisa"
+              ></mat-datepicker-toggle>
+              <mat-datepicker #pickerPesquisa></mat-datepicker>
+            </mat-form-field>
+
+            <!-- 5. Nome do imóvel* -->
+            <mat-form-field appearance="outline" class="campo-full">
+              <mat-label>Nome do imóvel*</mat-label>
+              <input matInput [(ngModel)]="dados.imovel" required />
+            </mat-form-field>
+
+            <!-- 6. Área do imóvel (ha)* -->
+            <mat-form-field appearance="outline">
+              <mat-label>Área do imóvel (ha)*</mat-label>
+              <input
+                matInput
+                type="number"
+                step="0.0001"
+                [(ngModel)]="dados.valores.areaTotalHa"
+                required
+              />
+            </mat-form-field>
+
+            <!-- 7. UF* -->
+            <mat-form-field appearance="outline">
+              <mat-label>UF*</mat-label>
+              <mat-select [(ngModel)]="dados.localizacao.estado" required>
+                <mat-option *ngFor="let uf of opcoesEstados" [value]="uf">
+                  {{ uf }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <!-- 8. Município sede* -->
+            <mat-form-field appearance="outline">
+              <mat-label>Município sede*</mat-label>
+              <mat-select
+                [(ngModel)]="dados.localizacao.municipioSede"
+                required
+              >
+                <mat-option
+                  *ngFor="let cidade of opcoesCidades"
+                  [value]="cidade"
+                >
+                  {{ cidade }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <!-- 9. Localização e via de acesso* -->
+            <mat-form-field appearance="outline" class="campo-full">
+              <mat-label>Localização e via de acesso*</mat-label>
+              <textarea
+                matInput
+                rows="3"
+                [(ngModel)]="dados.roteiroAcesso"
+                required
+              ></textarea>
+            </mat-form-field>
+
+            <!-- 10. Situação* -->
+            <mat-form-field appearance="outline">
+              <mat-label>Situação*</mat-label>
+              <mat-select [(ngModel)]="dados.localizacao.situacao" required>
+                <mat-option *ngFor="let opt of opcoesSituacao" [value]="opt">
+                  {{ opt }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <!-- 11. Código SNCR -->
+            <mat-form-field appearance="outline">
+              <mat-label>Código SNCR</mat-label>
+              <input
+                matInput
+                type="number"
+                [(ngModel)]="dados.identificacao.codigoSncr"
+              />
+            </mat-form-field>
+
+            <!-- 12. Código do CAR -->
+            <mat-form-field appearance="outline">
+              <mat-label>Código do CAR</mat-label>
+              <input
+                matInput
+                type="number"
+                [(ngModel)]="dados.identificacao.codigoCar"
+              />
+            </mat-form-field>
+
+            <!-- 13. Código da certificação SIGEF -->
+            <mat-form-field appearance="outline">
+              <mat-label>Código da certificação SIGEF</mat-label>
+              <input
+                matInput
+                type="number"
+                [(ngModel)]="dados.identificacao.codigoCertificacao"
+              />
+            </mat-form-field>
+
+            <!-- 14. Fonte do elemento* -->
+            <mat-form-field appearance="outline">
+              <mat-label>Fonte do elemento*</mat-label>
+              <mat-select [(ngModel)]="dados.fonteElemento" required>
+                <mat-option *ngFor="let opt of opcoesFonte" [value]="opt">
+                  {{ opt }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <!-- 15. Origem das informações* -->
+            <mat-form-field appearance="outline">
+              <mat-label>Origem das informações*</mat-label>
+              <mat-select [(ngModel)]="dados.origemInformacoes" required>
+                <mat-option *ngFor="let opt of opcoesOrigem" [value]="opt">
+                  {{ opt }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <!-- 16. Informante -->
+            <mat-form-field appearance="outline">
+              <mat-label>Informante</mat-label>
+              <input matInput [(ngModel)]="dados.envolvidos.informante" />
+            </mat-form-field>
+
+            <!-- 17. Telefone -->
+            <mat-form-field appearance="outline">
+              <mat-label>Telefone</mat-label>
+              <input
+                matInput
+                type="tel"
+                [(ngModel)]="dados.telefoneInformante"
+              />
+            </mat-form-field>
+
+            <!-- 18. Pesquisadores -->
+            <mat-form-field appearance="outline">
+              <mat-label>Pesquisadores</mat-label>
+              <input
+                matInput
+                [(ngModel)]="dados.pesquisadores"
+                disabled
+                placeholder="Nome do servidor"
+              />
+            </mat-form-field>
+          </div>
+
+          <!-- 19. Arquivo vetorial (shp) -->
+          <div class="upload-area">
+            <mat-card>
+              <mat-card-header>
+                <mat-card-title>
+                  <mat-icon>cloud_upload</mat-icon> Arquivo vetorial (shp)
+                </mat-card-title>
+                <mat-card-subtitle
+                  >anexar "Arquivo vetorial (shp)"</mat-card-subtitle
+                >
+              </mat-card-header>
+              <mat-card-content>
+                <button
+                  mat-raised-button
+                  color="primary"
+                  type="button"
+                  (click)="fileInput.click()"
+                >
+                  <mat-icon>attach_file</mat-icon> Selecionar arquivos
+                </button>
+                <input
+                  type="file"
+                  #fileInput
+                  multiple
+                  style="display: none"
+                  (change)="onFileSelected($event)"
+                />
+
+                <div
+                  *ngIf="arquivosSelecionados.length > 0"
+                  class="arquivos-list"
+                >
+                  <mat-list>
+                    <mat-list-item
+                      *ngFor="
+                        let arquivo of arquivosSelecionados;
+                        let i = index
+                      "
+                    >
+                      <mat-icon mat-list-icon>insert_drive_file</mat-icon>
+                      <div mat-line>{{ arquivo.name }}</div>
+                      <div mat-line>
+                        {{ (arquivo.size / 1024).toFixed(2) }} KB
+                      </div>
+                      <button
+                        mat-icon-button
+                        color="warn"
+                        (click)="removerArquivo(i)"
+                      >
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                    </mat-list-item>
+                  </mat-list>
+                </div>
+
+                <p
+                  *ngIf="arquivosSelecionados.length === 0"
+                  class="sem-arquivos"
+                >
+                  Nenhum arquivo selecionado.
+                </p>
+              </mat-card-content>
+            </mat-card>
+          </div>
+
+          <!-- 20. Fotografia -->
+          <div class="upload-area">
+            <mat-card>
+              <mat-card-header>
+                <mat-card-title>
+                  <mat-icon>add_a_photo</mat-icon> Fotografia
+                </mat-card-title>
+              </mat-card-header>
+
+              <mat-card-content>
+                <mat-form-field appearance="outline" class="full-width">
+                  <mat-label>
+                    Descrição em texto com temática da fotografia com as
+                    coordenadas geográficas, Sirgas2000
+                  </mat-label>
+                  <textarea
+                    matInput
+                    rows="3"
+                    [(ngModel)]="dados.descricaoFotografia"
+                  ></textarea>
+                </mat-form-field>
+
+                <button
+                  mat-raised-button
+                  color="primary"
+                  type="button"
+                  (click)="imagemInput.click()"
+                >
+                  <mat-icon>add_a_photo</mat-icon> + Adicionar imagem
+                </button>
+
+                <input
+                  type="file"
+                  #imagemInput
+                  accept="image/*"
+                  multiple
+                  style="display: none"
+                  (change)="onImagemSelected($event)"
+                />
+
+                <div
+                  *ngIf="imagensSelecionadas.length > 0"
+                  class="arquivos-list"
+                >
+                  <mat-list>
+                    <mat-list-item
+                      *ngFor="let imagem of imagensSelecionadas; let i = index"
+                    >
+                      <mat-icon mat-list-icon>image</mat-icon>
+                      <div mat-line>{{ imagem.name }}</div>
+                      <button
+                        mat-icon-button
+                        color="warn"
+                        (click)="removerImagem(i)"
+                      >
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                    </mat-list-item>
+                  </mat-list>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </mat-expansion-panel>
+
+        <!-- =====================================================
+             SEÇÃO 2 - NÍVEIS CATEGÓRICOS / TIPOLOGIAS
+             ===================================================== -->
+
+        <!-- =====================================================
+             SEÇÃO 3 - CARACTERÍSTICAS DO IMÓVEL
+             ===================================================== -->
+
+        <!-- =====================================================
+             SEÇÃO 4 - NOTA SOLOS*
+             ===================================================== -->
+
+        <!-- =====================================================
+             SEÇÃO 5 - INVENTÁRIO DAS BENFEITORIAS
+             ===================================================== -->
+
+        <!-- =====================================================
+             SEÇÃO 6 - VALORES DO IMÓVEL*
+             ===================================================== -->
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              <mat-icon>payments</mat-icon>
+              Valores do Imóvel
+            </mat-panel-title>
+            <mat-panel-description>
+              Composição dos valores do imóvel, benfeitorias e terra nua
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <div class="form-grid">
+            <!-- 1. Valor do Imóvel -->
+            <mat-form-field appearance="outline">
+              <mat-label>Valor do Imóvel</mat-label>
+              <span matTextPrefix>R$&nbsp;</span>
+              <input matInput type="number" [(ngModel)]="dados.valorImovel" />
+            </mat-form-field>
+
+            <!-- 2. Valor das Benfeitorias -->
+            <mat-form-field appearance="outline">
+              <mat-label>Valor das Benfeitorias</mat-label>
+              <span matTextPrefix>R$&nbsp;</span>
+              <input
+                matInput
+                type="number"
+                [(ngModel)]="dados.valorBenfeitorias"
+              />
+            </mat-form-field>
+
+            <!-- 3. VTN = Valor do imóvel − Benfeitorias -->
+            <mat-form-field appearance="outline">
+              <mat-label>Valor da Terra Nua (VTN)</mat-label>
+              <span matTextPrefix>R$&nbsp;</span>
+              <input
+                matInput
+                type="text"
+                [value]="valorTerraNua | number: '1.2-2'"
+                readonly
+              />
+              <mat-hint>Valor do imóvel − Benfeitorias</mat-hint>
+            </mat-form-field>
+
+            <!-- 4. VTI/ha = Valor do imóvel ÷ Área -->
+            <mat-form-field appearance="outline">
+              <mat-label>VTI/ha</mat-label>
+              <span matTextPrefix>R$&nbsp;</span>
+              <input
+                matInput
+                type="text"
+                [value]="vtiPorHa | number: '1.2-2'"
+                readonly
+              />
+              <mat-hint>Valor do imóvel ÷ Área</mat-hint>
+            </mat-form-field>
+
+            <!-- 5. % de benfeitorias no VTI = Benfeitorias ÷ VTI × 100 -->
+            <mat-form-field appearance="outline">
+              <mat-label>% de benfeitorias no VTI</mat-label>
+              <input
+                matInput
+                type="text"
+                [value]="percentualBenfeitoriasVti | number: '1.2-2'"
+                readonly
+              />
+              <span matTextSuffix>%</span>
+              <mat-hint>Benfeitorias ÷ Valor do imóvel × 100</mat-hint>
+            </mat-form-field>
+
+            <!-- 6. VTN/ha = VTN ÷ Área -->
+            <mat-form-field appearance="outline">
+              <mat-label>VTN/ha</mat-label>
+              <span matTextPrefix>R$&nbsp;</span>
+              <input
+                matInput
+                type="text"
+                [value]="vtnPorHa | number: '1.2-2'"
+                readonly
+              />
+              <mat-hint>VTN ÷ Área</mat-hint>
+            </mat-form-field>
+
+            <!-- 7. Fator elasticidade -->
+            <mat-form-field appearance="outline">
+              <mat-label>Fator elasticidade</mat-label>
+              <input
+                matInput
+                type="text"
+                [value]="fatorElasticidade | number: '1.1-2'"
+                readonly
+              />
+              <mat-hint>1 (Transação) · 0,9 (Oferta)</mat-hint>
+            </mat-form-field>
+          </div>
+        </mat-expansion-panel>
+
+        <!-- =====================================================
+             SEÇÃO 7 - INFORMAÇÕES DOS ENVOLVIDOS
+             ===================================================== -->
+
+        <br />
+        <br /><br /><br />
+      </mat-accordion>
+    </main>
+  </div>
+
+  <!-- =====================================================
+       RODAPÉ
+       ===================================================== -->
+  <footer class="page-actions">
+    <button mat-stroked-button type="button" (click)="cancelar()">
+      <mat-icon>arrow_back</mat-icon>
+      Voltar
+    </button>
+    <button mat-flat-button color="primary" type="button" (click)="salvar()">
+      <mat-icon>save</mat-icon>
+      Salvar alterações
+    </button>
+  </footer>
+</div>
