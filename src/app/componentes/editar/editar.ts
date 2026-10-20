@@ -24,6 +24,8 @@ import { ResolucaoCd } from './resolucao-cd/resolucao-cd';
 import { EmitirLaudo } from './emitir-laudo/emitir-laudo';
 import { CadeiaDominial } from './cadeia-dominial/cadeia-dominial';
 import { MatTableModule } from '@angular/material/table';
+import { SobreposicaoInteresse } from './sobreposicao-interesse/sobreposicao-interesse';
+import { IMOVEIS_MOCK } from '../../mock/imovel.mock';
 
 export interface NotaEmpenho {
   numero: string;
@@ -797,6 +799,33 @@ export class Editar implements OnInit {
       }
     });
   }
+  abrirOficio(): void {
+    this.dialog.open(SobreposicaoInteresse, {
+      width: '900px',
+      maxWidth: '95vw',
+      maxHeight: '90vh',
+      autoFocus: false,
+      disableClose: false,
+      panelClass: 'oficio-dialog',
+      data: IMOVEIS_MOCK[0].imovel, // ← trocar pelo imóvel selecionado
+    });
+  }
+
+  /*abrirOficio(): void {
+    const dialogRef = this.dialog.open(SobreposicaoInteresse, {
+      maxWidth: '1100px',
+      width: '800px',
+      maxHeight: '1100px',
+      height: '90%',
+      panelClass: 'dialog-com-rolagem',
+    });
+
+    dialogRef.afterClosed().subscribe((enviadoParaAssinatura: boolean) => {
+      if (enviadoParaAssinatura) {
+        this.scdpHabilitado = true;
+      }
+    });
+  }*/
 
   abrirLaudo(): void {
     this.dialog.open(EmitirLaudo, {

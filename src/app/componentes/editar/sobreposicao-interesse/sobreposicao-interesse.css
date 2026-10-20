@@ -1,0 +1,292 @@
+/* =========================================================
+   Ofício de Sobreposição de Interesses — DSGov / GovBR
+   ========================================================= */
+
+:host {
+  display: block;
+  font-family: "Rawline", "Raleway", Arial, sans-serif;
+  color: var(--color-text, #333333);
+  background-color: var(--bg-color, #f8f8f8);
+  padding: 24px;
+}
+
+.oficio-wrapper {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* ---------- Cartão principal ---------- */
+.br-card {
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12);
+  padding: 32px 40px;
+}
+
+.card-content {
+  line-height: 1.6;
+  font-size: 16px;
+}
+
+/* ---------- Cabeçalho ---------- */
+.oficio-header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.oficio-numero,
+.oficio-data {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 16px;
+}
+
+.prefixo {
+  font-weight: 600;
+  color: #1351b4;
+}
+
+/* ---------- Campos inline (dentro do texto) ---------- */
+.campo-inline {
+  border: none;
+  border-bottom: 1px solid #888888;
+  border-radius: 0;
+  padding: 2px 6px;
+  background: transparent;
+  font-size: 16px;
+  font-family: inherit;
+  color: inherit;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.campo-inline:focus {
+  border-bottom-color: #1351b4;
+  box-shadow: 0 1px 0 0 #1351b4;
+}
+
+.campo-curtissimo {
+  width: 50px;
+}
+.campo-curto {
+  width: 80px;
+}
+.campo-medio {
+  width: 140px;
+}
+.campo-longo {
+  width: 100%;
+  max-width: 480px;
+}
+
+/* ---------- Texto ---------- */
+.br-text {
+  margin: 12px 0;
+  font-size: 16px;
+  color: #333333;
+}
+
+.texto-justificado {
+  text-align: justify;
+}
+
+/* ---------- Blocos de campos ---------- */
+.bloco-campos {
+  border: 1px dashed #cccccc;
+  border-radius: 6px;
+  padding: 16px 20px;
+  margin: 16px 0;
+  background: #fafafa;
+}
+
+.campo-linha {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.campo-linha:last-child {
+  margin-bottom: 0;
+}
+
+.campo-rotulo {
+  min-width: 140px;
+  font-weight: 600;
+  color: #1351b4;
+  font-size: 15px;
+}
+
+.campo-valor {
+  flex: 1;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  padding: 6px 10px;
+  font-size: 15px;
+  font-family: inherit;
+  background: #ffffff;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.campo-valor:focus {
+  border-color: #1351b4;
+  box-shadow: 0 0 0 2px rgba(19, 81, 180, 0.25);
+}
+
+/* ---------- Assinatura ---------- */
+.assinatura {
+  margin-top: 48px;
+  text-align: center;
+}
+
+.linha-assinatura {
+  width: 320px;
+  height: 1px;
+  background: #333333;
+  margin: 0 auto 8px;
+}
+
+.rotulo-assinatura {
+  font-size: 14px;
+  color: #555555;
+}
+
+/* ---------- Ações ---------- */
+.acoes {
+  margin-top: 40px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* ---------- Botão primário DSGov ---------- */
+.br-button.primary {
+  background-color: #1351b4;
+  color: #ffffff;
+  border: none;
+  border-radius: 24px;
+  padding: 10px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition:
+    background-color 0.2s ease,
+    transform 0.1s ease;
+}
+
+.br-button.primary:hover {
+  background-color: #0c326f;
+}
+
+.br-button.primary:active {
+  transform: scale(0.98);
+}
+
+.br-button.primary:focus-visible {
+  outline: 2px solid #1351b4;
+  outline-offset: 3px;
+}
+
+/* ---------- Utilitários ---------- */
+.my-4 {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+.mt-4 {
+  margin-top: 16px;
+}
+.mt-5 {
+  margin-top: 24px;
+}
+
+.br-divider {
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  width: 100%;
+}
+
+/* ---------- Responsivo ---------- */
+@media (max-width: 600px) {
+  .br-card {
+    padding: 20px;
+  }
+
+  .campo-linha {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .campo-rotulo {
+    min-width: auto;
+  }
+
+  .linha-assinatura {
+    width: 100%;
+  }
+
+  .acoes {
+    justify-content: center;
+  }
+
+  .br-button.primary {
+    width: 100%;
+    justify-content: center;
+  }
+}
+/* ---------- Valores estáticos (auto-preenchidos) ---------- */
+.valor-estatico {
+  display: inline-block;
+  font-weight: 600;
+  color: #333333;
+  border-bottom: 1px dotted #888888;
+  padding: 2px 4px;
+}
+
+.campo-valor-estatico {
+  flex: 1;
+  padding: 6px 10px;
+  background: #eef3fa;
+  border: 1px solid #d6dfeb;
+  border-radius: 4px;
+  color: #1351b4;
+  font-weight: 600;
+  font-size: 15px;
+  min-height: 34px;
+  display: flex;
+  align-items: center;
+}
+
+/* ---------- Botão secundário DSGov ---------- */
+.br-button.secondary {
+  background: transparent;
+  color: #1351b4;
+  border: 1px solid #1351b4;
+  border-radius: 24px;
+  padding: 10px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.br-button.secondary:hover {
+  background-color: rgba(19, 81, 180, 0.08);
+}
+
+/* Ações lado a lado */
+.acoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 40px;
+}

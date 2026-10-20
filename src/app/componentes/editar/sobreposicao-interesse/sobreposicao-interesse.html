@@ -1,0 +1,150 @@
+<section class="oficio-wrapper">
+  <div class="br-card">
+    <div class="card-content">
+      <!-- ===== Cabeçalho do Ofício (auto-preenchido) ===== -->
+      <header class="oficio-header">
+        <div class="oficio-numero">
+          <span class="prefixo">
+            Ofício/INCRA/{{ data?.sr || "SR ____" }}/G/Nº
+          </span>
+          <input
+            type="text"
+            class="br-input campo-inline campo-curto"
+            aria-label="Número do ofício"
+          />
+          <span class="prefixo">/20</span>
+          <input
+            type="text"
+            class="br-input campo-inline campo-curtissimo"
+            aria-label="Ano"
+            [value]="anoAtual"
+          />
+        </div>
+
+        <div class="oficio-data">
+          <label for="data-oficio" class="br-label">Data:</label>
+          <span id="data-oficio" class="valor-estatico">{{ dataOficio }}</span>
+        </div>
+      </header>
+
+      <hr class="br-divider my-4" />
+
+      <!-- ===== Destinatário (manual) ===== -->
+      <p class="br-text">
+        <strong>Ao Órgão:</strong>
+        <input
+          type="text"
+          class="br-input campo-inline campo-longo"
+          aria-label="Órgão destinatário"
+        />
+      </p>
+
+      <!-- ===== Assunto ===== -->
+      <p class="br-text">
+        <strong>Assunto:</strong> Sobreposição de interesses
+      </p>
+
+      <!-- ===== Corpo ===== -->
+      <p class="br-text texto-justificado">
+        Tendo em vista a necessidade de instruir processo administrativo em
+        tramitação nesta Superintendência, solicitamos a Vossa Senhoria,
+        informar se há interesse público dentro das ações específicas desse
+        órgão, no imóvel rural abaixo identificado:
+      </p>
+
+      <!-- ===== Identificação do imóvel (auto-preenchido) ===== -->
+      <fieldset class="bloco-campos">
+        <div class="campo-linha">
+          <label class="br-label campo-rotulo">Nome:</label>
+          <span class="campo-valor-estatico">{{ data?.imovel || "—" }}</span>
+        </div>
+
+        <div class="campo-linha">
+          <label class="br-label campo-rotulo">Município(s):</label>
+          <span class="campo-valor-estatico">
+            {{ data?.municipio || "—" }}{{ data?.uf ? "/" + data?.uf : "" }}
+          </span>
+        </div>
+
+        <div class="campo-linha">
+          <label class="br-label campo-rotulo">Proprietário:</label>
+          <span class="campo-valor-estatico">{{
+            data?.proprietario || "—"
+          }}</span>
+        </div>
+
+        <div class="campo-linha">
+          <label class="br-label campo-rotulo">Área (ha):</label>
+          <span class="campo-valor-estatico">{{ areaFormatada }}</span>
+        </div>
+      </fieldset>
+
+      <!-- ===== Coordenadas (manual — sem dados no mock) ===== -->
+      <p class="br-text mt-4">
+        <strong>Coordenadas dos pontos extremos:</strong>
+      </p>
+
+      <fieldset class="bloco-campos">
+        <div class="campo-linha">
+          <label class="br-label campo-rotulo">Norte:</label>
+          <input
+            type="text"
+            class="br-input campo-valor"
+            aria-label="Coordenada Norte"
+          />
+        </div>
+
+        <div class="campo-linha">
+          <label class="br-label campo-rotulo">Sul:</label>
+          <input
+            type="text"
+            class="br-input campo-valor"
+            aria-label="Coordenada Sul"
+          />
+        </div>
+
+        <div class="campo-linha">
+          <label class="br-label campo-rotulo">Leste:</label>
+          <input
+            type="text"
+            class="br-input campo-valor"
+            aria-label="Coordenada Leste"
+          />
+        </div>
+
+        <div class="campo-linha">
+          <label class="br-label campo-rotulo">Oeste:</label>
+          <input
+            type="text"
+            class="br-input campo-valor"
+            aria-label="Coordenada Oeste"
+          />
+        </div>
+      </fieldset>
+
+      <!-- ===== Fecho ===== -->
+      <p class="br-text mt-5">Atenciosamente,</p>
+
+      <!-- ===== Assinatura ===== -->
+      <div class="assinatura">
+        <div class="linha-assinatura"></div>
+        <p class="br-text rotulo-assinatura">Assinatura</p>
+      </div>
+
+      <!-- ===== Ações ===== -->
+      <div class="acoes">
+        <button type="button" class="br-button secondary" (click)="fechar()">
+          Cancelar
+        </button>
+        <button
+          type="button"
+          class="br-button primary"
+          (click)="enviarParaAssinatura()"
+        >
+          <i class="fas fa-pen-fancy" aria-hidden="true"></i>
+          Enviar para assinatura
+        </button>
+      </div>
+    </div>
+  </div>
+</section>

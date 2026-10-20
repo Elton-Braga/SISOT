@@ -6639,22 +6639,35 @@
                 <ng-template matStepLabel>
                   Fase 6 - Consulta sobreposição de interesses públicos
                 </ng-template>
+                <br />
+                <button mat-flat-button type="button" (click)="abrirOficio()">
+                  Ofício
+                </button>
+                <br />
+                <hr />
 
                 <div class="table-container">
                   <table class="process-table">
                     <thead>
                       <tr>
                         <th>Órgão</th>
-                        <th>Data de consulta</th>
-                        <th>Data de Resposta</th>
+                        <th>Protocolo</th>
+                        <th>Data de envio</th>
                         <th>Resposta</th>
+                        <th>Observação</th>
                         <th>Anexo</th>
                       </tr>
                     </thead>
 
                     <tbody>
+                      <!-- Estadual -->
                       <tr>
-                        <td>Órgão estadual de terras</td>
+                        <td><strong>Estadual</strong></td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <input matInput value="Ofício" />
+                          </mat-form-field>
+                        </td>
                         <td>
                           <mat-form-field appearance="outline">
                             <input matInput [matDatepicker]="pickerF6A" />
@@ -6667,23 +6680,18 @@
                         </td>
                         <td>
                           <mat-form-field appearance="outline">
-                            <input matInput [matDatepicker]="pickerF6AR" />
-                            <mat-datepicker-toggle
-                              matIconSuffix
-                              [for]="pickerF6AR"
-                            ></mat-datepicker-toggle>
-                            <mat-datepicker #pickerF6AR></mat-datepicker>
+                            <mat-select>
+                              <mat-option value="sim">Sim</mat-option>
+                              <mat-option value="nao">Não</mat-option>
+                              <mat-option value="sem-resposta"
+                                >Sem resposta</mat-option
+                              >
+                            </mat-select>
                           </mat-form-field>
                         </td>
                         <td>
                           <mat-form-field appearance="outline">
-                            <mat-select>
-                              <mat-option value="sim">Sim</mat-option>
-                              <mat-option value="nao">Não</mat-option>
-                              <mat-option value="sem-resposta">
-                                Sem resposta
-                              </mat-option>
-                            </mat-select>
+                            <input matInput placeholder="Observação" />
                           </mat-form-field>
                         </td>
                         <td>
@@ -6693,28 +6701,22 @@
                         </td>
                       </tr>
 
+                      <!-- Município -->
                       <tr>
-                        <td>Órgão estadual de meio ambiente</td>
+                        <td><strong>Município</strong></td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <input matInput value="Ofício" />
+                          </mat-form-field>
+                        </td>
                         <td>
                           <mat-form-field appearance="outline">
                             <input matInput [matDatepicker]="pickerF6B" />
                             <mat-datepicker-toggle
                               matIconSuffix
                               [for]="pickerF6B"
-                            >
-                            </mat-datepicker-toggle>
+                            ></mat-datepicker-toggle>
                             <mat-datepicker #pickerF6B></mat-datepicker>
-                          </mat-form-field>
-                        </td>
-                        <td>
-                          <mat-form-field appearance="outline">
-                            <input matInput [matDatepicker]="pickerF6BR" />
-                            <mat-datepicker-toggle
-                              matIconSuffix
-                              [for]="pickerF6BR"
-                            >
-                            </mat-datepicker-toggle>
-                            <mat-datepicker #pickerF6BR></mat-datepicker>
                           </mat-form-field>
                         </td>
                         <td>
@@ -6722,10 +6724,15 @@
                             <mat-select>
                               <mat-option value="sim">Sim</mat-option>
                               <mat-option value="nao">Não</mat-option>
-                              <mat-option value="sem-resposta">
-                                Sem resposta
-                              </mat-option>
+                              <mat-option value="sem-resposta"
+                                >Sem resposta</mat-option
+                              >
                             </mat-select>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <input matInput placeholder="Observação" />
                           </mat-form-field>
                         </td>
                         <td>
@@ -6735,28 +6742,26 @@
                         </td>
                       </tr>
 
+                      <!-- Meio Ambiente -->
                       <tr>
-                        <td>Município onde se localiza o imóvel</td>
+                        <td><strong>Meio Ambiente</strong></td>
+                        <td>
+                          <a
+                            href="https://www.gov.br/pt-br/servicos/protocolar-documentos-junto-ao-ibama"
+                            target="_blank"
+                            rel="noopener"
+                          >
+                            Protocolar - IBAMA
+                          </a>
+                        </td>
                         <td>
                           <mat-form-field appearance="outline">
                             <input matInput [matDatepicker]="pickerF6C" />
                             <mat-datepicker-toggle
                               matIconSuffix
                               [for]="pickerF6C"
-                            >
-                            </mat-datepicker-toggle>
+                            ></mat-datepicker-toggle>
                             <mat-datepicker #pickerF6C></mat-datepicker>
-                          </mat-form-field>
-                        </td>
-                        <td>
-                          <mat-form-field appearance="outline">
-                            <input matInput [matDatepicker]="pickerF6CR" />
-                            <mat-datepicker-toggle
-                              matIconSuffix
-                              [for]="pickerF6CR"
-                            >
-                            </mat-datepicker-toggle>
-                            <mat-datepicker #pickerF6CR></mat-datepicker>
                           </mat-form-field>
                         </td>
                         <td>
@@ -6764,10 +6769,15 @@
                             <mat-select>
                               <mat-option value="sim">Sim</mat-option>
                               <mat-option value="nao">Não</mat-option>
-                              <mat-option value="sem-resposta">
-                                Sem resposta
-                              </mat-option>
+                              <mat-option value="sem-resposta"
+                                >Sem resposta</mat-option
+                              >
                             </mat-select>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <input matInput placeholder="Observação" />
                           </mat-form-field>
                         </td>
                         <td>
@@ -6777,28 +6787,26 @@
                         </td>
                       </tr>
 
+                      <!-- FUNAI -->
                       <tr>
-                        <td>Fundação Nacional dos Povos Indígenas - Funai</td>
+                        <td><strong>FUNAI</strong></td>
+                        <td>
+                          <a
+                            href="https://www.gov.br/pt-br/servicos/protocolar-documentos-junto-a-fundacao-nacional-dos-povos-indigenas-funai"
+                            target="_blank"
+                            rel="noopener"
+                          >
+                            Protocolar - FUNAI
+                          </a>
+                        </td>
                         <td>
                           <mat-form-field appearance="outline">
                             <input matInput [matDatepicker]="pickerF6D" />
                             <mat-datepicker-toggle
                               matIconSuffix
                               [for]="pickerF6D"
-                            >
-                            </mat-datepicker-toggle>
+                            ></mat-datepicker-toggle>
                             <mat-datepicker #pickerF6D></mat-datepicker>
-                          </mat-form-field>
-                        </td>
-                        <td>
-                          <mat-form-field appearance="outline">
-                            <input matInput [matDatepicker]="pickerF6DR" />
-                            <mat-datepicker-toggle
-                              matIconSuffix
-                              [for]="pickerF6DR"
-                            >
-                            </mat-datepicker-toggle>
-                            <mat-datepicker #pickerF6DR></mat-datepicker>
                           </mat-form-field>
                         </td>
                         <td>
@@ -6806,10 +6814,15 @@
                             <mat-select>
                               <mat-option value="sim">Sim</mat-option>
                               <mat-option value="nao">Não</mat-option>
-                              <mat-option value="sem-resposta">
-                                Sem resposta
-                              </mat-option>
+                              <mat-option value="sem-resposta"
+                                >Sem resposta</mat-option
+                              >
                             </mat-select>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <input matInput placeholder="Observação" />
                           </mat-form-field>
                         </td>
                         <td>
@@ -6819,28 +6832,26 @@
                         </td>
                       </tr>
 
+                      <!-- ICMBio -->
                       <tr>
-                        <td>Agência Nacional de Mineração - ANM</td>
+                        <td><strong>ICMBio</strong></td>
+                        <td>
+                          <a
+                            href="https://www.gov.br/pt-br/servicos/protocolar-documentos-junto-ao-instituto-chico-mendes-de-conservacao-da-biodiversidade-icmbio"
+                            target="_blank"
+                            rel="noopener"
+                          >
+                            Protocolar - ICMBio
+                          </a>
+                        </td>
                         <td>
                           <mat-form-field appearance="outline">
                             <input matInput [matDatepicker]="pickerF6E" />
                             <mat-datepicker-toggle
                               matIconSuffix
                               [for]="pickerF6E"
-                            >
-                            </mat-datepicker-toggle>
+                            ></mat-datepicker-toggle>
                             <mat-datepicker #pickerF6E></mat-datepicker>
-                          </mat-form-field>
-                        </td>
-                        <td>
-                          <mat-form-field appearance="outline">
-                            <input matInput [matDatepicker]="pickerF6ER" />
-                            <mat-datepicker-toggle
-                              matIconSuffix
-                              [for]="pickerF6ER"
-                            >
-                            </mat-datepicker-toggle>
-                            <mat-datepicker #pickerF6ER></mat-datepicker>
                           </mat-form-field>
                         </td>
                         <td>
@@ -6848,10 +6859,15 @@
                             <mat-select>
                               <mat-option value="sim">Sim</mat-option>
                               <mat-option value="nao">Não</mat-option>
-                              <mat-option value="sem-resposta">
-                                Sem resposta
-                              </mat-option>
+                              <mat-option value="sem-resposta"
+                                >Sem resposta</mat-option
+                              >
                             </mat-select>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <input matInput placeholder="Observação" />
                           </mat-form-field>
                         </td>
                         <td>
@@ -6861,10 +6877,17 @@
                         </td>
                       </tr>
 
+                      <!-- SPU -->
                       <tr>
+                        <td><strong>SPU</strong></td>
                         <td>
-                          Instituto do Patrimônio Histórico e Artístico Nacional
-                          - IPHAN
+                          <a
+                            href="https://www.gov.br/pt-br/servicos/protocolar-documentos-junto-ao-ministerio-da-gestao-e-da-inovacao-em-servicos-publicos"
+                            target="_blank"
+                            rel="noopener"
+                          >
+                            Protocolar - SPU
+                          </a>
                         </td>
                         <td>
                           <mat-form-field appearance="outline">
@@ -6872,20 +6895,8 @@
                             <mat-datepicker-toggle
                               matIconSuffix
                               [for]="pickerF6F"
-                            >
-                            </mat-datepicker-toggle>
+                            ></mat-datepicker-toggle>
                             <mat-datepicker #pickerF6F></mat-datepicker>
-                          </mat-form-field>
-                        </td>
-                        <td>
-                          <mat-form-field appearance="outline">
-                            <input matInput [matDatepicker]="pickerF6FR" />
-                            <mat-datepicker-toggle
-                              matIconSuffix
-                              [for]="pickerF6FR"
-                            >
-                            </mat-datepicker-toggle>
-                            <mat-datepicker #pickerF6FR></mat-datepicker>
                           </mat-form-field>
                         </td>
                         <td>
@@ -6893,10 +6904,15 @@
                             <mat-select>
                               <mat-option value="sim">Sim</mat-option>
                               <mat-option value="nao">Não</mat-option>
-                              <mat-option value="sem-resposta">
-                                Sem resposta
-                              </mat-option>
+                              <mat-option value="sem-resposta"
+                                >Sem resposta</mat-option
+                              >
                             </mat-select>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <input matInput placeholder="Observação" />
                           </mat-form-field>
                         </td>
                         <td>
@@ -6906,10 +6922,17 @@
                         </td>
                       </tr>
 
+                      <!-- ANM -->
                       <tr>
+                        <td><strong>ANM</strong></td>
                         <td>
-                          Instituto Chico Mendes de Conservação da
-                          Biodiversidade - ICMBio
+                          <a
+                            href="https://www.gov.br/anm/pt-br/canais_atendimento/protocolo-digital"
+                            target="_blank"
+                            rel="noopener"
+                          >
+                            Protocolar - ANM
+                          </a>
                         </td>
                         <td>
                           <mat-form-field appearance="outline">
@@ -6917,20 +6940,8 @@
                             <mat-datepicker-toggle
                               matIconSuffix
                               [for]="pickerF6G"
-                            >
-                            </mat-datepicker-toggle>
+                            ></mat-datepicker-toggle>
                             <mat-datepicker #pickerF6G></mat-datepicker>
-                          </mat-form-field>
-                        </td>
-                        <td>
-                          <mat-form-field appearance="outline">
-                            <input matInput [matDatepicker]="pickerF6GR" />
-                            <mat-datepicker-toggle
-                              matIconSuffix
-                              [for]="pickerF6GR"
-                            >
-                            </mat-datepicker-toggle>
-                            <mat-datepicker #pickerF6GR></mat-datepicker>
                           </mat-form-field>
                         </td>
                         <td>
@@ -6938,10 +6949,15 @@
                             <mat-select>
                               <mat-option value="sim">Sim</mat-option>
                               <mat-option value="nao">Não</mat-option>
-                              <mat-option value="sem-resposta">
-                                Sem resposta
-                              </mat-option>
+                              <mat-option value="sem-resposta"
+                                >Sem resposta</mat-option
+                              >
                             </mat-select>
+                          </mat-form-field>
+                        </td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <input matInput placeholder="Observação" />
                           </mat-form-field>
                         </td>
                         <td>
@@ -6951,81 +6967,41 @@
                         </td>
                       </tr>
 
+                      <!-- Quilombola -->
                       <tr>
-                        <td>Secretaria do Patrimônio da União</td>
+                        <td><strong>Quilombola</strong></td>
+                        <td>
+                          <mat-form-field appearance="outline">
+                            <input
+                              matInput
+                              value="Consulta na base pgt quilombolas incra"
+                            />
+                          </mat-form-field>
+                        </td>
                         <td>
                           <mat-form-field appearance="outline">
                             <input matInput [matDatepicker]="pickerF6H" />
                             <mat-datepicker-toggle
                               matIconSuffix
                               [for]="pickerF6H"
-                            >
-                            </mat-datepicker-toggle>
+                            ></mat-datepicker-toggle>
                             <mat-datepicker #pickerF6H></mat-datepicker>
                           </mat-form-field>
                         </td>
                         <td>
                           <mat-form-field appearance="outline">
-                            <input matInput [matDatepicker]="pickerF6HR" />
-                            <mat-datepicker-toggle
-                              matIconSuffix
-                              [for]="pickerF6HR"
-                            >
-                            </mat-datepicker-toggle>
-                            <mat-datepicker #pickerF6HR></mat-datepicker>
-                          </mat-form-field>
-                        </td>
-                        <td>
-                          <mat-form-field appearance="outline">
                             <mat-select>
                               <mat-option value="sim">Sim</mat-option>
                               <mat-option value="nao">Não</mat-option>
-                              <mat-option value="sem-resposta">
-                                Sem resposta
-                              </mat-option>
+                              <mat-option value="sem-resposta"
+                                >Sem resposta</mat-option
+                              >
                             </mat-select>
                           </mat-form-field>
                         </td>
                         <td>
-                          <button mat-icon-button type="button">
-                            <mat-icon>attach_file</mat-icon>
-                          </button>
-                        </td>
-                      </tr>
-
-                      <tr>
-                        <td>Divisão Quilombola</td>
-                        <td>
                           <mat-form-field appearance="outline">
-                            <input matInput [matDatepicker]="pickerF6I" />
-                            <mat-datepicker-toggle
-                              matIconSuffix
-                              [for]="pickerF6I"
-                            >
-                            </mat-datepicker-toggle>
-                            <mat-datepicker #pickerF6I></mat-datepicker>
-                          </mat-form-field>
-                        </td>
-                        <td>
-                          <mat-form-field appearance="outline">
-                            <input matInput [matDatepicker]="pickerF6IR" />
-                            <mat-datepicker-toggle
-                              matIconSuffix
-                              [for]="pickerF6IR"
-                            >
-                            </mat-datepicker-toggle>
-                            <mat-datepicker #pickerF6IR></mat-datepicker>
-                          </mat-form-field>
-                        </td>
-                        <td>
-                          <mat-form-field appearance="outline">
-                            <mat-select>
-                              <mat-option value="sim">Sim</mat-option>
-                              <mat-option value="nao">Não</mat-option>
-                              <mat-option value="sem-resposta">
-                                Sem resposta
-                              </mat-option>
-                            </mat-select>
+                            <input matInput placeholder="Observação" />
                           </mat-form-field>
                         </td>
                         <td>
@@ -7040,7 +7016,6 @@
 
                 <div class="step-actions">
                   <button mat-stroked-button matStepperPrevious>Voltar</button>
-
                   <button mat-flat-button matStepperNext>Próximo</button>
                 </div>
               </mat-step>
