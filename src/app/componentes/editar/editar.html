@@ -6640,9 +6640,16 @@
                   Fase 6 - Consulta sobreposição de interesses públicos
                 </ng-template>
                 <br />
-                <button mat-flat-button type="button" (click)="abrirOficio()">
+                <button
+                  mat-stroked-button
+                  type="button"
+                  (click)="abrirOficio()"
+                >
                   Ofício
                 </button>
+                <!--<button mat-flat-button type="button" (click)="abrirOficio()">
+                  Ofício
+                </button>-->
                 <br />
                 <hr />
 
@@ -6664,9 +6671,17 @@
                       <tr>
                         <td><strong>Estadual</strong></td>
                         <td>
-                          <mat-form-field appearance="outline">
+                          <button
+                            mat-stroked-button
+                            type="button"
+                            class="btn-quadrado"
+                            (click)="abrirOficio()"
+                          >
+                            Ofício
+                          </button>
+                          <!--<mat-form-field appearance="outline">
                             <input matInput value="Ofício" />
-                          </mat-form-field>
+                          </mat-form-field>-->
                         </td>
                         <td>
                           <mat-form-field appearance="outline">
@@ -6680,9 +6695,11 @@
                         </td>
                         <td>
                           <mat-form-field appearance="outline">
-                            <mat-select>
-                              <mat-option value="sim">Sim</mat-option>
-                              <mat-option value="nao">Não</mat-option>
+                            <mat-select value="sem-resposta">
+                              <mat-option value="sim">Tem Interesse</mat-option>
+                              <mat-option value="nao"
+                                >Não Tem Interesse</mat-option
+                              >
                               <mat-option value="sem-resposta"
                                 >Sem resposta</mat-option
                               >
@@ -6705,9 +6722,17 @@
                       <tr>
                         <td><strong>Município</strong></td>
                         <td>
-                          <mat-form-field appearance="outline">
+                          <button
+                            mat-stroked-button
+                            type="button"
+                            class="btn-quadrado"
+                            (click)="abrirOficio()"
+                          >
+                            Ofício
+                          </button>
+                          <!--<mat-form-field appearance="outline">
                             <input matInput value="Ofício" />
-                          </mat-form-field>
+                          </mat-form-field>-->
                         </td>
                         <td>
                           <mat-form-field appearance="outline">
@@ -6721,9 +6746,11 @@
                         </td>
                         <td>
                           <mat-form-field appearance="outline">
-                            <mat-select>
-                              <mat-option value="sim">Sim</mat-option>
-                              <mat-option value="nao">Não</mat-option>
+                            <mat-select value="sem-resposta">
+                              <mat-option value="sim">Tem Interesse</mat-option>
+                              <mat-option value="nao"
+                                >Não Tem Interesse</mat-option
+                              >
                               <mat-option value="sem-resposta"
                                 >Sem resposta</mat-option
                               >
@@ -6766,9 +6793,11 @@
                         </td>
                         <td>
                           <mat-form-field appearance="outline">
-                            <mat-select>
-                              <mat-option value="sim">Sim</mat-option>
-                              <mat-option value="nao">Não</mat-option>
+                            <mat-select value="sem-resposta">
+                              <mat-option value="sim">Tem Interesse</mat-option>
+                              <mat-option value="nao"
+                                >Não Tem Interesse</mat-option
+                              >
                               <mat-option value="sem-resposta"
                                 >Sem resposta</mat-option
                               >
@@ -6811,9 +6840,11 @@
                         </td>
                         <td>
                           <mat-form-field appearance="outline">
-                            <mat-select>
-                              <mat-option value="sim">Sim</mat-option>
-                              <mat-option value="nao">Não</mat-option>
+                            <mat-select value="sem-resposta">
+                              <mat-option value="sim">Tem Interesse</mat-option>
+                              <mat-option value="nao"
+                                >Não Tem Interesse</mat-option
+                              >
                               <mat-option value="sem-resposta"
                                 >Sem resposta</mat-option
                               >
@@ -6856,9 +6887,11 @@
                         </td>
                         <td>
                           <mat-form-field appearance="outline">
-                            <mat-select>
-                              <mat-option value="sim">Sim</mat-option>
-                              <mat-option value="nao">Não</mat-option>
+                            <mat-select value="sem-resposta">
+                              <mat-option value="sim">Tem Interesse</mat-option>
+                              <mat-option value="nao"
+                                >Não Tem Interesse</mat-option
+                              >
                               <mat-option value="sem-resposta"
                                 >Sem resposta</mat-option
                               >
@@ -6901,9 +6934,11 @@
                         </td>
                         <td>
                           <mat-form-field appearance="outline">
-                            <mat-select>
-                              <mat-option value="sim">Sim</mat-option>
-                              <mat-option value="nao">Não</mat-option>
+                            <mat-select value="sem-resposta">
+                              <mat-option value="sim">Tem Interesse</mat-option>
+                              <mat-option value="nao"
+                                >Não Tem Interesse</mat-option
+                              >
                               <mat-option value="sem-resposta"
                                 >Sem resposta</mat-option
                               >
@@ -6946,9 +6981,11 @@
                         </td>
                         <td>
                           <mat-form-field appearance="outline">
-                            <mat-select>
-                              <mat-option value="sim">Sim</mat-option>
-                              <mat-option value="nao">Não</mat-option>
+                            <mat-select value="sem-resposta">
+                              <mat-option value="sim">Tem Interesse</mat-option>
+                              <mat-option value="nao"
+                                >Não Tem Interesse</mat-option
+                              >
                               <mat-option value="sem-resposta"
                                 >Sem resposta</mat-option
                               >
@@ -6971,12 +7008,13 @@
                       <tr>
                         <td><strong>Quilombola</strong></td>
                         <td>
-                          <mat-form-field appearance="outline">
-                            <input
-                              matInput
-                              value="Consulta na base pgt quilombolas incra"
-                            />
-                          </mat-form-field>
+                          <a
+                            href="https://pgt.incra.gov.br/pgt/home"
+                            target="_blank"
+                            rel="noopener"
+                          >
+                            Protocolar - PGT
+                          </a>
                         </td>
                         <td>
                           <mat-form-field appearance="outline">
@@ -6990,9 +7028,11 @@
                         </td>
                         <td>
                           <mat-form-field appearance="outline">
-                            <mat-select>
-                              <mat-option value="sim">Sim</mat-option>
-                              <mat-option value="nao">Não</mat-option>
+                            <mat-select value="sem-resposta">
+                              <mat-option value="sim">Tem Interesse</mat-option>
+                              <mat-option value="nao"
+                                >Não Tem Interesse</mat-option
+                              >
                               <mat-option value="sem-resposta"
                                 >Sem resposta</mat-option
                               >
