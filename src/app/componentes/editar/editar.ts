@@ -26,6 +26,8 @@ import { CadeiaDominial } from './cadeia-dominial/cadeia-dominial';
 import { MatTableModule } from '@angular/material/table';
 import { SobreposicaoInteresse } from './sobreposicao-interesse/sobreposicao-interesse';
 import { IMOVEIS_MOCK } from '../../mock/imovel.mock';
+import { MatMenuModule } from '@angular/material/menu';
+import { ParecerTecnicoConclusivo } from './parecer-tecnico-conclusivo/parecer-tecnico-conclusivo';
 
 export interface NotaEmpenho {
   numero: string;
@@ -125,6 +127,7 @@ const SPUNET_FIXO: RegistroSpunet[] = [
     MatRadioModule,
     MatTableModule,
     MatIconModule,
+    MatMenuModule,
   ],
   templateUrl: './editar.html',
   styleUrl: './editar.css',
@@ -782,6 +785,18 @@ export class Editar implements OnInit {
       ...this.notasEmpenho,
       { numero: '', valor: 0, dataEmissao: '', anexo: '' },
     ];
+  }
+
+  abrirParecerTecnicoConclusivo(): void {
+    // TODO: trocar pelo componente correto do Parecer Técnico Conclusivo
+    // (estava chamando abrirPortariaCd() por engano)
+    this.dialog.open(ParecerTecnicoConclusivo, {
+      maxWidth: '1100px',
+      width: '800px',
+      maxHeight: '1100px',
+      height: '90%',
+      panelClass: 'dialog-com-rolagem',
+    });
   }
 
   abrirOrdemServico(): void {

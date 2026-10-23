@@ -7185,9 +7185,51 @@
               <!-- FASE 8 -->
               <mat-step>
                 <ng-template matStepLabel>
-                  Fase 8 - Emissão de Parecer Técnico Revisor
+                  Fase 8 - Revisões e Deliberações
                 </ng-template>
+                <div class="step-actions">
+                  <button mat-flat-button [matMenuTriggerFor]="menuDocumentos">
+                    Documentos
+                    <mat-icon>arrow_drop_down</mat-icon>
+                  </button>
 
+                  <mat-menu #menuDocumentos="matMenu">
+                    <button mat-menu-item (click)="abrirResolucaoCdr()">
+                      Resolução CDR
+                    </button>
+                    <button mat-menu-item (click)="abrirPortariaCdr()">
+                      Portaria CDR
+                    </button>
+                    <button mat-menu-item (click)="abrirResolucaoCd()">
+                      Resolução CD
+                    </button>
+                    <button mat-menu-item (click)="abrirPortariaCd()">
+                      Portaria CD
+                    </button>
+                    <button
+                      mat-menu-item
+                      (click)="abrirParecerTecnicoConclusivo()"
+                    >
+                      Parecer Técnico Conclusivo
+                    </button>
+                  </mat-menu>
+                </div>
+                <!--<div class="step-actions">
+                  <button mat-flat-button (click)="abrirResolucaoCdr()">
+                    Resolucão CDR
+                  </button>
+                  <br />
+                  <button mat-flat-button (click)="abrirPortariaCdr()">
+                    Portaria CDR</button
+                  ><button mat-flat-button (click)="abrirResolucaoCd()">
+                    Resolucão CD
+                  </button>
+                  <br />
+                  <button mat-flat-button (click)="abrirPortariaCd()">
+                    Portaria CD
+                  </button>
+                </div>-->
+                <div class="step-actions"></div>
                 <div class="form-grid">
                   <mat-form-field appearance="outline">
                     <mat-label>Parecer Técnico Conclusivo</mat-label>
@@ -7254,7 +7296,7 @@
               </mat-step>
 
               <!-- FASE 9 -->
-              <mat-step>
+              <!--<mat-step>
                 <ng-template matStepLabel>
                   Fase 9 - Deliberação do CDR
                 </ng-template>
@@ -7317,10 +7359,10 @@
 
                   <button mat-flat-button matStepperNext>Próximo</button>
                 </div>
-              </mat-step>
+              </mat-step>-->
 
               <!-- FASE 10 -->
-              <mat-step>
+              <!--<mat-step>
                 <ng-template matStepLabel>
                   Fase 10 - Deliberação do CD
                 </ng-template>
@@ -7418,12 +7460,12 @@
 
                   <button mat-flat-button matStepperNext>Próximo</button>
                 </div>
-              </mat-step>
+              </mat-step>-->
 
               <!-- FASE 11 -->
               <mat-step>
                 <ng-template matStepLabel>
-                  Fase 11 - Atos para Pagamento
+                  Fase 9 - Atos para Pagamento
                 </ng-template>
 
                 <div class="form-grid">
@@ -7573,7 +7615,7 @@
               <!-- FASE 12 -->
               <mat-step>
                 <ng-template matStepLabel>
-                  Fase 12 - Escrituração e Registro
+                  Fase 10 - Escrituração e Registro
                 </ng-template>
 
                 <div class="form-grid">
@@ -7665,7 +7707,7 @@
               <!-- FASE 13 -->
               <mat-step>
                 <ng-template matStepLabel>
-                  Fase 13 - Destinação do Imóvel
+                  Fase 11 - Destinação do Imóvel
                 </ng-template>
 
                 <div class="form-grid"></div>

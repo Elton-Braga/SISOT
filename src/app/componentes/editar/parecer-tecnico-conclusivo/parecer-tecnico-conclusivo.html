@@ -1,0 +1,679 @@
+<!-- SEM ngIf o container sempre existe -->
+<div class="resolucao-container">
+  <header class="pagina-cabecalho">
+    <h1>Parecer técnico Conclusivo</h1>
+  </header>
+
+  <section class="form-section" [formGroup]="form">
+    <h2>Identificação do processo e objeto da análise</h2>
+
+    <div class="form-grid">
+      <mat-form-field appearance="outline" class="campo-automatico">
+        <mat-label>Número do parecer</mat-label>
+        <input
+          matInput
+          readonly
+          [value]="dados?.resolucaoCdr?.idResolucaoCdr ?? ''"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="campo-automatico">
+        <mat-label>Processo SEI nº</mat-label>
+        <input matInput readonly [value]="dados?.obtencao?.processoSei ?? ''" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="campo-automatico">
+        <mat-label>Unidade responsável</mat-label>
+        <input matInput readonly [value]="dados?.imovel?.sr ?? ''" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="coluna-dupla">
+        <mat-label>Interessado / proprietário</mat-label>
+        <input
+          matInput
+          formControlName="interessadoProprietario"
+          placeholder="Digite o nome do interessado / proprietário"
+        />
+        <mat-error
+          *ngIf="form.get('interessadoProprietario')?.hasError('required')"
+        >
+          Informe o interessado / proprietário.
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="campo-automatico">
+        <mat-label>Imóvel</mat-label>
+        <input matInput readonly [value]="dados?.imovel?.imovel ?? ''" />
+      </mat-form-field>
+
+      <div class="grupo-municipio-uf">
+        <mat-form-field appearance="outline" class="campo-automatico">
+          <mat-label>Município(s)</mat-label>
+          <input matInput readonly [value]="dados?.imovel?.municipio ?? ''" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="campo-automatico">
+          <mat-label>UF</mat-label>
+          <input
+            matInput
+            readonly
+            maxlength="2"
+            [value]="dados?.imovel?.uf ?? ''"
+          />
+        </mat-form-field>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+     SEÇÃO 1.1 — INTRODUÇÃO E HISTÓRICO
+========================================================= -->
+  <section class="form-section" [formGroup]="form">
+    <h2>1.1 Introdução e histórico</h2>
+
+    <mat-form-field appearance="outline" class="campo-completo">
+      <mat-label>Introdução e histórico</mat-label>
+      <textarea
+        matInput
+        rows="8"
+        formControlName="introducaoHistorico"
+        placeholder="Síntese circunstanciada da instrução, dos atos relevantes e da situação atual."
+      ></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="campo-completo">
+      <mat-label>Histórico de impugnações do proprietário</mat-label>
+      <textarea
+        matInput
+        rows="6"
+        formControlName="historicoImpugnacoes"
+        placeholder="Registre as impugnações apresentadas pelo proprietário."
+      ></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="campo-completo">
+      <mat-label>Análise e razões de indeferimento</mat-label>
+      <textarea
+        matInput
+        rows="6"
+        formControlName="analiseIndeferimento"
+        placeholder="Descreva a análise técnica e as razões de indeferimento."
+      ></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="campo-completo">
+      <mat-label>Resultado</mat-label>
+      <textarea
+        matInput
+        rows="4"
+        formControlName="resultado"
+        placeholder="Informe o resultado da análise."
+      ></textarea>
+    </mat-form-field>
+  </section>
+
+  <!-- =========================================================
+     SEÇÃO 1.2 — ASPECTOS CADASTRAIS
+========================================================= -->
+  <section class="form-section">
+    <h2>1.2 Aspectos cadastrais</h2>
+
+    <div class="form-grid">
+      <mat-form-field appearance="outline" class="campo-automatico">
+        <mat-label>Imóvel</mat-label>
+        <input matInput readonly />
+      </mat-form-field>
+
+      <div class="grupo-municipio-uf">
+        <mat-form-field appearance="outline" class="campo-automatico">
+          <mat-label>Município(s)</mat-label>
+          <input matInput readonly />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="campo-automatico">
+          <mat-label>UF</mat-label>
+          <input matInput readonly maxlength="2" />
+        </mat-form-field>
+      </div>
+
+      <mat-form-field
+        appearance="outline"
+        class="campo-automatico coluna-dupla"
+      >
+        <mat-label>Proprietário(s)</mat-label>
+        <input matInput readonly />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="campo-automatico">
+        <mat-label>Código(s) SNCR</mat-label>
+        <input matInput readonly />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="campo-automatico">
+        <mat-label>Área registrada</mat-label>
+        <input matInput readonly />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="campo-automatico">
+        <mat-label>Área medida</mat-label>
+        <input matInput readonly />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="campo-automatico">
+        <mat-label>Área avaliada</mat-label>
+        <input matInput readonly />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="campo-automatico">
+        <mat-label>Módulos fiscais</mat-label>
+        <input matInput readonly />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="campo-automatico">
+        <mat-label>Matrícula atualizada</mat-label>
+        <input matInput readonly />
+      </mat-form-field>
+    </div>
+  </section>
+
+  <!-- =========================================================
+     SEÇÃO 2.1 — MATRÍCULA E ÔNUS
+========================================================= -->
+  <section class="form-section">
+    <h2>2. Análise da cadeia dominial e da situação registral</h2>
+    <h3>2.1 Matrícula e ônus</h3>
+
+    <mat-form-field appearance="outline" class="campo-completo">
+      <mat-label>Análise e repercussões para a aquisição</mat-label>
+      <textarea
+        matInput
+        rows="8"
+        placeholder="Exame da certidão atualizada da matrícula, identificação de ônus, gravames e restrições incidentes sobre o imóvel."
+      ></textarea>
+    </mat-form-field>
+  </section>
+
+  <!-- =========================================================
+     SEÇÃO 2.2 — CADEIA DOMINIAL
+========================================================= -->
+  <section class="form-section">
+    <h2>2.2 Cadeia dominial</h2>
+
+    <mat-form-field appearance="outline" class="campo-completo">
+      <mat-label>Conclusão / pendências dominiais</mat-label>
+      <textarea
+        matInput
+        rows="8"
+        placeholder="Síntese das conclusões da análise da cadeia dominial; referência aos autos próprios, caso a análise tenha sido realizada em processo apartado."
+      ></textarea>
+    </mat-form-field>
+  </section>
+
+  <!-- =========================================================
+     SEÇÃO 3.1 — ASPECTOS AGRONÔMICOS
+========================================================= -->
+  <section class="form-section">
+    <h2>3. Viabilidade do imóvel para fins de assentamento</h2>
+    <h3>3.1 Aspectos agronômicos</h3>
+
+    <mat-form-field appearance="outline" class="campo-completo">
+      <mat-label>Aspectos agronômicos</mat-label>
+      <textarea
+        matInput
+        rows="8"
+        placeholder="Aptidão e capacidade de uso das terras, acesso, infraestrutura, recursos hídricos e demais características relevantes."
+      ></textarea>
+    </mat-form-field>
+  </section>
+
+  <!-- =========================================================
+     SEÇÃO 3.2 — ASPECTOS AMBIENTAIS
+========================================================= -->
+  <section class="form-section">
+    <h2>3.2 Aspectos ambientais</h2>
+
+    <mat-form-field appearance="outline" class="campo-completo">
+      <mat-label>Aspectos ambientais</mat-label>
+      <textarea
+        matInput
+        rows="8"
+        placeholder="Restrições ambientais, passivos, áreas protegidas e condições relevantes para implantação do assentamento."
+      ></textarea>
+    </mat-form-field>
+  </section>
+
+  <!-- =========================================================
+     SEÇÃO 3.3 — ASPECTOS SOCIAIS
+========================================================= -->
+  <section class="form-section">
+    <h2>3.3 Aspectos sociais</h2>
+
+    <mat-form-field appearance="outline" class="campo-completo">
+      <mat-label>Aspectos sociais</mat-label>
+      <textarea
+        matInput
+        rows="8"
+        placeholder="Condições sociais relacionadas à implantação do assentamento e demais fatores que afetem a viabilidade."
+      ></textarea>
+    </mat-form-field>
+  </section>
+
+  <!-- =========================================================
+     SEÇÃO 3.4 — SÍNTESE DA VIABILIDADE (radio + condicional)
+========================================================= -->
+  <section class="form-section" [formGroup]="form">
+    <h2>3.4 Síntese da viabilidade</h2>
+
+    <mat-label class="rotulo-grupo">Conclusão da viabilidade</mat-label>
+    <mat-radio-group
+      formControlName="viabilidade"
+      class="grupo-radios"
+      aria-label="Conclusão da viabilidade"
+    >
+      <mat-radio-button value="sim">Sim (favorável)</mat-radio-button>
+      <mat-radio-button value="nao">Não (desfavorável)</mat-radio-button>
+      <mat-radio-button value="condicionada">Condicionada</mat-radio-button>
+    </mat-radio-group>
+
+    <mat-form-field
+      *ngIf="form.get('viabilidade')?.value === 'condicionada'"
+      appearance="outline"
+      class="campo-completo"
+    >
+      <mat-label>Fundamentação e condicionantes</mat-label>
+      <textarea
+        matInput
+        rows="6"
+        formControlName="viabilidadeCondicionantes"
+        placeholder="Fundamente a conclusão condicionada e indique as condicionantes aplicáveis."
+      ></textarea>
+    </mat-form-field>
+  </section>
+
+  <!-- =========================================================
+     SEÇÃO 4.1 — TENSÃO/CONFLITO E AÇÕES JUDICIAIS (radios)
+========================================================= -->
+  <section class="form-section" [formGroup]="form">
+    <h2>4. Conflitos agrários e situação dos ocupantes</h2>
+    <h3>4.1 Tensão ou conflito agrário</h3>
+
+    <mat-label class="rotulo-grupo"
+      >Existe tensão ou conflito agrário?</mat-label
+    >
+    <mat-radio-group
+      formControlName="tensaoConflito"
+      class="grupo-radios"
+      aria-label="Existe tensão ou conflito agrário?"
+    >
+      <mat-radio-button value="sim">Sim</mat-radio-button>
+      <mat-radio-button value="nao">Não</mat-radio-button>
+    </mat-radio-group>
+
+    <mat-form-field
+      *ngIf="form.get('tensaoConflito')?.value === 'sim'"
+      appearance="outline"
+      class="campo-completo"
+    >
+      <mat-label>Descrição sucinta da tensão/conflito</mat-label>
+      <textarea
+        matInput
+        rows="6"
+        formControlName="tensaoConflitoDescricao"
+        placeholder="Descreva sucintamente a tensão ou conflito identificado."
+      ></textarea>
+    </mat-form-field>
+    <br />
+    <mat-label class="rotulo-grupo">
+      Existem ações judiciais envolvendo o imóvel?
+    </mat-label>
+    <mat-radio-group
+      formControlName="acoesJudiciais"
+      class="grupo-radios"
+      aria-label="Existem ações judiciais envolvendo o imóvel?"
+    >
+      <mat-radio-button value="sim">Sim</mat-radio-button>
+      <mat-radio-button value="nao">Não</mat-radio-button>
+    </mat-radio-group>
+
+    <mat-form-field
+      *ngIf="form.get('acoesJudiciais')?.value === 'sim'"
+      appearance="outline"
+      class="campo-completo"
+    >
+      <mat-label>Ações judiciais (objeto e situação)</mat-label>
+      <textarea
+        matInput
+        rows="6"
+        formControlName="acoesJudiciaisDescricao"
+        placeholder="Indicar ações, objeto e situação, quando pertinente."
+      ></textarea>
+    </mat-form-field>
+    <br />
+    <br />
+
+    <!-- Manifestação da CCA (Regional / Nacional subsidiária) -->
+    <mat-label class="rotulo-grupo"
+      ><strong>Manifestação da CCA</strong></mat-label
+    ><br />
+
+    <mat-radio-group
+      formControlName="ccaInstancia"
+      class="grupo-radios"
+      aria-label="Instância da manifestação da CCA"
+    >
+      <mat-radio-button value="regional">Regional</mat-radio-button>
+      <mat-radio-button value="nacional">
+        Nacional (subsidiariamente)
+      </mat-radio-button>
+    </mat-radio-group>
+
+    <mat-form-field appearance="outline" class="campo-completo">
+      <mat-label>Manifestação da CCA</mat-label>
+      <textarea
+        matInput
+        rows="6"
+        formControlName="manifestacaoCca"
+        placeholder="Regional ou, subsidiariamente, nacional; registrar oitiva e síntese da manifestação."
+      ></textarea>
+    </mat-form-field>
+  </section>
+
+  <!-- =========================================================
+     SEÇÃO 4.2 — PERFIL DOS OCUPANTES
+========================================================= -->
+  <section class="form-section">
+    <h2>4.2 Perfil dos ocupantes</h2>
+
+    <mat-form-field appearance="outline" class="campo-completo">
+      <mat-label>Caracterização das ocupações</mat-label>
+      <textarea
+        matInput
+        rows="6"
+        placeholder="Identificar e caracterizar as ocupações precárias."
+      ></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="campo-completo">
+      <mat-label>Perfil e elegibilidade</mat-label>
+      <textarea
+        matInput
+        rows="6"
+        placeholder="Descrever perfil dos ocupantes e compatibilidade com os critérios de elegibilidade."
+      ></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="campo-completo">
+      <mat-label>Ressalvas / providências</mat-label>
+      <textarea
+        matInput
+        rows="6"
+        placeholder="Indicar situações que demandem ressalva ou providência adicional."
+      ></textarea>
+    </mat-form-field>
+  </section>
+
+  <!-- =========================================================
+     SEÇÃO 5.1 — DISPONIBILIDADE REGIONAL DE TERRAS
+========================================================= -->
+  <section class="form-section">
+    <h2>5. Vantajosidade da aquisição</h2>
+    <h3>5.1 Disponibilidade regional de terras</h3>
+
+    <mat-form-field appearance="outline" class="campo-completo">
+      <mat-label>Disponibilidade regional de terras</mat-label>
+      <textarea
+        matInput
+        rows="8"
+        placeholder="Disponibilidade de áreas destinadas à reforma agrária na região e alternativas relevantes, quando identificadas."
+      ></textarea>
+    </mat-form-field>
+  </section>
+
+  <!-- =========================================================
+     SEÇÃO 5.2 — DEMANDA SOCIAL
+========================================================= -->
+  <section class="form-section">
+    <h2>5.2 Demanda social</h2>
+
+    <mat-form-field appearance="outline" class="campo-completo">
+      <mat-label>Demanda social</mat-label>
+      <textarea
+        matInput
+        rows="8"
+        placeholder="Demanda identificada pelo Incra e relação com a destinação pretendida."
+      ></textarea>
+    </mat-form-field>
+  </section>
+
+  <!-- =========================================================
+     SEÇÃO 5.3 — CARACTERÍSTICAS ESPECÍFICAS DO IMÓVEL
+========================================================= -->
+  <section class="form-section">
+    <h2>5.3 Características específicas do imóvel</h2>
+
+    <mat-form-field appearance="outline" class="campo-completo">
+      <mat-label>Características específicas do imóvel</mat-label>
+      <textarea
+        matInput
+        rows="8"
+        placeholder="Particularidades ou singularidades que influenciem a decisão de aquisição."
+      ></textarea>
+    </mat-form-field>
+  </section>
+
+  <!-- =========================================================
+     SEÇÃO 5.4 — RELEVÂNCIA PARA A SOLUÇÃO DE CONFLITOS
+========================================================= -->
+  <section class="form-section">
+    <h2>5.4 Relevância para a solução de conflitos</h2>
+
+    <mat-form-field appearance="outline" class="campo-completo">
+      <mat-label>Relevância para a solução de conflitos</mat-label>
+      <textarea
+        matInput
+        rows="8"
+        placeholder="Contribuição potencial da aquisição para a solução de conflitos sociais, quando aplicável."
+      ></textarea>
+    </mat-form-field>
+  </section>
+
+  <!-- =========================================================
+     SEÇÃO 5.5 — SÍNTESE DA VANTAJOSIDADE
+========================================================= -->
+  <section class="form-section">
+    <h2>5.5 Síntese da vantajosidade</h2>
+
+    <mat-form-field appearance="outline" class="campo-completo">
+      <mat-label>Síntese da vantajosidade</mat-label>
+      <textarea
+        matInput
+        rows="8"
+        placeholder="Conclusão: fundamentar a conveniência da aquisição à luz dos fatores analisados."
+      ></textarea>
+    </mat-form-field>
+  </section>
+
+  <!-- =========================================================
+     SEÇÃO 6 — OUTROS ASPECTOS RELEVANTES (NOVO)
+========================================================= -->
+  <section class="form-section" [formGroup]="form">
+    <h2>6. Outros aspectos relevantes</h2>
+
+    <mat-label class="rotulo-grupo">
+      Existem outros aspectos relevantes a registrar?
+    </mat-label>
+    <mat-radio-group
+      formControlName="outrosAspectos"
+      class="grupo-radios"
+      aria-label="Existem outros aspectos relevantes a registrar?"
+    >
+      <mat-radio-button value="sim">Sim</mat-radio-button>
+      <mat-radio-button value="nao">Não</mat-radio-button>
+    </mat-radio-group>
+
+    <mat-form-field
+      *ngIf="form.get('outrosAspectos')?.value === 'sim'"
+      appearance="outline"
+      class="campo-completo"
+    >
+      <mat-label>Aspectos adicionais</mat-label>
+      <textarea
+        matInput
+        rows="6"
+        formControlName="outrosAspectosDescricao"
+        placeholder="Registre outros elementos que possam influenciar a análise ou a decisão, justificando sua relevância."
+      ></textarea>
+    </mat-form-field>
+  </section>
+
+  <!-- =========================================================
+     SEÇÃO 7 — ANÁLISE REVISORA E CONCLUSÃO (NOVO)
+========================================================= -->
+  <section class="form-section" [formGroup]="form">
+    <h2>7. Análise revisora e conclusão</h2>
+
+    <mat-form-field appearance="outline" class="campo-completo">
+      <mat-label>Síntese dos pontos examinados</mat-label>
+      <textarea
+        matInput
+        rows="6"
+        formControlName="sintesePontosExaminados"
+        placeholder="Resumir os principais achados da revisão."
+      ></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="campo-completo">
+      <mat-label
+        >Divergências em relação às manifestações técnicas anteriores</mat-label
+      >
+      <textarea
+        matInput
+        rows="6"
+        formControlName="divergenciasManifestacoes"
+        placeholder="Indicar divergências e respectivas justificativas ou registrar inexistência."
+      ></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="campo-completo">
+      <mat-label>Pendências, ressalvas ou necessidade de diligência</mat-label>
+      <textarea
+        matInput
+        rows="6"
+        formControlName="pendenciasRessalvas"
+        placeholder="Detalhar ou registrar inexistência."
+      ></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="campo-completo">
+      <mat-label>Conclusão revisora</mat-label>
+      <textarea
+        matInput
+        rows="8"
+        formControlName="conclusaoRevisora"
+        placeholder="Conclusão fundamentada quanto à consistência da instrução e aos aspectos relevantes para a decisão sobre a aquisição."
+      ></textarea>
+    </mat-form-field>
+  </section>
+  <!-- =========================================================
+     SEÇÃO 8 — DOCUMENTOS DE FUNDAMENTAÇÃO (NOVO)
+========================================================= -->
+  <!-- =========================================================
+     SEÇÃO 8 — DOCUMENTOS DE FUNDAMENTAÇÃO
+========================================================= -->
+  <section class="form-section" [formGroup]="form">
+    <h2>8. Documentos de fundamentação</h2>
+
+    <p class="rotulo-grupo">Assinale os documentos que instruem o parecer:</p>
+
+    <div formGroupName="documentos">
+      <div class="grupo-checkboxes">
+        <mat-checkbox formControlName="laf"> LAF </mat-checkbox>
+
+        <mat-checkbox formControlName="mapaCapacidadeUso">
+          Mapa de Classes de Capacidade de Uso
+        </mat-checkbox>
+
+        <mat-checkbox formControlName="mapaDeclividadeSolo">
+          Mapa de Classes de Declividade de Solo
+        </mat-checkbox>
+
+        <mat-checkbox formControlName="mapaUsoAtualSolo">
+          Mapa de Uso Atual dos Solos
+        </mat-checkbox>
+
+        <mat-checkbox formControlName="plantaGeral">
+          Planta geral do imóvel
+        </mat-checkbox>
+
+        <mat-checkbox formControlName="memorialDescritivo">
+          Memorial descritivo
+        </mat-checkbox>
+
+        <mat-checkbox formControlName="laudoAvaliacao">
+          Laudo de avaliação
+        </mat-checkbox>
+
+        <mat-checkbox formControlName="planilhaHomogeneizacao">
+          Planilha de homogeneização
+        </mat-checkbox>
+
+        <mat-checkbox formControlName="relacaoBenfeitoriasCustos">
+          Relação de benfeitorias e custos
+        </mat-checkbox>
+
+        <mat-checkbox formControlName="extratoLaudoAvaliacao">
+          Extrato de Laudo de Avaliação
+        </mat-checkbox>
+
+        <mat-checkbox formControlName="fichaAgronomica">
+          Ficha agronômica
+        </mat-checkbox>
+
+        <mat-checkbox formControlName="ecgr"> ECGR </mat-checkbox>
+
+        <mat-checkbox formControlName="ataGrupoTecnico">
+          Ata do grupo técnico
+        </mat-checkbox>
+
+        <mat-checkbox formControlName="outro">
+          Outro (especificar)
+        </mat-checkbox>
+      </div>
+
+      <mat-form-field
+        *ngIf="form.get('documentos.outro')?.value"
+        appearance="outline"
+        class="campo-completo"
+      >
+        <mat-label>Especifique o(s) outro(s) documento(s)</mat-label>
+        <textarea
+          matInput
+          rows="3"
+          formControlName="outroEspecificar"
+          placeholder="Descreva o(s) documento(s) adicional(is)."
+        ></textarea>
+      </mat-form-field>
+    </div>
+  </section>
+
+  <div class="acoes-finais">
+    <button
+      mat-button
+      type="button"
+      class="botao-imprimir"
+      (click)="onImprimir()"
+    >
+      Imprimir
+    </button>
+
+    <button
+      mat-flat-button
+      color="primary"
+      type="button"
+      class="botao-assinatura"
+      (click)="onAssinar()"
+    >
+      Assinar parecer
+    </button>
+  </div>
+</div>
