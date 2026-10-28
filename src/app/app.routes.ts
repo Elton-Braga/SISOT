@@ -10,6 +10,7 @@ import { EditarMerdadoDeTerras } from './mercado-terras/editar-merdado-de-terras
 import { Oferta } from './mercado-terras/oferta/oferta';
 import { Opiniao } from './mercado-terras/opiniao/opiniao';
 import { Transacao } from './mercado-terras/transacao/transacao';
+import { ParecerTecnicoConclusivo } from './componentes/editar/parecer-tecnico-conclusivo/parecer-tecnico-conclusivo';
 
 export const routes: Routes = [
   {
@@ -58,5 +59,10 @@ export const routes: Routes = [
   {
     path: 'opiniao',
     component: Opiniao,
+  },
+
+  {
+    path: 'parecer-tecnico-conclusivo',
+    component: ParecerTecnicoConclusivo,
   },
 ];

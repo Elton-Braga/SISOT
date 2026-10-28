@@ -787,7 +787,7 @@ export class Editar implements OnInit {
     ];
   }
 
-  abrirParecerTecnicoConclusivo(): void {
+  /*abrirParecerTecnicoConclusivo(): void {
     // TODO: trocar pelo componente correto do Parecer Técnico Conclusivo
     // (estava chamando abrirPortariaCd() por engano)
     this.dialog.open(ParecerTecnicoConclusivo, {
@@ -797,6 +797,9 @@ export class Editar implements OnInit {
       height: '90%',
       panelClass: 'dialog-com-rolagem',
     });
+  }*/
+  abrirParecerTecnicoConclusivo(): void {
+    this.router.navigate(['/parecer-tecnico-conclusivo']);
   }
 
   abrirOrdemServico(): void {

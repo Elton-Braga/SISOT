@@ -21,6 +21,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-parecer-tecnico-conclusivo',
@@ -33,6 +35,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatButtonModule,
     MatRadioModule,
     MatCheckboxModule,
+    MatIconModule,
   ],
   templateUrl: './parecer-tecnico-conclusivo.html',
   styleUrl: './parecer-tecnico-conclusivo.css',
@@ -41,7 +44,7 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 export class ParecerTecnicoConclusivo implements OnInit, OnChanges {
   @Input() dados: any = {};
   @Input() readonly = false;
-
+  private readonly router = inject(Router);
   @Output() imprimir = new EventEmitter<any>();
   @Output() assinar = new EventEmitter<any>();
 
@@ -151,5 +154,21 @@ export class ParecerTecnicoConclusivo implements OnInit, OnChanges {
       },
       parecer: this.form.value,
     });
+  }
+
+  onChancelar(): void {
+    this.router.navigate(['editar']);
+  }
+
+  onSalvar(): void {
+    // Se quiser manter a validação apenas no "Assinar parecer", salve direto.
+    // Caso queira validar antes de salvar, descomente o bloco abaixo:
+    //
+    // if (this.form.invalid) {
+    //   this.form.markAllAsTouched();
+    //   return;
+    // }
+
+    this.router.navigate(['editar']);
   }
 }

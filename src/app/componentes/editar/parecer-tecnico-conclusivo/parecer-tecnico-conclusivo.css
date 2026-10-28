@@ -239,3 +239,109 @@ input[readonly] {
 .grupo-checkboxes mat-checkbox {
   font-size: 14px;
 }
+.editar-page {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+}
+.page-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+
+  padding: 24px 5%;
+
+  background-color: #ffffff;
+  border-bottom: 1px solid #e5e5e5;
+}
+.header-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 48px;
+  height: 48px;
+
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background-color: #e8f0fe;
+  color: #1351b4;
+}
+
+.header-icon mat-icon {
+  font-size: 26px;
+  width: 26px;
+  height: 26px;
+}
+.header-content h1 {
+  margin: 0 0 4px;
+
+  font-size: 1.5rem;
+  font-weight: 600;
+
+  color: #333333;
+}
+
+.header-content p {
+  margin: 0;
+
+  font-size: 0.875rem;
+
+  color: #555555;
+}
+
+/* =========================================================
+   RODAPÉ FIXO
+   ========================================================= */
+
+.rodape-fixo {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 16px;
+
+  padding: 16px 5%;
+
+  background-color: #ffffff;
+  border-top: 1px solid #d9d9d9;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.08);
+
+  z-index: 100;
+}
+
+.botao-chancelar {
+  min-height: 44px;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.botao-salvar {
+  min-height: 44px;
+  padding-left: 24px;
+  padding-right: 24px;
+
+  background-color: #1351b4 !important;
+  color: #ffffff !important;
+}
+
+/* Evita que o conteúdo fique escondido atrás do rodapé fixo */
+.editar-page {
+  padding-bottom: 96px;
+}
+
+/* =========================================================
+   RESPONSIVIDADE DO RODAPÉ
+   ========================================================= */
+
+@media (max-width: 600px) {
+  .rodape-fixo {
+    padding: 12px 16px;
+    gap: 12px;
+  }
+}
