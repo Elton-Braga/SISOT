@@ -93,42 +93,12 @@
       <h2>1.1 Introdução e histórico</h2>
 
       <mat-form-field appearance="outline" class="campo-completo">
-        <mat-label>Introdução e histórico</mat-label>
+        <mat-label>Introdução, histórico, análise e resultado</mat-label>
         <textarea
           matInput
-          rows="8"
+          rows="18"
           formControlName="introducaoHistorico"
-          placeholder="Síntese circunstanciada da instrução, dos atos relevantes e da situação atual."
-        ></textarea>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" class="campo-completo">
-        <mat-label>Histórico de impugnações do proprietário</mat-label>
-        <textarea
-          matInput
-          rows="6"
-          formControlName="historicoImpugnacoes"
-          placeholder="Registre as impugnações apresentadas pelo proprietário."
-        ></textarea>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" class="campo-completo">
-        <mat-label>Análise e razões de indeferimento</mat-label>
-        <textarea
-          matInput
-          rows="6"
-          formControlName="analiseIndeferimento"
-          placeholder="Descreva a análise técnica e as razões de indeferimento."
-        ></textarea>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" class="campo-completo">
-        <mat-label>Resultado</mat-label>
-        <textarea
-          matInput
-          rows="4"
-          formControlName="resultado"
-          placeholder="Informe o resultado da análise."
+          placeholder="Síntese circunstanciada da instrução, dos atos relevantes e da situação atual. Registre também as impugnações apresentadas pelo proprietário, a análise técnica, as razões de indeferimento e o resultado da análise."
         ></textarea>
       </mat-form-field>
     </section>
@@ -402,33 +372,22 @@
     <!-- =========================================================
      SEÇÃO 4.2 — PERFIL DOS OCUPANTES
 ========================================================= -->
-    <section class="form-section">
+    <!-- =========================================================
+     SEÇÃO 4.2 — PERFIL DOS OCUPANTES
+========================================================= -->
+    <section class="form-section" [formGroup]="form">
       <h2>4.2 Perfil dos ocupantes</h2>
 
       <mat-form-field appearance="outline" class="campo-completo">
-        <mat-label>Caracterização das ocupações</mat-label>
+        <mat-label
+          >Perfil dos ocupantes — caracterização, elegibilidade e
+          ressalvas</mat-label
+        >
         <textarea
           matInput
-          rows="6"
-          placeholder="Identificar e caracterizar as ocupações precárias."
-        ></textarea>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" class="campo-completo">
-        <mat-label>Perfil e elegibilidade</mat-label>
-        <textarea
-          matInput
-          rows="6"
-          placeholder="Descrever perfil dos ocupantes e compatibilidade com os critérios de elegibilidade."
-        ></textarea>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" class="campo-completo">
-        <mat-label>Ressalvas / providências</mat-label>
-        <textarea
-          matInput
-          rows="6"
-          placeholder="Indicar situações que demandem ressalva ou providência adicional."
+          rows="18"
+          formControlName="perfilOcupantes"
+          placeholder="Identificar e caracterizar as ocupações precárias. Descrever o perfil dos ocupantes e a compatibilidade com os critérios de elegibilidade. Indicar situações que demandem ressalva ou providência adicional."
         ></textarea>
       </mat-form-field>
     </section>
@@ -554,53 +513,21 @@
       <h2>7. Análise revisora e conclusão</h2>
 
       <mat-form-field appearance="outline" class="campo-completo">
-        <mat-label>Síntese dos pontos examinados</mat-label>
+        <mat-label>Análise revisora e conclusão</mat-label>
         <textarea
           matInput
-          rows="6"
-          formControlName="sintesePontosExaminados"
-          placeholder="Resumir os principais achados da revisão."
-        ></textarea>
-      </mat-form-field>
+          rows="26"
+          formControlName="analiseRevisoraConclusao"
+          placeholder="Síntese dos pontos examinados: resumir os principais achados da revisão.
 
-      <mat-form-field appearance="outline" class="campo-completo">
-        <mat-label
-          >Divergências em relação às manifestações técnicas
-          anteriores</mat-label
-        >
-        <textarea
-          matInput
-          rows="6"
-          formControlName="divergenciasManifestacoes"
-          placeholder="Indicar divergências e respectivas justificativas ou registrar inexistência."
-        ></textarea>
-      </mat-form-field>
+Divergências em relação às manifestações técnicas anteriores: indicar divergências e respectivas justificativas ou registrar inexistência.
 
-      <mat-form-field appearance="outline" class="campo-completo">
-        <mat-label
-          >Pendências, ressalvas ou necessidade de diligência</mat-label
-        >
-        <textarea
-          matInput
-          rows="6"
-          formControlName="pendenciasRessalvas"
-          placeholder="Detalhar ou registrar inexistência."
-        ></textarea>
-      </mat-form-field>
+Pendências, ressalvas ou necessidade de diligência: detalhar ou registrar inexistência.
 
-      <mat-form-field appearance="outline" class="campo-completo">
-        <mat-label>Conclusão revisora</mat-label>
-        <textarea
-          matInput
-          rows="8"
-          formControlName="conclusaoRevisora"
-          placeholder="Conclusão fundamentada quanto à consistência da instrução e aos aspectos relevantes para a decisão sobre a aquisição."
+Conclusão revisora: conclusão fundamentada quanto à consistência da instrução e aos aspectos relevantes para a decisão sobre a aquisição."
         ></textarea>
       </mat-form-field>
     </section>
-    <!-- =========================================================
-     SEÇÃO 8 — DOCUMENTOS DE FUNDAMENTAÇÃO (NOVO)
-========================================================= -->
     <!-- =========================================================
      SEÇÃO 8 — DOCUMENTOS DE FUNDAMENTAÇÃO
 ========================================================= -->

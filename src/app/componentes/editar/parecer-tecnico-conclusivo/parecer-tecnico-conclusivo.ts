@@ -52,7 +52,8 @@ export class ParecerTecnicoConclusivo implements OnInit, OnChanges {
 
   form: FormGroup = this.fb.group({
     interessadoProprietario: ['', [Validators.required]],
-
+    perfilOcupantes: [''],
+    analiseRevisoraConclusao: [''],
     // 1.1 — Introdução e histórico
     introducaoHistorico: [''],
     historicoImpugnacoes: [''],
