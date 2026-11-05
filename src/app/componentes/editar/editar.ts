@@ -28,6 +28,7 @@ import { SobreposicaoInteresse } from './sobreposicao-interesse/sobreposicao-int
 import { IMOVEIS_MOCK } from '../../mock/imovel.mock';
 import { MatMenuModule } from '@angular/material/menu';
 import { ParecerTecnicoConclusivo } from './parecer-tecnico-conclusivo/parecer-tecnico-conclusivo';
+import { ModeloVotoCd } from './modelo-voto-cd/modelo-voto-cd';
 
 export interface NotaEmpenho {
   numero: string;
@@ -965,6 +966,16 @@ export class Editar implements OnInit {
 
   abrirPortariaCdr(): void {
     this.dialog.open(PortariaCdr, {
+      maxWidth: '1100px',
+      width: '800px',
+      maxHeight: '1100px',
+      height: '90%',
+      panelClass: 'dialog-com-rolagem',
+    });
+  }
+
+  abrirmodeloDeVotoCD() {
+    this.dialog.open(ModeloVotoCd, {
       maxWidth: '1100px',
       width: '800px',
       maxHeight: '1100px',

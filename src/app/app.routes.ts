@@ -11,6 +11,7 @@ import { Oferta } from './mercado-terras/oferta/oferta';
 import { Opiniao } from './mercado-terras/opiniao/opiniao';
 import { Transacao } from './mercado-terras/transacao/transacao';
 import { ParecerTecnicoConclusivo } from './componentes/editar/parecer-tecnico-conclusivo/parecer-tecnico-conclusivo';
+import { ModeloVotoCd } from './componentes/editar/modelo-voto-cd/modelo-voto-cd';
 
 export const routes: Routes = [
   {
@@ -64,5 +65,9 @@ export const routes: Routes = [
   {
     path: 'parecer-tecnico-conclusivo',
     component: ParecerTecnicoConclusivo,
+  },
+  {
+    path: 'modelo-voto-cd',
+    component: ModeloVotoCd,
   },
 ];

@@ -1,0 +1,287 @@
+<div class="resolucao-container" [formGroup]="form">
+  <!-- ================= CABEÇALHO ================= -->
+  <header class="pagina-cabecalho">
+    <h1>INSTITUTO NACIONAL DE COLONIZAÇÃO</h1>
+    <h1>E REFORMA AGRÁRIA</h1>
+    <br />
+    <p>VOTO Nº {{ numeroVoto }}</p>
+  </header>
+
+  <!-- ================= IDENTIFICAÇÃO ================= -->
+  <section class="form-section">
+    <h2>Identificação</h2>
+
+    <div class="form-grid">
+      <mat-form-field appearance="outline">
+        <mat-label>Processo SEI nº</mat-label>
+        <input matInput formControlName="processoSei" readonly />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="coluna-dupla">
+        <mat-label>Interessado</mat-label>
+        <input matInput formControlName="interessado" required />
+        <mat-error *ngIf="form.get('interessado')?.hasError('required')">
+          Informe o interessado
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="coluna-dupla">
+        <mat-label>Conselheiro(a)</mat-label>
+        <input matInput formControlName="conselheiro" required />
+        <mat-error *ngIf="form.get('conselheiro')?.hasError('required')">
+          Informe o(a) conselheiro(a)
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </section>
+
+  <!-- ================= 1. ASSUNTO ================= -->
+  <section class="form-section">
+    <h2>1. ASSUNTO</h2>
+
+    <div class="form-grid">
+      <mat-form-field appearance="outline" class="coluna-dupla">
+        <mat-label>Modalidade</mat-label>
+        <mat-select formControlName="assunto" required>
+          <mat-option
+            *ngFor="let modalidade of modalidades"
+            [value]="modalidade"
+          >
+            {{ modalidade }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get('assunto')?.hasError('required')">
+          Selecione a modalidade
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </section>
+
+  <!-- ================= 2. EMENTA ================= -->
+  <section class="form-section">
+    <h2>2. EMENTA</h2>
+
+    <mat-form-field appearance="outline" class="campo-completo">
+      <mat-label>Ementa (gerada automaticamente)</mat-label>
+      <textarea matInput rows="3" [value]="ementaGerada" readonly></textarea>
+    </mat-form-field>
+  </section>
+
+  <!-- ================= 3. REFERÊNCIA ================= -->
+  <section class="form-section">
+    <h2>3. REFERÊNCIA</h2>
+
+    <div formArrayName="referencias">
+      <div
+        class="referencia-linha"
+        *ngFor="let referencia of referencias.controls; let i = index"
+        [formGroupName]="i"
+      >
+        <mat-form-field appearance="outline">
+          <mat-label>Tipo</mat-label>
+          <mat-select formControlName="tipo">
+            <mat-option *ngFor="let tipo of tiposReferencia" [value]="tipo">
+              {{ tipo }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Número</mat-label>
+          <input matInput formControlName="numero" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>SEI</mat-label>
+          <input matInput formControlName="sei" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Data</mat-label>
+          <input matInput type="date" formControlName="data" />
+        </mat-form-field>
+
+        <button
+          mat-icon-button
+          type="button"
+          color="warn"
+          matTooltip="Remover linha"
+          [disabled]="referencias.length === 1"
+          (click)="removerReferencia(i)"
+        >
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    </div>
+
+    <button mat-stroked-button type="button" (click)="adicionarReferencia()">
+      <mat-icon>add</mat-icon>
+      Adicionar linha
+    </button>
+  </section>
+
+  <!-- ================= 4. RELATÓRIO ================= -->
+  <section class="form-section">
+    <h2>4. RELATÓRIO</h2>
+
+    <h3>4.1. DOS FATOS</h3>
+
+    <div class="fatos-texto">
+      <p>
+        Trata-se de proposta de
+        <mat-form-field
+          appearance="outline"
+          class="campo-inline campo-modalidade"
+          subscriptSizing="dynamic"
+        >
+          <mat-label>Modalidade</mat-label>
+          <mat-select formControlName="assunto">
+            <mat-option
+              *ngFor="let modalidade of modalidades"
+              [value]="modalidade"
+            >
+              {{ modalidade }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        para o imóvel rural
+        <mat-form-field
+          appearance="outline"
+          class="campo-inline campo-imovel"
+          subscriptSizing="dynamic"
+        >
+          <mat-label>Imóvel</mat-label>
+          <input matInput formControlName="imovel" />
+        </mat-form-field>
+
+        , matrícula
+        <mat-form-field
+          appearance="outline"
+          class="campo-inline campo-matricula"
+          subscriptSizing="dynamic"
+        >
+          <mat-label>Matrícula</mat-label>
+          <input matInput formControlName="matricula" />
+        </mat-form-field>
+      </p>
+      <br />
+      <p>
+        , localizada no município de
+        <mat-form-field
+          appearance="outline"
+          class="campo-inline campo-municipio"
+          subscriptSizing="dynamic"
+        >
+          <mat-label>Município</mat-label>
+          <input matInput formControlName="municipio" />
+        </mat-form-field>
+
+        ,
+        <mat-form-field
+          appearance="outline"
+          class="campo-inline campo-uf"
+          subscriptSizing="dynamic"
+        >
+          <mat-label>UF</mat-label>
+          <mat-select formControlName="uf">
+            <mat-option *ngFor="let uf of ufs" [value]="uf">
+              {{ uf }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        , com código SNCR nº
+        <mat-form-field
+          appearance="outline"
+          class="campo-inline campo-sncr"
+          subscriptSizing="dynamic"
+        >
+          <mat-label>SNCR</mat-label>
+          <input matInput formControlName="sncr" />
+        </mat-form-field>
+      </p>
+      <br />
+      <p>
+        , apresentando área registrada de
+        <mat-form-field
+          appearance="outline"
+          class="campo-inline campo-area"
+          subscriptSizing="dynamic"
+        >
+          <mat-label>Área registrada (ha)</mat-label>
+          <input matInput formControlName="areaRegistrada" />
+        </mat-form-field>
+
+        ha e área medida de
+        <mat-form-field
+          appearance="outline"
+          class="campo-inline campo-area"
+          subscriptSizing="dynamic"
+        >
+          <mat-label>Área medida (ha)</mat-label>
+          <input matInput formControlName="areaMedida" />
+        </mat-form-field>
+
+        ha.
+      </p>
+    </div>
+
+    <h3>4.2. DAS CONSIDERAÇÕES POR PARTE DESTA CONSELHEIRA</h3>
+
+    <mat-form-field appearance="outline" class="campo-completo">
+      <mat-label
+        >Texto longo: Resumo sobre cumprimento da instrução processual,
+        detalhamento de atingimento de demanda social e uso de recursos e demais
+        considerações.</mat-label
+      >
+      <textarea matInput rows="6" formControlName="consideracoes"></textarea>
+    </mat-form-field>
+  </section>
+
+  <!-- ================= 5. CONCLUSÃO ================= -->
+  <section class="form-section">
+    <h2>5. CONCLUSÃO</h2>
+
+    <mat-form-field appearance="outline" class="campo-completo">
+      <mat-label>Decisão fundamentada</mat-label>
+      <textarea
+        matInput
+        rows="6"
+        formControlName="conclusao"
+        required
+      ></textarea>
+      <mat-error *ngIf="form.get('conclusao')?.hasError('required')">
+        Informe a decisão fundamentada
+      </mat-error>
+    </mat-form-field>
+  </section>
+
+  <!-- ================= ASSINATURA ================= -->
+  <section class="form-section bloco-assinatura">
+    <p class="assinatura-nome">{{ nomeConselheiro }}</p>
+    <p class="assinatura-cargo">{{ cargoConselheiro }}</p>
+    <span class="assinatura-rotulo">Assinatura</span>
+  </section>
+
+  <!-- ================= AÇÕES FINAIS ================= -->
+  <div class="acoes-finais">
+    <button
+      mat-button
+      type="button"
+      class="botao-imprimir"
+      (click)="imprimir()"
+    >
+      Imprimir
+    </button>
+
+    <button
+      mat-flat-button
+      type="button"
+      class="botao-assinatura"
+      (click)="enviarParaAssinatura()"
+    >
+      Enviar para Assinatura
+    </button>
+  </div>
+</div>
