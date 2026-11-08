@@ -171,7 +171,6 @@ textarea[readonly] {
 .referencia-linha {
   display: grid;
 
-  /* Removida a coluna de 56px do índice */
   grid-template-columns: 1fr 1fr 1fr 1fr 48px;
 
   align-items: start;
@@ -180,8 +179,6 @@ textarea[readonly] {
 
   margin-bottom: 8px;
 }
-
-/* A classe .referencia-indice foi removida */
 
 .bloco-assinatura {
   text-align: center;
@@ -229,11 +226,9 @@ textarea[readonly] {
   }
 
   .referencia-linha {
-    /* Removida a coluna de 48px do índice */
     grid-template-columns: 1fr 1fr 48px;
   }
 
-  /* Ajustado de nth-child(3) e (4) para (2) e (3) */
   .referencia-linha mat-form-field:nth-child(2),
   .referencia-linha mat-form-field:nth-child(3) {
     grid-column: span 2;
@@ -261,9 +256,6 @@ textarea[readonly] {
     grid-template-columns: 1fr 48px;
   }
 
-  /* Regra do .referencia-indice removida */
-
-  /* Ajustado de nth-child(3) e (4) para (2) e (3) */
   .referencia-linha mat-form-field:nth-child(2),
   .referencia-linha mat-form-field:nth-child(3) {
     grid-column: span 1;
@@ -277,57 +269,30 @@ textarea[readonly] {
 }
 
 /* =========================================================
-   FATOS - TEXTO COM CAMPOS INLINE
+   FATOS - SOMENTE CAMPOS
 ========================================================= */
 
-.fatos-texto p {
-  margin: 0;
+.fatos-texto {
+  display: grid;
 
-  font-size: 16px;
-  line-height: 1.8;
+  grid-template-columns: repeat(3, 1fr);
 
-  color: #1b1b1b;
+  gap: 20px;
 }
 
-.fatos-texto .campo-inline {
-  display: inline-flex;
-
-  width: auto;
-  min-width: 120px;
-
-  margin: 0 4px;
-
-  vertical-align: middle;
+.fatos-texto mat-form-field {
+  width: 100%;
+  min-width: 0;
 }
 
-.fatos-texto .campo-inline .mat-mdc-form-field-subscript-wrapper {
-  display: none;
+@media (max-width: 900px) {
+  .fatos-texto {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }
 
-.campo-modalidade {
-  min-width: 240px;
-}
-
-.campo-imovel {
-  min-width: 280px;
-}
-
-.campo-matricula {
-  min-width: 160px;
-}
-
-.campo-municipio {
-  min-width: 180px;
-}
-
-.campo-uf {
-  min-width: 90px;
-}
-
-.campo-sncr {
-  min-width: 150px;
-}
-
-.campo-area {
-  min-width: 160px;
+@media (max-width: 600px) {
+  .fatos-texto {
+    grid-template-columns: 1fr;
+  }
 }

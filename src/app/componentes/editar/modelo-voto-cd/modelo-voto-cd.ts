@@ -14,6 +14,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { ImprimirModeloVotoCd } from './imprimir-modelo-voto-cd/imprimir-modelo-voto-cd';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-modelo-voto-cd',
@@ -37,7 +39,8 @@ export class ModeloVotoCd implements OnInit {
   /** Gerado pelo sistema */
   readonly numeroVoto = `${this.numeroAleatorio(100, 999)}/${new Date().getFullYear()}`;
   readonly processoSei = this.gerarProcessoSei();
-
+  //private readonly fb = inject(FormBuilder);
+  private readonly dialog = inject(MatDialog);
   readonly modalidades: string[] = [
     'Compra e Venda Decreto 433/92',
     'Adjudicação',
@@ -206,16 +209,23 @@ export class ModeloVotoCd implements OnInit {
     window.print();
   }
 
-  enviarParaAssinatura(): void {
+  Salvar(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       return;
     }
 
+    // Payload completo do formulário (inclui FormArray de referências)
     const payload = this.form.getRawValue();
 
-    // TODO: chamar o serviço responsável pelo envio à assinatura
-    console.log('Voto enviado para assinatura:', payload);
+    this.dialog.open(ImprimirModeloVotoCd, {
+      data: payload, // <<< transmissão dos dados
+      width: '100%',
+      maxWidth: '56.25rem',
+      panelClass: 'print-dialog',
+      autoFocus: false,
+      restoreFocus: false,
+    });
   }
 
   /* =========================================================

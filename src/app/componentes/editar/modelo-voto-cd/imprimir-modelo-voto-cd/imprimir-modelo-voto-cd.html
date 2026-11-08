@@ -1,0 +1,83 @@
+<div class="documento">
+  <!-- ================= CABEÇALHO ================= -->
+  <header class="cabecalho">
+    <p class="orgao">INSTITUTO NACIONAL DE COLONIZAÇÃO E REFORMA AGRÁRIA</p>
+    <p class="voto-numero">VOTO Nº {{ numeroVoto }}</p>
+  </header>
+
+  <hr />
+
+  <!-- ================= IDENTIFICAÇÃO ================= -->
+  <section>
+    <p><strong>Processo SEI nº:</strong> {{ dados.processoSei }}</p>
+    <p><strong>Interessado:</strong> {{ dados.interessado }}</p>
+    <p><strong>Conselheiro(a):</strong> {{ dados.conselheiro }}</p>
+  </section>
+
+  <!-- ================= 1. ASSUNTO ================= -->
+  <section>
+    <h2>1. ASSUNTO</h2>
+    <p>{{ dados.assunto }}</p>
+  </section>
+
+  <!-- ================= 2. EMENTA ================= -->
+  <section>
+    <h2>2. EMENTA</h2>
+    <p class="ementa">{{ ementa }}</p>
+  </section>
+
+  <!-- ================= 3. REFERÊNCIA ================= -->
+  <section>
+    <h2>3. REFERÊNCIA</h2>
+
+    <ul class="referencias" *ngIf="dados.referencias?.length">
+      <li *ngFor="let ref of dados.referencias">
+        <span *ngIf="ref.tipo">{{ ref.tipo }}</span>
+        <span *ngIf="ref.numero"> nº {{ ref.numero }}</span>
+        <span *ngIf="ref.sei"> — SEI {{ ref.sei }}</span>
+        <span *ngIf="ref.data"> — {{ formatarData(ref.data) }}</span>
+      </li>
+    </ul>
+
+    <p class="vazio" *ngIf="!dados.referencias?.length">
+      Sem referências cadastradas.
+    </p>
+  </section>
+
+  <!-- ================= 4. RELATÓRIO ================= -->
+  <section>
+    <h2>4. RELATÓRIO</h2>
+
+    <h3>4.1. DOS FATOS</h3>
+    <p class="texto-justificado">{{ textoFatos }}</p>
+    <p class="texto-justificado" *ngIf="dados.fatos">{{ dados.fatos }}</p>
+
+    <h3>4.2. DAS CONSIDERAÇÕES POR PARTE DESTA CONSELHEIRA</h3>
+    <p class="texto-justificado">
+      {{ dados.consideracoes || "—" }}
+    </p>
+  </section>
+
+  <!-- ================= 5. CONCLUSÃO ================= -->
+  <section>
+    <h2>5. CONCLUSÃO</h2>
+    <p class="texto-justificado">{{ dados.conclusao }}</p>
+  </section>
+
+  <!-- ================= ASSINATURA ================= -->
+  <section class="bloco-assinatura">
+    <p class="assinatura-nome">{{ dados.conselheiro }}</p>
+    <p class="assinatura-cargo">{{ cargoConselheiro }}</p>
+    <span class="assinatura-rotulo">Assinatura</span>
+  </section>
+
+  <!-- ================= AÇÕES ================= -->
+  <div class="form-actions no-print">
+    <button mat-button type="button" class="print" (click)="imprimir()">
+      Imprimir
+    </button>
+    <button mat-flat-button type="button" (click)="enviarParaAssinatura()">
+      Enviar para assinatura
+    </button>
+  </div>
+</div>

@@ -1,0 +1,217 @@
+/* =========================================================
+   DOCUMENTO
+========================================================= */
+
+.documento {
+  margin: 2rem;
+  font-family: "Rawline", "Raleway", "Helvetica Neue", Arial, sans-serif;
+  color: #1b1b1b;
+  line-height: 1.5;
+  font-size: 12pt;
+
+  /* >>> Barra de rolagem vertical <<< */
+  max-height: 75vh; /* limita a altura do documento */
+  overflow-y: auto; /* ativa a barra vertical */
+  overflow-x: hidden; /* evita barra horizontal */
+  padding-right: 0.75rem; /* espaço para a barra não cobrir o texto */
+  scroll-behavior: smooth;
+}
+
+/* Barra de rolagem estilizada (WebKit – Chrome/Edge/Safari) */
+.documento::-webkit-scrollbar {
+  width: 10px;
+}
+
+.documento::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.documento::-webkit-scrollbar-thumb {
+  background: #b8b8b8;
+  border-radius: 4px;
+}
+
+.documento::-webkit-scrollbar-thumb:hover {
+  background: #8c8c8c;
+}
+
+/* Firefox */
+.documento {
+  scrollbar-width: thin;
+  scrollbar-color: #b8b8b8 #f1f1f1;
+}
+
+/* =========================================================
+   CABEÇALHO
+========================================================= */
+
+.cabecalho {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.orgao {
+  margin: 0;
+  font-weight: 700;
+  font-size: 14pt;
+  text-transform: uppercase;
+}
+
+.voto-numero {
+  margin: 0.5rem 0 0;
+  font-weight: 600;
+  font-size: 12pt;
+}
+
+.documento hr {
+  border: none;
+  border-top: 1px solid #1b1b1b;
+  margin: 1rem 0 1.5rem;
+}
+
+.documento section {
+  margin-bottom: 1.5rem;
+}
+
+.documento h2 {
+  font-size: 12pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin: 1.5rem 0 0.75rem;
+}
+
+.documento h3 {
+  font-size: 12pt;
+  font-weight: 600;
+  margin: 1rem 0 0.5rem;
+}
+
+.documento p {
+  margin: 0 0 0.75rem;
+  text-align: justify;
+}
+
+.texto-justificado {
+  text-align: justify;
+}
+
+.ementa {
+  text-align: justify;
+  font-style: italic;
+}
+
+.referencias {
+  padding-left: 1.5rem;
+  margin: 0 0 0.75rem;
+}
+
+.referencias li {
+  margin-bottom: 0.25rem;
+}
+
+.vazio {
+  font-style: italic;
+  color: #555;
+}
+
+/* =========================================================
+   ASSINATURA
+========================================================= */
+
+.bloco-assinatura {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.assinatura-nome {
+  margin: 0;
+  font-size: 12pt;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.assinatura-cargo {
+  margin: 0.25rem 0 0;
+  font-size: 11pt;
+  color: #555;
+  text-align: center;
+}
+
+.assinatura-rotulo {
+  display: inline-block;
+  margin-top: 3rem;
+  padding: 0.25rem 3rem 0;
+  font-size: 11pt;
+  color: #1b1b1b;
+  border-top: 1px solid #1b1b1b;
+}
+
+/* =========================================================
+   AÇÕES / BOTÕES
+========================================================= */
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 20px;
+
+  /* mantém os botões visíveis enquanto o documento rola */
+  position: sticky;
+  bottom: 0;
+  background: #ffffff;
+  padding: 12px 0;
+  border-top: 1px solid #e0e0e0;
+}
+
+/* Botão "Imprimir" */
+.print.mat-mdc-button {
+  color: rgb(7, 94, 94) !important;
+  font-size: 12pt;
+}
+
+.print.mat-mdc-button:hover {
+  text-decoration: underline;
+}
+
+/* Botão "Enviar para assinatura" */
+.btn-assinar.mat-mdc-unelevated-button {
+  background-color: #007bff !important;
+  color: #ffffff !important;
+  font-weight: bold;
+  font-size: 12pt;
+}
+
+.btn-assinar.mat-mdc-unelevated-button:hover {
+  background-color: #0056b3 !important;
+}
+
+/* =========================================================
+   IMPRESSÃO
+========================================================= */
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+
+  /* Desfaz o scroll e o sticky ao imprimir */
+  .documento {
+    margin: 0;
+    max-height: none;
+    overflow: visible;
+    padding-right: 0;
+  }
+
+  .form-actions {
+    position: static;
+    border: none;
+  }
+
+  .cabecalho,
+  .documento section {
+    page-break-inside: avoid;
+  }
+}

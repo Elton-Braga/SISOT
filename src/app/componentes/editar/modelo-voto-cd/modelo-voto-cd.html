@@ -127,104 +127,56 @@
     <h3>4.1. DOS FATOS</h3>
 
     <div class="fatos-texto">
-      <p>
-        Trata-se de proposta de
-        <mat-form-field
-          appearance="outline"
-          class="campo-inline campo-modalidade"
-          subscriptSizing="dynamic"
-        >
-          <mat-label>Modalidade</mat-label>
-          <mat-select formControlName="assunto">
-            <mat-option
-              *ngFor="let modalidade of modalidades"
-              [value]="modalidade"
-            >
-              {{ modalidade }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+      <mat-form-field appearance="outline" subscriptSizing="dynamic">
+        <mat-label>Modalidade</mat-label>
+        <mat-select formControlName="assunto">
+          <mat-option
+            *ngFor="let modalidade of modalidades"
+            [value]="modalidade"
+          >
+            {{ modalidade }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-        para o imóvel rural
-        <mat-form-field
-          appearance="outline"
-          class="campo-inline campo-imovel"
-          subscriptSizing="dynamic"
-        >
-          <mat-label>Imóvel</mat-label>
-          <input matInput formControlName="imovel" />
-        </mat-form-field>
+      <mat-form-field appearance="outline" subscriptSizing="dynamic">
+        <mat-label>Imóvel</mat-label>
+        <input matInput formControlName="imovel" />
+      </mat-form-field>
 
-        , matrícula
-        <mat-form-field
-          appearance="outline"
-          class="campo-inline campo-matricula"
-          subscriptSizing="dynamic"
-        >
-          <mat-label>Matrícula</mat-label>
-          <input matInput formControlName="matricula" />
-        </mat-form-field>
-      </p>
-      <br />
-      <p>
-        , localizada no município de
-        <mat-form-field
-          appearance="outline"
-          class="campo-inline campo-municipio"
-          subscriptSizing="dynamic"
-        >
-          <mat-label>Município</mat-label>
-          <input matInput formControlName="municipio" />
-        </mat-form-field>
+      <mat-form-field appearance="outline" subscriptSizing="dynamic">
+        <mat-label>Matrícula</mat-label>
+        <input matInput formControlName="matricula" />
+      </mat-form-field>
 
-        ,
-        <mat-form-field
-          appearance="outline"
-          class="campo-inline campo-uf"
-          subscriptSizing="dynamic"
-        >
-          <mat-label>UF</mat-label>
-          <mat-select formControlName="uf">
-            <mat-option *ngFor="let uf of ufs" [value]="uf">
-              {{ uf }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+      <mat-form-field appearance="outline" subscriptSizing="dynamic">
+        <mat-label>Município</mat-label>
+        <input matInput formControlName="municipio" />
+      </mat-form-field>
 
-        , com código SNCR nº
-        <mat-form-field
-          appearance="outline"
-          class="campo-inline campo-sncr"
-          subscriptSizing="dynamic"
-        >
-          <mat-label>SNCR</mat-label>
-          <input matInput formControlName="sncr" />
-        </mat-form-field>
-      </p>
-      <br />
-      <p>
-        , apresentando área registrada de
-        <mat-form-field
-          appearance="outline"
-          class="campo-inline campo-area"
-          subscriptSizing="dynamic"
-        >
-          <mat-label>Área registrada (ha)</mat-label>
-          <input matInput formControlName="areaRegistrada" />
-        </mat-form-field>
+      <mat-form-field appearance="outline" subscriptSizing="dynamic">
+        <mat-label>UF</mat-label>
+        <mat-select formControlName="uf">
+          <mat-option *ngFor="let uf of ufs" [value]="uf">
+            {{ uf }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-        ha e área medida de
-        <mat-form-field
-          appearance="outline"
-          class="campo-inline campo-area"
-          subscriptSizing="dynamic"
-        >
-          <mat-label>Área medida (ha)</mat-label>
-          <input matInput formControlName="areaMedida" />
-        </mat-form-field>
+      <mat-form-field appearance="outline" subscriptSizing="dynamic">
+        <mat-label>SNCR</mat-label>
+        <input matInput formControlName="sncr" />
+      </mat-form-field>
 
-        ha.
-      </p>
+      <mat-form-field appearance="outline" subscriptSizing="dynamic">
+        <mat-label>Área registrada (ha)</mat-label>
+        <input matInput formControlName="areaRegistrada" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" subscriptSizing="dynamic">
+        <mat-label>Área medida (ha)</mat-label>
+        <input matInput formControlName="areaMedida" />
+      </mat-form-field>
     </div>
 
     <h3>4.2. DAS CONSIDERAÇÕES POR PARTE DESTA CONSELHEIRA</h3>
@@ -279,9 +231,9 @@
       mat-flat-button
       type="button"
       class="botao-assinatura"
-      (click)="enviarParaAssinatura()"
+      (click)="Salvar()"
     >
-      Enviar para Assinatura
+      Salvar
     </button>
   </div>
 </div>
