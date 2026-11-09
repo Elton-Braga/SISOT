@@ -49,33 +49,51 @@ export class ImprimirModeloVotoCd {
   readonly dados = inject<VotoCdData>(MAT_DIALOG_DATA);
 
   /* =========================================================
-     TEXTOS GERADOS
+     TEXTOS GERADOS (padrão formal – similar à Ordem de Serviço)
   ========================================================= */
 
   get numeroVoto(): string {
     return this.dados.numeroVoto || '—';
   }
 
+  /** Data por extenso para o cabeçalho (equivalente ao "estado, data" da OS) */
+  get dataAtual(): string {
+    const d = new Date();
+    return d.toLocaleDateString('pt-BR', {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric',
+    });
+  }
+
+  /** Prazo padrão de resposta/validade (equivalente ao prazo da OS) */
+  get prazoResposta(): string {
+    return '30';
+  }
+
+  /** Ementa no mesmo estilo institucional da OS */
   get ementa(): string {
     const d = this.dados;
     return (
-      'APRECIAÇÃO PELO COMITE DE DECISÃO REGIONAL SOBRE PROPOSTA DE ' +
-      `"${d.assunto || '[modalidade]'}" - ` +
-      `"${d.imovel || '[imóvel]'}", ` +
-      `"${d.municipio || '[município]'}", ` +
-      `"${d.uf || '[UF]'}"`
+      'APRECIAÇÃO, PELO COMITÊ DE DECISÃO REGIONAL, SOBRE PROPOSTA DE ' +
+      `"${d.assunto || '[modalidade]'}" ` +
+      `REFERENTE AO IMÓVEL RURAL "${d.imovel || '[imóvel]'}", ` +
+      `LOCALIZADO NO MUNICÍPIO DE "${d.municipio || '[município]'}/${d.uf || '[UF]'}".`
     );
   }
 
+  /** Texto dos fatos no mesmo padrão descritivo-formal da OS */
   get textoFatos(): string {
     const d = this.dados;
     return (
       `Trata-se de proposta de ${d.assunto || '[modalidade]'} para o imóvel rural ` +
-      `${d.imovel || '[imóvel]'}, matrícula ${d.matricula || '[matrícula]'}, ` +
-      `localizada no município de ${d.municipio || '[município]'}, ${d.uf || '[UF]'}, ` +
+      `denominado "${d.imovel || '[imóvel]'}", matrícula nº ${d.matricula || '[matrícula]'}, ` +
+      `localizado no(s) município(s) de "${d.municipio || '[município]'}/${d.uf || '[UF]'}", ` +
       `com código SNCR nº ${d.sncr || '[SNCR]'}, apresentando área registrada de ` +
       `${d.areaRegistrada || '[área registrada]'} ha e área medida de ` +
-      `${d.areaMedida || '[área medida]'} ha.`
+      `${d.areaMedida || '[área medida]'} ha. Tudo conforme consta nos autos do ` +
+      `Processo SEI nº "${d.processoSei || '[processo]'}", devidamente instruído ` +
+      `com os documentos pertinentes.`
     );
   }
 
@@ -102,6 +120,7 @@ export class ImprimirModeloVotoCd {
 
   enviarParaAssinatura(): void {
     // Sinaliza para o componente pai que o voto deve seguir para assinatura
+    alert('Documento enviado para assinatura! ');
     this.dialogRef.close(true);
   }
 }
