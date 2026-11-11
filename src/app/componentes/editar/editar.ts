@@ -30,6 +30,8 @@ import { MatMenuModule } from '@angular/material/menu';
 import { ParecerTecnicoConclusivo } from './parecer-tecnico-conclusivo/parecer-tecnico-conclusivo';
 import { ModeloVotoCd } from './modelo-voto-cd/modelo-voto-cd';
 
+import { ModeloDeVotoCdr } from './modelo-de-voto-cdr/modelo-de-voto-cdr';
+
 export interface NotaEmpenho {
   numero: string;
   valor: number;
@@ -974,8 +976,69 @@ export class Editar implements OnInit {
     });
   }
 
-  abrirmodeloDeVotoCD() {
+  abrirmodeloDeVotoCD(): void {
+    // Consolida o estado atual (dados originais + edições feitas na tela)
+    const payload = {
+      ...this.dados,
+      fase0: {
+        modalidadeObtencao: this.modalidadeObtencao,
+        ufSelecionada: this.ufSelecionada,
+        municipioSelecionado: this.municipioSelecionado,
+        imovelOcupado: this.imovelOcupado,
+        nomeImovel: this.nomeImovel,
+        codigoSncr: this.codigoSncr,
+        matricula: this.matricula,
+        nomeProprietario: this.nomeProprietario,
+        cpfCnpjProprietario: this.cpfCnpjProprietario,
+        areaRegistrada: this.areaRegistrada,
+        areaCertificada: this.areaCertificada,
+        areaVisada: this.areaVisada,
+        vtiMedio: this.vtiMedio,
+        vtnMedio: this.vtnMedio,
+        entidadeDemandante: this.entidadeDemandante,
+        justificativaViabilidade: this.justificativaViabilidade,
+      },
+      fase1: { processoSei: this.processoSei },
+      fase7: {
+        processoCadeiaDominial: this.processoCadeiaDominial,
+        dataAnalise: this.dataAnalise,
+        statusAnalise: this.statusAnalise,
+        linkParecer: this.linkParecer,
+      },
+      instrucaoBasica: {
+        espelhoImovelSncr: this.fase2EspelhoImovelSncr,
+        demonstrativoImovelSicar: this.fase2DemonstrativoImovelSicar,
+        matriculas: this.fase2Matriculas,
+        arquivoVetorialShp: this.fase2ArquivoVetorialShp,
+        mapaImpresso: this.fase2MapaImpresso,
+        memorialDescritivo: this.fase2MemorialDescritivo,
+        observacao: this.fase2Observacao,
+      },
+      faseAtualProcesso: this.faseAtualProcesso,
+    };
+
     this.dialog.open(ModeloVotoCd, {
+      maxWidth: '1100px',
+      width: '800px',
+      maxHeight: '1100px',
+      height: '90%',
+      panelClass: 'dialog-com-rolagem',
+      data: payload, // <<< agora o componente recebe o JSON
+    });
+  }
+
+  /*abrirmodeloDeVotoCD() {
+    this.dialog.open(ModeloVotoCd, {
+      maxWidth: '1100px',
+      width: '800px',
+      maxHeight: '1100px',
+      height: '90%',
+      panelClass: 'dialog-com-rolagem',
+    });
+  }*/
+
+  abrirResolucaoCd(): void {
+    this.dialog.open(ResolucaoCd, {
       maxWidth: '1100px',
       width: '800px',
       maxHeight: '1100px',
@@ -984,8 +1047,8 @@ export class Editar implements OnInit {
     });
   }
 
-  abrirResolucaoCd(): void {
-    this.dialog.open(ResolucaoCd, {
+  abrirmodeloDeVotoCdr() {
+    this.dialog.open(ModeloDeVotoCdr, {
       maxWidth: '1100px',
       width: '800px',
       maxHeight: '1100px',

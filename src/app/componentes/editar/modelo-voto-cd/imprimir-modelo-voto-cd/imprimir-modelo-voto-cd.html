@@ -1,68 +1,82 @@
-<div class="documento">
-  <!-- ================= CABEÇALHO ================= -->
-  <header class="cabecalho">
-    <p class="orgao">INSTITUTO NACIONAL DE COLONIZAÇÃO E REFORMA AGRÁRIA</p>
-    <p class="voto-numero">VOTO Nº {{ numeroVoto }}</p>
-  </header>
+<!-- imprimir-modelo-voto-cd.html -->
 
-  <hr />
+<div class="documento" #conteudoImpressao>
+  <!-- ================= CABEÇALHO INSTITUCIONAL ================= -->
+  <p style="text-align: center; font-weight: bold">
+    MINISTÉRIO DO DESENVOLVIMENTO AGRÁRIO<br />
+    INSTITUTO NACIONAL DE COLONIZAÇÃO E REFORMA AGRÁRIA<br />
+    SUPERINTENDÊNCIA REGIONAL ({{ dados.unidade }})<br />
+    COMITÊ DE DECISÃO REGIONAL
+  </p>
+
+  <p style="text-align: center; font-weight: bold; font-size: 1.2em">
+    VOTO Nº {{ numeroVoto }}
+  </p>
+
+  <p style="text-align: right">
+    {{ dados.municipio }}/{{ dados.uf }}, {{ dataAtual }}
+  </p>
 
   <!-- ================= IDENTIFICAÇÃO ================= -->
-  <section>
-    <p><strong>Processo SEI nº:</strong> {{ dados.processoSei }}</p>
-    <p><strong>Interessado:</strong> {{ dados.interessado }}</p>
-    <p><strong>Conselheiro(a):</strong> {{ dados.conselheiro }}</p>
-  </section>
+  <p><strong>Processo SEI nº:</strong> {{ dados.processoSei }}</p>
+  <p><strong>Interessado:</strong> {{ dados.interessado }}</p>
+  <p><strong>Conselheiro(a):</strong> {{ dados.conselheiro }}</p>
 
-  <!-- ================= 1. ASSUNTO ================= -->
-  <section>
-    <h2>1. ASSUNTO</h2>
-    <p>{{ dados.assunto }}</p>
-  </section>
+  <!-- ================= PREÂMBULO / ATRIBUIÇÕES ================= -->
+  <p>
+    O(A) CONSELHEIRO(A) DO COMITÊ DE DECISÃO REGIONAL DO INCRA, NO ESTADO “{{
+      dados.uf
+    }}”, no uso das atribuições que lhe são conferidas pelo Art. 21 da Estrutura
+    Regimental deste Instituto, aprovada pelo Decreto nº 5.735, de 27 de março
+    de 2006, combinado com o Art. 119 do Regimento Interno da Autarquia,
+    aprovado pela Portaria MDA nº 69, de 19 de outubro de 2006, publicada no DOU
+    de 20 de outubro de 2006.
+  </p>
 
-  <!-- ================= 2. EMENTA ================= -->
-  <section>
-    <h2>2. EMENTA</h2>
-    <p class="ementa">{{ ementa }}</p>
-  </section>
+  <!-- ================= CONSIDERANDOS ================= -->
+  <p>
+    CONSIDERANDO o disposto na legislação referente à “{{ dados.assunto }}”, bem
+    como o constante nos autos do Processo SEI nº “{{ dados.processoSei }}”,
+    devidamente instruído com os documentos pertinentes;
+  </p>
 
-  <!-- ================= 3. REFERÊNCIA ================= -->
-  <section>
-    <h2>3. REFERÊNCIA</h2>
+  <p>
+    CONSIDERANDO a análise técnica e jurídica realizada pela equipe competente
+    desta Superintendência Regional, que atesta a regularidade da proposta;
+  </p>
 
-    <ul class="referencias" *ngIf="dados.referencias?.length">
-      <li *ngFor="let ref of dados.referencias">
-        <span *ngIf="ref.tipo">{{ ref.tipo }}</span>
-        <span *ngIf="ref.numero"> nº {{ ref.numero }}</span>
-        <span *ngIf="ref.sei"> — SEI {{ ref.sei }}</span>
-        <span *ngIf="ref.data"> — {{ formatarData(ref.data) }}</span>
-      </li>
-    </ul>
+  <p>
+    CONSIDERANDO o parecer exarado nos autos, favorável à apreciação da matéria
+    por este Comitê de Decisão Regional;
+  </p>
 
-    <p class="vazio" *ngIf="!dados.referencias?.length">
-      Sem referências cadastradas.
-    </p>
-  </section>
+  <p>CONSIDERANDO, por fim, o disposto “{{ dados.consideracoes }}”.</p>
 
-  <!-- ================= 4. RELATÓRIO ================= -->
-  <section>
-    <h2>4. RELATÓRIO</h2>
+  <!-- ================= DELIBERAÇÃO ================= -->
+  <p style="font-weight: bold">VOTA:</p>
 
-    <h3>4.1. DOS FATOS</h3>
-    <p class="texto-justificado">{{ textoFatos }}</p>
-    <p class="texto-justificado" *ngIf="dados.fatos">{{ dados.fatos }}</p>
+  <p>
+    Pela APROVAÇÃO da proposta de “{{ dados.assunto }}” referente ao imóvel
+    rural denominado “{{ dados.imovel }}”, matrícula nº “{{ dados.matricula }}”,
+    localizado no(s) município(s) de “{{ dados.municipio }}/{{ dados.uf }}”, com
+    código SNCR nº “{{ dados.sncr }}”, apresentando área registrada de “{{
+      dados.areaRegistrada
+    }}” ha e área medida de “{{ dados.areaMedida }}” ha, nos termos do relatório
+    e das considerações constantes neste Voto.
+  </p>
 
-    <h3>4.2. DAS CONSIDERAÇÕES POR PARTE DESTA CONSELHEIRA</h3>
-    <p class="texto-justificado">
-      {{ dados.consideracoes || "—" }}
-    </p>
-  </section>
+  <p>
+    Determina-se, ainda, o prazo de “{{ prazoResposta }}” dias, após a
+    publicação deste Voto, para a adoção das providências administrativas
+    cabíveis por parte das unidades competentes desta Superintendência Regional.
+  </p>
 
-  <!-- ================= 5. CONCLUSÃO ================= -->
-  <section>
-    <h2>5. CONCLUSÃO</h2>
-    <p class="texto-justificado">{{ dados.conclusao }}</p>
-  </section>
+  <p>
+    O presente Voto entra em vigor a partir de sua assinatura e publicação,
+    devendo ser encaminhado à apreciação superior para os fins de direito.
+  </p>
+
+  <br /><br />
 
   <!-- ================= ASSINATURA ================= -->
   <section class="bloco-assinatura">
@@ -73,10 +87,12 @@
 
   <!-- ================= AÇÕES ================= -->
   <div class="form-actions no-print">
-    <button mat-button type="button" class="print" (click)="imprimir()">
-      Imprimir
-    </button>
-    <button mat-flat-button type="button" (click)="enviarParaAssinatura()">
+    <a class="print" (click)="imprimir()">Imprimir</a>
+    <button
+      mat-raised-button
+      style="background-color: #0168d6; color: white"
+      (click)="enviarParaAssinatura()"
+    >
       Enviar para assinatura
     </button>
   </div>
