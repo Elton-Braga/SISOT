@@ -121,6 +121,7 @@
   </section>
 
   <!-- ================= 4. RELATÓRIO ================= -->
+  <!-- ================= 4. RELATÓRIO ================= -->
   <section class="form-section">
     <h2>4. RELATÓRIO</h2>
 
@@ -179,7 +180,186 @@
       </mat-form-field>
     </div>
 
-    <h3>4.2. DAS CONSIDERAÇÕES POR PARTE DESTA CONSELHEIRA</h3>
+    <!-- ========== 4.1.3 ========== -->
+    <h3>4.1.3.</h3>
+    <div
+      class="texto-legal"
+      style="line-height: 2.4; margin-bottom: 16px; text-align: justify"
+    >
+      Diante disso, a Superintendência Regional, por meio do parecer
+      <mat-form-field
+        appearance="outline"
+        subscriptSizing="dynamic"
+        style="
+          display: inline-block;
+          width: 220px;
+          margin: 0 4px;
+          vertical-align: middle;
+        "
+      >
+        <mat-label>nº do parecer técnico conclusivo</mat-label>
+        <input matInput formControlName="parecerTecnicoConclusivo" />
+      </mat-form-field>
+      , submeteu a matéria à análise de viabilidade por
+      <mat-form-field
+        appearance="outline"
+        subscriptSizing="dynamic"
+        style="
+          display: inline-block;
+          width: 260px;
+          margin: 0 4px;
+          vertical-align: middle;
+        "
+      >
+        <mat-label>modalidade</mat-label>
+        <mat-select formControlName="assunto">
+          <mat-option
+            *ngFor="let modalidade of modalidades"
+            [value]="modalidade"
+          >
+            {{ modalidade }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      , nos termos de
+      <mat-form-field
+        appearance="outline"
+        subscriptSizing="dynamic"
+        style="
+          display: inline-block;
+          width: 260px;
+          margin: 0 4px;
+          vertical-align: middle;
+        "
+      >
+        <mat-label>Fundamento legal aplicável</mat-label>
+        <input matInput formControlName="fundamentoLegal" />
+      </mat-form-field>
+      .
+    </div>
+
+    <!-- ========== 4.1.4 ========== -->
+    <h3>4.1.4.</h3>
+    <mat-form-field appearance="outline" class="campo-completo">
+      <mat-label
+        >Texto longo: Síntese da análise técnica, dados e conclusão</mat-label
+      >
+      <textarea
+        matInput
+        rows="5"
+        formControlName="sinteseAnaliseTecnica"
+      ></textarea>
+    </mat-form-field>
+
+    <!-- ========== 4.1.5 ========== -->
+    <h3>4.1.5.</h3>
+    <mat-form-field appearance="outline" class="campo-completo">
+      <mat-label
+        >Texto longo: Sobre o uso atual do imóvel e a demanda social (ocupação,
+        número de famílias, atividades e data/fonte do levantamento)</mat-label
+      >
+      <textarea
+        matInput
+        rows="5"
+        formControlName="usoAtualDemandaSocial"
+      ></textarea>
+    </mat-form-field>
+
+    <!-- ========== 4.1.6 ========== -->
+    <h3>4.1.6.</h3>
+    <mat-form-field appearance="outline" class="campo-completo">
+      <mat-label
+        >Texto longo: Sobre a conveniência da incorporação/destinação do imóvel
+        ao PNRA (interesse público, destinação pretendida e contexto)</mat-label
+      >
+      <textarea
+        matInput
+        rows="5"
+        formControlName="convenienciaIncorporacao"
+      ></textarea>
+    </mat-form-field>
+
+    <!-- ========== 4.1.7 ========== -->
+    <h3>4.1.7. Regularidade Dominial</h3>
+    <mat-form-field appearance="outline" class="campo-completo">
+      <mat-label
+        >Texto longo: Sobre a regularidade dominial (situação da
+        matrícula/cadeia dominial/pendências)</mat-label
+      >
+      <textarea
+        matInput
+        rows="5"
+        formControlName="regularidadeDominial"
+      ></textarea>
+    </mat-form-field>
+
+    <!-- ========== 4.1.8 ========== -->
+    <h3>4.1.8. Outras formas de incorporação do imóvel ao PNRA</h3>
+    <mat-form-field appearance="outline" class="campo-completo">
+      <mat-label
+        >Texto longo: Sobre a possibilidade de outras formas de incorporação do
+        imóvel ao PNRA (alternativas analisadas e justificativa)</mat-label
+      >
+      <textarea
+        matInput
+        rows="5"
+        formControlName="outrasFormasIncorporacao"
+      ></textarea>
+    </mat-form-field>
+
+    <!-- ========== 4.1.9 ========== -->
+    <h3>4.1.9. Consultas de interesses concorrentes</h3>
+    <mat-form-field appearance="outline" class="campo-completo">
+      <mat-label
+        >Texto longo: Sobre as consultas a órgãos com interesses concorrentes
+        (órgãos consultados, documentos, respostas/pendências e
+        prazos)</mat-label
+      >
+      <textarea
+        matInput
+        rows="5"
+        formControlName="consultasInteresses"
+      ></textarea>
+    </mat-form-field>
+
+    <!-- ========== 4.1.10 ========== -->
+    <h3>4.1.10. Relevância para a solução conflituosa</h3>
+    <mat-form-field appearance="outline" class="campo-completo">
+      <mat-label
+        >Texto longo: Sobre conflitos ou ações judiciais relacionados ao imóvel
+        (processos, partes/objeto, situação atual e repercussão na
+        proposta)</mat-label
+      >
+      <textarea
+        matInput
+        rows="5"
+        formControlName="relevanciaSolucao"
+      ></textarea>
+    </mat-form-field>
+
+    <!-- ========== 4.1.11 ========== -->
+    <h3>4.1.11. Parecer da procuradoria</h3>
+    <mat-form-field appearance="outline" class="campo-completo">
+      <mat-label
+        >Texto longo: Sobre a manifestação jurídica
+        (parecer/despacho)</mat-label
+      >
+      <textarea
+        matInput
+        rows="5"
+        formControlName="parecerProcuradoria"
+      ></textarea>
+    </mat-form-field>
+
+    <!-- ========== 4.1.12 ========== -->
+    <h3>4.1.12. Outros fatos relevantes para a análise</h3>
+    <mat-form-field appearance="outline" class="campo-completo">
+      <mat-label>Texto longo: livre</mat-label>
+      <textarea matInput rows="5" formControlName="outrosFatos"></textarea>
+    </mat-form-field>
+
+    <!-- ========== 4.2 ========== -->
+    <h3>4.2. DAS CONSIDERAÇÕES POR PARTE DESTE CONSELHEIRO</h3>
 
     <mat-form-field appearance="outline" class="campo-completo">
       <mat-label

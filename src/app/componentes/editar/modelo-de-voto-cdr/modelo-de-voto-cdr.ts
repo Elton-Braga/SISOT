@@ -20,8 +20,8 @@ import {
   MatDialogModule,
 } from '@angular/material/dialog';
 
-import { ImprimirModeloVotoCd } from '../modelo-voto-cd/imprimir-modelo-voto-cd/imprimir-modelo-voto-cd';
 import { Dados } from '../../../mock/imovel.model';
+import { ImprimirModeloVotoCd } from '../modelo-voto-cd/imprimir-modelo-voto-cd/imprimir-modelo-voto-cd';
 
 /* =========================================================
    Tipagem do payload do dialog
@@ -35,15 +35,30 @@ interface ReferenciaRaw {
 }
 
 /**
- * Payload enriquecido recebido de `Editar.abrirmodeloDeVotoCD()`.
+ * Payload enriquecido recebido de `Editar.abrirmodeloDeVotoCdr()`.
  * Herda todos os campos de `Dados` e adiciona os campos extras
- * montados pelo `Editar.salvar()` / `Editar.abrirmodeloDeVotoCD()`.
+ * montados pelo `Editar.salvar()` / `Editar.abrirmodeloDeVotoCdr()`.
  */
 interface ModeloVotoData extends Dados {
   // Identificação (não estão em Dados, vêm do Editar)
   conselheiro?: string;
   cargo?: string;
   unidade?: string;
+
+  // 4.1.3
+  parecerTecnicoConclusivo?: string;
+  fundamentoLegal?: string;
+
+  // 4.1.4 a 4.1.12
+  sinteseAnaliseTecnica?: string;
+  usoAtualDemandaSocial?: string;
+  convenienciaIncorporacao?: string;
+  regularidadeDominial?: string;
+  outrasFormasIncorporacao?: string;
+  consultasInteresses?: string;
+  relevanciaSolucao?: string;
+  parecerProcuradoria?: string;
+  outrosFatos?: string;
 
   // Blocos montados pelo Editar.salvar()
   fase0?: {
@@ -99,25 +114,25 @@ interface ModeloVotoData extends Dados {
 })
 export class ModeloDeVotoCdr {
   /* =========================================================
-     Injeções
-  ========================================================= */
+       Injeções
+    ========================================================= */
   private readonly fb = inject(FormBuilder);
   private readonly dialog = inject(MatDialog);
 
-  /** JSON vindo da linha da lista via Editar (Lista → Editar → ModeloVotoCd). */
+  /** JSON vindo da linha da lista via Editar (Lista → Editar → ModeloVotoCdr). */
   private readonly dadosRecebidos = inject(MAT_DIALOG_DATA, {
     optional: true,
   }) as ModeloVotoData | null;
 
   /* =========================================================
-     Campos gerados pelo sistema (fallbacks)
-  ========================================================= */
+       Campos gerados pelo sistema (fallbacks)
+    ========================================================= */
   readonly numeroVoto = `${this.numeroAleatorio(100, 999)}/${new Date().getFullYear()}`;
   readonly processoSei = this.gerarProcessoSei();
 
   /* =========================================================
-     Listas estáticas
-  ========================================================= */
+       Listas estáticas
+    ========================================================= */
   readonly modalidades: string[] = [
     'Compra e Venda Decreto 433/92',
     'Adjudicação',
@@ -170,8 +185,8 @@ export class ModeloDeVotoCdr {
   ];
 
   /* =========================================================
-     Formulário
-  ========================================================= */
+       Formulário
+    ========================================================= */
   form!: FormGroup;
 
   ngOnInit(): void {
@@ -195,6 +210,21 @@ export class ModeloDeVotoCdr {
       areaRegistrada: [''],
       areaMedida: [''],
 
+      // 4.1.3
+      parecerTecnicoConclusivo: [''],
+      fundamentoLegal: [''],
+
+      // 4.1.4 a 4.1.12
+      sinteseAnaliseTecnica: [''],
+      usoAtualDemandaSocial: [''],
+      convenienciaIncorporacao: [''],
+      regularidadeDominial: [''],
+      outrasFormasIncorporacao: [''],
+      consultasInteresses: [''],
+      relevanciaSolucao: [''],
+      parecerProcuradoria: [''],
+      outrosFatos: [''],
+
       // 3. Referência
       referencias: this.fb.array([this.criarReferencia()]),
 
@@ -210,8 +240,8 @@ export class ModeloDeVotoCdr {
   }
 
   /* =========================================================
-     REFERÊNCIAS (FormArray)
-  ========================================================= */
+       REFERÊNCIAS (FormArray)
+    ========================================================= */
   get referencias(): FormArray {
     return this.form.get('referencias') as FormArray;
   }
@@ -236,8 +266,8 @@ export class ModeloDeVotoCdr {
   }
 
   /* =========================================================
-     TEXTOS GERADOS AUTOMATICAMENTE
-  ========================================================= */
+       TEXTOS GERADOS AUTOMATICAMENTE
+    ========================================================= */
   private get valor(): any {
     return this.form?.value ?? {};
   }
@@ -266,8 +296,8 @@ export class ModeloDeVotoCdr {
   }
 
   /* =========================================================
-     BLOCO DE ASSINATURA
-  ========================================================= */
+       BLOCO DE ASSINATURA
+    ========================================================= */
   get nomeConselheiro(): string {
     return this.valor.conselheiro || '[NOME DO(A) CONSELHEIRO(A)]';
   }
@@ -279,8 +309,8 @@ export class ModeloDeVotoCdr {
   }
 
   /* =========================================================
-     PREFILL — carrega dados vindos da linha da lista
-  ========================================================= */
+       PREFILL — carrega dados vindos da linha da lista
+    ========================================================= */
   private prefillFromDados(dados: ModeloVotoData | null): void {
     if (!dados) return;
 
@@ -288,6 +318,8 @@ export class ModeloDeVotoCdr {
     const obtencao = dados.obtencao ?? ({} as any);
     const fase0 = dados.fase0 ?? {};
     const fase1 = dados.fase1 ?? {};
+    const fase7 = dados.fase7 ?? {};
+    const instrucaoBasica = (dados as any).instrucaoBasica ?? {};
 
     /* ---------- 1. Assunto (mapeado para modalidades[]) ---------- */
     const assunto = this.mapearModalidade(
@@ -317,11 +349,45 @@ export class ModeloDeVotoCdr {
       fase0.areaCertificada,
     );
 
+    /* ---------- 4.1.3 ---------- */
+    const parecerTecnicoConclusivo = dados.parecerTecnicoConclusivo ?? '';
+    const fundamentoLegal = dados.fundamentoLegal ?? '';
+
+    /* ---------- 4.1.4 a 4.1.12 (com derivação) ---------- */
+    const sinteseAnaliseTecnica =
+      dados.sinteseAnaliseTecnica ??
+      this.gerarSinteseAnaliseTecnica(dados, instrucaoBasica, imovel, fase0);
+
+    const usoAtualDemandaSocial =
+      dados.usoAtualDemandaSocial ??
+      this.gerarUsoAtualDemandaSocial(obtencao, fase0);
+
+    const convenienciaIncorporacao =
+      dados.convenienciaIncorporacao ?? fase0.justificativaViabilidade ?? '';
+
+    const regularidadeDominial =
+      dados.regularidadeDominial ?? this.gerarRegularidadeDominial(fase7);
+
+    const outrasFormasIncorporacao = dados.outrasFormasIncorporacao ?? '';
+
+    const consultasInteresses =
+      dados.consultasInteresses ?? this.gerarConsultasInteresses(obtencao);
+
+    const relevanciaSolucao =
+      dados.relevanciaSolucao ?? obtencao.acoesReintegracao ?? '';
+
+    const parecerProcuradoria = dados.parecerProcuradoria ?? '';
+
+    const outrosFatos = dados.outrosFatos ?? '';
+
     /* ---------- 4.2. Considerações (geradas) ---------- */
     const consideracoes = dados.consideracoes ?? this.gerarConsideracoes(dados);
 
-    /* ---------- 5. Conclusão ---------- */
-    const conclusao = dados.conclusao ?? dados.fase9?.conclusao ?? '';
+    /* ---------- 5. Conclusão (fallback = texto padrão gerado) ---------- */
+    const conclusao =
+      dados.conclusao ??
+      dados.fase9?.conclusao ??
+      this.gerarConclusao(dados, assunto, imovel, processoSei);
 
     this.form.patchValue({
       // Identificação
@@ -343,6 +409,21 @@ export class ModeloDeVotoCdr {
       areaRegistrada: this.toStr(areaRegistrada),
       areaMedida: this.toStr(areaMedida),
 
+      // 4.1.3
+      parecerTecnicoConclusivo,
+      fundamentoLegal,
+
+      // 4.1.4 a 4.1.12
+      sinteseAnaliseTecnica,
+      usoAtualDemandaSocial,
+      convenienciaIncorporacao,
+      regularidadeDominial,
+      outrasFormasIncorporacao,
+      consultasInteresses,
+      relevanciaSolucao,
+      parecerProcuradoria,
+      outrosFatos,
+
       // 4.2. Relatório
       consideracoes,
 
@@ -354,8 +435,8 @@ export class ModeloDeVotoCdr {
   }
 
   /* =========================================================
-     Referências — do JSON ou geradas a partir do processo SEI
-  ========================================================= */
+       Referências — do JSON ou geradas a partir do processo SEI
+    ========================================================= */
   private prefillReferencias(dados: ModeloVotoData, processoSei: string): void {
     const refs = dados.referencias;
 
@@ -389,8 +470,8 @@ export class ModeloDeVotoCdr {
   }
 
   /* =========================================================
-     Helpers de mapeamento
-  ========================================================= */
+       Helpers de mapeamento
+    ========================================================= */
   private mapearModalidade(raw: string): string {
     if (!raw) return '';
     const v = String(raw).toLowerCase().trim();
@@ -429,9 +510,218 @@ export class ModeloDeVotoCdr {
     return '';
   }
 
+  /* =========================================================
+       GERADORES DE TEXTO — 4.1.4 a 4.1.12
+    ========================================================= */
+
+  /**
+   * 4.1.4 — Síntese da análise técnica, dados e conclusão.
+   * Deriva a partir de `instrucaoBasica`, `imovel` e `fase0`.
+   */
+  private gerarSinteseAnaliseTecnica(
+    _dados: ModeloVotoData,
+    instrucaoBasica: any,
+    imovel: any,
+    fase0: any,
+  ): string {
+    const partes: string[] = [];
+
+    const nomeImovel = imovel.imovel ?? fase0.nomeImovel ?? '';
+    const sncr = imovel.sncr ?? fase0.codigoSncr ?? '';
+    const matricula = imovel.matriculas ?? fase0.matricula ?? '';
+    const municipio = imovel.municipio ?? fase0.municipioSelecionado ?? '';
+    const uf = imovel.uf ?? fase0.ufSelecionada ?? '';
+
+    if (nomeImovel) {
+      let ref = `O imóvel rural "${nomeImovel}"`;
+      if (sncr) ref += `, código SNCR ${sncr}`;
+      if (matricula) ref += `, matrícula ${matricula}`;
+      if (municipio && uf) ref += `, localizado em ${municipio}/${uf}`;
+      partes.push(`${ref}.`);
+    }
+
+    const docs: string[] = [];
+    if (instrucaoBasica.espelhoImovelSncr)
+      docs.push('Espelho do Imóvel no SNCR');
+    if (instrucaoBasica.demonstrativoImovelSicar)
+      docs.push('Demonstrativo SICAR');
+    if (instrucaoBasica.matriculas) docs.push('Matrículas');
+    if (instrucaoBasica.arquivoVetorialShp) docs.push('Arquivo vetorial (SHP)');
+    if (instrucaoBasica.mapaImpresso) docs.push('Mapa impresso');
+    if (instrucaoBasica.memorialDescritivo) docs.push('Memorial descritivo');
+
+    if (docs.length > 0) {
+      partes.push(
+        `A análise técnica constatou a presença dos seguintes documentos: ${docs.join(', ')}.`,
+      );
+    }
+
+    if (instrucaoBasica.observacao) {
+      partes.push(instrucaoBasica.observacao);
+    }
+
+    const areaReg = this.pickNumber(
+      imovel.areaRegistrada,
+      fase0.areaRegistrada,
+      imovel.areaHa,
+    );
+    const areaMed = this.pickNumber(
+      imovel.areaVisada,
+      imovel.areaCertificada,
+      fase0.areaVisada,
+      fase0.areaCertificada,
+    );
+
+    if (areaReg !== null && areaMed !== null) {
+      partes.push(
+        `Área registrada: ${areaReg} ha; área medida: ${areaMed} ha.`,
+      );
+    } else if (areaReg !== null) {
+      partes.push(`Área registrada: ${areaReg} ha.`);
+    } else if (areaMed !== null) {
+      partes.push(`Área medida: ${areaMed} ha.`);
+    }
+
+    return partes.join(' ');
+  }
+
+  /**
+   * 4.1.5 — Uso atual do imóvel e demanda social.
+   * Deriva a partir de `obtencao` e `fase0`.
+   */
+  private gerarUsoAtualDemandaSocial(obtencao: any, fase0: any): string {
+    const partes: string[] = [];
+
+    const ocupado = obtencao.imovelOcupado ?? fase0.imovelOcupado;
+    if (ocupado === true || ocupado === 'sim') {
+      partes.push('O imóvel encontra-se ocupado.');
+    } else if (ocupado === false || ocupado === 'nao') {
+      partes.push('O imóvel não se encontra ocupado.');
+    }
+
+    const familias = obtencao.familiasCadastradas ?? fase0.familiasCadastradas;
+    if (familias) {
+      partes.push(`Há ${familias} famílias cadastradas na área.`);
+    }
+
+    const entidade = obtencao.entidadeDemandante ?? fase0.entidadeDemandante;
+    if (entidade) {
+      partes.push(`Entidade demandante: ${entidade}.`);
+    }
+
+    const acampamento =
+      obtencao.acampamentoVinculado ?? fase0.acampamentoVinculado;
+    if (acampamento) {
+      partes.push(`Acampamento vinculado: ${acampamento}.`);
+    }
+
+    return (
+      partes.join(' ') ||
+      'Não há informações sobre ocupação ou demanda social registradas nos autos.'
+    );
+  }
+
+  /**
+   * 4.1.7 — Regularidade dominial.
+   * Deriva a partir de `fase7`.
+   */
+  private gerarRegularidadeDominial(fase7: any): string {
+    const partes: string[] = [];
+
+    if (fase7.processoCadeiaDominial) {
+      partes.push(
+        `Processo de análise da cadeia dominial: ${fase7.processoCadeiaDominial}.`,
+      );
+    }
+    if (fase7.statusAnalise) {
+      partes.push(`Status da análise: ${fase7.statusAnalise}.`);
+    }
+    if (fase7.dataAnalise) {
+      partes.push(`Data da análise: ${fase7.dataAnalise}.`);
+    }
+    if (fase7.linkParecer) {
+      partes.push(`Parecer disponível em: ${fase7.linkParecer}.`);
+    }
+
+    return (
+      partes.join(' ') ||
+      'Análise da cadeia dominial não realizada até o momento.'
+    );
+  }
+
+  /**
+   * 4.1.9 — Consultas de interesses concorrentes.
+   * Deriva a partir de `obtencao.orgaoConcorrente`.
+   */
+  private gerarConsultasInteresses(obtencao: any): string {
+    const orgao = obtencao?.orgaoConcorrente;
+    if (!orgao) return '';
+    return `Foram realizadas consultas ao(s) seguinte(s) órgão(s) com interesses concorrentes: ${orgao}.`;
+  }
+
+  /* =========================================================
+       GERADORES DE TEXTO — Considerações e Conclusão
+    ========================================================= */
+  private gerarConclusao(
+    dados: ModeloVotoData,
+    assunto: string,
+    imovel: any,
+    processoSei: string,
+  ): string {
+    const fase0 = dados.fase0 ?? {};
+    const ob = dados.obtencao ?? ({} as any);
+
+    const nomeImovel = imovel.imovel ?? fase0.nomeImovel ?? '[imóvel]';
+    const matricula = imovel.matriculas ?? fase0.matricula ?? '[matrícula]';
+    const municipio =
+      imovel.municipio ?? fase0.municipioSelecionado ?? '[município]';
+    const uf = imovel.uf ?? fase0.ufSelecionada ?? '[UF]';
+    const sncr = imovel.sncr ?? fase0.codigoSncr ?? '[SNCR]';
+
+    const areaReg = this.pickNumber(
+      imovel.areaRegistrada,
+      fase0.areaRegistrada,
+      imovel.areaHa,
+    );
+    const areaMed = this.pickNumber(
+      imovel.areaVisada,
+      imovel.areaCertificada,
+      fase0.areaVisada,
+      fase0.areaCertificada,
+    );
+
+    const modalidade = assunto || '[modalidade]';
+    const areaRegStr = areaReg ?? '[área registrada]';
+    const areaMedStr = areaMed ?? '[área medida]';
+
+    /* Trecho condicional — demanda social */
+    const demandaPartes: string[] = [];
+    if (ob.entidadeDemandante) {
+      demandaPartes.push(`entidade demandante ${ob.entidadeDemandante}`);
+    }
+    if (ob.familiasCadastradas) {
+      demandaPartes.push(`${ob.familiasCadastradas} famílias cadastradas`);
+    }
+    const demandaTexto = demandaPartes.length
+      ? ` o atendimento da demanda social (${demandaPartes.join(' e ')})`
+      : ' o atendimento da demanda social';
+
+    return (
+      `Diante do exposto e das considerações apresentadas, tendo em vista o ` +
+      `cumprimento regular da instrução processual,${demandaTexto} e a regularidade ` +
+      `da cadeia dominial do imóvel, VOTO no sentido de APROVAR a proposta de ` +
+      `${modalidade} referente ao imóvel rural "${nomeImovel}", matrícula ` +
+      `${matricula}, localizado no município de ${municipio}/${uf}, com código ` +
+      `SNCR nº ${sncr}, apresentando área registrada de ${areaRegStr} ha e área ` +
+      `medida de ${areaMedStr} ha, nos termos da fundamentação acima exposta e ` +
+      `do Processo SEI nº ${processoSei}.\n\n` +
+      `É como voto.`
+    );
+  }
+
   private gerarConsideracoes(dados: ModeloVotoData): string {
     const ob = dados.obtencao ?? ({} as any);
-    const ib = dados.instrucaoBasica ?? ({} as any);
+    const ib = (dados as any).instrucaoBasica ?? ({} as any);
     const fase7 = dados.fase7 ?? {};
 
     const partes: string[] = [];
@@ -488,6 +778,9 @@ export class ModeloDeVotoCdr {
     return partes.join('\n\n');
   }
 
+  /* =========================================================
+       Helpers utilitários
+    ========================================================= */
   private normalizeDate(v: any): string {
     if (!v) return '';
     if (v instanceof Date) {
@@ -518,18 +811,18 @@ export class ModeloDeVotoCdr {
   }
 
   /* =========================================================
-     AÇÕES
-  ========================================================= */
+       AÇÕES
+    ========================================================= */
   imprimir(): void {
     window.print();
   }
 
   Salvar(): void {
     /*
-    if (this.form.invalid) {
-      this.form.markAllAsTouched();
-      return;
-    }*/
+      if (this.form.invalid) {
+        this.form.markAllAsTouched();
+        return;
+      }*/
 
     // Payload completo do formulário (inclui FormArray de referências)
     const payload = this.form.getRawValue();
@@ -545,8 +838,8 @@ export class ModeloDeVotoCdr {
   }
 
   /* =========================================================
-     GERADORES
-  ========================================================= */
+       GERADORES
+    ========================================================= */
   private numeroAleatorio(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }

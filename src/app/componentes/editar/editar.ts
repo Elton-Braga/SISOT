@@ -1047,13 +1047,80 @@ export class Editar implements OnInit {
     });
   }
 
-  abrirmodeloDeVotoCdr() {
+  abrirmodeloDeVotoCdr(): void {
+    // Consolida o estado atual (dados originais + edições feitas na tela).
+    // Mesma estrutura usada em abrirmodeloDeVotoCD(), com os campos
+    // adicionais que o ModeloDeVotoCdr consome (fase2 / instrucaoBasica).
+    const payload = {
+      ...this.dados,
+
+      // ---------- Fase 0 (editada na tela) ----------
+      fase0: {
+        modalidadeObtencao: this.modalidadeObtencao,
+        ufSelecionada: this.ufSelecionada,
+        municipioSelecionado: this.municipioSelecionado,
+        imovelOcupado: this.imovelOcupado,
+        nomeImovel: this.nomeImovel,
+        codigoSncr: this.codigoSncr,
+        matricula: this.matricula,
+        nomeProprietario: this.nomeProprietario,
+        cpfCnpjProprietario: this.cpfCnpjProprietario,
+        nomeOutraParte: this.nomeOutraParte,
+        cpfCnpjOutraParte: this.cpfCnpjOutraParte,
+        areaRegistrada: this.areaRegistrada,
+        areaCertificada: this.areaCertificada,
+        areaVisada: this.areaVisada,
+        vtiMedio: this.vtiMedio,
+        vtnMedio: this.vtnMedio,
+        espelhoImovelSncr: this.espelhoImovelSncr,
+        arquivoVetorialShp: this.arquivoVetorialShp,
+        outrosDocumentos: this.outrosDocumentos,
+        entidadeDemandante: this.entidadeDemandante,
+        acampamentoVinculado: this.acampamentoVinculado,
+        acoesReintegracao: this.acoesReintegracao,
+        orgaoConcorrente: this.orgaoConcorrente,
+        familiasCadastradas: this.familiasCadastradas,
+        justificativaViabilidade: this.justificativaViabilidade,
+      },
+
+      // ---------- Fase 1 ----------
+      fase1: { processoSei: this.processoSei },
+
+      // ---------- Fase 7 ----------
+      fase7: {
+        processoCadeiaDominial: this.processoCadeiaDominial,
+        dataAnalise: this.dataAnalise,
+        statusAnalise: this.statusAnalise,
+        linkParecer: this.linkParecer,
+      },
+
+      // ---------- Fase 2 — Instrução básica ----------
+      instrucaoBasica: {
+        espelhoImovelSncr: this.fase2EspelhoImovelSncr,
+        espelhoImovelSncrAnexo: this.fase2EspelhoImovelSncrAnexo,
+        demonstrativoImovelSicar: this.fase2DemonstrativoImovelSicar,
+        demonstrativoImovelSicarAnexo: this.fase2DemonstrativoImovelSicarAnexo,
+        matriculas: this.fase2Matriculas,
+        matriculasAnexo: this.fase2MatriculasAnexo,
+        arquivoVetorialShp: this.fase2ArquivoVetorialShp,
+        arquivoVetorialShpAnexo: this.fase2ArquivoVetorialShpAnexo,
+        mapaImpresso: this.fase2MapaImpresso,
+        mapaImpressoAnexo: this.fase2MapaImpressoAnexo,
+        memorialDescritivo: this.fase2MemorialDescritivo,
+        memorialDescritivoAnexo: this.fase2MemorialDescritivoAnexo,
+        observacao: this.fase2Observacao,
+      },
+
+      faseAtualProcesso: this.faseAtualProcesso,
+    };
+
     this.dialog.open(ModeloDeVotoCdr, {
       maxWidth: '1100px',
       width: '800px',
       maxHeight: '1100px',
       height: '90%',
       panelClass: 'dialog-com-rolagem',
+      data: payload, // ✅ ESSENCIAL
     });
   }
 
