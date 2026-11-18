@@ -1,4 +1,4 @@
-import { Component, OnInit, computed, signal } from '@angular/core';
+import { Component, OnInit, computed, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
@@ -25,6 +25,12 @@ import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { Espelho } from '../espelho/espelho';
 import { Log } from '../log/log';
 import { Editar } from '../editar/editar';
+import { NovoProcesso } from './novo-processo/novo-processo';
+import { Estados } from '../../serviços/estados'; // ajuste o path
+import { Estado, Municipio } from '../../serviços/estados.model';
+import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
+import { distinctUntilChanged, map, of, switchMap } from 'rxjs';
+import { MatSelectModule } from '@angular/material/select'; // <-- NOVO
 
 @Component({
   selector: 'app-lista',
@@ -48,11 +54,32 @@ import { Editar } from '../editar/editar';
     MatCheckboxModule,
     MatDialogModule,
     RouterLink,
+    MatSelectModule,
   ],
   templateUrl: './lista.html',
   styleUrl: './lista.css',
 })
 export class Lista implements OnInit {
+  private readonly estadosService = inject(Estados);
+
+  /** UFs carregadas do IBGE (signal). */
+  public estados = signal<Estado[]>([]);
+  public srs: string[] = [
+    'SR(02)PE',
+    'SR(08)SP',
+    'SR(09)PR',
+    'SR(11)RS',
+    'SR(12)MA',
+    'SR(13)MT',
+    'SR(14)AC',
+    'SR(16)MS',
+    'SR(20)ES',
+    'SR(26)TO',
+    'SR(27)MBA',
+  ];
+
+  /** Municípios da UF atualmente selecionada (signal). */
+  public municipios = signal<Municipio[]>([]);
   public imoveis = signal<Dados[]>(IMOVEIS_MOCK);
   public itensPorPagina = signal<number>(5);
   public paginaAtual = signal<number>(0);
@@ -107,7 +134,9 @@ export class Lista implements OnInit {
     this.nomeGrupo = '';
     this.limparSelecao();
   }
-
+  public onSrChange(sr: string): void {
+    this.filtros.update((f) => ({ ...f, sr }));
+  }
   public atualizarColunas(): void {
     this.colunasExibidas = this.configuracaoColunas
       .filter((c) => c.visivel)
@@ -134,9 +163,37 @@ export class Lista implements OnInit {
   constructor(
     private router: Router,
     private dialog: MatDialog,
-  ) {}
+  ) {
+    // 1) Carrega as UFs uma vez (o serviço já cacheia).
+    this.estadosService
+      .listarEstados()
+      .pipe(takeUntilDestroyed())
+      .subscribe((lista) => this.estados.set(lista));
+
+    // 2) Sempre que filtros().uf mudar, recarrega a lista de municípios.
+    toObservable(this.filtros)
+      .pipe(
+        map((f) => f.uf),
+        distinctUntilChanged(),
+        switchMap((uf) =>
+          uf ? this.estadosService.listarMunicipiosPorUf(uf) : of([]),
+        ),
+        takeUntilDestroyed(),
+      )
+      .subscribe((lista) => this.municipios.set(lista));
+  }
 
   ngOnInit(): void {}
+
+  /** Atualiza a UF e limpa o município selecionado. */
+  public onUfChange(uf: string): void {
+    this.filtros.update((f) => ({ ...f, uf, municipio: '' }));
+  }
+
+  /** Atualiza o município selecionado. */
+  public onMunicipioChange(municipio: string): void {
+    this.filtros.update((f) => ({ ...f, municipio }));
+  }
 
   public todosFavoritos = computed(() => {
     const paginados = this.imoveisPaginados();
@@ -247,6 +304,15 @@ export class Lista implements OnInit {
       paginados.forEach((item) => novoSet.delete(item));
     }
     this.itensSelecionados.set(novoSet);
+  }
+  novoProcesso(): void {
+    this.dialog.open(NovoProcesso, {
+      width: '90vw',
+      maxWidth: '1200px',
+      maxHeight: '90vh',
+      disableClose: false,
+      autoFocus: false,
+    });
   }
 
   // Método para obter os itens selecionados

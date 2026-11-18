@@ -1,0 +1,48 @@
+<div class="margem">
+  <mat-card class="filter-card mb-4">
+    <mat-card-header class="filter-card-header">
+      <mat-card-title class="filter-title">
+        <mat-icon class="me-2">filter_list</mat-icon>
+        Filtros de Pesquisa
+      </mat-card-title>
+
+      <button mat-stroked-button color="warn" (click)="limparFiltros()">
+        Limpar Campo
+      </button>
+    </mat-card-header>
+
+    <mat-card-content class="p-3">
+      <div class="filter-flex-container">
+        <!-- Único campo: Modalidade (combobox) -->
+        <div class="filter-item item-md">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label>Modalidade</mat-label>
+            <mat-select [(ngModel)]="filtros().modalidade" name="modalidade">
+              <mat-option *ngFor="let m of modalidades" [value]="m">
+                {{ m }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <br /><br />
+
+  <app-dados-iniciais-do-imovel-processos></app-dados-iniciais-do-imovel-processos>
+
+  <br /><br />
+  <br /><br />
+
+  <div class="form-actions">
+    <button mat-stroked-button color="warn" type="button" (click)="cancelar()">
+      <mat-icon>close</mat-icon>
+      Cancelar
+    </button>
+
+    <button mat-raised-button color="primary" type="button" (click)="salvar()">
+      <mat-icon>save</mat-icon>
+      Salvar
+    </button>
+  </div>
+</div>

@@ -60,14 +60,19 @@
 
         <mat-card-content class="p-3">
           <div class="filter-flex-container">
-            <div class="filter-item item-xs">
+            <!-- SR (combobox) -->
+            <div class="filter-item item-sm">
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>SR</mat-label>
-                <input
-                  matInput
-                  [(ngModel)]="filtros().sr"
-                  placeholder="Ex: SR(27)MBA"
-                />
+                <mat-select
+                  [ngModel]="filtros().sr"
+                  (ngModelChange)="onSrChange($event)"
+                  placeholder="Selecione a SR"
+                >
+                  <mat-option *ngFor="let sr of srs" [value]="sr">
+                    {{ sr }}
+                  </mat-option>
+                </mat-select>
               </mat-form-field>
             </div>
 
@@ -149,26 +154,35 @@
               </mat-form-field>
             </div>
 
+            <!-- Município (combobox encadeado) -->
             <div class="filter-item item-md">
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>Município</mat-label>
-                <input
-                  matInput
-                  [(ngModel)]="filtros().municipio"
-                  placeholder="Cidade"
-                />
+                <mat-select
+                  [ngModel]="filtros().municipio"
+                  (ngModelChange)="onMunicipioChange($event)"
+                  [disabled]="!filtros().uf"
+                  placeholder="Selecione a UF primeiro"
+                >
+                  <mat-option *ngFor="let m of municipios()" [value]="m.nome">
+                    {{ m.nome }}
+                  </mat-option>
+                </mat-select>
               </mat-form-field>
             </div>
 
+            <!-- UF (combobox) -->
             <div class="filter-item item-xs">
               <mat-form-field appearance="outline" class="w-100">
                 <mat-label>UF</mat-label>
-                <input
-                  matInput
-                  maxLength="2"
-                  [(ngModel)]="filtros().uf"
-                  placeholder="Ex: PA"
-                />
+                <mat-select
+                  [ngModel]="filtros().uf"
+                  (ngModelChange)="onUfChange($event)"
+                >
+                  <mat-option *ngFor="let uf of estados()" [value]="uf.sigla">
+                    {{ uf.sigla }}
+                  </mat-option>
+                </mat-select>
               </mat-form-field>
             </div>
 
@@ -219,6 +233,17 @@
             PDF
           </button>
         </mat-menu>
+
+        <!-- Botão Novo Processo -->
+        <button
+          mat-raised-button
+          color="primary"
+          class="btn-novo-processo"
+          (click)="novoProcesso()"
+        >
+          <mat-icon>add</mat-icon>
+          Novo Processo
+        </button>
 
         <span class="toolbar-divider"></span>
 

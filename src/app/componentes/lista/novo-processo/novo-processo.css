@@ -1,0 +1,146 @@
+/* =========================================================
+   CARD DE FILTROS
+   ========================================================= */
+
+.filter-card {
+  overflow: hidden;
+  border: 1px solid #ced4da !important;
+  border-radius: 4px !important;
+  background-color: #ffffff;
+  box-shadow: none !important;
+}
+
+.filter-card-header {
+  display: flex !important;
+  align-items: center;
+  padding: 1rem 1.5rem !important;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #e9ecef;
+}
+
+.filter-title {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  margin: 0 !important;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+:host ::ng-deep .filter-card-header .mat-mdc-card-header-text {
+  flex: 1;
+}
+
+/* =========================================================
+   CAMPOS DE FILTRO
+   ========================================================= */
+
+.filter-flex-container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 16px;
+}
+
+.filter-item {
+  flex: 1 1 200px;
+  min-width: 0;
+}
+
+.filter-item.item-md {
+  flex: 1.5 1 240px;
+}
+
+/* =========================================================
+   ANGULAR MATERIAL - FORM FIELD
+   ========================================================= */
+
+:host ::ng-deep .mat-mdc-form-field-subscript-wrapper {
+  display: none !important;
+}
+
+:host ::ng-deep .mdc-notched-outline__leading,
+:host ::ng-deep .mdc-notched-outline__notch,
+:host ::ng-deep .mdc-notched-outline__trailing {
+  border-color: #888888 !important;
+}
+
+:host ::ng-deep .mat-mdc-form-field.mat-focused .mdc-notched-outline__leading,
+:host ::ng-deep .mat-mdc-form-field.mat-focused .mdc-notched-outline__notch,
+:host ::ng-deep .mat-mdc-form-field.mat-focused .mdc-notched-outline__trailing {
+  border-color: #1351b4 !important;
+  border-width: 2px !important;
+}
+
+/* =========================================================
+   UTILITÁRIOS
+   ========================================================= */
+
+.w-100 {
+  width: 100%;
+}
+
+.me-2 {
+  margin-right: 0.5rem;
+}
+
+.mb-4 {
+  margin-bottom: 1.5rem;
+}
+
+.p-3 {
+  padding: 1rem !important;
+}
+
+.margem {
+  margin: 3rem;
+}
+/* =========================================================
+   AÇÕES DO FORMULÁRIO (Salvar / Cancelar)
+   ========================================================= */
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 1rem 0;
+  border-top: 1px solid #e9ecef;
+}
+
+.form-actions button {
+  min-width: 140px;
+  white-space: nowrap;
+}
+
+.form-actions mat-icon {
+  margin-right: 4px;
+}
+
+/* Responsivo: em telas pequenas, empilha e ocupa largura total */
+@media (max-width: 480px) {
+  .form-actions {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .form-actions button {
+    width: 100%;
+  }
+}
+/* =========================================================
+   RESPONSIVIDADE
+   ========================================================= */
+
+@media (max-width: 480px) {
+  .filter-flex-container {
+    flex-direction: column;
+  }
+
+  .filter-item,
+  .filter-item.item-md {
+    flex: 1 1 100%;
+    width: 100%;
+  }
+}

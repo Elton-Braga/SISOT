@@ -26,12 +26,24 @@
 
           <mat-form-field appearance="outline">
             <mat-label>UF</mat-label>
-            <input matInput maxlength="2" formControlName="uf" />
+            <mat-select formControlName="uf">
+              <mat-option *ngFor="let uf of estados" [value]="uf.sigla">
+                {{ uf.sigla }} — {{ uf.nome }}
+              </mat-option>
+            </mat-select>
           </mat-form-field>
 
           <mat-form-field appearance="outline">
             <mat-label>Município</mat-label>
-            <input matInput formControlName="municipio" />
+            <mat-select
+              formControlName="municipio"
+              [disabled]="!form.get('dadosImovel.uf')?.value"
+              placeholder="Selecione primeiro a UF"
+            >
+              <mat-option *ngFor="let m of municipios" [value]="m.nome">
+                {{ m.nome }}
+              </mat-option>
+            </mat-select>
           </mat-form-field>
 
           <mat-form-field appearance="outline">
