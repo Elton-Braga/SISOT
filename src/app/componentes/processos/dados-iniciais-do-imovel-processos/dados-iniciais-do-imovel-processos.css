@@ -1,0 +1,132 @@
+/* =========================================================
+   ACORDEÃO
+========================================================= */
+.sections-accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.sections-accordion mat-expansion-panel {
+  border: 1px solid #e5e5e5;
+  border-radius: 8px !important;
+  overflow: hidden;
+}
+
+.sections-accordion mat-expansion-panel-header {
+  min-height: 64px;
+}
+
+.sections-accordion mat-panel-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.sections-accordion mat-panel-title mat-icon {
+  color: #1351b4;
+}
+
+.sections-accordion mat-panel-description {
+  color: #666666;
+}
+
+.sections-accordion .mat-expansion-panel-body {
+  padding: 24px;
+}
+
+/* =========================================================
+   TÍTULO DAS SEÇÕES
+========================================================= */
+.section-title {
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 12px;
+  width: 100%;
+  margin-bottom: 8px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.section-title > mat-icon {
+  margin-top: 2px;
+  color: #1351b4;
+  font-size: 24px;
+  width: 24px;
+  height: 24px;
+}
+
+.section-title h2,
+.section-title h3 {
+  margin: 0 0 4px;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #333333;
+  text-align: left;
+}
+
+.section-title p {
+  margin: 0;
+  font-size: 0.875rem;
+  color: #666666;
+}
+
+/* =========================================================
+   GRID — 3 CAMPOS POR LINHA
+========================================================= */
+.form-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+}
+
+.form-grid > mat-form-field {
+  flex: 1 1 calc(33.333% - 20px);
+  min-width: 240px;
+  max-width: calc(33.333% - 14px);
+}
+
+.form-grid > .campo-imovel,
+.form-grid > .campo-proprietario {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+.form-grid > .section-title {
+  flex: 0 0 100%;
+  justify-content: flex-start;
+  margin-top: 16px;
+  margin-bottom: 0;
+}
+
+.form-grid > .section-title:first-child {
+  margin-top: 0;
+}
+
+/* =========================================================
+   CAMPOS
+========================================================= */
+mat-form-field {
+  width: 100%;
+}
+
+/* =========================================================
+   RESPONSIVIDADE
+========================================================= */
+@media (max-width: 768px) {
+  .form-grid > mat-form-field {
+    flex: 0 0 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .form-grid > .campo-imovel,
+  .form-grid > .campo-proprietario {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}

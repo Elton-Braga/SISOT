@@ -24,6 +24,7 @@ import { Dados } from '../../mock/imovel.model';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatNativeDateModule } from '@angular/material/core';
 import { Router } from '@angular/router';
+import { DadosIniciaisDoImovelProcessos } from './dados-iniciais-do-imovel-processos/dados-iniciais-do-imovel-processos';
 @Component({
   standalone: true,
   selector: 'app-processos',
@@ -51,7 +52,7 @@ import { Router } from '@angular/router';
     MatStepperModule,
     ReactiveFormsModule,
     MatNativeDateModule,
-
+    DadosIniciaisDoImovelProcessos,
     MatExpansionModule,
   ],
   templateUrl: './processos.html',
