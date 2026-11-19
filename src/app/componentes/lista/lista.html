@@ -1,14 +1,20 @@
 <div class="br-app-container">
   <mat-toolbar class="br-header shadow-sm">
     <div class="br-logo d-flex align-items-center">
-      <!--<img
-        src="https://cdngovbr.azureedge.net/design-system/images/logo-positive.png"
-        alt="Logo GovBR"
-        height="30"
-      />
-      <span class="br-divider mx-3"></span>-->
       <span class="header-sign">Sistema de Gestão de Imóveis Rurais</span>
     </div>
+
+    <span class="toolbar-spacer"></span>
+
+    <button
+      mat-flat-button
+      color="warn"
+      (click)="limparStorage()"
+      matTooltip="Apaga todos os dados salvos no navegador"
+    >
+      <mat-icon>delete_forever</mat-icon>
+      Limpar Storage
+    </button>
   </mat-toolbar>
 
   <mat-sidenav-container class="layout-body-container">

@@ -71,17 +71,36 @@ export class Lista implements OnInit {
   /** UFs carregadas do IBGE (signal). */
   public estados = signal<Estado[]>([]);
   public srs: string[] = [
-    'SR(02)PE',
-    'SR(08)SP',
-    'SR(09)PR',
-    'SR(11)RS',
-    'SR(12)MA',
-    'SR(13)MT',
-    'SR(14)AC',
-    'SR(16)MS',
-    'SR(20)ES',
-    'SR(26)TO',
-    'SR(27)MBA',
+    'SR(01)PA', // Pará (Belém)
+    'SR(02)CE', // Ceará (Fortaleza)
+    'SR(03)PE', // Pernambuco (Recife)
+    'SR(04)GO', // Goiás (Goiânia)
+    'SR(05)BA', // Bahia (Salvador)
+    'SR(06)MG', // Minas Gerais (Belo Horizonte)
+    'SR(07)RJ', // Rio de Janeiro (Rio de Janeiro)
+    'SR(08)SP', // São Paulo (São Paulo)
+    'SR(09)PR', // Paraná (Curitiba)
+    'SR(10)SC', // Santa Catarina (Florianópolis)
+    'SR(11)RS', // Rio Grande do Sul (Porto Alegre)
+    'SR(12)MA', // Maranhão (São Luís)
+    'SR(13)MT', // Mato Grosso (Cuiabá)
+    'SR(14)AC', // Acre (Rio Branco)
+    'SR(15)AM', // Amazonas (Manaus)
+    'SR(16)MS', // Mato Grosso do Sul (Campo Grande)
+    'SR(17)RO', // Rondônia (Porto Velho)
+    'SR(18)PB', // Paraíba (João Pessoa)
+    'SR(19)RN', // Rio Grande do Norte (Natal)
+    'SR(20)ES', // Espírito Santo (Vitória)
+    'SR(21)AP', // Amapá (Macapá)
+    'SR(22)AL', // Alagoas (Maceió)
+    'SR(23)SE', // Sergipe (Aracaju)
+    'SR(24)PI', // Piauí (Teresina)
+    'SR(25)RR', // Roraima (Boa Vista)
+    'SR(26)TO', // Tocantins (Palmas)
+    'SR(27)MBA', // Sul do Pará / Marabá
+    'SR(28)DFE', // Distrito Federal e Entorno (Brasília)
+    'SR(29)MSF', // Médio São Francisco (Petrolina)
+    'SR(30)STA', // Santarém / Baixo Amazonas (Santarém)
   ];
 
   /** Municípios da UF atualmente selecionada (signal). */
@@ -348,6 +367,19 @@ export class Lista implements OnInit {
         dados: structuredClone(dados),
       },
     });
+  }
+
+  public limparStorage(): void {
+    const confirmar = confirm(
+      'Isso apagará TODOS os dados salvos no navegador (imóveis, grupos, filtros). Deseja continuar?',
+    );
+    if (!confirmar) return;
+
+    localStorage.clear();
+    sessionStorage.clear();
+
+    // Recarrega para o app reidratar a partir do estado inicial.
+    window.location.reload();
   }
 
   // Lista paginada derivada da lista filtrada
