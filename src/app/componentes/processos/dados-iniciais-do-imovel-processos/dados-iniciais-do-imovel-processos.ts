@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, OnInit } from '@angular/core';
+import { Component, DestroyRef, OnInit, inject, signal } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
@@ -9,8 +9,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatIconModule } from '@angular/material/icon';
 
-import { Estados } from '../../../serviços/estados'; // ajuste o path
-import { Estado, Municipio } from '../../../serviços/estados.model'; // ajuste o path
+import { Estados } from '../../../serviços/estados';
+import { Estado, Municipio } from '../../../serviços/estados.model';
 
 @Component({
   selector: 'app-dados-iniciais-do-imovel-processos',
@@ -34,10 +34,11 @@ export class DadosIniciaisDoImovelProcessos implements OnInit {
   form: FormGroup;
   partesEnvolvidas: string[] = [];
 
-  /** Listas reativas para os dropdowns. */
-  estados: Estado[] = [];
-  municipios: Municipio[] = [];
-  public srs: string[] = [
+  // ⬇️ ESTAS DUAS LINHAS SÃO O QUE O TEMPLATE ESPERA
+  readonly estados = signal<Estado[]>([]);
+  readonly municipios = signal<Municipio[]>([]);
+
+  readonly srs: string[] = [
     'SR(02)PE',
     'SR(08)SP',
     'SR(09)PR',
@@ -54,9 +55,10 @@ export class DadosIniciaisDoImovelProcessos implements OnInit {
   constructor() {
     this.form = this.fb.group({
       dadosImovel: this.fb.group({
+        sr: [''],
         nomeImovel: [''],
-        uf: [''], // receberá a sigla (ex.: "SP")
-        municipio: [''], // receberá o nome do município
+        uf: [''],
+        municipio: [''],
         codigoSncr: [''],
         matricula: [''],
         parteEnvolvida: [''],
@@ -100,33 +102,30 @@ export class DadosIniciaisDoImovelProcessos implements OnInit {
     this.escutarMudancaUf();
   }
 
-  /** Carrega as UFs do IBGE (com cache no serviço). */
   private carregarEstados(): void {
     this.estadosService
       .listarEstados()
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((lista) => (this.estados = lista));
+      .subscribe((lista) => this.estados.set(lista));
   }
 
-  /** Ao mudar a UF, limpa o município e recarrega a lista correspondente. */
   private escutarMudancaUf(): void {
     this.form
       .get('dadosImovel.uf')
       ?.valueChanges.pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((uf: string) => {
-        // Reseta município (sem disparar valueChanges para evitar loop)
         this.form
           .get('dadosImovel.municipio')
           ?.setValue('', { emitEvent: false });
 
-        this.municipios = [];
+        this.municipios.set([]);
 
         if (!uf) return;
 
         this.estadosService
           .listarMunicipiosPorUf(uf)
           .pipe(takeUntilDestroyed(this.destroyRef))
-          .subscribe((lista) => (this.municipios = lista));
+          .subscribe((lista) => this.municipios.set(lista));
       });
   }
 }

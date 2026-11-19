@@ -1,15 +1,11 @@
 <form [formGroup]="form">
   <mat-accordion class="sections-accordion" multi>
-    <!-- =====================================================
-         SEÇÃO 1
-         ===================================================== -->
     <mat-expansion-panel>
       <mat-expansion-panel-header>
         <mat-panel-title>
           <mat-icon>landscape</mat-icon>
           Dados do imóvel
         </mat-panel-title>
-
         <mat-panel-description>
           Informações básicas e cadastrais do imóvel.
         </mat-panel-description>
@@ -24,23 +20,24 @@
             <input matInput formControlName="nomeImovel" />
           </mat-form-field>
 
+          <!-- ✅ UF dentro de <mat-select> -->
           <mat-form-field appearance="outline">
             <mat-label>UF</mat-label>
             <mat-select formControlName="uf">
-              <mat-option *ngFor="let uf of estados" [value]="uf.sigla">
+              <mat-option *ngFor="let uf of estados()" [value]="uf.sigla">
                 {{ uf.sigla }} — {{ uf.nome }}
               </mat-option>
             </mat-select>
           </mat-form-field>
 
+          <!-- ✅ Município dentro de <mat-select> -->
           <mat-form-field appearance="outline">
             <mat-label>Município</mat-label>
             <mat-select
               formControlName="municipio"
               [disabled]="!form.get('dadosImovel.uf')?.value"
-              placeholder="Selecione primeiro a UF"
             >
-              <mat-option *ngFor="let m of municipios" [value]="m.nome">
+              <mat-option *ngFor="let m of municipios()" [value]="m.nome">
                 {{ m.nome }}
               </mat-option>
             </mat-select>
@@ -57,22 +54,6 @@
           </mat-form-field>
 
           <mat-form-field appearance="outline" class="campo-proprietario">
-            <mat-label>Partes envolvidas</mat-label>
-
-            <mat-select
-              formControlName="parteEnvolvida"
-              placeholder="Selecione a parte envolvida"
-            >
-              <mat-option
-                *ngFor="let parte of partesEnvolvidas"
-                [value]="parte"
-              >
-                {{ parte }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-
-          <mat-form-field appearance="outline" class="campo-proprietario">
             <mat-label>Nome Proprietário</mat-label>
             <input matInput formControlName="nomeProprietario" />
           </mat-form-field>
@@ -80,287 +61,6 @@
           <mat-form-field appearance="outline">
             <mat-label>CPF/CNPJ Proprietário</mat-label>
             <input matInput formControlName="cpfCnpjProprietario" />
-          </mat-form-field>
-
-          <!-- BLOCO: Áreas (ha) -->
-          <div class="section-title">
-            <h3>Áreas (ha)</h3>
-          </div>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Registrada (matrícula)</mat-label>
-            <input
-              matInput
-              type="number"
-              step="0.0001"
-              formControlName="areaRegistrada"
-            />
-            <span matTextSuffix>ha</span>
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Medida</mat-label>
-            <input
-              matInput
-              type="number"
-              step="0.0001"
-              formControlName="areaMedida"
-            />
-            <span matTextSuffix>ha</span>
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Avaliada</mat-label>
-            <input
-              matInput
-              type="number"
-              step="0.0001"
-              formControlName="areaAvaliada"
-            />
-            <span matTextSuffix>ha</span>
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Visada</mat-label>
-            <input
-              matInput
-              type="number"
-              step="0.0001"
-              formControlName="areaVisada"
-            />
-            <span matTextSuffix>ha</span>
-          </mat-form-field>
-
-          <!-- BLOCO: Valores (R$) -->
-          <div class="section-title">
-            <h3>Valores (R$)</h3>
-          </div>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Total do Imóvel Inferior</mat-label>
-            <input
-              matInput
-              type="number"
-              step="0.01"
-              formControlName="valorTotalInferior"
-            />
-            <span matTextPrefix>R$&nbsp;</span>
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Total do Imóvel Médio</mat-label>
-            <input
-              matInput
-              type="number"
-              step="0.01"
-              formControlName="valorTotalMedio"
-            />
-            <span matTextPrefix>R$&nbsp;</span>
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Total do Imóvel Superior</mat-label>
-            <input
-              matInput
-              type="number"
-              step="0.01"
-              formControlName="valorTotalSuperior"
-            />
-            <span matTextPrefix>R$&nbsp;</span>
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>VTI estimado</mat-label>
-            <input
-              matInput
-              type="number"
-              step="0.01"
-              formControlName="vtiEstimado"
-            />
-            <span matTextPrefix>R$&nbsp;</span>
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Terra Nua Inferior</mat-label>
-            <input
-              matInput
-              type="number"
-              step="0.01"
-              formControlName="terraNuaInferior"
-            />
-            <span matTextPrefix>R$&nbsp;</span>
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Terra Nua Médio</mat-label>
-            <input
-              matInput
-              type="number"
-              step="0.01"
-              formControlName="terraNuaMedio"
-            />
-            <span matTextPrefix>R$&nbsp;</span>
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Terra Nua Superior</mat-label>
-            <input
-              matInput
-              type="number"
-              step="0.01"
-              formControlName="terraNuaSuperior"
-            />
-            <span matTextPrefix>R$&nbsp;</span>
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>VTN estimado</mat-label>
-            <input
-              matInput
-              type="number"
-              step="0.01"
-              formControlName="vtnEstimado"
-            />
-            <span matTextPrefix>R$&nbsp;</span>
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Benfeitorias</mat-label>
-            <input
-              matInput
-              type="number"
-              step="0.01"
-              formControlName="benfeitorias"
-            />
-            <span matTextPrefix>R$&nbsp;</span>
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Passivo Ambiental</mat-label>
-            <input
-              matInput
-              type="number"
-              step="0.01"
-              formControlName="passivoAmbiental"
-            />
-            <span matTextPrefix>R$&nbsp;</span>
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Ativo Ambiental</mat-label>
-            <input
-              matInput
-              type="number"
-              step="0.01"
-              formControlName="ativoAmbiental"
-            />
-            <span matTextPrefix>R$&nbsp;</span>
-          </mat-form-field>
-        </div>
-      </div>
-    </mat-expansion-panel>
-
-    <!-- =====================================================
-         SEÇÃO 2
-         ===================================================== -->
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <mat-icon>home</mat-icon>
-          Natureza ocupacional
-        </mat-panel-title>
-
-        <mat-panel-description>
-          Informações relacionadas a natureza ocupacional.
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-
-      <div formGroupName="naturezaOcupacional">
-        <div class="section-title"></div>
-
-        <div class="form-grid">
-          <mat-form-field appearance="outline">
-            <mat-label>Entidade Demandante</mat-label>
-            <input matInput formControlName="entidadeDemandante" />
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Acampamento Vinculado</mat-label>
-            <input matInput formControlName="acampamentoVinculado" />
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Imóvel atualmente ocupado?</mat-label>
-            <input matInput formControlName="imovelOcupado" />
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Ações de Reintegração de Posse</mat-label>
-            <input matInput formControlName="acoesReintegracao" />
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Órgão Concorrente</mat-label>
-            <input matInput formControlName="orgaoConcorrente" />
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Capacidade de Assentamento</mat-label>
-            <input
-              matInput
-              type="number"
-              step="1"
-              formControlName="capacidadeAssentamento"
-            />
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Famílias Cadastradas</mat-label>
-            <input
-              matInput
-              type="number"
-              step="1"
-              formControlName="familiasCadastradas"
-            />
-          </mat-form-field>
-        </div>
-      </div>
-    </mat-expansion-panel>
-
-    <!-- =====================================================
-         SEÇÃO 4
-         ===================================================== -->
-    <mat-expansion-panel>
-      <mat-expansion-panel-header>
-        <mat-panel-title>
-          <mat-icon>assessment</mat-icon>
-          Dados do processo de obtenção
-        </mat-panel-title>
-
-        <mat-panel-description>
-          Informações relacionadas ao processo de obtenção
-        </mat-panel-description>
-      </mat-expansion-panel-header>
-
-      <div formGroupName="processoObtencao">
-        <div class="section-title"></div>
-
-        <div class="form-grid">
-          <div class="section-title"></div>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Processo SEI</mat-label>
-            <input matInput formControlName="processoSei" />
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Processo Cadeia Dominial</mat-label>
-            <input matInput formControlName="processoCadeiaDominial" />
-          </mat-form-field>
-
-          <mat-form-field appearance="outline">
-            <mat-label>Fase atual do processo</mat-label>
-            <input matInput formControlName="faseAtualProcesso" />
           </mat-form-field>
         </div>
       </div>

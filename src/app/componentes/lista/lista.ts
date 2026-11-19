@@ -31,6 +31,7 @@ import { Estado, Municipio } from '../../serviços/estados.model';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { distinctUntilChanged, map, of, switchMap } from 'rxjs';
 import { MatSelectModule } from '@angular/material/select'; // <-- NOVO
+import { ImoveisStorage } from '../../mock/imoveis-storage';
 
 @Component({
   selector: 'app-lista',
@@ -61,6 +62,11 @@ import { MatSelectModule } from '@angular/material/select'; // <-- NOVO
 })
 export class Lista implements OnInit {
   private readonly estadosService = inject(Estados);
+  private readonly imoveisStorage = inject(ImoveisStorage); // <-- NOVO
+
+  // ANTES: public imoveis = signal<Dados[]>(IMOVEIS_MOCK);
+  // DEPOIS:
+  public imoveis = this.imoveisStorage.imoveis;
 
   /** UFs carregadas do IBGE (signal). */
   public estados = signal<Estado[]>([]);
@@ -80,7 +86,7 @@ export class Lista implements OnInit {
 
   /** Municípios da UF atualmente selecionada (signal). */
   public municipios = signal<Municipio[]>([]);
-  public imoveis = signal<Dados[]>(IMOVEIS_MOCK);
+  //public imoveis = signal<Dados[]>(IMOVEIS_MOCK);
   public itensPorPagina = signal<number>(5);
   public paginaAtual = signal<number>(0);
   public nomeGrupo: string = '';
