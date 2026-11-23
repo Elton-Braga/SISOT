@@ -49,9 +49,12 @@ export class NovoProcesso {
     'Compra e Venda Decreto 433/92',
     'Adjudicação',
     'Desapropriação Lei 4132/62',
+    'Arrecadação de Terras Públicas do Estado',
+    'Compensação Ambiental',
     'Arrecadação de Terras Públicas da União',
     'Desapropriação Lei 8.629/93',
     'Doação',
+    'Leilão',
   ];
 
   readonly filtros = signal<FiltrosModalidade>({ modalidade: null });

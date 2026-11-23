@@ -5595,7 +5595,19 @@
 
           <!--*************** Compra e Venda Decreto 433/92 ***************-->
           <ng-container
-            *ngIf="dados.imovel.modalidade === 'Compra e Venda Decreto 433/92'"
+            *ngIf="
+              dados.imovel.modalidade === 'Compra e Venda Decreto 433/92' ||
+              dados.imovel.modalidade === 'Adjudicação' ||
+              dados.imovel.modalidade === 'Desapropriação Lei 4132/62' ||
+              dados.imovel.modalidade ===
+                'Arrecadação de Terras Públicas do Estado' ||
+              dados.imovel.modalidade === 'Compensação Ambiental' ||
+              dados.imovel.modalidade ===
+                'Arrecadação de Terras Públicas da União' ||
+              dados.imovel.modalidade === 'Desapropriação Lei 8.629/93' ||
+              dados.imovel.modalidade === 'Doação' ||
+              dados.imovel.modalidade === 'Leilão'
+            "
           >
             <!-- 👇 AQUI — escuta a mudança de passo -->
             <mat-stepper
@@ -6501,7 +6513,7 @@
               </mat-step>
 
               <!-- FASE 4 -->
-              <mat-step>
+              <mat-step *ngIf="dados?.imovel?.modalidade !== 'Leilão'">
                 <ng-template matStepLabel>
                   Fase 4 - Negociação de Compra e Venda
                 </ng-template>
@@ -6576,7 +6588,7 @@
               </mat-step>
 
               <!-- FASE 5 -->
-              <mat-step>
+              <mat-step *ngIf="dados?.imovel?.modalidade !== 'Leilão'">
                 <ng-template matStepLabel>
                   Fase 5 - Publicidade da Proposta
                 </ng-template>
@@ -7194,13 +7206,21 @@
                   </button>
 
                   <mat-menu #menuDocumentos="matMenu">
-                    <button mat-menu-item (click)="abrirResolucaoCdr()">
+                    <button
+                      mat-menu-item
+                      (click)="abrirResolucaoCdr()"
+                      *ngIf="dados?.imovel?.modalidade !== 'Leilão'"
+                    >
                       Resolução CDR
                     </button>
                     <button mat-menu-item (click)="abrirPortariaCdr()">
                       Portaria CDR
                     </button>
-                    <button mat-menu-item (click)="abrirResolucaoCd()">
+                    <button
+                      mat-menu-item
+                      (click)="abrirResolucaoCd()"
+                      *ngIf="dados?.imovel?.modalidade !== 'Leilão'"
+                    >
                       Resolução CD
                     </button>
                     <button mat-menu-item (click)="abrirPortariaCd()">
@@ -7212,29 +7232,25 @@
                     >
                       Parecer Técnico Conclusivo
                     </button>
-                    <button mat-menu-item (click)="abrirmodeloDeVotoCD()">
+                    <button
+                      mat-menu-item
+                      (click)="abrirmodeloDeVotoCD()"
+                      *ngIf="dados?.imovel?.modalidade !== 'Leilão'"
+                    >
                       Modelo de voto CD
                     </button>
 
-                    <button mat-menu-item (click)="abrirmodeloDeVotoCdr()">
+                    <button
+                      mat-menu-item
+                      (click)="abrirmodeloDeVotoCdr()"
+                      *ngIf="dados?.imovel?.modalidade !== 'Leilão'"
+                    >
                       Modelo de voto CDR
                     </button>
                   </mat-menu>
                 </div>
                 <!--<div class="step-actions">
-                  <button mat-flat-button (click)="abrirResolucaoCdr()">
-                    Resolucão CDR
-                  </button>
-                  <br />
-                  <button mat-flat-button (click)="abrirPortariaCdr()">
-                    Portaria CDR</button
-                  ><button mat-flat-button (click)="abrirResolucaoCd()">
-                    Resolucão CD
-                  </button>
-                  <br />
-                  <button mat-flat-button (click)="abrirPortariaCd()">
-                    Portaria CD
-                  </button>
+                 
                 </div>-->
                 <div class="step-actions"></div>
                 <div class="form-grid">
