@@ -242,6 +242,65 @@ export class Editar implements OnInit {
 
   public fase2Observacao = '';
 
+  /* -------------------------------------------------------
+   FASE 10 — ATOS DE REGISTRO E PAGAMENTO
+------------------------------------------------------- */
+
+  // 1. Anexos
+  public tipoAnexoFase10: 'escritura' | 'ordem-judicial' | 'outros' | '' = '';
+  public anexosFase10: File[] = [];
+
+  // 3. Acompanhamento de registro
+  public acompanhamentoRegistro: {
+    protocolo: string;
+    situacao: string;
+    matricula: string;
+  }[] = [
+    {
+      protocolo: 'PROT-2026-000456',
+      situacao: 'Em andamento',
+      matricula: 'Matrícula nº 12.345 – Cartório de Xinguara/PA',
+    },
+    {
+      protocolo: 'PROT-2026-000789',
+      situacao: 'Concluído',
+      matricula: 'Matrícula nº 12.345 – Cartório de Xinguara/PA',
+    },
+  ];
+
+  // 5. Acompanhamento de pagamento
+  public acompanhamentoPagamento: {
+    numeroNotaEmpenho: string;
+    valorEmpenhado: number | null;
+    beneficiario: string;
+    cpfCnpj: string;
+    tipo: 'moeda' | 'tda' | '';
+    dataPagamento: string; // ISO yyyy-MM-dd (native date input)
+    notaPagamentoAnexo: string;
+  }[] = [
+    {
+      numeroNotaEmpenho: '2024NE000123',
+      valorEmpenhado: 150000.0,
+      beneficiario: 'João da Silva',
+      cpfCnpj: '123.456.789-00',
+      tipo: 'moeda',
+      dataPagamento: '2024-06-15',
+      notaPagamentoAnexo: 'nota-pagamento-123.pdf',
+    },
+    {
+      numeroNotaEmpenho: '2024NE000124',
+      valorEmpenhado: 250000.0,
+      beneficiario: 'Maria Souza',
+      cpfCnpj: '98.765.432/0001-10',
+      tipo: 'tda',
+      dataPagamento: '2024-07-02',
+      notaPagamentoAnexo: '',
+    },
+  ];
+
+  // Observação
+  public obsFase10 = '';
+
   // -----------------------------------------------------------------
   // PARTES ENVOLVIDAS — opções da combobox
   // -----------------------------------------------------------------
@@ -275,7 +334,80 @@ export class Editar implements OnInit {
   /* -------------------------------------------------------
      Fase atual do stepper → Seção 4 (NOVO)
   ------------------------------------------------------- */
+  // Conferência de procuração
+  public conferenciaProcuracaoAnexos: File[] = [];
+
+  // Contraproposta do INCRA (tabela dinâmica)
+  public contrapropostasIncra: { valor: number | null; data: Date | null }[] = [
+    { valor: null, data: null },
+  ];
+
+  // Contraoferta do proprietário (tabela dinâmica)
+  public contraofertasProprietario: {
+    valor: number | null;
+    data: Date | null;
+  }[] = [{ valor: null, data: null }];
+
+  // Termos de negociação sobre o preço
+  public valorFinalNegociacao: number | null = null;
+  public valorFinalTdas: number | null = null;
+  public obsTermosNegociacao = '';
+  public termosNegociacaoAnexos: File[] = [];
+
+  // Acordo de compra e venda
+  public acordoCompraVendaAnexos: File[] = [];
+
+  // Ata de audiência
+  public ataAudienciaAnexos: File[] = [];
   public faseAtualProcesso = 'Fase 0 - Análise Inicial';
+
+  /* -------------------------------------------------------
+   FASE 9 — ATOS PARA EMPENHO
+------------------------------------------------------- */
+
+  // 3 — Empenhos realizados (campo manual)
+  public empenhosRealizados = '';
+
+  // Tabela — Nota de Empenho (valores fictícios fixos)
+  public notasEmpenhoFase9: {
+    numero: string;
+    empenhadoMoeda: number | null;
+    dataEmpenho: Date | null;
+    proprietario: string;
+    cpfCnpj: string;
+    notaEmpenhoMoeda: number | null;
+  }[] = [
+    {
+      numero: '2024NE000123',
+      empenhadoMoeda: 150000.0,
+      dataEmpenho: new Date('2024-03-15'),
+      proprietario: 'João da Silva',
+      cpfCnpj: '123.456.789-00',
+      notaEmpenhoMoeda: 150000.0,
+    },
+    {
+      numero: '2024NE000124',
+      empenhadoMoeda: 250000.0,
+      dataEmpenho: new Date('2024-04-20'),
+      proprietario: 'Maria Souza',
+      cpfCnpj: '98.765.432/0001-10',
+      notaEmpenhoMoeda: 250000.0,
+    },
+    {
+      numero: '2024NE000125',
+      empenhadoMoeda: 85000.5,
+      dataEmpenho: new Date('2024-05-10'),
+      proprietario: 'Fazenda Surubim Ltda.',
+      cpfCnpj: '12.345.678/0001-90',
+      notaEmpenhoMoeda: 85000.5,
+    },
+  ];
+
+  // 4 — Empenho TDA realizado
+  public empenhoTdaRealizado: 'sim' | 'nao' | '' = '';
+
+  // 5 — Ordem judicial (anexo múltiplo)
+  public ordemJudicialAnexos: File[] = [];
 
   /** Lista de UFs (mock) */
   public ufs: string[] = [
@@ -783,6 +915,65 @@ export class Editar implements OnInit {
     }));
   }
 
+  /* -------------------------------------------------------
+   FASE 9 — ATOS PARA EMPENHO
+------------------------------------------------------- */
+
+  /* ---------- 1 — Abertura de solicitação de empenhos ---------- */
+  gerarAberturaSolicitacaoEmpenho(): void {
+    // TODO: implementar geração de documento (PDF/DOCX)
+    console.log('Gerar documento: Abertura de solicitação de empenhos', {
+      imovel: this.nomeImovel,
+      sncr: this.codigoSncr,
+      processoSei: this.processoSei,
+    });
+  }
+
+  /* ---------- 2 — Solicitar empenho moeda ---------- */
+  gerarSolicitacaoEmpenhoMoeda(): void {
+    // TODO: implementar geração de documento (PDF/DOCX)
+    console.log('Gerar documento: Solicitar empenho moeda', {
+      imovel: this.nomeImovel,
+      sncr: this.codigoSncr,
+      processoSei: this.processoSei,
+    });
+  }
+
+  /* ---------- Tabela — Nota de Empenho ---------- */
+  adicionarLinhaNotaEmpenho(): void {
+    this.notasEmpenhoFase9 = [
+      ...this.notasEmpenhoFase9,
+      {
+        numero: '',
+        empenhadoMoeda: null,
+        dataEmpenho: null,
+        proprietario: '',
+        cpfCnpj: '',
+        notaEmpenhoMoeda: null,
+      },
+    ];
+  }
+
+  removerLinhaNotaEmpenho(index: number): void {
+    this.notasEmpenhoFase9.splice(index, 1);
+  }
+
+  /* ---------- 5 — Ordem judicial ---------- */
+  onOrdemJudicialAnexos(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (!input.files?.length) return;
+
+    this.ordemJudicialAnexos = [
+      ...this.ordemJudicialAnexos,
+      ...Array.from(input.files),
+    ];
+    input.value = '';
+  }
+
+  removerOrdemJudicial(index: number): void {
+    this.ordemJudicialAnexos.splice(index, 1);
+  }
+
   adicionarNotaEmpenho(): void {
     this.notasEmpenho = [
       ...this.notasEmpenho,
@@ -790,17 +981,80 @@ export class Editar implements OnInit {
     ];
   }
 
-  /*abrirParecerTecnicoConclusivo(): void {
-    // TODO: trocar pelo componente correto do Parecer Técnico Conclusivo
-    // (estava chamando abrirPortariaCd() por engano)
-    this.dialog.open(ParecerTecnicoConclusivo, {
-      maxWidth: '1100px',
-      width: '800px',
-      maxHeight: '1100px',
-      height: '90%',
-      panelClass: 'dialog-com-rolagem',
+  /* -------------------------------------------------------
+   FASE 10 — ATOS DE REGISTRO E PAGAMENTO
+------------------------------------------------------- */
+
+  /* ---------- 1. Anexos ---------- */
+  onAnexosFase10(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (!input.files?.length) return;
+
+    this.anexosFase10 = [...this.anexosFase10, ...Array.from(input.files)];
+    input.value = '';
+  }
+
+  removerAnexoFase10(index: number): void {
+    this.anexosFase10.splice(index, 1);
+  }
+
+  /* ---------- 3. Acompanhamento de registro ---------- */
+  adicionarAcompanhamentoRegistro(): void {
+    this.acompanhamentoRegistro = [
+      ...this.acompanhamentoRegistro,
+      { protocolo: '', situacao: 'Em andamento', matricula: '' },
+    ];
+  }
+
+  removerAcompanhamentoRegistro(index: number): void {
+    this.acompanhamentoRegistro.splice(index, 1);
+  }
+
+  /* ---------- 4. Despacho para pagamento ---------- */
+  gerarDespachoPagamento(): void {
+    // TODO: implementar geração de documento (PDF/DOCX)
+    console.log('Gerar documento: Despacho para pagamento', {
+      imovel: this.nomeImovel,
+      sncr: this.codigoSncr,
+      processoSei: this.processoSei,
+      empenhos: this.notasEmpenhoFase9,
     });
-  }*/
+  }
+
+  /* ---------- 5. Acompanhamento de pagamento ---------- */
+  adicionarAcompanhamentoPagamento(): void {
+    this.acompanhamentoPagamento = [
+      ...this.acompanhamentoPagamento,
+      {
+        numeroNotaEmpenho: '',
+        valorEmpenhado: null,
+        beneficiario: '',
+        cpfCnpj: '',
+        tipo: '',
+        dataPagamento: '',
+        notaPagamentoAnexo: '',
+      },
+    ];
+  }
+
+  removerAcompanhamentoPagamento(index: number): void {
+    this.acompanhamentoPagamento.splice(index, 1);
+  }
+
+  anexarNotaPagamento(index: number): void {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = 'application/pdf';
+    input.onchange = (e: any) => {
+      const file = e.target.files?.[0];
+      if (file) {
+        this.acompanhamentoPagamento[index].notaPagamentoAnexo = file.name;
+        this.acompanhamentoPagamento = [...this.acompanhamentoPagamento];
+      }
+    };
+    input.click();
+  }
+
   abrirParecerTecnicoConclusivo(): void {
     this.router.navigate(['/parecer-tecnico-conclusivo']);
   }
@@ -905,6 +1159,19 @@ export class Editar implements OnInit {
         statusAnalise: this.statusAnalise,
         linkParecer: this.linkParecer,
       },
+      fase9: {
+        empenhosRealizados: this.empenhosRealizados,
+        notasEmpenho: this.notasEmpenhoFase9,
+        empenhoTdaRealizado: this.empenhoTdaRealizado,
+        ordemJudicialAnexos: this.ordemJudicialAnexos.map((f) => f.name),
+      },
+      fase10: {
+        tipoAnexo: this.tipoAnexoFase10,
+        anexos: this.anexosFase10.map((f) => f.name),
+        acompanhamentoRegistro: this.acompanhamentoRegistro,
+        acompanhamentoPagamento: this.acompanhamentoPagamento,
+        obs: this.obsFase10,
+      },
 
       /* ---------- NOVO — Fase 2 ---------- */
       instrucaoBasica: {
@@ -940,6 +1207,98 @@ export class Editar implements OnInit {
     console.log('Dados salvos:', payload);
 
     this.router.navigate(['/lista']);
+  }
+
+  /* -------------------------------------------------------
+   FASE 4 — NEGOCIAÇÃO DE COMPRA E VENDA
+------------------------------------------------------- */
+
+  /* ---------- Conferência de procuração ---------- */
+  onConferenciaProcuracaoAnexos(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (!input.files?.length) return;
+
+    this.conferenciaProcuracaoAnexos = [
+      ...this.conferenciaProcuracaoAnexos,
+      ...Array.from(input.files),
+    ];
+    input.value = '';
+  }
+
+  removerConferenciaProcuracao(index: number): void {
+    this.conferenciaProcuracaoAnexos.splice(index, 1);
+  }
+
+  /* ---------- Contraproposta do INCRA ---------- */
+  adicionarContrapropostaIncra(): void {
+    this.contrapropostasIncra = [
+      ...this.contrapropostasIncra,
+      { valor: null, data: null },
+    ];
+  }
+
+  removerContrapropostaIncra(index: number): void {
+    this.contrapropostasIncra.splice(index, 1);
+  }
+
+  /* ---------- Contraoferta do proprietário ---------- */
+  adicionarContraofertaProprietario(): void {
+    this.contraofertasProprietario = [
+      ...this.contraofertasProprietario,
+      { valor: null, data: null },
+    ];
+  }
+
+  removerContraofertaProprietario(index: number): void {
+    this.contraofertasProprietario.splice(index, 1);
+  }
+
+  /* ---------- Termos de negociação sobre o preço ---------- */
+  onTermosNegociacaoAnexos(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (!input.files?.length) return;
+
+    this.termosNegociacaoAnexos = [
+      ...this.termosNegociacaoAnexos,
+      ...Array.from(input.files),
+    ];
+    input.value = '';
+  }
+
+  removerTermosNegociacao(index: number): void {
+    this.termosNegociacaoAnexos.splice(index, 1);
+  }
+
+  /* ---------- Acordo de compra e venda ---------- */
+  onAcordoAnexos(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (!input.files?.length) return;
+
+    this.acordoCompraVendaAnexos = [
+      ...this.acordoCompraVendaAnexos,
+      ...Array.from(input.files),
+    ];
+    input.value = '';
+  }
+
+  removerAcordo(index: number): void {
+    this.acordoCompraVendaAnexos.splice(index, 1);
+  }
+
+  /* ---------- Ata de audiência ---------- */
+  onAtaAudienciaAnexos(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (!input.files?.length) return;
+
+    this.ataAudienciaAnexos = [
+      ...this.ataAudienciaAnexos,
+      ...Array.from(input.files),
+    ];
+    input.value = '';
+  }
+
+  removerAta(index: number): void {
+    this.ataAudienciaAnexos.splice(index, 1);
   }
 
   cancelar(): void {
@@ -999,6 +1358,21 @@ export class Editar implements OnInit {
         justificativaViabilidade: this.justificativaViabilidade,
       },
       fase1: { processoSei: this.processoSei },
+      fase4: {
+        conferenciaProcuracaoAnexos: this.conferenciaProcuracaoAnexos.map(
+          (f) => f.name,
+        ),
+        contrapropostasIncra: this.contrapropostasIncra,
+        contraofertasProprietario: this.contraofertasProprietario,
+        valorFinalNegociacao: this.valorFinalNegociacao,
+        valorFinalTdas: this.valorFinalTdas,
+        obsTermosNegociacao: this.obsTermosNegociacao,
+        termosNegociacaoAnexos: this.termosNegociacaoAnexos.map((f) => f.name),
+        acordoCompraVendaAnexos: this.acordoCompraVendaAnexos.map(
+          (f) => f.name,
+        ),
+        ataAudienciaAnexos: this.ataAudienciaAnexos.map((f) => f.name),
+      },
       fase7: {
         processoCadeiaDominial: this.processoCadeiaDominial,
         dataAnalise: this.dataAnalise,

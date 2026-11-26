@@ -6518,72 +6518,445 @@
                   Fase 4 - Negociação de Compra e Venda
                 </ng-template>
 
-                <div style="margin-bottom: 16px"></div>
+                <div class="step-content">
+                  <!-- 1. CONFERÊNCIA DE PROCURAÇÃO -->
+                  <div class="form-section">
+                    <h3>Conferência de procuração</h3>
+                    <div class="form-row">
+                      <div class="anexo-upload field-full">
+                        <div class="anexo-upload-header">
+                          <button
+                            mat-stroked-button
+                            type="button"
+                            (click)="fileProcuracao.click()"
+                          >
+                            <mat-icon>attach_file</mat-icon>
+                            Incluir anexo (PDF)
+                          </button>
+                          <span
+                            class="anexo-contador"
+                            *ngIf="conferenciaProcuracaoAnexos.length"
+                          >
+                            {{ conferenciaProcuracaoAnexos.length }} arquivo(s)
+                          </span>
+                          <input
+                            #fileProcuracao
+                            type="file"
+                            accept="application/pdf"
+                            hidden
+                            (change)="onConferenciaProcuracaoAnexos($event)"
+                          />
+                        </div>
+                        <span
+                          class="anexo-vazio"
+                          *ngIf="!conferenciaProcuracaoAnexos.length"
+                        >
+                          Nenhum arquivo anexado
+                        </span>
+                        <ul
+                          class="anexo-lista"
+                          *ngIf="conferenciaProcuracaoAnexos.length"
+                        >
+                          <li
+                            *ngFor="
+                              let f of conferenciaProcuracaoAnexos;
+                              let i = index
+                            "
+                          >
+                            <mat-icon>picture_as_pdf</mat-icon>
+                            <span class="anexo-nome">{{ f.name }}</span>
+                            <span class="anexo-tamanho">{{
+                              formatarTamanho(f.size)
+                            }}</span>
+                            <button
+                              mat-icon-button
+                              type="button"
+                              (click)="removerConferenciaProcuracao(i)"
+                            >
+                              <mat-icon>close</mat-icon>
+                            </button>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
 
-                <div class="form-grid">
-                  <mat-form-field appearance="outline">
-                    <mat-label>
-                      Contraproposta do INCRA (notificação p/ negociação)
-                    </mat-label>
-                    <input matInput [matDatepicker]="pickerF4A" />
-                    <mat-datepicker-toggle matIconSuffix [for]="pickerF4A">
-                    </mat-datepicker-toggle>
-                    <mat-datepicker #pickerF4A></mat-datepicker>
-                  </mat-form-field>
+                  <!-- 2. CONTRAPROPOSTA DO INCRA (TABELA) -->
+                  <div class="tabela-section">
+                    <div class="section-header">
+                      <div>
+                        <h3>Contraproposta do INCRA</h3>
+                        <p class="section-description">
+                          Notificação para negociação
+                        </p>
+                      </div>
+                      <button
+                        mat-stroked-button
+                        type="button"
+                        (click)="adicionarContrapropostaIncra()"
+                      >
+                        <mat-icon>add</mat-icon>
+                        Adicionar linha
+                      </button>
+                    </div>
 
-                  <a
-                    href="javascript:void(0)"
-                    class="anexo-link"
-                    aria-disabled="true"
-                  >
-                    <mat-icon>description</mat-icon>
-                    Anexo
-                  </a>
+                    <div class="table-container">
+                      <table class="dados-table">
+                        <thead>
+                          <tr>
+                            <th style="width: 45%">Valor (R$)</th>
+                            <th style="width: 45%">Data</th>
+                            <th class="acoes-col"></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr
+                            *ngFor="
+                              let item of contrapropostasIncra;
+                              let i = index
+                            "
+                          >
+                            <td>
+                              <mat-form-field
+                                appearance="outline"
+                                class="table-field"
+                              >
+                                <input
+                                  matInput
+                                  type="number"
+                                  step="0.01"
+                                  [(ngModel)]="item.valor"
+                                />
+                              </mat-form-field>
+                            </td>
+                            <td>
+                              <mat-form-field
+                                appearance="outline"
+                                class="table-field"
+                              >
+                                <input
+                                  matInput
+                                  [matDatepicker]="pickerIncra"
+                                  [(ngModel)]="item.data"
+                                />
+                                <mat-datepicker-toggle
+                                  matIconSuffix
+                                  [for]="pickerIncra"
+                                ></mat-datepicker-toggle>
+                                <mat-datepicker #pickerIncra></mat-datepicker>
+                              </mat-form-field>
+                            </td>
+                            <td class="acoes-col">
+                              <button
+                                mat-icon-button
+                                type="button"
+                                (click)="removerContrapropostaIncra(i)"
+                              >
+                                <mat-icon>delete</mat-icon>
+                              </button>
+                            </td>
+                          </tr>
+                          <tr *ngIf="contrapropostasIncra.length === 0">
+                            <td colspan="3">
+                              <div class="sem-registros">
+                                Nenhum registro adicionado
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
 
-                  <mat-form-field appearance="outline">
-                    <mat-label>Aceite / concordância do preço</mat-label>
-                    <input matInput [matDatepicker]="pickerF4B" />
-                    <mat-datepicker-toggle matIconSuffix [for]="pickerF4B">
-                    </mat-datepicker-toggle>
-                    <mat-datepicker #pickerF4B></mat-datepicker>
-                  </mat-form-field>
+                  <!-- 3. CONTRAOFERTA DO PROPRIETÁRIO (TABELA) -->
+                  <div class="tabela-section">
+                    <div class="section-header">
+                      <div>
+                        <h3>Contraoferta do proprietário</h3>
+                      </div>
+                      <button
+                        mat-stroked-button
+                        type="button"
+                        (click)="adicionarContraofertaProprietario()"
+                      >
+                        <mat-icon>add</mat-icon>
+                        Adicionar linha
+                      </button>
+                    </div>
 
-                  <a
-                    href="javascript:void(0)"
-                    class="anexo-link"
-                    aria-disabled="true"
-                  >
-                    <mat-icon>description</mat-icon>
-                    Anexo
-                  </a>
+                    <div class="table-container">
+                      <table class="dados-table">
+                        <thead>
+                          <tr>
+                            <th style="width: 45%">Valor (R$)</th>
+                            <th style="width: 45%">Data</th>
+                            <th class="acoes-col"></th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr
+                            *ngFor="
+                              let item of contraofertasProprietario;
+                              let i = index
+                            "
+                          >
+                            <td>
+                              <mat-form-field
+                                appearance="outline"
+                                class="table-field"
+                              >
+                                <input
+                                  matInput
+                                  type="number"
+                                  step="0.01"
+                                  [(ngModel)]="item.valor"
+                                />
+                              </mat-form-field>
+                            </td>
+                            <td>
+                              <mat-form-field
+                                appearance="outline"
+                                class="table-field"
+                              >
+                                <input
+                                  matInput
+                                  [matDatepicker]="pickerProp"
+                                  [(ngModel)]="item.data"
+                                />
+                                <mat-datepicker-toggle
+                                  matIconSuffix
+                                  [for]="pickerProp"
+                                ></mat-datepicker-toggle>
+                                <mat-datepicker #pickerProp></mat-datepicker>
+                              </mat-form-field>
+                            </td>
+                            <td class="acoes-col">
+                              <button
+                                mat-icon-button
+                                type="button"
+                                (click)="removerContraofertaProprietario(i)"
+                              >
+                                <mat-icon>delete</mat-icon>
+                              </button>
+                            </td>
+                          </tr>
+                          <tr *ngIf="contraofertasProprietario.length === 0">
+                            <td colspan="3">
+                              <div class="sem-registros">
+                                Nenhum registro adicionado
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
 
-                  <mat-form-field appearance="outline">
-                    <mat-label>Acordo de compra e venda</mat-label>
-                    <input matInput [matDatepicker]="pickerF4C" />
-                    <mat-datepicker-toggle matIconSuffix [for]="pickerF4C">
-                    </mat-datepicker-toggle>
-                    <mat-datepicker #pickerF4C></mat-datepicker>
-                  </mat-form-field>
+                  <!-- 4. TERMOS DE NEGOCIAÇÃO SOBRE O PREÇO -->
+                  <div class="form-section">
+                    <h3>Termos de negociação sobre o preço</h3>
+                    <div class="form-row">
+                      <mat-form-field appearance="outline" class="field">
+                        <mat-label>Valor final (R$)</mat-label>
+                        <input
+                          matInput
+                          type="number"
+                          step="0.01"
+                          [(ngModel)]="valorFinalNegociacao"
+                        />
+                      </mat-form-field>
 
-                  <a
-                    href="javascript:void(0)"
-                    class="anexo-link"
-                    aria-disabled="true"
-                  >
-                    <mat-icon>description</mat-icon>
-                    Anexo
-                  </a>
-                </div>
+                      <mat-form-field appearance="outline" class="field">
+                        <mat-label>Valor final TDAs (R$)</mat-label>
+                        <input
+                          matInput
+                          type="number"
+                          step="0.01"
+                          [(ngModel)]="valorFinalTdas"
+                        />
+                      </mat-form-field>
 
-                <mat-form-field appearance="outline" class="full-width">
-                  <mat-label>Observação</mat-label>
-                  <textarea matInput rows="4"></textarea>
-                </mat-form-field>
+                      <div class="anexo-wrapper anexo-wrapper--upload">
+                        <button
+                          mat-stroked-button
+                          type="button"
+                          (click)="fileTermos.click()"
+                        >
+                          <mat-icon>attach_file</mat-icon>
+                          Anexo (PDF)
+                        </button>
+                        <input
+                          #fileTermos
+                          type="file"
+                          accept="application/pdf"
+                          hidden
+                          (change)="onTermosNegociacaoAnexos($event)"
+                        />
+                      </div>
 
-                <div class="step-actions">
-                  <button mat-stroked-button matStepperPrevious>Voltar</button>
+                      <mat-form-field appearance="outline" class="field-full">
+                        <mat-label>Observação</mat-label>
+                        <textarea
+                          matInput
+                          rows="3"
+                          [(ngModel)]="obsTermosNegociacao"
+                        ></textarea>
+                      </mat-form-field>
 
-                  <button mat-flat-button matStepperNext>Próximo</button>
+                      <ul
+                        class="anexo-lista"
+                        *ngIf="termosNegociacaoAnexos.length"
+                      >
+                        <li
+                          *ngFor="
+                            let f of termosNegociacaoAnexos;
+                            let i = index
+                          "
+                        >
+                          <mat-icon>picture_as_pdf</mat-icon>
+                          <span class="anexo-nome">{{ f.name }}</span>
+                          <span class="anexo-tamanho">{{
+                            formatarTamanho(f.size)
+                          }}</span>
+                          <button
+                            mat-icon-button
+                            type="button"
+                            (click)="removerTermosNegociacao(i)"
+                          >
+                            <mat-icon>close</mat-icon>
+                          </button>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <!-- 5. ACORDO DE COMPRA E VENDA -->
+                  <div class="form-section">
+                    <h3>Acordo de compra e venda</h3>
+                    <div class="form-row">
+                      <div class="anexo-upload field-full">
+                        <div class="anexo-upload-header">
+                          <button
+                            mat-stroked-button
+                            type="button"
+                            (click)="fileAcordo.click()"
+                          >
+                            <mat-icon>attach_file</mat-icon>
+                            Anexo (PDF)
+                          </button>
+                          <span
+                            class="anexo-contador"
+                            *ngIf="acordoCompraVendaAnexos.length"
+                          >
+                            {{ acordoCompraVendaAnexos.length }} arquivo(s)
+                          </span>
+                          <input
+                            #fileAcordo
+                            type="file"
+                            accept="application/pdf"
+                            hidden
+                            (change)="onAcordoAnexos($event)"
+                          />
+                        </div>
+                        <span
+                          class="anexo-vazio"
+                          *ngIf="!acordoCompraVendaAnexos.length"
+                        >
+                          Nenhum arquivo anexado
+                        </span>
+                        <ul
+                          class="anexo-lista"
+                          *ngIf="acordoCompraVendaAnexos.length"
+                        >
+                          <li
+                            *ngFor="
+                              let f of acordoCompraVendaAnexos;
+                              let i = index
+                            "
+                          >
+                            <mat-icon>picture_as_pdf</mat-icon>
+                            <span class="anexo-nome">{{ f.name }}</span>
+                            <span class="anexo-tamanho">{{
+                              formatarTamanho(f.size)
+                            }}</span>
+                            <button
+                              mat-icon-button
+                              type="button"
+                              (click)="removerAcordo(i)"
+                            >
+                              <mat-icon>close</mat-icon>
+                            </button>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- 6. ATA DE AUDIÊNCIA -->
+                  <div class="form-section">
+                    <h3>Ata de Audiência (se não houve edital)</h3>
+                    <div class="form-row">
+                      <div class="anexo-upload field-full">
+                        <div class="anexo-upload-header">
+                          <button
+                            mat-stroked-button
+                            type="button"
+                            (click)="fileAta.click()"
+                          >
+                            <mat-icon>attach_file</mat-icon>
+                            Anexo (PDF)
+                          </button>
+                          <span
+                            class="anexo-contador"
+                            *ngIf="ataAudienciaAnexos.length"
+                          >
+                            {{ ataAudienciaAnexos.length }} arquivo(s)
+                          </span>
+                          <input
+                            #fileAta
+                            type="file"
+                            accept="application/pdf"
+                            hidden
+                            (change)="onAtaAudienciaAnexos($event)"
+                          />
+                        </div>
+                        <span
+                          class="anexo-vazio"
+                          *ngIf="!ataAudienciaAnexos.length"
+                        >
+                          Nenhum arquivo anexado
+                        </span>
+                        <ul
+                          class="anexo-lista"
+                          *ngIf="ataAudienciaAnexos.length"
+                        >
+                          <li
+                            *ngFor="let f of ataAudienciaAnexos; let i = index"
+                          >
+                            <mat-icon>picture_as_pdf</mat-icon>
+                            <span class="anexo-nome">{{ f.name }}</span>
+                            <span class="anexo-tamanho">{{
+                              formatarTamanho(f.size)
+                            }}</span>
+                            <button
+                              mat-icon-button
+                              type="button"
+                              (click)="removerAta(i)"
+                            >
+                              <mat-icon>close</mat-icon>
+                            </button>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="step-actions">
+                    <button mat-stroked-button matStepperPrevious>
+                      Voltar
+                    </button>
+                    <button mat-flat-button matStepperNext>Próximo</button>
+                  </div>
                 </div>
               </mat-step>
 
@@ -7491,447 +7864,273 @@
                   Fase 9 - Atos para Empenho
                 </ng-template>
 
-                <div class="form-grid">
-                  <mat-form-field appearance="outline">
-                    <mat-label>
-                      Despacho decisório para Emissão de empenho
-                    </mat-label>
-                    <input matInput [matDatepicker]="pickerF11A" />
-                    <mat-datepicker-toggle matIconSuffix [for]="pickerF11A">
-                    </mat-datepicker-toggle>
-                    <mat-datepicker #pickerF11A></mat-datepicker>
-                  </mat-form-field>
-
-                  <a
-                    href="javascript:void(0)"
-                    class="anexo-link"
-                    aria-disabled="true"
-                  >
-                    <mat-icon>description</mat-icon>
-                    Anexo
-                  </a>
-
-                  <mat-form-field appearance="outline">
-                    <mat-label> Ofício solicitação de emissão TDAs </mat-label>
-                    <input matInput [matDatepicker]="pickerF11C" />
-                    <mat-datepicker-toggle matIconSuffix [for]="pickerF11C">
-                    </mat-datepicker-toggle>
-                    <mat-datepicker #pickerF11C></mat-datepicker>
-                  </mat-form-field>
-
-                  <a
-                    href="javascript:void(0)"
-                    class="anexo-link"
-                    aria-disabled="true"
-                  >
-                    <mat-icon>description</mat-icon>
-                    Anexo
-                  </a>
-
-                  <mat-form-field appearance="outline">
-                    <mat-label> Demonstrativo de lançamento TDAs </mat-label>
-                    <input matInput [matDatepicker]="pickerF11D" />
-                    <mat-datepicker-toggle matIconSuffix [for]="pickerF11D">
-                    </mat-datepicker-toggle>
-                    <mat-datepicker #pickerF11D></mat-datepicker>
-                  </mat-form-field>
-
-                  <a
-                    href="javascript:void(0)"
-                    class="anexo-link"
-                    aria-disabled="true"
-                  >
-                    <mat-icon>description</mat-icon>
-                    Anexo
-                  </a>
-                </div>
-
-                <mat-form-field appearance="outline" class="full-width">
-                  <mat-label>Observação</mat-label>
-                  <textarea matInput rows="4"></textarea>
-                </mat-form-field>
-
-                <!-- TABELA NOTA DE EMPENHO -->
-                <div class="nota-empenho-section">
-                  <div class="nota-empenho-header">
-                    <h3>Nota de Empenho</h3>
+                <div class="step-content">
+                  <!-- =====================================================
+         1 e 2 — Botões de geração de documento
+         (padrão idêntico ao da Fase 7 — sem card)
+    ====================================================== -->
+                  <div class="step-actions">
+                    <button
+                      mat-flat-button
+                      type="button"
+                      (click)="gerarAberturaSolicitacaoEmpenho()"
+                    >
+                      <mat-icon>description</mat-icon>
+                      Abertura de solicitação de empenhos
+                    </button>
 
                     <button
-                      mat-stroked-button
+                      mat-flat-button
                       color="primary"
                       type="button"
-                      (click)="adicionarNotaEmpenho()"
+                      (click)="gerarSolicitacaoEmpenhoMoeda()"
                     >
-                      <mat-icon>add</mat-icon>
-                      Adicionar
+                      <mat-icon>request_quote</mat-icon>
+                      Solicitar empenho moeda
                     </button>
                   </div>
 
-                  <table
-                    mat-table
-                    [dataSource]="notasEmpenho"
-                    class="nota-empenho-table full-width"
-                  >
-                    <ng-container matColumnDef="numero">
-                      <th mat-header-cell *matHeaderCellDef>Número</th>
-                      <td mat-cell *matCellDef="let nota">{{ nota.numero }}</td>
-                    </ng-container>
+                  <br />
 
-                    <ng-container matColumnDef="valor">
-                      <th mat-header-cell *matHeaderCellDef>Valor</th>
-                      <td mat-cell *matCellDef="let nota">
-                        {{
-                          nota.valor
-                            | currency: "BRL" : "symbol" : "1.2-2" : "pt-BR"
-                        }}
-                      </td>
-                    </ng-container>
+                  <!-- =====================================================
+         3 — Empenhos realizados (fora do card dos botões)
+    ====================================================== -->
+                  <mat-form-field appearance="outline" class="full-width">
+                    <mat-label>Empenhos realizados</mat-label>
+                    <input matInput [(ngModel)]="empenhosRealizados" />
+                  </mat-form-field>
 
-                    <ng-container matColumnDef="dataEmissao">
-                      <th mat-header-cell *matHeaderCellDef>Data de emissão</th>
-                      <td mat-cell *matCellDef="let nota">
-                        {{ nota.dataEmissao | date: "dd/MM/yyyy" }}
-                      </td>
-                    </ng-container>
+                  <!-- =====================================================
+         TABELA — Nota de Empenho
+    ====================================================== -->
+                  <div class="tabela-section">
+                    <div class="section-header">
+                      <div>
+                        <h3>Nota de Empenho</h3>
+                      </div>
 
-                    <ng-container matColumnDef="anexo">
-                      <th mat-header-cell *matHeaderCellDef>
-                        Anexo de arquivo
-                      </th>
-                      <td mat-cell *matCellDef="let nota">
-                        <a
-                          *ngIf="nota.anexo; else semAnexo"
-                          href="javascript:void(0)"
-                          class="anexo-link"
-                        >
-                          <mat-icon>description</mat-icon>
-                          {{ nota.anexo }}
-                        </a>
-                        <ng-template #semAnexo>
-                          <span class="sem-anexo">Sem anexo</span>
-                        </ng-template>
-                      </td>
-                    </ng-container>
-
-                    <tr
-                      mat-header-row
-                      *matHeaderRowDef="colunasNotaEmpenho"
-                    ></tr>
-                    <tr
-                      mat-row
-                      *matRowDef="let row; columns: colunasNotaEmpenho"
-                    ></tr>
-                  </table>
-
-                  <div *ngIf="notasEmpenho.length === 0" class="sem-registros">
-                    Nenhuma nota de empenho cadastrada.
-                  </div>
-                </div>
-
-                <!-- PROJETO DE ASSENTAMENTO 
-                <section class="form-section tabela-section">
-                  <div class="section-header">
-                    <div>
-                      <h3>Projeto de Assentamento</h3>
-                      <p class="section-description">
-                        Dados obtidos na base do módulo projeto pelo SNCR do
-                        imóvel.
-                      </p>
+                      <button
+                        mat-stroked-button
+                        type="button"
+                        (click)="adicionarLinhaNotaEmpenho()"
+                      >
+                        <mat-icon>add</mat-icon>
+                        Adicionar linha
+                      </button>
                     </div>
-                  </div>
 
-                  <div
-                    class="table-container"
-                    *ngIf="projetosAssentamento.length > 0; else semPA"
-                  >
-                    <table class="dados-table">
-                      <thead>
-                        <tr>
-                          <th>Código do PA</th>
-                          <th>Nome do PA</th>
-                          <th>Data de criação</th>
-                          <th>Situação</th>
-                        </tr>
-                      </thead>
+                    <div class="table-container">
+                      <table class="dados-table">
+                        <thead>
+                          <tr>
+                            <th>Número nota de empenho</th>
+                            <th>Empenhado moeda</th>
+                            <th>Data do empenho</th>
+                            <th>Proprietário</th>
+                            <th>CPF/CNPJ</th>
+                            <th>Nota de empenho moeda</th>
+                            <th class="acoes-col"></th>
+                          </tr>
+                        </thead>
 
-                      <tbody>
-                        <tr *ngFor="let pa of projetosAssentamento">
-                          <td>
-                            <mat-form-field
-                              appearance="outline"
-                              class="table-field"
-                            >
-                              <input
-                                matInput
-                                [(ngModel)]="pa.codigo"
-                                disabled
-                              />
-                            </mat-form-field>
-                          </td>
-
-                          <td>
-                            <mat-form-field
-                              appearance="outline"
-                              class="table-field"
-                            >
-                              <input matInput [(ngModel)]="pa.nome" disabled />
-                            </mat-form-field>
-                          </td>
-
-                          <td>
-                            <mat-form-field
-                              appearance="outline"
-                              class="table-field"
-                            >
-                              <input
-                                matInput
-                                [(ngModel)]="pa.dataCriacao"
-                                disabled
-                              />
-                            </mat-form-field>
-                          </td>
-
-                          <td>
-                            <mat-form-field
-                              appearance="outline"
-                              class="table-field"
-                            >
-                              <input
-                                matInput
-                                [(ngModel)]="pa.situacao"
-                                disabled
-                              />
-                            </mat-form-field>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-
-                  <ng-template #semPA>
-                    <div class="sem-registros">
-                      Nenhum projeto de assentamento vinculado ao SNCR
-                      informado.
-                    </div>
-                  </ng-template>
-                </section>-->
-
-                <!-- REGISTRO DE MATRÍCULA 
-                <section class="form-section tabela-section">
-                  <div class="section-header">
-                    <div>
-                      <h3>Registro de Matrícula</h3>
-                      <p class="section-description">
-                        Informe o protocolo, situação e o anexo da matrícula de
-                        inteiro teor atualizada.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div
-                    class="table-container"
-                    *ngIf="registrosMatricula.length > 0; else semMatricula"
-                  >
-                    <table class="dados-table">
-                      <thead>
-                        <tr>
-                          <th>Protocolo</th>
-                          <th>Situação</th>
-                          <th>Matrícula (inteiro teor atualizada)</th>
-                        </tr>
-                      </thead>
-
-                      <tbody>
-                        <tr
-                          *ngFor="let reg of registrosMatricula; let i = index"
-                        >
-                          <td>
-                            <mat-form-field
-                              appearance="outline"
-                              class="table-field"
-                            >
-                              <input
-                                matInput
-                                [(ngModel)]="reg.protocolo"
-                                placeholder="Ex.: PROT-2026-000123"
-                              />
-                            </mat-form-field>
-                          </td>
-
-                          <td>
-                            <mat-form-field
-                              appearance="outline"
-                              class="table-field"
-                            >
-                              <mat-select [(ngModel)]="reg.situacao">
-                                <mat-option value="Em andamento"
-                                  >Em andamento</mat-option
-                                >
-                                <mat-option value="Concluído"
-                                  >Concluído</mat-option
-                                >
-                              </mat-select>
-                            </mat-form-field>
-                          </td>
-
-                          <td>
-                            <div class="anexo-cell">
-                              <span
-                                class="anexo-nome"
-                                *ngIf="reg.anexo; else semArquivo"
+                        <tbody>
+                          <tr
+                            *ngFor="
+                              let item of notasEmpenhoFase9;
+                              let i = index
+                            "
+                          >
+                            <td>
+                              <mat-form-field
+                                appearance="outline"
+                                class="table-field"
                               >
-                                <mat-icon>description</mat-icon>
-                                {{ reg.anexo }}
-                              </span>
+                                <input matInput [(ngModel)]="item.numero" />
+                              </mat-form-field>
+                            </td>
 
-                              <ng-template #semArquivo>
-                                <span class="anexo-vazio"
-                                  >Nenhum arquivo anexado</span
-                                >
-                              </ng-template>
-                            </div>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-
-                  <ng-template #semMatricula>
-                    <div class="sem-registros">
-                      Nenhum registro de matrícula adicionado.
-                    </div>
-                  </ng-template>
-                </section>-->
-
-                <!-- REGISTRO SPUNET 
-                <section class="form-section tabela-section">
-                  <div class="section-header">
-                    <div>
-                      <h3>Registro SPUNet</h3>
-                      <p class="section-description">
-                        Informações do imóvel na base SPUNet e anexo em PDF.
-                      </p>
-                    </div>
-                  </div>
-
-                  <div
-                    class="table-container"
-                    *ngIf="registrosSpunet.length > 0; else semSpunet"
-                  >
-                    <table class="dados-table">
-                      <thead>
-                        <tr>
-                          <th>Número do RIP</th>
-                          <th>Proprietário titular</th>
-                          <th>Situação do imóvel</th>
-                          <th>Pendências</th>
-                          <th>Anexo PDF</th>
-                        </tr>
-                      </thead>
-
-                      <tbody>
-                        <tr *ngFor="let sp of registrosSpunet; let i = index">
-                          <td>
-                            <mat-form-field
-                              appearance="outline"
-                              class="table-field"
-                            >
-                              <input
-                                matInput
-                                [(ngModel)]="sp.numeroRip"
-                                placeholder="Ex.: 0000.0000000-00"
-                              />
-                            </mat-form-field>
-                          </td>
-
-                          <td>
-                            <mat-form-field
-                              appearance="outline"
-                              class="table-field"
-                            >
-                              <mat-select [(ngModel)]="sp.proprietarioTitular">
-                                <mat-option value="Autarquia/Fundação">
-                                  Autarquia/Fundação
-                                </mat-option>
-                                <mat-option value="Terceiros"
-                                  >Terceiros</mat-option
-                                >
-                                <mat-option value="União">União</mat-option>
-                              </mat-select>
-                            </mat-form-field>
-                          </td>
-
-                          <td>
-                            <mat-form-field
-                              appearance="outline"
-                              class="table-field"
-                            >
-                              <mat-select [(ngModel)]="sp.situacaoImovel">
-                                <mat-option value="Aguardando homologação">
-                                  Aguardando homologação
-                                </mat-option>
-                                <mat-option value="Ativo">Ativo</mat-option>
-                                <mat-option value="Cancelado"
-                                  >Cancelado</mat-option
-                                >
-                                <mat-option value="Não homologado - recusado">
-                                  Não homologado - recusado
-                                </mat-option>
-                              </mat-select>
-                            </mat-form-field>
-                          </td>
-
-                          <td>
-                            <mat-form-field
-                              appearance="outline"
-                              class="table-field"
-                            >
-                              <mat-select [(ngModel)]="sp.pendencias">
-                                <mat-option
-                                  value="Aguardando sincronização SPIUNet"
-                                >
-                                  Aguardando sincronização SPIUNet
-                                </mat-option>
-                                <mat-option value="Validar cadastro SPIUNet">
-                                  Validar cadastro SPIUNet
-                                </mat-option>
-                              </mat-select>
-                            </mat-form-field>
-                          </td>
-
-                          <td>
-                            <div class="anexo-cell">
-                              <span
-                                class="anexo-nome"
-                                *ngIf="sp.anexo; else semArquivoSp"
+                            <td>
+                              <mat-form-field
+                                appearance="outline"
+                                class="table-field"
                               >
-                                <mat-icon>picture_as_pdf</mat-icon>
-                                {{ sp.anexo }}
-                              </span>
+                                <input
+                                  matInput
+                                  type="number"
+                                  step="0.01"
+                                  [(ngModel)]="item.empenhadoMoeda"
+                                />
+                              </mat-form-field>
+                            </td>
 
-                              <ng-template #semArquivoSp>
-                                <span class="anexo-vazio"
-                                  >Nenhum PDF anexado</span
-                                >
-                              </ng-template>
-                            </div>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+                            <td>
+                              <mat-form-field
+                                appearance="outline"
+                                class="table-field"
+                              >
+                                <input
+                                  matInput
+                                  [matDatepicker]="pickerDataEmpenhoFase9"
+                                  [(ngModel)]="item.dataEmpenho"
+                                />
+                                <mat-datepicker-toggle
+                                  matIconSuffix
+                                  [for]="pickerDataEmpenhoFase9"
+                                ></mat-datepicker-toggle>
+                                <mat-datepicker
+                                  #pickerDataEmpenhoFase9
+                                ></mat-datepicker>
+                              </mat-form-field>
+                            </td>
+
+                            <td>
+                              <mat-form-field
+                                appearance="outline"
+                                class="table-field"
+                              >
+                                <input
+                                  matInput
+                                  [(ngModel)]="item.proprietario"
+                                />
+                              </mat-form-field>
+                            </td>
+
+                            <td>
+                              <mat-form-field
+                                appearance="outline"
+                                class="table-field"
+                              >
+                                <input matInput [(ngModel)]="item.cpfCnpj" />
+                              </mat-form-field>
+                            </td>
+
+                            <td>
+                              <mat-form-field
+                                appearance="outline"
+                                class="table-field"
+                              >
+                                <input
+                                  matInput
+                                  type="number"
+                                  step="0.01"
+                                  [(ngModel)]="item.notaEmpenhoMoeda"
+                                />
+                              </mat-form-field>
+                            </td>
+
+                            <td class="acoes-col">
+                              <button
+                                mat-icon-button
+                                type="button"
+                                (click)="removerLinhaNotaEmpenho(i)"
+                              >
+                                <mat-icon>delete</mat-icon>
+                              </button>
+                            </td>
+                          </tr>
+
+                          <tr *ngIf="notasEmpenhoFase9.length === 0">
+                            <td colspan="7">
+                              <div class="sem-registros">
+                                Nenhuma nota de empenho cadastrada.
+                              </div>
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
 
-                  <ng-template #semSpunet>
-                    <div class="sem-registros">
-                      Nenhum registro SPUNet adicionado.
+                  <!-- =====================================================
+         4 — Empenho TDA realizado
+    ====================================================== -->
+                  <div class="form-section">
+                    <h3>Empenho TDA realizado</h3>
+
+                    <div class="form-row">
+                      <mat-radio-group
+                        [(ngModel)]="empenhoTdaRealizado"
+                        class="radio-group"
+                      >
+                        <mat-radio-button value="sim">Sim</mat-radio-button>
+                        <mat-radio-button value="nao">Não</mat-radio-button>
+                      </mat-radio-group>
                     </div>
-                  </ng-template>
-                </section>-->
+                  </div>
 
-                <div class="step-actions">
-                  <button mat-stroked-button matStepperPrevious>Voltar</button>
+                  <!-- =====================================================
+         5 — Ordem judicial (se houver) — anexo múltiplo
+    ====================================================== -->
+                  <div class="form-section">
+                    <h3>Ordem judicial (se houver)</h3>
 
-                  <button mat-flat-button matStepperNext>Próximo</button>
+                    <div class="form-row">
+                      <div class="anexo-upload field-full">
+                        <div class="anexo-upload-header">
+                          <button
+                            mat-stroked-button
+                            type="button"
+                            (click)="fileOrdemJudicial.click()"
+                          >
+                            <mat-icon>attach_file</mat-icon>
+                            Incluir anexo (PDF)
+                          </button>
+
+                          <span
+                            class="anexo-contador"
+                            *ngIf="ordemJudicialAnexos.length"
+                          >
+                            {{ ordemJudicialAnexos.length }} arquivo(s)
+                          </span>
+
+                          <input
+                            #fileOrdemJudicial
+                            type="file"
+                            accept="application/pdf"
+                            multiple
+                            hidden
+                            (change)="onOrdemJudicialAnexos($event)"
+                          />
+                        </div>
+
+                        <span
+                          class="anexo-vazio"
+                          *ngIf="!ordemJudicialAnexos.length"
+                        >
+                          Nenhum arquivo anexado
+                        </span>
+
+                        <ul
+                          class="anexo-lista"
+                          *ngIf="ordemJudicialAnexos.length"
+                        >
+                          <li
+                            *ngFor="let f of ordemJudicialAnexos; let i = index"
+                          >
+                            <mat-icon>picture_as_pdf</mat-icon>
+                            <span class="anexo-nome">{{ f.name }}</span>
+                            <span class="anexo-tamanho">{{
+                              formatarTamanho(f.size)
+                            }}</span>
+                            <button
+                              mat-icon-button
+                              type="button"
+                              (click)="removerOrdemJudicial(i)"
+                            >
+                              <mat-icon>close</mat-icon>
+                            </button>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="step-actions">
+                    <button mat-stroked-button matStepperPrevious>
+                      Voltar
+                    </button>
+                    <button mat-flat-button matStepperNext>Próximo</button>
+                  </div>
                 </div>
               </mat-step>
 
@@ -7941,80 +8140,122 @@
                   Fase 10 - Atos de registro e pagamento
                 </ng-template>
                 <br />
+
+                <!-- =====================================================
+       Datas dos atos (mantidas)
+  ====================================================== 
                 <div class="form-grid">
                   <mat-form-field appearance="outline">
-                    <mat-label>
-                      Minuta de escritura de compra e venda
-                    </mat-label>
+                    <mat-label>Minuta de escritura de compra e venda</mat-label>
                     <input matInput [matDatepicker]="pickerF12A" />
-                    <mat-datepicker-toggle matIconSuffix [for]="pickerF12A">
-                    </mat-datepicker-toggle>
+                    <mat-datepicker-toggle
+                      matIconSuffix
+                      [for]="pickerF12A"
+                    ></mat-datepicker-toggle>
                     <mat-datepicker #pickerF12A></mat-datepicker>
                   </mat-form-field>
-
-                  <a
-                    href="javascript:void(0)"
-                    class="anexo-link"
-                    aria-disabled="true"
-                  >
-                    <mat-icon>description</mat-icon>
-                    Anexo
-                  </a>
 
                   <mat-form-field appearance="outline">
                     <mat-label>Escritura de compra e venda</mat-label>
                     <input matInput [matDatepicker]="pickerF12B" />
-                    <mat-datepicker-toggle matIconSuffix [for]="pickerF12B">
-                    </mat-datepicker-toggle>
+                    <mat-datepicker-toggle
+                      matIconSuffix
+                      [for]="pickerF12B"
+                    ></mat-datepicker-toggle>
                     <mat-datepicker #pickerF12B></mat-datepicker>
                   </mat-form-field>
-
-                  <a
-                    href="javascript:void(0)"
-                    class="anexo-link"
-                    aria-disabled="true"
-                  >
-                    <mat-icon>description</mat-icon>
-                    Anexo
-                  </a>
 
                   <mat-form-field appearance="outline">
                     <mat-label>Registro do imóvel no CRI</mat-label>
                     <input matInput [matDatepicker]="pickerF12C" />
-                    <mat-datepicker-toggle matIconSuffix [for]="pickerF12C">
-                    </mat-datepicker-toggle>
+                    <mat-datepicker-toggle
+                      matIconSuffix
+                      [for]="pickerF12C"
+                    ></mat-datepicker-toggle>
                     <mat-datepicker #pickerF12C></mat-datepicker>
                   </mat-form-field>
 
-                  <a
-                    href="javascript:void(0)"
-                    class="anexo-link"
-                    aria-disabled="true"
-                  >
-                    <mat-icon>description</mat-icon>
-                    Anexo
-                  </a>
-
                   <mat-form-field appearance="outline">
-                    <mat-label>
-                      Pagamento financeiro ou desbloqueio de TDAs
-                    </mat-label>
+                    <mat-label
+                      >Pagamento financeiro ou desbloqueio de TDAs</mat-label
+                    >
                     <input matInput [matDatepicker]="pickerF12D" />
-                    <mat-datepicker-toggle matIconSuffix [for]="pickerF12D">
-                    </mat-datepicker-toggle>
+                    <mat-datepicker-toggle
+                      matIconSuffix
+                      [for]="pickerF12D"
+                    ></mat-datepicker-toggle>
                     <mat-datepicker #pickerF12D></mat-datepicker>
                   </mat-form-field>
+                </div>-->
 
-                  <a
-                    href="javascript:void(0)"
-                    class="anexo-link"
-                    aria-disabled="true"
-                  >
-                    <mat-icon>description</mat-icon>
-                    Anexo
-                  </a>
+                <!-- =====================================================
+       1. ANEXOS — Tipo (combobox) + anexo múltiplo
+  ====================================================== -->
+                <div class="form-section">
+                  <h3>Anexos</h3>
+
+                  <div class="form-row">
+                    <mat-form-field appearance="outline" class="field">
+                      <mat-label>Tipo</mat-label>
+                      <mat-select [(ngModel)]="tipoAnexoFase10">
+                        <mat-option value="escritura">Escritura</mat-option>
+                        <mat-option value="ordem-judicial"
+                          >Ordem Judicial</mat-option
+                        >
+                        <mat-option value="outros">Outros</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+                  </div>
+
+                  <div class="anexo-upload">
+                    <div class="anexo-upload-header">
+                      <button
+                        mat-stroked-button
+                        type="button"
+                        (click)="fileAnexosFase10.click()"
+                      >
+                        <mat-icon>attach_file</mat-icon>
+                        Incluir anexo (PDF)
+                      </button>
+                      <span class="anexo-contador" *ngIf="anexosFase10.length">
+                        {{ anexosFase10.length }} arquivo(s)
+                      </span>
+                      <input
+                        #fileAnexosFase10
+                        type="file"
+                        accept="application/pdf"
+                        multiple
+                        hidden
+                        (change)="onAnexosFase10($event)"
+                      />
+                    </div>
+
+                    <span class="anexo-vazio" *ngIf="!anexosFase10.length">
+                      Nenhum arquivo anexado
+                    </span>
+
+                    <ul class="anexo-lista" *ngIf="anexosFase10.length">
+                      <li *ngFor="let f of anexosFase10; let i = index">
+                        <mat-icon>picture_as_pdf</mat-icon>
+                        <span class="anexo-nome">{{ f.name }}</span>
+                        <span class="anexo-tamanho">{{
+                          formatarTamanho(f.size)
+                        }}</span>
+                        <button
+                          mat-icon-button
+                          type="button"
+                          (click)="removerAnexoFase10(i)"
+                        >
+                          <mat-icon>close</mat-icon>
+                        </button>
+                      </li>
+                    </ul>
+                  </div>
                 </div>
 
+                <!-- =====================================================
+       2. REGISTRO DE MATRÍCULA (mantida)
+  ====================================================== -->
                 <section class="form-section tabela-section">
                   <div class="section-header">
                     <div>
@@ -8038,7 +8279,6 @@
                           <th>Matrícula (inteiro teor atualizada)</th>
                         </tr>
                       </thead>
-
                       <tbody>
                         <tr
                           *ngFor="let reg of registrosMatricula; let i = index"
@@ -8055,7 +8295,6 @@
                               />
                             </mat-form-field>
                           </td>
-
                           <td>
                             <mat-form-field
                               appearance="outline"
@@ -8071,7 +8310,6 @@
                               </mat-select>
                             </mat-form-field>
                           </td>
-
                           <td>
                             <div class="anexo-cell">
                               <span
@@ -8081,7 +8319,6 @@
                                 <mat-icon>description</mat-icon>
                                 {{ reg.anexo }}
                               </span>
-
                               <ng-template #semArquivo>
                                 <span class="anexo-vazio"
                                   >Nenhum arquivo anexado</span
@@ -8100,15 +8337,274 @@
                     </div>
                   </ng-template>
                 </section>
+
+                <!-- =====================================================
+       3. ACOMPANHAMENTO DE REGISTRO
+  ====================================================== -->
+                <section class="tabela-section">
+                  <div class="section-header">
+                    <div>
+                      <h3>Acompanhamento de registro</h3>
+                    </div>
+                    <button
+                      mat-stroked-button
+                      type="button"
+                      (click)="adicionarAcompanhamentoRegistro()"
+                    >
+                      <mat-icon>add</mat-icon>
+                      Adicionar linha
+                    </button>
+                  </div>
+
+                  <div class="table-container">
+                    <table class="dados-table">
+                      <thead>
+                        <tr>
+                          <th>Protocolo</th>
+                          <th>Situação</th>
+                          <th>Matrícula</th>
+                          <th class="acoes-col"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr
+                          *ngFor="
+                            let item of acompanhamentoRegistro;
+                            let i = index
+                          "
+                        >
+                          <td>
+                            <mat-form-field
+                              appearance="outline"
+                              class="table-field"
+                            >
+                              <input matInput [(ngModel)]="item.protocolo" />
+                            </mat-form-field>
+                          </td>
+                          <td>
+                            <mat-form-field
+                              appearance="outline"
+                              class="table-field"
+                            >
+                              <mat-select [(ngModel)]="item.situacao">
+                                <mat-option value="Em andamento"
+                                  >Em andamento</mat-option
+                                >
+                                <mat-option value="Concluído"
+                                  >Concluído</mat-option
+                                >
+                              </mat-select>
+                            </mat-form-field>
+                          </td>
+                          <td>
+                            <mat-form-field
+                              appearance="outline"
+                              class="table-field"
+                            >
+                              <input matInput [(ngModel)]="item.matricula" />
+                            </mat-form-field>
+                          </td>
+                          <td class="acoes-col">
+                            <button
+                              mat-icon-button
+                              type="button"
+                              (click)="removerAcompanhamentoRegistro(i)"
+                            >
+                              <mat-icon>delete</mat-icon>
+                            </button>
+                          </td>
+                        </tr>
+                        <tr *ngIf="acompanhamentoRegistro.length === 0">
+                          <td colspan="4">
+                            <div class="sem-registros">
+                              Nenhum acompanhamento de registro adicionado.
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+
+                <!-- =====================================================
+       4. DESPACHO PARA PAGAMENTO
+  ====================================================== -->
+                <div class="form-section">
+                  <h3>Despacho para pagamento</h3>
+                  <div class="form-row">
+                    <div class="field">
+                      <button
+                        mat-flat-button
+                        color="primary"
+                        type="button"
+                        (click)="gerarDespachoPagamento()"
+                      >
+                        <mat-icon>description</mat-icon>
+                        Gerar documento
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- =====================================================
+       5. ACOMPANHAMENTO DE PAGAMENTO
+  ====================================================== -->
+                <section class="tabela-section">
+                  <div class="section-header">
+                    <div>
+                      <h3>Acompanhamento de pagamento</h3>
+                    </div>
+                    <button
+                      mat-stroked-button
+                      type="button"
+                      (click)="adicionarAcompanhamentoPagamento()"
+                    >
+                      <mat-icon>add</mat-icon>
+                      Adicionar linha
+                    </button>
+                  </div>
+
+                  <div class="table-container">
+                    <table class="dados-table">
+                      <thead>
+                        <tr>
+                          <th>Nº Nota Empenho</th>
+                          <th>Valor Empenhado</th>
+                          <th>Beneficiário</th>
+                          <th>CPF/CNPJ</th>
+                          <th>Tipo</th>
+                          <th>Data pagamento/desbloqueio</th>
+                          <th>Nota pagamento/desbloqueio</th>
+                          <th class="acoes-col"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr
+                          *ngFor="
+                            let item of acompanhamentoPagamento;
+                            let i = index
+                          "
+                        >
+                          <td>
+                            <mat-form-field
+                              appearance="outline"
+                              class="table-field"
+                            >
+                              <input
+                                matInput
+                                [(ngModel)]="item.numeroNotaEmpenho"
+                              />
+                            </mat-form-field>
+                          </td>
+                          <td>
+                            <mat-form-field
+                              appearance="outline"
+                              class="table-field"
+                            >
+                              <input
+                                matInput
+                                type="number"
+                                step="0.01"
+                                [(ngModel)]="item.valorEmpenhado"
+                              />
+                            </mat-form-field>
+                          </td>
+                          <td>
+                            <mat-form-field
+                              appearance="outline"
+                              class="table-field"
+                            >
+                              <input matInput [(ngModel)]="item.beneficiario" />
+                            </mat-form-field>
+                          </td>
+                          <td>
+                            <mat-form-field
+                              appearance="outline"
+                              class="table-field"
+                            >
+                              <input matInput [(ngModel)]="item.cpfCnpj" />
+                            </mat-form-field>
+                          </td>
+                          <td>
+                            <mat-form-field
+                              appearance="outline"
+                              class="table-field"
+                            >
+                              <mat-select [(ngModel)]="item.tipo">
+                                <mat-option value="moeda">Moeda</mat-option>
+                                <mat-option value="tda">TDA</mat-option>
+                              </mat-select>
+                            </mat-form-field>
+                          </td>
+                          <td>
+                            <input
+                              type="date"
+                              class="tabela-input"
+                              [(ngModel)]="item.dataPagamento"
+                            />
+                          </td>
+                          <td>
+                            <div class="anexo-cell">
+                              <span
+                                class="anexo-nome"
+                                *ngIf="
+                                  item.notaPagamentoAnexo;
+                                  else semNotaPgto
+                                "
+                              >
+                                <mat-icon>picture_as_pdf</mat-icon>
+                                {{ item.notaPagamentoAnexo }}
+                              </span>
+                              <ng-template #semNotaPgto>
+                                <span class="anexo-vazio">Sem anexo</span>
+                              </ng-template>
+                              <button
+                                mat-icon-button
+                                type="button"
+                                title="Anexar PDF"
+                                (click)="anexarNotaPagamento(i)"
+                              >
+                                <mat-icon>attach_file</mat-icon>
+                              </button>
+                            </div>
+                          </td>
+                          <td class="acoes-col">
+                            <button
+                              mat-icon-button
+                              type="button"
+                              (click)="removerAcompanhamentoPagamento(i)"
+                            >
+                              <mat-icon>delete</mat-icon>
+                            </button>
+                          </td>
+                        </tr>
+                        <tr *ngIf="acompanhamentoPagamento.length === 0">
+                          <td colspan="8">
+                            <div class="sem-registros">
+                              Nenhum acompanhamento de pagamento adicionado.
+                            </div>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+
+                <!-- =====================================================
+       OBSERVAÇÃO (mantida)
+  ====================================================== -->
                 <br />
                 <mat-form-field appearance="outline" class="full-width">
                   <mat-label>Observação</mat-label>
-                  <textarea matInput rows="4"></textarea>
+                  <textarea
+                    matInput
+                    rows="4"
+                    [(ngModel)]="obsFase10"
+                  ></textarea>
                 </mat-form-field>
 
                 <div class="step-actions">
                   <button mat-stroked-button matStepperPrevious>Voltar</button>
-
                   <button mat-flat-button matStepperNext>Próximo</button>
                 </div>
               </mat-step>
